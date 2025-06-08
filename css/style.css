@@ -309,6 +309,14 @@ button, input, select, textarea {
     min-height: 44px;
     box-sizing: border-box;
 }
+body {
+  overflow-y: scroll;   /* mantém o scroll funcional */
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
 
 /* Make sure grid layouts collapse nicely */
 @media (max-width: 600px) {
