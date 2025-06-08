@@ -12,7 +12,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-overscroll-behavior: none;}
+}
 body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
 }
