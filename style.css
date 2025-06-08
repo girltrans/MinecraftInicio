@@ -130,3 +130,26 @@ a.github {
   font-family: monospace;
   color: yellow;
 }
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent;
+}
+
+/* Adição global */
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
