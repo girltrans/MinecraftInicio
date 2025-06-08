@@ -438,6 +438,15 @@ document.getElementById('downloadSkinBtn').addEventListener('click', () => {
     }
   });
 </script>
+<script>
+  function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+
+  if (isMobileDevice()) {
+    document.body.classList.add('allow-scroll');
+  }
+</script>
 
     </div>
 </div>
