@@ -6,7 +6,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     height: 100%;
-    margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -324,5 +323,13 @@ button, input, select, textarea {
 
 /* Prevent horizontal scroll on body */
 body, html {
-    overflow-x: hidden;
+    overflow: hidden;
+}
+body {
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
 }
