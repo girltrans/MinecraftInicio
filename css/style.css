@@ -322,14 +322,18 @@ button, input, select, textarea {
 }
 
 /* Prevent horizontal scroll on body */
-body, html {
-    overflow: hidden;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* padrão: sem scroll */
 }
-body {
-  overflow-y: scroll;
+
+body.allow-scroll {
+  overflow-y: auto;
   scrollbar-width: none; /* Firefox */
 }
 
-body::-webkit-scrollbar {
-  display: none; /* Chrome, Edge, Safari */
+body.allow-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
