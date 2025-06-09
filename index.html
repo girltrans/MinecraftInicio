@@ -469,16 +469,10 @@ document.getElementById('downloadSkinBtn').addEventListener('click', () => {
   }
 </script>
 <script>
-(function () {
-  const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
-  if (isFirefox) {
-    const scale = 0.8;
-    document.documentElement.style.transform = `scale(${scale})`;
-    document.documentElement.style.transformOrigin = 'top left';
-    document.documentElement.style.width = `${100 / scale}vw`;   // 125vw
-    document.documentElement.style.height = `${100 / scale}vh`;  // 125vh
-    document.documentElement.style.overflow = 'auto';
-  }
-})();
+  document.addEventListener("DOMContentLoaded", function () {
+    if (navigator.userAgent.toLowerCase().includes("firefox")) {
+      document.body.style.zoom = "80%";
+    }
+  });
 </script>
 </body></html>
