@@ -280,10 +280,31 @@ async function getAvatarByPlayerName(playerName) {
 }
 
 async function getSkinByIGN() {
-  const ign = document.getElementById('ign').value
-  const avatarPlayer = await getAvatarByPlayerName(ign)
-  
-  setSkin(avatarPlayer)
+    const ign = document.getElementById('ign').value;
+    const statusDiv = document.getElementById('ign_status');
+    const loadButton = document.querySelector('.search-box button'); // Use uma classe aqui
+
+    if (!ign) {
+        statusDiv.textContent = 'Por favor, digite um nick.';
+        return;
+    }
+
+    // --- Feedback Visual ---
+    loadButton.disabled = true;
+    loadButton.textContent = 'Carregando...';
+    statusDiv.textContent = '';
+
+    try {
+        const avatarPlayer = await getAvatarByPlayerName(ign);
+        setSkin(avatarPlayer);
+    } catch (error) {
+        console.error("Falha ao buscar skin:", error);
+        statusDiv.textContent = 'Jogador não Encontrado.';
+    } finally {
+        // --- Restaura o botão ---
+        loadButton.disabled = false;
+        loadButton.textContent = 'Carregar Nick';
+    }
 }
 
 // Animation radio logic
