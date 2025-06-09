@@ -451,5 +451,14 @@ document.getElementById('downloadSkinBtn').addEventListener('click', () => {
     </div>
 </div>
 
-
+<script>
+(function () {
+  const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+  if (isFirefox) {
+    document.body.style.transform = 'scale(0.8)';
+    document.body.style.transformOrigin = 'top left';
+    document.body.style.width = '125%'; // compensa a redução de escala
+  }
+})();
+</script>
 </body></html>
