@@ -471,5 +471,12 @@ document.getElementById("btnDownload").classList.add("hidden");
     }
 });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (navigator.userAgent.toLowerCase().includes("firefox")) {
+      document.body.style.zoom = "85%";
+    }
+  });
+</script>
 </body>
 </html>
