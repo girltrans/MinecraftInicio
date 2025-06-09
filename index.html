@@ -473,19 +473,11 @@ document.getElementById('downloadSkinBtn').addEventListener('click', () => {
   const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
   if (isFirefox) {
     const scale = 0.8;
-    const scaleInverse = 1 / scale;
-
     document.documentElement.style.transform = `scale(${scale})`;
     document.documentElement.style.transformOrigin = 'top left';
-
-    // Aumentar tamanho da raiz para compensar o zoom
-    document.documentElement.style.width = `${scaleInverse * 100}vw`;
-    document.documentElement.style.height = `${scaleInverse * 100}vh`;
+    document.documentElement.style.width = `${100 / scale}vw`;   // 125vw
+    document.documentElement.style.height = `${100 / scale}vh`;  // 125vh
     document.documentElement.style.overflow = 'auto';
-
-    document.body.style.width = '100%';
-    document.body.style.height = '100%';
-    document.body.style.overflow = 'auto';
   }
 })();
 </script>
