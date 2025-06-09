@@ -455,9 +455,11 @@ document.getElementById('downloadSkinBtn').addEventListener('click', () => {
 (function () {
   const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
   if (isFirefox) {
-    document.body.style.transform = 'scale(0.89)';
+    document.body.style.transform = 'scale(0.8)';
     document.body.style.transformOrigin = 'top left';
-    document.body.style.width = '112%'; // compensa a redução
+    document.body.style.width = '125vw'; // necessário para compensar a redução
+    document.body.style.height = '125vh';
+    document.body.style.overflow = 'auto';
   }
 })();
 </script>
