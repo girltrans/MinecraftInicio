@@ -468,8 +468,17 @@ document.getElementById('downloadSkinBtn').addEventListener('click', () => {
     document.body.classList.add('allow-scroll');
   }
 </script>
-
-    </div>
-</div>
-
+<script>
+(function () {
+  const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+  if (isFirefox) {
+    const scale = 0.74;
+    document.body.style.transform = `scale(${scale})`;
+    document.body.style.transformOrigin = 'top left';
+    document.body.style.width = `${100 / scale}vw`;
+    document.body.style.height = `${100 / scale}vh`;
+    document.body.style.overflow = 'auto';
+  }
+})();
+</script>
 </body></html>
