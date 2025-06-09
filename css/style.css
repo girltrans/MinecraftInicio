@@ -215,7 +215,47 @@ a.github {
     transform: scale(1.04);
     z-index: 2;
 }
+/* Remove a aparência padrão da checkbox - VERSÃO MAIOR */
+#elytra_checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 
+  /* Tamanho da caixa aumentado para 22px */
+  width: 22px;
+  height: 22px;
+  
+  /* Borda da caixa (desmarcada) aumentada para 3px */
+  border: 3px shadow red; 
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+}
+/* O "VISTO" VERDE (✔) - VERSÃO CORRIGIDA */
+#elytra_checkbox:checked::after {
+  content: '';
+  display: block;
+  position: absolute;
+
+  /* ROTAÇÃO CORRIGIDA para formar o "V" */
+  transform: rotate(32deg);
+
+  /* TAMANHO CORRIGIDO para caber na caixa */
+  width: 12px;
+  height: 26px;
+
+  /* POSIÇÃO CORRIGIDA para centralizar */
+  left: 12px;
+  top: 3px;
+
+  /* Cor e espessura do "visto" */
+  border: solid #28a745;
+  border-width: 0 4px 4px 0;
+}
 /* --- MOBILE FRIENDLY PATCH --- */
 
 @media (max-width: 1400px) {
