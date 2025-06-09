@@ -42,7 +42,7 @@
     /* Estiliza o label para parecer um botão customizado */
     .custom-file-upload-btn {
         display: inline-block;
-        background: #121212; /* A COR VERMELHA QUE VOCÊ PEDIU */
+        background: #121212;
         color: #e8b901;
         border: none;
         border-radius: 8px;
@@ -52,15 +52,15 @@
         cursor: pointer;
         transition: background 0.2s;
         box-shadow: 0 2px 18px #8b1616;
-		text-align: left;
-		box-sizing: border-box; /* Garante que padding não afete a altura total */
-        position: relative; /* Adicionado para permitir ajuste de posição */
-        top: -6.7px; /* Adicionado para mover o botão para cima */
+        text-align: left;
+        box-sizing: border-box;
+        position: relative;
+        top: -6.7px;
     }
 
     /* Efeito hover para o botão customizado */
     .custom-file-upload-btn:hover {
-        background: #; /* Um tom de vermelho mais escuro */
+        background: #2a2a2a; /* Corrigido */
     }
 
     </style>
@@ -320,6 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Nenhuma skin carregada.');
                 return;
             }
+            
             // Verifica se é um Data URL (upload) ou URL externa (IGN)
             if (currentSkin.startsWith('data:image/')) {
                 // Já está como dataURL (upload)
@@ -328,9 +329,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.download = 'skin.png';
                 link.click();
             } else {
-                // URL externa, baixar como blob
-                fetch(currentSkin)
-                .then(res => res.blob())
+                // URL externa, usar um proxy CORS para baixar como blob
+                const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(currentSkin)}`;
+                fetch(proxyUrl)
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error(`HTTP error! status: ${res.status}`);
+                    }
+                    return res.blob()
+                })
                 .then(blob => {
                     const url = URL.createObjectURL(blob);
                     const link = document.createElement('a');
@@ -342,8 +349,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     URL.revokeObjectURL(url);
                 })
                 .catch((e) => {
-                    console.error(e);
-                    alert('Falha ao baixar a skin.');
+                    console.error("Download failed for:", currentSkin, e);
+                    alert('Falha ao baixar a skin. Pode ser um problema com o servidor de skins ou o proxy.');
                 });
             }
         });
