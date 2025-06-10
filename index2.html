@@ -19,7 +19,49 @@
     <style>
         .content { max-width: 1200px; margin: 0 auto; }
     </style>
-	
+<style>
+  /* Remove a aparência padrão do rádio button */
+  input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Tamanho do nosso rádio button customizado */
+    width: 13px;
+    height: 13px;
+
+    /* Estilo do círculo externo (azul) */
+    box-shadow:0 2px 18px #8b1616;
+    border-radius: 50%; /* Deixa o elemento redondo */
+    background-color: #1e1e1e; /* Cor de fundo quando não está clicado */
+
+    /* Garante que o clique seja preciso */
+    cursor: pointer;
+
+    /* Posicionamento do ponto interno */
+    display: inline-block;
+    position: relative;
+    vertical-align: middle; /* Alinha com o texto */
+  }
+
+  /* Estilo do rádio button quando está selecionado (clicado) */
+  input[type="radio"]:checked {
+    background-color: #E8B901; /* O meio fica amarelo */
+  }
+
+  /* Para um efeito visual mais suave */
+  input[type="radio"], input[type="radio"]:checked {
+    transition: all 0.2s ease-in-out;
+  }
+
+  label {
+    cursor: pointer;
+    font-family: sans-serif;
+  }
+</style>
+</head>
+<body>
+
 </head>
 <body>
     <nav class="navbar">
