@@ -3,7 +3,7 @@ body {
                 url('./images/background.png') no-repeat center center fixed;
     background-size: cover;
     color: #8B1616;
-    font-family: 'Righteous', Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Righteous', Segoe UI, Tahoma, Geneva, Verdana, sans-serif, cursive;
 	font-size: 1.2rem; 
 	font-weight: 600;
     margin: 0;
@@ -32,6 +32,13 @@ h1 {
 .menu, .form-container {
     margin-bottom: 2rem;
 }
+.menu label {
+  cursor: pointer;
+  user-select: show; /* Opcional: evita que o texto seja selecionado ao clicar */
+}
+.menu input[type="radio"] {
+  cursor: pointer;
+}
 input[type="text"], input[type="number"], select {
     padding: 0.5rem;
     font-size: 1rem;
@@ -44,6 +51,7 @@ input[type="text"], input[type="number"], select {
 
 button {
     background-color: black;
+	font-weight:bold;
     color: #E8B901;
     border: 1px solid #8B1616;
     padding: 0.5rem 1rem;
