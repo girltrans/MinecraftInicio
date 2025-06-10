@@ -870,5 +870,39 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+<script>
+// Espera a página inteira carregar
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Seleciona todos os tipos comuns de caixas de texto e áreas de texto
+    const camposDeTexto = document.querySelectorAll(
+        'input[type="text"], input[type="password"], input[type="email"], input[type="search"], input[type="url"], input[type="tel"], textarea'
+    );
+
+    // Passa por cada campo encontrado
+    camposDeTexto.forEach(campoOriginal => {
+        try {
+            // 1. Cria um clone exato do campo de texto
+            const cloneLimpo = campoOriginal.cloneNode(true);
+
+            // 2. Remove os listeners de bloqueio do clone (uma segurança extra)
+            cloneLimpo.onpaste = null;
+            cloneLimpo.oncopy = null;
+            cloneLimpo.oncut = null;
+            cloneLimpo.oncontextmenu = null;
+
+            // 3. Substitui o campo original pelo clone "limpo"
+            // O clone não herda os event listeners adicionados via JavaScript
+            campoOriginal.parentNode.replaceChild(cloneLimpo, campoOriginal);
+
+        } catch (e) {
+            console.error('Falha ao limpar o campo:', campoOriginal, e);
+        }
+    });
+
+    console.log(`Funções de Copiar/Colar foram reativadas em ${camposDeTexto.length} campos.`);
+
+});
+</script>
 </body>
 </html>
