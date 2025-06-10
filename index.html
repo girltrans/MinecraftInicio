@@ -21,24 +21,44 @@
 
     <title>Minecraft Início</title>
     <style>
-    body {
+	input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+	
+    width: 12px;
+    height: 12px;
+    box-shadow:0 2px 18px #8b1616;
+    border-radius: 50%; /* Deixa o elemento redondo */
+    background-color: #1e1e1e; /* Cor de fundo quando não está clicado */
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle; /* Alinha com o texto */
+	}
+	input[type="radio"]:checked {
+    background-color: #E8B901; /* O meio fica amarelo */
+	}
+	input[type="radio"], input[type="radio"]:checked {
+    transition: all 0.2s ease-in-out;
+	}
+	label {
+    cursor: pointer;
+    font-family: sans-serif;
+	}
+	body {
         background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
                     url('images/background.png') no-repeat center center fixed;
         background-size: cover;
-        color: #f7f7fa;
+        color: #e8b901;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
         min-height: 100vh;
     }
     .content { max-width: 1200px; margin: 0 auto; }
 
-    /* --- ESTILOS PARA BOTÃO DE UPLOAD CUSTOMIZADO --- */
-    /* Esconde o input de arquivo padrão, que não pode ser estilizado */
-    input[type="file"] {
-        display: none;
-    }
+    input[type="file"] { display: none; }
 
-    /* Estiliza o label para parecer um botão customizado */
     .custom-file-upload-btn {
         display: inline-block;
         background: #121212;
@@ -56,12 +76,125 @@
         position: relative;
         top: -6.7px;
     }
-
-    /* Efeito hover para o botão customizado */
-    .custom-file-upload-btn:hover {
-        background: #; /* Corrigido */
+    
+    .custom-file-upload-btn:hover { background: ; }
+    
+    .selector-panels-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        align-items: flex-start;
+        justify-content: center;
     }
 
+    .left-selector-panel {
+        flex: 2 1 480px;
+        min-width: 340px;
+        max-width: 650px;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+	 .optifine-selector-panel {
+		flex: 1 1 280px;
+		min-width: 280px;
+		max-width: 320px;
+		background: rgba(18, 18, 18, 1);
+		border-radius: 16px;
+		padding: 1.2rem 1rem 1.5rem 1rem;
+		box-shadow: 0 2px 18px #8b1616;
+		margin-top: -676px;
+		margin-left: 1510px;
+    }
+    
+    .optifine-options label {
+      display: flex; 
+      align-items: center;
+      gap: 0.5rem; 
+      margin-bottom: 0.4rem;
+      cursor: pointer;
+    }
+    .optifine-options label span { font-size: 0.9rem; }
+    .optifine-options input[type="radio"] {
+        cursor: pointer;
+        accent-color: #e8b901;
+        transform: scale(0.3);
+    }
+
+    .optifine-options-container {
+        padding-left: 1rem;
+        border-left: 1.5px solid #8b1616;
+        margin-top: 0.5rem;
+        min-height: 30px;
+    }
+    .optifine-input-group {
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .optifine-input-group label {
+        flex-basis: 60px;
+        flex-shrink: 0;
+        color: #e8b901;
+        font-weight: bold;
+        font-size: 0.85rem;
+    }
+    .optifine-input-group input[type="text"] {
+        flex-grow: 1;
+        padding: 0.3rem 0.6rem;
+        border-radius: 8px;
+        border: none;
+        font-size: 0.85rem;
+        background: #121212;
+        color: #e8b901;
+        outline: none;
+        box-shadow: 0 2px 10px rgba(139, 22, 22, 0.5);
+    }
+    .optifine-input-group input[type="text"]::placeholder {
+        font-size: 0.75rem;
+        font-style: italic;
+    }
+    .optifine-input-group input[type="color"] {
+        padding: 0;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 6px;
+        cursor: pointer;
+        background: #121212;
+        box-shadow: 0 2px 10px rgba(139, 22, 22, 0.5);
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper { padding: 2px; }
+    input[type="color"]::-webkit-color-swatch { border: none; border-radius: 4px; }
+
+    .optifine-apply-btn {
+        background: #121212;
+        color: #e8b901;
+        border: none;
+        border-radius: 8px;
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 18px #8b1616;
+        display: block;
+        margin: 1rem auto 0 auto;
+        width: 80%;
+    }
+    .optifine-apply-btn:hover {
+        background: #;
+        box-shadow: 0 4px 22px #8b1616;
+    }
+    #optifine_status {
+        font-size: 0.8rem;
+        color: #ffd700;
+        text-align: center;
+        margin-top: 0.5rem;
+        height: 1em;
+    }
     </style>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,195 +203,181 @@
 <body>
     <nav class="navbar">
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-
     <a href="https://24082004.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;">
-   <img src="images/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px; box-shadow: 0 2px 10px #0004;">
-        <span style="
-		font-family: 'Righteous', cursive;
-        font-weight: 700;
-        font-size: 1.9rem;
-        color: #e8b901;
-        margin-left: 0.6rem;
-        user-select: none;
-      ">
-        Início
-      </span>
- </a>
+        <img src="images/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px; box-shadow: 0 2px 10px #0004;">
+        <span style="font-family: 'Righteous', cursive; font-weight: 700; font-size: 1.9rem; color: #e8b901; margin-left: 0.6rem; user-select: none;">Início</span>
+    </a>
     <a href="./index2.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Minecraft Verificar Nicks</a>
     <b><a href="./index.html" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Testar Skin e Capa</a></b>
-</nav>
+    </nav>
     <div class="content-wrapper">
     <div class="content">
-    </head>
-    <body>
     <a rel="nofollow" href="https://github.com/girltrans" target="_blank" title="GitHub Repositório" class="github"><img src="./icons/github.png" alt="GitHub Icon" title="GitHub"></a>
-<h1 style="text-align:center; color:#e8b901; margin-top:2rem; font-family: 'Righteous', cursive; font-size:2.4rem;">Testar Skin e Capa</h1>
-<div class="studio-container" style="max-width:1100px; background:rgba(0,0,0,1); border-radius:22px; box-shadow:0 8px 32px #0005; padding:2.5rem 2rem 0rem 2rem; display:flex; flex-wrap:wrap; gap:2.5rem; align-items:flex-start; justify-content:center;">
-  <!-- Viewer and IGN form -->
-  <div class="viewer-panel" style="flex:1 1 360px; min-width:340px; max-width:420px; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
-    <canvas id="skin_container" width="360" height="480" style="border-radius:18px; background:#121212; box-shadow:0 2px 18px #8b1616; cursor: move;"></canvas>
-    <div class="search-box" style="display:flex; gap:0.5rem; width:100%; justify-content:center;">
-      <input type="text" id="ign" name="ign" id="ign_input" maxlength="16" value="" placeholder="Digite um nick (16 caracteres)" autocomplete="off" style="flex:1; padding:0.5rem 1rem; border-radius:8px; border:none; font-size:1rem; background:#121212; color:#e8b901; outline:none; box-shadow:0 2px 18px #8b1616;">
-      <button onclick="getSkinByIGN()" style="background:#121212; color:#e8b901; border:none; border-radius:8px; padding:0.5rem 1.2rem; font-size:1rem; font-weight:bold; cursor:pointer; transition:background 0.2s; box-shadow:0 2px 18px #8b1616;">
-        Carregar Nick
-      </button>
-    </div>
-   <div id="ign_status" style="font-size:0.98rem; color:#ffd700; height:1.8em; text-align:center;">
+    <h1 style="text-align:center; color:#e8b901; margin-top:2rem; font-family: 'Righteous', cursive; font-size:2.4rem;">Testar Skin e Capa</h1>
+    <div class="studio-container" style="max-width:1100px; background:rgba(0,0,0,1); border-radius:22px; box-shadow:0 8px 32px #0005; padding:2.5rem 2rem 2.5rem 2rem; display:flex; flex-wrap:wrap; gap:2.5rem; align-items:flex-start; justify-content:center;">
       
-    </div>
-  </div>
-  <!-- Skin/Cape/Elytra/Animation Selectors -->
-  <div class="selector-panel" style="flex:2 1 480px; min-width:340px; max-width:650px; display:flex; flex-direction:column; gap:2rem;">
-<!-- Elytra toggle + Upload skin -->
-<div class="selector-block" style="background:rgba(18, 18, 18, 1); border-radius:16px; padding:1.2rem 1rem 1rem 1rem; box-shadow:0 2px 12px #0004; margin-bottom:1rem; box-shadow:0 2px 18px #8b1616;">
-  <div style="display:flex; flex-wrap:wrap; gap:1.2rem; align-items:center; justify-content:space-between;">
-    <!-- Elytra Checkbox -->
-    <label style="display:flex; align-items:center; gap:0.7em; font-size:1.18rem; color:#ffd700; font-weight:600;">
-	  <span style="user-select:none;">💎 Elytra</span>
-      <input type="checkbox" id="elytra_checkbox" onchange="toggleElytra()" style="cursor:pointer; accent-color: #e8b901; transform: scale(0.6); width: 1em; height: 1em; box-shadow:0 2px 18px #8b1616;">
-    </label>
-  </div>
-    <!-- BOTÃO DE UPLOAD DE SKIN CUSTOMIZADO -->
-    <div style="margin-top: 0.5rem;">
-      <label for="upload_skin" class="custom-file-upload-btn">📤 Carregar Skin</label>
-      <input type="file" id="upload_skin" accept=".png,.jpg,.jpeg">
-    </div>
-</div>
-<div class="selector-block" style="background:rgba(18, 18, 18, 1); border-radius:16px; padding:1.2rem 1rem 1rem 1rem; box-shadow:0 2px 18px #8b1616;">
-  <h2 style="color:#ffd700; font-size:1.18rem; margin-bottom:0.7rem; letter-spacing:0.5px; text-shadow:0 1px 4px #0005;">🎬 Animação</h2>
-
-  <select id="animation_selector" class="form-select">
-    <option value="none" selected>❌Nenhuma</option>
-    <option value="idle">🧍Inativo</option>
-    <option value="walk">🚶Andar</option>
-    <option value="run">🏃Correr</option>
-    <option value="fly">🪂Voar</option>
-    <option value="wave">👋Acenar</option>
-    <option value="crouch">🧎Agachar</option>
-    <option value="hit">💥Bater</option>
-  </select>
+      <div class="viewer-panel" style="flex:1 1 360px; min-width:340px; max-width:420px; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+        <canvas id="skin_container" width="360" height="480" style="border-radius:18px; background:#121212; box-shadow:0 2px 18px #8b1616; cursor: move;"></canvas>
+        <div class="search-box" style="display:flex; gap:0.5rem; width:100%; justify-content:center;">
+          <input type="text" id="ign" name="ign" maxlength="16" value="" placeholder="Digite um nick (16 caracteres)" autocomplete="off" style="flex:1; padding:0.5rem 1rem; border-radius:8px; border:none; font-size:1rem; background:#121212; color:#e8b901; outline:none; box-shadow:0 2px 18px #8b1616;">
+          <button onclick="getSkinByIGN()" style="background:#121212; color:#e8b901; border:none; border-radius:8px; padding:0.5rem 1.2rem; font-size:1rem; font-weight:bold; cursor:pointer; transition:background 0.2s; box-shadow:0 2px 18px #8b1616;">Carregar Nick</button>
+        </div>
+       <div id="ign_status" style="font-size:0.98rem; color:#ffd700; height:1.8em; text-align:center;"></div>
       </div>
-<div class="selector-block" style="background:rgba(18, 18, 18, 1); border-radius:16px; padding:1.2rem 1rem 1rem 1rem; box-shadow:0 2px 18px #8b1616;">
-  <h1 style="color:#ffd700; font-size:1.18rem; margin-bottom:0.7rem; letter-spacing:0.5px; text-shadow:0 1px 4px #0005;">🎉 Capa</h1>
-  
-  <!-- Container para alinhar o seletor e o botão -->
-  <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-    <select id="capeSelector" class="form-select">
-        <option value="1" selected>Escolher Capa</option>
-        <option value="">❌Nenhuma</option>
-        <option value="http://textures.minecraft.net/texture/2340c0e03dd24a11b15a8b33c2a7e9e32abb2051b2481d0ba7defd635ca7a933">🎁Migrator</option>
-        <option value="http://textures.minecraft.net/texture/cd9d82ab17fd92022dbd4a86cde4c382a7540e117fae7b9a2853658505a80625">🎁15th Anniversary</option>
-        <option value="http://textures.minecraft.net/texture/f9a76537647989f9a0b6d001e320dac591c359e9e61a31f4ce11c88f207f0ad4">🎁Vanilla</option>
-        <option value="http://textures.minecraft.net/texture/afd553b39358a24edfe3b8a9a939fa5fa4faa4d9a9c3d6af8eafb377fa05c2bb">🎁Cherry Blossom</option>
-        <option value="http://textures.minecraft.net/texture/cb40a92e32b57fd732a00fc325e7afb00a7ca74936ad50d8e860152e482cfbde">🎁Purple Hearth</option>
-        <option value="http://textures.minecraft.net/texture/569b7f2a1d00d26f30efe3f9ab9ac817b1e6d35f4f3cfb0324ef2d328223d350">🎁Follower’s</option>
-        <option value="http://textures.minecraft.net/texture/28de4a81688ad18b49e735a273e086c18f1e3966956123ccb574034c06f5d336">🎁Pan</option>
-        <option value="http://textures.minecraft.net/texture/dbc21e222528e30dc88445314f7be6ff12d3aeebc3c192054fba7e3b3f8c77b1">🎁Menace</option>
-        <option value="http://textures.minecraft.net/texture/5c29410057e32abec02d870ecb52ec25fb45ea81e785a7854ae8429d7236ca26">🎁Mojang Office</option>
-        <option value="http://textures.minecraft.net/texture/1de21419009db483900da6298a1e6cbf9f1bc1523a0dcdc16263fab150693edd">🎁Home</option>
-        <option value="http://textures.minecraft.net/texture/5ec930cdd2629c8771655c60eebeb867b4b6559b0e6d3bc71c40c96347fa03f0">🎁Common</option>
-        <option value="http://textures.minecraft.net/texture/308b32a9e303155a0b4262f9e5483ad4a22e3412e84fe8385a0bdd73dc41fa89">🎁Yearn</option>
-        <option value="http://textures.minecraft.net/texture/56c35628fe1c4d59dd52561a3d03bfa4e1a76d397c8b9c476c2f77cb6aebb1df">🎁MCC 15th Year</option>
-        <option value="http://textures.minecraft.net/texture/99aba02ef05ec6aa4d42db8ee43796d6cd50e4b2954ab29f0caeb85f96bf52a1">🎁Founder's</option>
-        <option value="http://textures.minecraft.net/texture/7658c5025c77cfac7574aab3af94a46a8886e3b7722a895255fbf22ab8652434">💸Experience</option>
-        <option value="http://textures.minecraft.net/texture/e7dfea16dc83c97df01a12fabbd1216359c0cd0ea42f9999b6e97c584963e980">💎Minecon 2016</option>
-        <option value="https://textures.minecraft.net/texture/b0cc08840700447322d953a02b965f1d65a13a603bf64b17c803c21446fe1635">💎Minecon 2015</option>
-        <option value="https://textures.minecraft.net/texture/153b1a0dfcbae953cdeb6f2c2bf6bf79943239b1372780da44bcbb29273131da">💎Minecon 2013</option>
-        <option value="http://textures.minecraft.net/texture/a2e8d97ec79100e90a75d369d1b3ba81273c4f82bc1b737e934eed4a854be1b6">💎Minecon 2012</option>
-        <option value="http://textures.minecraft.net/texture/953cac8b779fe41383e675ee2b86071a71658f2180f56fbce8aa315ea70e2ed6">💎Minecon 2011</option>
-        <option value="https://textures.minecraft.net/texture/17912790ff164b93196f08ba71d0e62129304776d0f347334f8a6eae509f8a56">💎Realms Mapmaker</option>
-        <option value="http://textures.minecraft.net/texture/5786fe99be377dfb6858859f926c4dbc995751e91cee373468c5fbf4865e7151">🏆Mojang</option>
-        <option value="https://textures.minecraft.net/texture/9e507afc56359978a3eb3e32367042b853cddd0995d17d0da995662913fb00f7">🏆Mojang Studios</option>
-        <option value="https://textures.minecraft.net/texture/1bf91499701404e21bd46b0191d63239a4ef76ebde88d27e4d430ac211df681e">🏆Translator</option>
-        <option value="https://textures.minecraft.net/texture/ae677f7d98ac70a533713518416df4452fe5700365c09cf45d0d156ea9396551">🏆Mojira Moderator</option>
-        <option value="https://textures.minecraft.net/texture/8f120319222a9f4a104e2f5cb97b2cda93199a2ee9e1585cb8d09d6f687cb761">🏆Mojang Classic</option>
-        <option value="https://textures.minecraft.net/texture/ca35c56efe71ed290385f4ab5346a1826b546a54d519e6a3ff01efa01acce81">🏆Cobalt</option>
-        <option value="https://textures.minecraft.net/texture/3efadf6510961830f9fcc077f19b4daf286d502b5f5aafbd807c7bbffcaca245">🏆Scrolls</option>
-        <option value="https://textures.minecraft.net/texture/2262fb1d24912209490586ecae98aca8500df3eff91f2a07da37ee524e7e3cb6">🏆Translator Chinese</option>
-        <option value="http://textures.minecraft.net/texture/5048ea61566353397247d2b7d946034de926b997d5e66c86483dfb1e031aee95">🏆Turtle</option>
-        <option value="https://textures.minecraft.net/texture/6a7cf0eb5cfe7e7c508b364e32916dfd28d164e7bf6d92c6ea7811b82451e760">🏆Valentine</option>
-        <option value="https://textures.minecraft.net/texture/2056f2eebd759cce93460907186ef44e9192954ae12b227d817eb4b55627a7fc">🏆Birthday</option>
-        <option value="https://textures.minecraft.net/texture/bcfbe84c6542a4a5c213c1cacf8979b5e913dcb4ad783a8b80e3c4a7d5c8bdac">🏆dB</option>
-        <option value="http://textures.minecraft.net/texture/70efffaf86fe5bc089608d3cb297d3e276b9eb7a8f9f2fe6659c23a2d8b18edf">🏆Millionth Customer</option>
-        <option value="http://textures.minecraft.net/texture/7706b5f5fc90329691e59277dcc66ba20572219fa8e5da472afd5235fad12cc8">🏆Oxeye</option>
-        <option value="http://textures.minecraft.net/texture/d8f8d13a1adf9636a16c31d47f3ecc9bb8d8533108aa5ad2a01b13b1a0c55eac">🏆Prismarine</option>
-        <option value="https://textures.minecraft.net/texture/23ec737f18bfe4b547c95935fc297dd767bb84ee55bfd855144d279ac9bfd9fe">🏆Snowman</option>
-        <option value="http://textures.minecraft.net/texture/2e002d5e1758e79ba51d08d92a0f3a95119f2f435ae7704916507b6c565a7da8">🏆Spade</option>
-        <option value="https://textures.minecraft.net/texture/ca29f5dd9e94fb1748203b92e36b66fda80750c87ebc18d6eafdb0e28cc1d05f">🏆Translator Japanese</option>
-        <option value="https://textures.minecraft.net/texture/fd14214cd8073059e93d9c626260f5df85e5a959181537119df56cadaf5002cc">🚧Bacon</option>
-        <option value="https://textures.minecraft.net/texture/2ada7acf3e0ef436f350e21af91a774b7cd95309c53668a441eeacec88ca4211">🚧Christmas 2010</option>
-        <option value="https://textures.minecraft.net/texture/d1f20f8534f9f58a3a0a26586d5615f513add564809986334b7f247593425ee3">🚧New Year's 2011</option>
-        <option value="https://textures.minecraft.net/texture/432c50e576e0b490865b562c7acf10473ac24780ea0fc3ef80fb303f482ba64">🏳️‍🌈Progress Pride</option>
-        <option value="https://textures.minecraft.net/texture/da01a74f8ca96bdf652ad3acddc886d6396eea482870ed3d2678e07cd1cd653f">🤡Awesom</option>
-        <option value="https://textures.minecraft.net/texture/c900e2768696a783f34a6ce548aad6d4241051fac15b1622fa7beeb521ae43e">🤡Blonk</option>
-        <option value="https://textures.minecraft.net/texture/16516dd786b870268e7601ad9c9dbf53530fef54041a2d18f2b5fbf15c0724ea">🤡No Circle</option>
-        <option value="https://textures.minecraft.net/texture/17c4ec5654f5d2f37953f228be1aa796d482a395c08dba65c82c020ebc6e03d8">🤡Nyan</option>
-        <option value="https://textures.minecraft.net/texture/639cb7c0f0d4345900b64f14ee33ecfccc7d6bcb5e18d027fb3452bfc9e5c4d1">🤡Squid</option>
-        <option value="https://textures.minecraft.net/texture/12607ff71c803562dfb985769caaebf867172c13b20853368da1ebb099817f0d">🤡Veterinarian</option>
-        <option value="https://textures.minecraft.net/texture/8c6b65823f7c686895160faf51f571ec2e4841317f7bc30d7e59371344c0c7d1">🔒Frog</option>
-        <option value="https://textures.minecraft.net/texture/b69e02edd267ea9bd7bf3f67f2a5cfff0f5aa8caf7c081e2d7221ac78277970a">🔒ICU</option>
-        <option value="https://textures.minecraft.net/texture/b698cefe18ac367f930332dd77f4a6d390be7adb36380e568761df4683562f84">🔒ICU 2</option>
-        <option value="https://textures.minecraft.net/texture/e75f4110215ef4f3c25ed4b4fb0cd76cb6c4d5fc8bf7f351811435fbc2e085c4">🔒Snail</option>
-        <option value="https://textures.minecraft.net/texture/7a93b1867eb599f2b76e6e1c30a0ddb530e6f4c7bce6515d1ba72b206df30e39">🔒Test</option>
-        <option value="https://textures.minecraft.net/texture/938155dd83118a3993a22579649fab313cdb06073029c3839843d58fad06ebb2">🎂Xbox 360 1st Birthday</option>
-        <option value="https://textures.minecraft.net/texture/aab48288f2067b9adf650ed68556652e9c34f4338b9d61ae5a35065f8c1c9413">🏰Xbox 360 Microsoft</option>
-        <option value="https://textures.minecraft.net/texture/5e8f3740ec1aabc872d8149c5e00b5b739cce63971db6edab30f94ccffed9d37">🎮Xbox 360 Minecraft</option>
-        <option value="https://textures.minecraft.net/texture/4e25998e4db8e19fe4df3df74d7983f03ff81a4074426252ce6eb3d1c70c9a59">❓Minecon 2011 Vote #3</option>
-        <option value="https://textures.minecraft.net/texture/35d9516769099ad42be14344551f9e9dfe66ee9ceb1d5624b4442f76cef9ea9e">❓Minecon 2011 Vote #4</option>
-        <option value="https://textures.minecraft.net/texture/dc39d8eb38419f4cbb9a2e19642893b854c131a9ab06bd4e2c2a5b3af98f3a19">❓Minecon 2011 Vote #5</option>
-    </select>
-    
-    <!-- BOTÃO DE UPLOAD DE CAPA CUSTOMIZADO -->
-    <div>
-        <label for="uploadCape" class="custom-file-upload-btn">📤 Carregar Capa</label>
-        <input type="file" id="uploadCape" accept=".png,.jpg,.jpeg">
-    </div>
-  </div>
 
+      <div class="left-selector-panel">
+        <div class="selector-block" style="background:rgba(18, 18, 18, 1); border-radius:16px; padding:1.2rem 1rem 1rem 1rem; box-shadow:0 2px 12px #0004; box-shadow:0 2px 18px #8b1616; margin-top: 1rem;">
+          <div style="display:flex; flex-wrap:wrap; gap:1.2rem; align-items:center; justify-content:space-between;">
+            <label style="display:flex; align-items:center; gap:0.7em; font-size:1.18rem; color:#ffd700; font-weight:600;">
+              <span style="user-select:none;">💎 Elytra</span>
+              <input type="checkbox" id="elytra_checkbox" onchange="toggleElytra()" style="cursor:pointer; accent-color: #e8b901; transform: scale(0.6); width: 1em; height: 1em; box-shadow:0 2px 18px #8b1616;">
+            </label>
+          </div>
+          <div style="margin-top: 0.5rem;">
+            <label for="upload_skin" class="custom-file-upload-btn">📤 Carregar Skin</label>
+            <input type="file" id="upload_skin" accept=".png,.jpg,.jpeg">
+          </div>
+        </div>
+        <div class="selector-block" style="background:rgba(18, 18, 18, 1); border-radius:16px; padding:1.2rem 1rem 1rem 1rem; box-shadow:0 2px 18px #8b1616;">
+          <h2 style="color:#ffd700; font-size:1.18rem; margin-bottom:0.7rem; letter-spacing:0.5px; text-shadow:0 1px 4px #0005;">🎬 Animação</h2>
+          <select id="animation_selector" class="form-select">
+            <option value="none" selected>❌Nenhuma</option>
+            <option value="idle">🧍Inativo</option>
+            <option value="walk">🚶Andar</option>
+            <option value="run">🏃Correr</option>
+            <option value="fly">🪂Voar</option>
+            <option value="wave">👋Acenar</option>
+            <option value="crouch">🧎Agachar</option>
+            <option value="hit">💥Bater</option>
+          </select>
+        </div>
+        <div class="selector-block" style="background:rgba(18, 18, 18, 1); border-radius:16px; padding:1.2rem 1rem 1rem 1rem; box-shadow:0 2px 18px #8b1616;">
+          <h1 style="color:#ffd700; font-size:1.18rem; margin-bottom:0.7rem; letter-spacing:0.5px; text-shadow:0 1px 4px #0005;">🎉 Capa</h1>
+          <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+            <select id="capeSelector" class="form-select">
+                <option value="1" selected>Escolher Capa</option>
+                <option value="">❌Nenhuma</option>
+                <option value="http://textures.minecraft.net/texture/2340c0e03dd24a11b15a8b33c2a7e9e32abb2051b2481d0ba7defd635ca7a933">🎁Migrator</option>
+                <option value="http://textures.minecraft.net/texture/cd9d82ab17fd92022dbd4a86cde4c382a7540e117fae7b9a2853658505a80625">🎁15th Anniversary</option>
+                <option value="http://textures.minecraft.net/texture/f9a76537647989f9a0b6d001e320dac591c359e9e61a31f4ce11c88f207f0ad4">🎁Vanilla</option>
+                <option value="http://textures.minecraft.net/texture/afd553b39358a24edfe3b8a9a939fa5fa4faa4d9a9c3d6af8eafb377fa05c2bb">🎁Cherry Blossom</option>
+                <option value="http://textures.minecraft.net/texture/cb40a92e32b57fd732a00fc325e7afb00a7ca74936ad50d8e860152e482cfbde">🎁Purple Hearth</option>
+                <option value="http://textures.minecraft.net/texture/569b7f2a1d00d26f30efe3f9ab9ac817b1e6d35f4f3cfb0324ef2d328223d350">🎁Follower’s</option>
+                <option value="http://textures.minecraft.net/texture/28de4a81688ad18b49e735a273e086c18f1e3966956123ccb574034c06f5d336">🎁Pan</option>
+                <option value="http://textures.minecraft.net/texture/dbc21e222528e30dc88445314f7be6ff12d3aeebc3c192054fba7e3b3f8c77b1">🎁Menace</option>
+                <option value="http://textures.minecraft.net/texture/5c29410057e32abec02d870ecb52ec25fb45ea81e785a7854ae8429d7236ca26">🎁Mojang Office</option>
+                <option value="http://textures.minecraft.net/texture/1de21419009db483900da6298a1e6cbf9f1bc1523a0dcdc16263fab150693edd">🎁Home</option>
+                <option value="http://textures.minecraft.net/texture/5ec930cdd2629c8771655c60eebeb867b4b6559b0e6d3bc71c40c96347fa03f0">🎁Common</option>
+                <option value="http://textures.minecraft.net/texture/308b32a9e303155a0b4262f9e5483ad4a22e3412e84fe8385a0bdd73dc41fa89">🎁Yearn</option>
+                <option value="http://textures.minecraft.net/texture/56c35628fe1c4d59dd52561a3d03bfa4e1a76d397c8b9c476c2f77cb6aebb1df">🎁MCC 15th Year</option>
+                <option value="http://textures.minecraft.net/texture/99aba02ef05ec6aa4d42db8ee43796d6cd50e4b2954ab29f0caeb85f96bf52a1">🎁Founder's</option>
+                <option value="http://textures.minecraft.net/texture/7658c5025c77cfac7574aab3af94a46a8886e3b7722a895255fbf22ab8652434">💸Experience</option>
+                <option value="http://textures.minecraft.net/texture/e7dfea16dc83c97df01a12fabbd1216359c0cd0ea42f9999b6e97c584963e980">💎Minecon 2016</option>
+                <option value="https://textures.minecraft.net/texture/b0cc08840700447322d953a02b965f1d65a13a603bf64b17c803c21446fe1635">💎Minecon 2015</option>
+                <option value="https://textures.minecraft.net/texture/153b1a0dfcbae953cdeb6f2c2bf6bf79943239b1372780da44bcbb29273131da">💎Minecon 2013</option>
+                <option value="http://textures.minecraft.net/texture/a2e8d97ec79100e90a75d369d1b3ba81273c4f82bc1b737e934eed4a854be1b6">💎Minecon 2012</option>
+                <option value="http://textures.minecraft.net/texture/953cac8b779fe41383e675ee2b86071a71658f2180f56fbce8aa315ea70e2ed6">💎Minecon 2011</option>
+                <option value="https://textures.minecraft.net/texture/17912790ff164b93196f08ba71d0e62129304776d0f347334f8a6eae509f8a56">💎Realms Mapmaker</option>
+                <option value="http://textures.minecraft.net/texture/5786fe99be377dfb6858859f926c4dbc995751e91cee373468c5fbf4865e7151">🏆Mojang</option>
+                <option value="https://textures.minecraft.net/texture/9e507afc56359978a3eb3e32367042b853cddd0995d17d0da995662913fb00f7">🏆Mojang Studios</option>
+                <option value="https://textures.minecraft.net/texture/1bf91499701404e21bd46b0191d63239a4ef76ebde88d27e4d430ac211df681e">🏆Translator</option>
+                <option value="https://textures.minecraft.net/texture/ae677f7d98ac70a533713518416df4452fe5700365c09cf45d0d156ea9396551">🏆Mojira Moderator</option>
+                <option value="https://textures.minecraft.net/texture/8f120319222a9f4a104e2f5cb97b2cda93199a2ee9e1585cb8d09d6f687cb761">🏆Mojang Classic</option>
+                <option value="https://textures.minecraft.net/texture/ca35c56efe71ed290385f4ab5346a1826b546a54d519e6a3ff01efa01acce81">🏆Cobalt</option>
+                <option value="https://textures.minecraft.net/texture/3efadf6510961830f9fcc077f19b4daf286d502b5f5aafbd807c7bbffcaca245">🏆Scrolls</option>
+                <option value="https://textures.minecraft.net/texture/2262fb1d24912209490586ecae98aca8500df3eff91f2a07da37ee524e7e3cb6">🏆Translator Chinese</option>
+                <option value="http://textures.minecraft.net/texture/5048ea61566353397247d2b7d946034de926b997d5e66c86483dfb1e031aee95">🏆Turtle</option>
+                <option value="https://textures.minecraft.net/texture/6a7cf0eb5cfe7e7c508b364e32916dfd28d164e7bf6d92c6ea7811b82451e760">🏆Valentine</option>
+                <option value="https://textures.minecraft.net/texture/2056f2eebd759cce93460907186ef44e9192954ae12b227d817eb4b55627a7fc">🏆Birthday</option>
+                <option value="https://textures.minecraft.net/texture/bcfbe84c6542a4a5c213c1cacf8979b5e913dcb4ad783a8b80e3c4a7d5c8bdac">🏆dB</option>
+                <option value="http://textures.minecraft.net/texture/70efffaf86fe5bc089608d3cb297d3e276b9eb7a8f9f2fe6659c23a2d8b18edf">🏆Millionth Customer</option>
+                <option value="http://textures.minecraft.net/texture/7706b5f5fc90329691e59277dcc66ba20572219fa8e5da472afd5235fad12cc8">🏆Oxeye</option>
+                <option value="http://textures.minecraft.net/texture/d8f8d13a1adf9636a16c31d47f3ecc9bb8d8533108aa5ad2a01b13b1a0c55eac">🏆Prismarine</option>
+                <option value="https://textures.minecraft.net/texture/23ec737f18bfe4b547c95935fc297dd767bb84ee55bfd855144d279ac9bfd9fe">🏆Snowman</option>
+                <option value="http://textures.minecraft.net/texture/2e002d5e1758e79ba51d08d92a0f3a95119f2f435ae7704916507b6c565a7da8">🏆Spade</option>
+                <option value="https://textures.minecraft.net/texture/ca29f5dd9e94fb1748203b92e36b66fda80750c87ebc18d6eafdb0e28cc1d05f">🏆Translator Japanese</option>
+                <option value="https://textures.minecraft.net/texture/fd14214cd8073059e93d9c626260f5df85e5a959181537119df56cadaf5002cc">🚧Bacon</option>
+                <option value="https://textures.minecraft.net/texture/2ada7acf3e0ef436f350e21af91a774b7cd95309c53668a441eeacec88ca4211">🚧Christmas 2010</option>
+                <option value="https://textures.minecraft.net/texture/d1f20f8534f9f58a3a0a26586d5615f513add564809986334b7f247593425ee3">🚧New Year's 2011</option>
+                <option value="https://textures.minecraft.net/texture/432c50e576e0b490865b562c7acf10473ac24780ea0fc3ef80fb303f482ba64">🏳️‍🌈Progress Pride</option>
+                <option value="https://textures.minecraft.net/texture/da01a74f8ca96bdf652ad3acddc886d6396eea482870ed3d2678e07cd1cd653f">🤡Awesom</option>
+                <option value="https://textures.minecraft.net/texture/c900e2768696a783f34a6ce548aad6d4241051fac15b1622fa7beeb521ae43e">🤡Blonk</option>
+                <option value="https://textures.minecraft.net/texture/16516dd786b870268e7601ad9c9dbf53530fef54041a2d18f2b5fbf15c0724ea">🤡No Circle</option>
+                <option value="https://textures.minecraft.net/texture/17c4ec5654f5d2f37953f228be1aa796d482a395c08dba65c82c020ebc6e03d8">🤡Nyan</option>
+                <option value="https://textures.minecraft.net/texture/639cb7c0f0d4345900b64f14ee33ecfccc7d6bcb5e18d027fb3452bfc9e5c4d1">🤡Squid</option>
+                <option value="https://textures.minecraft.net/texture/12607ff71c803562dfb985769caaebf867172c13b20853368da1ebb099817f0d">🤡Veterinarian</option>
+                <option value="https://textures.minecraft.net/texture/8c6b65823f7c686895160faf51f571ec2e4841317f7bc30d7e59371344c0c7d1">🔒Frog</option>
+                <option value="https://textures.minecraft.net/texture/b69e02edd267ea9bd7bf3f67f2a5cfff0f5aa8caf7c081e2d7221ac78277970a">🔒ICU</option>
+                <option value="https://textures.minecraft.net/texture/b698cefe18ac367f930332dd77f4a6d390be7adb36380e568761df4683562f84">🔒ICU 2</option>
+                <option value="https://textures.minecraft.net/texture/e75f4110215ef4f3c25ed4b4fb0cd76cb6c4d5fc8bf7f351811435fbc2e085c4">🔒Snail</option>
+                <option value="https://textures.minecraft.net/texture/7a93b1867eb599f2b76e6e1c30a0ddb530e6f4c7bce6515d1ba72b206df30e39">🔒Test</option>
+                <option value="https://textures.minecraft.net/texture/938155dd83118a3993a22579649fab313cdb06073029c3839843d58fad06ebb2">🎂Xbox 360 1st Birthday</option>
+                <option value="https://textures.minecraft.net/texture/aab48288f2067b9adf650ed68556652e9c34f4338b9d61ae5a35065f8c1c9413">🏰Xbox 360 Microsoft</option>
+                <option value="https://textures.minecraft.net/texture/5e8f3740ec1aabc872d8149c5e00b5b739cce63971db6edab30f94ccffed9d37">🎮Xbox 360 Minecraft</option>
+                <option value="https://textures.minecraft.net/texture/4e25998e4db8e19fe4df3df74d7983f03ff81a4074426252ce6eb3d1c70c9a59">❓Minecon 2011 Vote #3</option>
+                <option value="https://textures.minecraft.net/texture/35d9516769099ad42be14344551f9e9dfe66ee9ceb1d5624b4442f76cef9ea9e">❓Minecon 2011 Vote #4</option>
+                <option value="https://textures.minecraft.net/texture/dc39d8eb38419f4cbb9a2e19642893b854c131a9ab06bd4e2c2a5b3af98f3a19">❓Minecon 2011 Vote #5</option>
+            </select>
+            <div>
+                <label for="uploadCape" class="custom-file-upload-btn">📤 Carregar Capa</label>
+                <input type="file" id="uploadCape" accept=".png,.jpg,.jpeg">
+            </div>
+          </div>
+          <div style="margin-top: 0.7rem;">
+            <button id="downloadSkinBtn" style="padding: 4px 10px; font-weight: bold; font-size: 1rem; border-radius: 6px; background-color: #121212; color: #e8b901; border: 1px solid #8b1616; cursor: pointer; box-shadow:0 2px 18px #8b1616;">
+              💾 Baixar Skin
+            </button>
+          </div>
+        </div>
+      </div>
 
-<!-- Botão pequeno abaixo -->
-<div style="margin-top: 0.7rem;">
-  <button id="downloadSkinBtn" style="padding: 4px 10px; font-weight: bold; font-size: 1rem; border-radius: 6px; background-color: #121212; color: #e8b901; border: 1px solid #8b1616; cursor: pointer; box-shadow:0 2px 18px #8b1616;">
-    💾 Baixar Skin
-  </button>
-</div>
-</div>
-</div>
-	  </div>
+      <div class="optifine-selector-panel">
+          <h2 style="color:#ffd700; font-size:1.18rem; margin-bottom:0.7rem; letter-spacing:0.5px; text-shadow:0 1px 4px #0005;">✨ OptiFine</h2>
+          <div class="optifine-options">
+              <label>
+                  <input type="radio" name="optifine_cape_type" value="none" checked>
+                  <span>❌ Nenhuma</span>
+              </label>
+              <label>
+                  <input type="radio" name="optifine_cape_type" value="steal">
+                  <span>✅ Pegar a capa do usuário</span>
+              </label>
+              <label>
+                  <input type="radio" name="optifine_cape_type" value="of_design">
+                  <span>✅ Editar design "OF"</span>
+              </label>
+              <label>
+                  <input type="radio" name="optifine_cape_type" value="banner">
+                  <span>✅ Editar banner</span>
+              </label>
+          </div>
+          <div id="optifine_options_container">
+            </div>
+          <button id="applyOptifineCapeBtn" class="optifine-apply-btn">
+            Aplicar
+          </button>
+          <div id="optifine_status"></div>
+      </div>
+
     </div>
-  </div>
+</div>
+</div>
 </div>
 
 <style>
-/* Animated radio highlight for animation selector */
-.anim-radio input[type="radio"]:checked + .anim-icon {
-  background: linear-gradient(135deg, #ffd700 60%, #7ca7ff 100%);
-  color: #222;
-  box-shadow: 0 2px 10px #ffd70088;
-  transform: scale(1.12) rotate(-4deg);
-}
-.anim-radio .anim-icon {
-  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-}
-.anim-radio input[type="radio"]:focus + .anim-icon {
-  box-shadow: 0 0 0 3px #7ca7ff99;
-}
-#ign::placeholder {
-  color: #e8b901;
-  font-weight: bold;
-}
+#ign::placeholder { color: #e8b901; font-weight: bold; }
 </style>
 
 <script src="js/skinview3d.bundle.js"></script>
 <script>
+// SCRIPTS ORIGINAIS (COM FUNÇÃO setCape MELHORADA)
 let skinViewer = null;
 let currentCape = null;
 let currentSkin = null;
 let currentBackEquipment = "cape";
-let availableAnimations = {}; // Declarar aqui
+let availableAnimations = {}; 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar aqui, depois da biblioteca carregar
     availableAnimations = {
       idle: new skinview3d.IdleAnimation(),
       walk: new skinview3d.WalkingAnimation(),
@@ -271,26 +390,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initViewer();
 
-    const uploadSkinInput = document.getElementById('upload_skin');
-    if (uploadSkinInput) {
-        uploadSkinInput.addEventListener('change', function () {
-            const file = this.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = (e) => setSkin(e.target.result);
-            reader.readAsDataURL(file);
-        });
-    }
+const uploadSkinInput = document.getElementById('upload_skin');
+if (uploadSkinInput) {
+    uploadSkinInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return;
+
+        const allowedExtensions = ['png', 'jpg', 'jpeg'];
+        const fileExtension = file.name.split('.').pop().toLowerCase();
+        if (!allowedExtensions.includes(fileExtension)) {
+            alert('Tipo De Arquivo Inválido. Por favor, use .png, .jpg ou .jpeg.');
+            return; 
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const dataUrl = event.target.result;
+            const img = new Image();
+
+            img.onload = function() {
+                // CONDIÇÃO ATUALIZADA AQUI
+                const isValidSize = (this.width === 32 && this.height === 64) || 
+                                    (this.width === 64 && this.height === 64) || 
+                                    (this.width === 128 && this.height === 128);
+
+                if (isValidSize) {
+                    setSkin(dataUrl);
+                } else {
+                    // MENSAGEM DE ALERTA ATUALIZADA
+                    alert('Dimensões de imagem inválidas. A skin deve ser 32x64, 64x64 ou 128x128 pixels.');
+                }
+            };
+            
+            img.src = dataUrl;
+        };
+        
+        reader.readAsDataURL(file);
+    });
+}
 
     const capeSelector = document.getElementById('capeSelector');
     if (capeSelector) {
         capeSelector.addEventListener('change', () => {
             const url = capeSelector.value;
+            // Deselecionar o radio da Optifine se uma capa normal for escolhida
+            document.querySelector('input[name="optifine_cape_type"][value="none"]').checked = true;
+            document.getElementById('optifine_options_container').innerHTML = '';
+
             if (url && url !== '1') {
                 setCape(url);
             } else {
-                skinViewer.loadCape(null);
-                currentCape = null;
+                setCape(null);
             }
         });
     }
@@ -321,15 +471,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // Verifica se é um Data URL (upload) ou URL externa (IGN)
             if (currentSkin.startsWith('data:image/')) {
-                // Já está como dataURL (upload)
                 const link = document.createElement('a');
                 link.href = currentSkin;
                 link.download = 'skin.png';
                 link.click();
             } else {
-                // URL externa, usar um proxy CORS para baixar como blob
                 const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(currentSkin)}`;
                 fetch(proxyUrl)
                 .then(res => {
@@ -387,12 +534,31 @@ function setSkin(url) {
   document.getElementById('ign_status').textContent = '';
 }
 
-function setCape(url) {
+// Função de carregamento de capa melhorada com tratamento de erro
+async function setCape(url) {
   currentCape = url;
-  if (skinViewer) {
-    skinViewer.loadCape(url, { backEquipment: currentBackEquipment });
+  const optifineStatus = document.getElementById('optifine_status');
+  if (optifineStatus) optifineStatus.textContent = '';
+
+  if (!skinViewer) return;
+  
+  if (url === null) {
+    skinViewer.loadCape(null);
+    return;
+  }
+  
+  if (optifineStatus) optifineStatus.textContent = '';
+  try {
+    console.log("Tentando carregar capa de:", url);
+    await skinViewer.loadCape(url, { backEquipment: currentBackEquipment });
+    if (optifineStatus) optifineStatus.textContent = '';
+  } catch (error) {
+    console.error("Falha ao carregar a capa:", error);
+    alert("Certifique-se Que É Uma Capa Compatível. / Certifique-se Que o Usuário Está Correto! Numeros, Maiúsculas e Minúsculas.");
+    if (optifineStatus) optifineStatus.textContent = '';
   }
 }
+
 function toggleElytra() {
   const checked = document.getElementById('elytra_checkbox').checked;
   currentBackEquipment = checked ? "elytra" : "cape";
@@ -461,6 +627,248 @@ async function getSkinByIGN() {
   if (isMobileDevice()) {
     document.body.classList.add('allow-scroll');
   }
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Variável para guardar a URL da capa OptiFine a ser aplicada
+    let currentOptifineCapeUrl = null;
+
+    // Elementos do DOM
+    const optifineRadios = document.querySelectorAll('input[name="optifine_cape_type"]');
+    const optionsContainer = document.getElementById('optifine_options_container');
+    const applyBtn = document.getElementById('applyOptifineCapeBtn');
+
+    // URLs de proxy CORS para buscar as capas da OptiFine
+    const corsProxy1 = "https://cors.faav.top/optifine/";
+    const corsProxy2 = "https://api.mcuserna.me/cors/optifinenet/";
+    
+    // Função para atualizar a URL da capa com base nas cores do design "OF"
+    function updateOfCapeUrl() {
+        const top = document.getElementById('of_top_color_hex').value.replace('#', '');
+        const bottom = document.getElementById('of_bottom_color_hex').value.replace('#', '');
+        const text = document.getElementById('of_text_color_hex').value.replace('#', '');
+        const shadow = document.getElementById('of_shadow_color_hex').value.replace('#', '');
+        currentOptifineCapeUrl = `${corsProxy1}showCape?colTop=${top}&colBottom=${bottom}&colText=${text}&colShadow=${shadow}`;
+    }
+
+    // Função para atualizar a URL da capa com base no padrão do banner
+    function updateBannerCapeUrl() {
+        const pattern = document.getElementById('of_banner_pattern').value;
+        const top = document.getElementById('of_banner_top_hex').value.replace('#', '');
+        const bottom = document.getElementById('of_banner_bottom_hex').value.replace('#', '');
+        currentOptifineCapeUrl = `${corsProxy2}showBanner?format=${pattern}&colTop=${top}&colBottom=${bottom}&valign=m`;
+    }
+    
+    // Função para criar um grupo de input de cor (seletor + campo de texto)
+    function createColorInput(id, label, defaultValue) {
+        const container = document.createElement('div');
+        container.className = 'optifine-input-group';
+
+        const labelEl = document.createElement('label');
+        labelEl.textContent = label;
+        container.appendChild(labelEl);
+
+        const colorInput = document.createElement('input');
+        colorInput.type = 'color';
+        colorInput.id = id + '_color';
+        colorInput.value = defaultValue;
+        container.appendChild(colorInput);
+
+        const hexInput = document.createElement('input');
+        hexInput.type = 'text';
+        hexInput.id = id + '_hex';
+        hexInput.value = defaultValue.toUpperCase();
+        hexInput.maxLength = 7;
+        container.appendChild(hexInput);
+        
+        const updateFunction = id.startsWith('of_banner') ? updateBannerCapeUrl : updateOfCapeUrl;
+        
+        colorInput.addEventListener('input', () => {
+            hexInput.value = colorInput.value.toUpperCase();
+            updateFunction();
+        });
+        hexInput.addEventListener('input', () => {
+            let val = hexInput.value;
+            if (!val.startsWith('#')) val = '#' + val;
+            if (/^#([0-9A-F]{3}){1,2}$/i.test(val)) {
+                colorInput.value = val;
+                updateFunction();
+            }
+        });
+
+        return container;
+    }
+    
+    // Função para renderizar as opções corretas com base no rádio selecionado (CORRIGIDA)
+    function renderOptions(type) {
+        optionsContainer.innerHTML = '';
+        currentOptifineCapeUrl = null;
+        if (type === 'none') return;
+      
+        const subContainer = document.createElement('div');
+        subContainer.className = 'optifine-options-container';
+
+        if (type === 'steal') {
+            const inputGroup = document.createElement('div');
+            inputGroup.className = 'optifine-input-group';
+            
+            const label = document.createElement('label');
+            label.textContent = 'Nick:';
+            inputGroup.appendChild(label);
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = 'Usuário Com Capa Optifne';
+            input.addEventListener('input', () => {
+                const username = input.value;
+                if (username) {
+                    currentOptifineCapeUrl = `${corsProxy1}stealCape?username=${encodeURIComponent(username)}`;
+                } else {
+                    currentOptifineCapeUrl = null;
+                }
+            });
+            inputGroup.appendChild(input);
+            subContainer.appendChild(inputGroup);
+			input.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter') {
+			event.preventDefault();
+			if (currentOptifineCapeUrl) {
+            setCape(currentOptifineCapeUrl);
+			} else {
+            alert('Por favor, preencha o campo antes de pressionar Enter.');
+			}
+		   }
+		});
+        } else if (type === 'of_design') {
+            subContainer.appendChild(createColorInput('of_top_color', 'Topo', '#FFFFFF'));
+            subContainer.appendChild(createColorInput('of_bottom_color', 'Fundo', '#FFFFFF'));
+            subContainer.appendChild(createColorInput('of_text_color', 'Texto', '#FFFFFF'));
+            subContainer.appendChild(createColorInput('of_shadow_color', 'Sombra', '#FFFFFF'));
+        } else if (type === 'banner') {
+            const patternGroup = document.createElement('div');
+            patternGroup.className = 'optifine-input-group';
+            const patternLabel = document.createElement('label');
+            patternLabel.textContent = 'Banner:';
+            const patternInput = document.createElement('input');
+            patternInput.type = 'text';
+            patternInput.id = 'of_banner_pattern';
+            patternInput.placeholder = 'Tipo: aapspfasayafaCaF&var=s';
+            patternInput.addEventListener('input', updateBannerCapeUrl);
+			patternInput.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter') {
+			event.preventDefault(); 
+			if (patternInput.value && patternInput.value.trim() !== '') {
+            setCape(currentOptifineCapeUrl);
+			} else {
+            alert('Por favor, preencha os campos do banner.');
+        }
+    }
+});
+            patternGroup.appendChild(patternLabel);
+            patternGroup.appendChild(patternInput);
+            subContainer.appendChild(patternGroup);
+
+            subContainer.appendChild(createColorInput('of_banner_top', 'Topo', '#FFFFFF'));
+            subContainer.appendChild(createColorInput('of_banner_bottom', 'Fundo', '#FFFFFF'));
+        }
+        
+        // Adiciona o sub-container ao DOM ANTES de chamar as funções de atualização
+        if (subContainer.hasChildNodes()) {
+            optionsContainer.appendChild(subContainer);
+        }
+
+        // Chama as funções de atualização APÓS os elementos estarem no DOM para definir a URL inicial
+        if (type === 'of_design') {
+            updateOfCapeUrl();
+        } else if (type === 'banner') {
+            updateBannerCapeUrl();
+        }
+    }
+
+    // Adiciona o listener para os botões de rádio
+    optifineRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            renderOptions(radio.value);
+            // Limpa o seletor de capas normais para evitar confusão
+            document.getElementById('capeSelector').value = '1';
+        });
+    });
+
+    // Adiciona o listener para o botão de aplicar
+    applyBtn.addEventListener('click', () => {
+        const selectedType = document.querySelector('input[name="optifine_cape_type"]:checked').value;
+        if (selectedType === 'none') {
+            setCape(null);
+            return;
+        }
+
+        if (currentOptifineCapeUrl) {
+            setCape(currentOptifineCapeUrl);
+        } else {
+            alert('Por favor, preencha os detalhes da capa OptiFine.');
+        }
+    });
+    
+    // Renderiza as opções para o estado inicial (o que estiver marcado como 'checked')
+    renderOptions(document.querySelector('input[name="optifine_cape_type"]:checked').value);
+});
+</script>
+<script>
+// Espera todo o conteúdo da página carregar antes de rodar o script
+document.addEventListener('DOMContentLoaded', function() {
+    // Encontra o elemento que tem a classe 'studio-container'
+    const container = document.querySelector('.studio-container');
+    
+    // Verifica se o elemento realmente existe na página
+    if (container) {
+        // Aplica o estilo diretamente no elemento, forçando o padding
+        container.style.paddingBottom = '0rem';
+    }
+});
+</script>
+<script>
+// Espera a página carregar completamente para rodar o código
+document.addEventListener('DOMContentLoaded', function() {
+
+  // --- 1. DETECTAR O DISPOSITIVO E O NAVEGADOR ---
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const isFirefox = /Firefox/i.test(navigator.userAgent);
+
+  // Se for um dispositivo móvel OU Firefox, ativa a rolagem horizontal
+  if (isMobile || isFirefox) {
+    
+    // --- 2. FORÇAR A ROLAGEM HORIZONTAL ---
+    // Aplica o estilo diretamente no BODY para permitir que ele role para os lados
+    document.body.style.overflowX = 'auto';
+
+
+    // --- 3. INJETAR O CSS PARA ESCONDER A BARRA DE ROLAGEM ---
+    // Criamos um elemento <style> em tempo real
+    const styleElement = document.createElement('style');
+
+    // Definimos as regras de CSS para esconder a barra
+    const cssRules = `
+      body {
+        /* Esconde a barra no Firefox */
+        scrollbar-width: none;  
+        
+        /* Esconde a barra no Edge e IE legado */
+        -ms-overflow-style: none;
+      }
+
+      /* Esconde a barra em navegadores WebKit (Chrome, Safari, Android, iPhone) */
+      body::-webkit-scrollbar {
+        display: none;
+      }
+    `;
+
+    // Colocamos as regras dentro do nosso novo elemento <style>
+    styleElement.textContent = cssRules;
+
+    // Adicionamos o elemento <style> ao <head> da página
+    document.head.appendChild(styleElement);
+  }
+});
 </script>
 </body>
 </html>
