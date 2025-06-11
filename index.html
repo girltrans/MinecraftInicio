@@ -216,14 +216,16 @@
     <h1 style="text-align:center; color:#e8b901; margin-top:2rem; font-family: 'Righteous', cursive; font-size:2.4rem;">Testar Skin e Capa</h1>
     <div class="studio-container" style="max-width:1100px; background:rgba(0,0,0,1); border-radius:22px; box-shadow:0 8px 32px #0005; padding:2.5rem 2rem 2.5rem 2rem; display:flex; flex-wrap:wrap; gap:2.5rem; align-items:flex-start; justify-content:center;">
       
-      <div class="viewer-panel" style="flex:1 1 360px; min-width:340px; max-width:420px; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
-        <canvas id="skin_container" width="360" height="480" style="border-radius:18px; background:#121212; box-shadow:0 2px 18px #8b1616; cursor: move;"></canvas>
-        <div class="search-box" style="display:flex; gap:0.5rem; width:100%; justify-content:center;">
-          <input type="text" id="ign" name="ign" maxlength="16" value="" placeholder="Digite um nick (16 caracteres)" autocomplete="off" style="flex:1; padding:0.5rem 1rem; border-radius:8px; border:none; font-size:1rem; background:#121212; color:#e8b901; outline:none; box-shadow:0 2px 18px #8b1616;">
-          <button onclick="getSkinByIGN()" style="background:#121212; color:#e8b901; border:none; border-radius:8px; padding:0.5rem 1.2rem; font-size:1rem; font-weight:bold; cursor:pointer; transition:background 0.2s; box-shadow:0 2px 18px #8b1616;">Carregar Nick</button>
-        </div>
-       <div id="ign_status" style="font-size:0.98rem; color:#ffd700; height:1.8em; text-align:center;"></div>
-      </div>
+<div class="viewer-panel" style="flex:1 1 360px; min-width:340px; max-width:420px; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+    <canvas id="skin_container" width="360" height="480" style="border-radius:18px; background:#121212; box-shadow:0 2px 18px #8b1616; cursor: move;"></canvas>
+
+    <form id="skin-loader-form" class="search-box" style="display:flex; gap:0.5rem; width:100%; justify-content:center;">
+        <input type="text" id="ign" name="ign" maxlength="16" value="" placeholder="Digite um nick (16 caracteres)" autocomplete="off" style="flex:1; padding:0.5rem 1rem; border-radius:8px; border:none; font-size:1rem; background:#121212; color:#e8b901; outline:none; box-shadow:0 2px 18px #8b1616;">
+        
+        <button type="submit" style="background:#121212; color:#e8b901; border:none; border-radius:8px; padding:0.5rem 1.2rem; font-size:1rem; font-weight:bold; cursor:pointer; transition:background 0.2s; box-shadow:0 2px 18px #8b1616;">Carregar Nick</button>
+    </form>
+    <div id="ign_status" style="font-size:0.98rem; color:#ffd700; height:1.8em; text-align:center;"></div>
+</div>
 
       <div class="left-selector-panel">
         <div class="selector-block" style="background:rgba(18, 18, 18, 1); border-radius:16px; padding:1.2rem 1rem 1rem 1rem; box-shadow:0 2px 12px #0004; box-shadow:0 2px 18px #8b1616; margin-top: 1rem;">
@@ -503,15 +505,17 @@ if (uploadSkinInput) {
         });
     }
 
-    const nickInput = document.getElementById('ign');
-    if(nickInput){
-        nickInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-            e.preventDefault();
-            getSkinByIGN();
-            }
-        });
-    }
+// Adicione este código para gerenciar o formulário
+const skinForm = document.getElementById('skin-loader-form');
+if (skinForm) {
+    skinForm.addEventListener('submit', function(event) {
+        // Impede que o formulário recarregue a página (comportamento padrão)
+        event.preventDefault(); 
+        
+        // Chama a sua função original. Agora funciona para Enter e Clique!
+        getSkinByIGN(); 
+    });
+}
 });
 
 
