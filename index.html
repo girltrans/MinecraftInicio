@@ -216,16 +216,15 @@
     <h1 style="text-align:center; color:#e8b901; margin-top:2rem; font-family: 'Righteous', cursive; font-size:2.4rem;">Testar Skin e Capa</h1>
     <div class="studio-container" style="max-width:1100px; background:rgba(0,0,0,1); border-radius:22px; box-shadow:0 8px 32px #0005; padding:2.5rem 2rem 2.5rem 2rem; display:flex; flex-wrap:wrap; gap:2.5rem; align-items:flex-start; justify-content:center;">
       
-<div class="viewer-panel" style="flex:1 1 360px; min-width:340px; max-width:420px; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
-    <canvas id="skin_container" width="360" height="480" style="border-radius:18px; background:#121212; box-shadow:0 2px 18px #8b1616; cursor: move;"></canvas>
-
-    <form id="skin-loader-form" class="search-box" style="display:flex; gap:0.5rem; width:100%; justify-content:center;">
-        <input type="text" id="ign" name="ign" maxlength="16" value="" placeholder="Digite um nick (16 caracteres)" autocomplete="off" style="flex:1; padding:0.5rem 1rem; border-radius:8px; border:none; font-size:1rem; background:#121212; color:#e8b901; outline:none; box-shadow:0 2px 18px #8b1616;">
+      <div class="viewer-panel" style="flex:1 1 360px; min-width:340px; max-width:420px; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+        <canvas id="skin_container" width="360" height="480" style="border-radius:18px; background:#121212; box-shadow:0 2px 18px #8b1616; cursor: move;"></canvas>
         
-        <button type="submit" style="background:#121212; color:#e8b901; border:none; border-radius:8px; padding:0.5rem 1.2rem; font-size:1rem; font-weight:bold; cursor:pointer; transition:background 0.2s; box-shadow:0 2px 18px #8b1616;">Carregar Nick</button>
-    </form>
-    <div id="ign_status" style="font-size:0.98rem; color:#ffd700; height:1.8em; text-align:center;"></div>
-</div>
+        <form id="skin-loader-form" class="search-box" style="display:flex; gap:0.5rem; width:100%; justify-content:center;">
+          <input type="text" id="ign" name="ign" maxlength="16" value="" placeholder="Digite um nick (16 caracteres)" autocomplete="off" style="flex:1; padding:0.5rem 1rem; border-radius:8px; border:none; font-size:1rem; background:#121212; color:#e8b901; outline:none; box-shadow:0 2px 18px #8b1616;">
+          <button type="submit" style="background:#121212; color:#e8b901; border:none; border-radius:8px; padding:0.5rem 1.2rem; font-size:1rem; font-weight:bold; cursor:pointer; transition:background 0.2s; box-shadow:0 2px 18px #8b1616;">Carregar Nick</button>
+        </form>
+        <div id="ign_status" style="font-size:0.98rem; color:#ffd700; height:1.8em; text-align:center;"></div>
+      </div>
 
       <div class="left-selector-panel">
         <div class="selector-block" style="background:rgba(18, 18, 18, 1); border-radius:16px; padding:1.2rem 1rem 1rem 1rem; box-shadow:0 2px 12px #0004; box-shadow:0 2px 18px #8b1616; margin-top: 1rem;">
@@ -411,7 +410,6 @@ if (uploadSkinInput) {
             const img = new Image();
 
             img.onload = function() {
-                // CONDIÇÃO ATUALIZADA AQUI
                 const isValidSize = (this.width === 32 && this.height === 64) || 
                                     (this.width === 64 && this.height === 64) || 
                                     (this.width === 128 && this.height === 128);
@@ -419,7 +417,6 @@ if (uploadSkinInput) {
                 if (isValidSize) {
                     setSkin(dataUrl);
                 } else {
-                    // MENSAGEM DE ALERTA ATUALIZADA
                     alert('Dimensões de imagem inválidas. A skin deve ser 32x64, 64x64 ou 128x128 pixels.');
                 }
             };
@@ -435,7 +432,6 @@ if (uploadSkinInput) {
     if (capeSelector) {
         capeSelector.addEventListener('change', () => {
             const url = capeSelector.value;
-            // Deselecionar o radio da Optifine se uma capa normal for escolhida
             document.querySelector('input[name="optifine_cape_type"][value="none"]').checked = true;
             document.getElementById('optifine_options_container').innerHTML = '';
 
@@ -505,17 +501,20 @@ if (uploadSkinInput) {
         });
     }
 
-// Adicione este código para gerenciar o formulário
-const skinForm = document.getElementById('skin-loader-form');
-if (skinForm) {
-    skinForm.addEventListener('submit', function(event) {
-        // Impede que o formulário recarregue a página (comportamento padrão)
-        event.preventDefault(); 
-        
-        // Chama a sua função original. Agora funciona para Enter e Clique!
-        getSkinByIGN(); 
-    });
-}
+    // ======================= INÍCIO DA ALTERAÇÃO NO JAVASCRIPT =======================
+    // O código antigo que escutava a tecla "Enter" foi REMOVIDO.
+    // Este novo código gerencia o formulário.
+    const skinForm = document.getElementById('skin-loader-form');
+    if (skinForm) {
+        skinForm.addEventListener('submit', function(event) {
+            // Impede que o formulário recarregue a página
+            event.preventDefault(); 
+            
+            // Chama a sua função original para carregar a skin
+            getSkinByIGN(); 
+        });
+    }
+    // ======================= FIM DA ALTERAÇÃO NO JAVASCRIPT =======================
 });
 
 
@@ -538,7 +537,6 @@ function setSkin(url) {
   document.getElementById('ign_status').textContent = '';
 }
 
-// Função de carregamento de capa melhorada com tratamento de erro
 async function setCape(url) {
   currentCape = url;
   const optifineStatus = document.getElementById('optifine_status');
@@ -592,7 +590,7 @@ async function getAvatarByPlayerName(playerName) {
 async function getSkinByIGN() {
     const ign = document.getElementById('ign').value;
     const statusDiv = document.getElementById('ign_status');
-    const loadButton = document.querySelector('.search-box button');
+    const loadButton = document.querySelector('#skin-loader-form button'); // Seletor ajustado para o botão dentro do form
 
     if (!ign) {
         statusDiv.textContent = 'Por favor, digite um nick.';
@@ -634,19 +632,15 @@ async function getSkinByIGN() {
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Variável para guardar a URL da capa OptiFine a ser aplicada
     let currentOptifineCapeUrl = null;
 
-    // Elementos do DOM
     const optifineRadios = document.querySelectorAll('input[name="optifine_cape_type"]');
     const optionsContainer = document.getElementById('optifine_options_container');
     const applyBtn = document.getElementById('applyOptifineCapeBtn');
 
-    // URLs de proxy CORS para buscar as capas da OptiFine
     const corsProxy1 = "https://cors.faav.top/optifine/";
     const corsProxy2 = "https://api.mcuserna.me/cors/optifinenet/";
     
-    // Função para atualizar a URL da capa com base nas cores do design "OF"
     function updateOfCapeUrl() {
         const top = document.getElementById('of_top_color_hex').value.replace('#', '');
         const bottom = document.getElementById('of_bottom_color_hex').value.replace('#', '');
@@ -655,7 +649,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentOptifineCapeUrl = `${corsProxy1}showCape?colTop=${top}&colBottom=${bottom}&colText=${text}&colShadow=${shadow}`;
     }
 
-    // Função para atualizar a URL da capa com base no padrão do banner
     function updateBannerCapeUrl() {
         const pattern = document.getElementById('of_banner_pattern').value;
         const top = document.getElementById('of_banner_top_hex').value.replace('#', '');
@@ -663,7 +656,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentOptifineCapeUrl = `${corsProxy2}showBanner?format=${pattern}&colTop=${top}&colBottom=${bottom}&valign=m`;
     }
     
-    // Função para criar um grupo de input de cor (seletor + campo de texto)
     function createColorInput(id, label, defaultValue) {
         const container = document.createElement('div');
         container.className = 'optifine-input-group';
@@ -703,7 +695,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return container;
     }
     
-    // Função para renderizar as opções corretas com base no rádio selecionado (CORRIGIDA)
     function renderOptions(type) {
         optionsContainer.innerHTML = '';
         currentOptifineCapeUrl = null;
@@ -776,12 +767,10 @@ document.addEventListener('DOMContentLoaded', () => {
             subContainer.appendChild(createColorInput('of_banner_bottom', 'Fundo', '#FFFFFF'));
         }
         
-        // Adiciona o sub-container ao DOM ANTES de chamar as funções de atualização
         if (subContainer.hasChildNodes()) {
             optionsContainer.appendChild(subContainer);
         }
 
-        // Chama as funções de atualização APÓS os elementos estarem no DOM para definir a URL inicial
         if (type === 'of_design') {
             updateOfCapeUrl();
         } else if (type === 'banner') {
@@ -789,16 +778,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Adiciona o listener para os botões de rádio
     optifineRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             renderOptions(radio.value);
-            // Limpa o seletor de capas normais para evitar confusão
             document.getElementById('capeSelector').value = '1';
         });
     });
 
-    // Adiciona o listener para o botão de aplicar
     applyBtn.addEventListener('click', () => {
         const selectedType = document.querySelector('input[name="optifine_cape_type"]:checked').value;
         if (selectedType === 'none') {
@@ -813,90 +799,62 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Renderiza as opções para o estado inicial (o que estiver marcado como 'checked')
     renderOptions(document.querySelector('input[name="optifine_cape_type"]:checked').value);
 });
 </script>
 <script>
-// Espera todo o conteúdo da página carregar antes de rodar o script
 document.addEventListener('DOMContentLoaded', function() {
-    // Encontra o elemento que tem a classe 'studio-container'
     const container = document.querySelector('.studio-container');
     
-    // Verifica se o elemento realmente existe na página
     if (container) {
-        // Aplica o estilo diretamente no elemento, forçando o padding
         container.style.paddingBottom = '0rem';
     }
 });
 </script>
 <script>
-// Espera a página carregar completamente para rodar o código
 document.addEventListener('DOMContentLoaded', function() {
 
-  // --- 1. DETECTAR O DISPOSITIVO E O NAVEGADOR ---
   const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   const isFirefox = /Firefox/i.test(navigator.userAgent);
 
-  // Se for um dispositivo móvel OU Firefox, ativa a rolagem horizontal
   if (isMobile || isFirefox) {
     
-    // --- 2. FORÇAR A ROLAGEM HORIZONTAL ---
-    // Aplica o estilo diretamente no BODY para permitir que ele role para os lados
     document.body.style.overflowX = 'auto';
 
-
-    // --- 3. INJETAR O CSS PARA ESCONDER A BARRA DE ROLAGEM ---
-    // Criamos um elemento <style> em tempo real
     const styleElement = document.createElement('style');
 
-    // Definimos as regras de CSS para esconder a barra
     const cssRules = `
       body {
-        /* Esconde a barra no Firefox */
         scrollbar-width: none;  
-        
-        /* Esconde a barra no Edge e IE legado */
         -ms-overflow-style: none;
       }
 
-      /* Esconde a barra em navegadores WebKit (Chrome, Safari, Android, iPhone) */
       body::-webkit-scrollbar {
         display: none;
       }
     `;
 
-    // Colocamos as regras dentro do nosso novo elemento <style>
     styleElement.textContent = cssRules;
-
-    // Adicionamos o elemento <style> ao <head> da página
     document.head.appendChild(styleElement);
   }
 });
 </script>
 <script>
-// Espera a página inteira carregar
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Seleciona todos os tipos comuns de caixas de texto e áreas de texto
     const camposDeTexto = document.querySelectorAll(
         'input[type="text"], input[type="password"], input[type="email"], input[type="search"], input[type="url"], input[type="tel"], textarea'
     );
 
-    // Passa por cada campo encontrado
     camposDeTexto.forEach(campoOriginal => {
         try {
-            // 1. Cria um clone exato do campo de texto
             const cloneLimpo = campoOriginal.cloneNode(true);
 
-            // 2. Remove os listeners de bloqueio do clone (uma segurança extra)
             cloneLimpo.onpaste = null;
             cloneLimpo.oncopy = null;
             cloneLimpo.oncut = null;
             cloneLimpo.oncontextmenu = null;
 
-            // 3. Substitui o campo original pelo clone "limpo"
-            // O clone não herda os event listeners adicionados via JavaScript
             campoOriginal.parentNode.replaceChild(cloneLimpo, campoOriginal);
 
         } catch (e) {
