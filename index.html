@@ -257,7 +257,7 @@
           <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
             <select id="capeSelector" class="form-select">
                 <option value="1" selected>Escolher Capa</option>
-                <option value="">❌Nenhuma</option>
+                <option value="">❌Remover Capa</option>
                 <option value="http://textures.minecraft.net/texture/2340c0e03dd24a11b15a8b33c2a7e9e32abb2051b2481d0ba7defd635ca7a933">🎁Migrator</option>
                 <option value="http://textures.minecraft.net/texture/cd9d82ab17fd92022dbd4a86cde4c382a7540e117fae7b9a2853658505a80625">🎁15th Anniversary</option>
                 <option value="http://textures.minecraft.net/texture/f9a76537647989f9a0b6d001e320dac591c359e9e61a31f4ce11c88f207f0ad4">🎁Vanilla</option>
@@ -336,8 +336,8 @@
           <h2 style="color:#ffd700; font-size:1.18rem; margin-bottom:0.7rem; letter-spacing:0.5px; text-shadow:0 1px 4px #0005;">✨ OptiFine</h2>
           <div class="optifine-options">
               <label>
-                  <input type="radio" name="optifine_cape_type" value="none" checked>
-                  <span>❌ Nenhuma</span>
+                  <input type="radio" name="optifine_cape_type" value="none">
+                  <span>❌ Remover Capa</span>
               </label>
               <label>
                   <input type="radio" name="optifine_cape_type" value="steal">
@@ -428,20 +428,24 @@ if (uploadSkinInput) {
     });
 }
 
-    const capeSelector = document.getElementById('capeSelector');
-    if (capeSelector) {
-        capeSelector.addEventListener('change', () => {
-            const url = capeSelector.value;
-            document.querySelector('input[name="optifine_cape_type"][value="none"]').checked = true;
-            document.getElementById('optifine_options_container').innerHTML = '';
+		const capeSelector = document.getElementById('capeSelector');
+		if (capeSelector) {
+			capeSelector.addEventListener('change', () => {
+			const url = capeSelector.value;
 
-            if (url && url !== '1') {
-                setCape(url);
-            } else {
-                setCape(null);
-            }
-        });
-    }
+			const optifineRadios = document.querySelectorAll('input[name="optifine_cape_type"]');
+			optifineRadios.forEach(radio => {
+            radio.checked = false;
+			});
+        
+			document.getElementById('optifine_options_container').innerHTML = '';
+			if (url && url !== '1') {
+            setCape(url);
+			} else {
+            setCape(null);
+			}
+		});
+	}
 
     const uploadCapeInput = document.getElementById('uploadCape');
     if (uploadCapeInput) {
@@ -633,14 +637,13 @@ async function getSkinByIGN() {
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     let currentOptifineCapeUrl = null;
-
     const optifineRadios = document.querySelectorAll('input[name="optifine_cape_type"]');
     const optionsContainer = document.getElementById('optifine_options_container');
     const applyBtn = document.getElementById('applyOptifineCapeBtn');
-
     const corsProxy1 = "https://cors.faav.top/optifine/";
     const corsProxy2 = "https://api.mcuserna.me/cors/optifinenet/";
-    
+
+    // As suas funções de criar os inputs e etc. continuam aqui, sem alterações...
     function updateOfCapeUrl() {
         const top = document.getElementById('of_top_color_hex').value.replace('#', '');
         const bottom = document.getElementById('of_bottom_color_hex').value.replace('#', '');
@@ -648,37 +651,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const shadow = document.getElementById('of_shadow_color_hex').value.replace('#', '');
         currentOptifineCapeUrl = `${corsProxy1}showCape?colTop=${top}&colBottom=${bottom}&colText=${text}&colShadow=${shadow}`;
     }
-
     function updateBannerCapeUrl() {
         const pattern = document.getElementById('of_banner_pattern').value;
         const top = document.getElementById('of_banner_top_hex').value.replace('#', '');
         const bottom = document.getElementById('of_banner_bottom_hex').value.replace('#', '');
         currentOptifineCapeUrl = `${corsProxy2}showBanner?format=${pattern}&colTop=${top}&colBottom=${bottom}&valign=m`;
     }
-    
     function createColorInput(id, label, defaultValue) {
         const container = document.createElement('div');
         container.className = 'optifine-input-group';
-
         const labelEl = document.createElement('label');
         labelEl.textContent = label;
         container.appendChild(labelEl);
-
         const colorInput = document.createElement('input');
         colorInput.type = 'color';
         colorInput.id = id + '_color';
         colorInput.value = defaultValue;
         container.appendChild(colorInput);
-
         const hexInput = document.createElement('input');
         hexInput.type = 'text';
         hexInput.id = id + '_hex';
         hexInput.value = defaultValue.toUpperCase();
         hexInput.maxLength = 7;
         container.appendChild(hexInput);
-        
         const updateFunction = id.startsWith('of_banner') ? updateBannerCapeUrl : updateOfCapeUrl;
-        
         colorInput.addEventListener('input', () => {
             hexInput.value = colorInput.value.toUpperCase();
             updateFunction();
@@ -691,26 +687,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateFunction();
             }
         });
-
         return container;
     }
-    
     function renderOptions(type) {
         optionsContainer.innerHTML = '';
         currentOptifineCapeUrl = null;
-        if (type === 'none') return;
-      
+        if (!type || type === 'none') return;
         const subContainer = document.createElement('div');
         subContainer.className = 'optifine-options-container';
-
         if (type === 'steal') {
             const inputGroup = document.createElement('div');
             inputGroup.className = 'optifine-input-group';
-            
             const label = document.createElement('label');
             label.textContent = 'Nick:';
             inputGroup.appendChild(label);
-            
             const input = document.createElement('input');
             input.type = 'text';
             input.placeholder = 'Usuário Com Capa Optifne';
@@ -724,16 +714,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             inputGroup.appendChild(input);
             subContainer.appendChild(inputGroup);
-			input.addEventListener('keydown', (event) => {
-			if (event.key === 'Enter') {
-			event.preventDefault();
-			if (currentOptifineCapeUrl) {
-            setCape(currentOptifineCapeUrl);
-			} else {
-            alert('Por favor, preencha o campo antes de pressionar Enter.');
-			}
-		   }
-		});
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    if (currentOptifineCapeUrl) {
+                        setCape(currentOptifineCapeUrl);
+                    } else {
+                        alert('Por favor, preencha o campo antes de pressionar Enter.');
+                    }
+                }
+            });
         } else if (type === 'of_design') {
             subContainer.appendChild(createColorInput('of_top_color', 'Topo', '#FFFFFF'));
             subContainer.appendChild(createColorInput('of_bottom_color', 'Fundo', '#FFFFFF'));
@@ -749,28 +739,25 @@ document.addEventListener('DOMContentLoaded', () => {
             patternInput.id = 'of_banner_pattern';
             patternInput.placeholder = 'Tipo: aapspfasayafaCaF&var=s';
             patternInput.addEventListener('input', updateBannerCapeUrl);
-			patternInput.addEventListener('keydown', (event) => {
-			if (event.key === 'Enter') {
-			event.preventDefault(); 
-			if (patternInput.value && patternInput.value.trim() !== '') {
-            setCape(currentOptifineCapeUrl);
-			} else {
-            alert('Por favor, preencha os campos do banner.');
-        }
-    }
-});
+            patternInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    if (patternInput.value && patternInput.value.trim() !== '') {
+                        setCape(currentOptifineCapeUrl);
+                    } else {
+                        alert('Por favor, preencha os campos do banner.');
+                    }
+                }
+            });
             patternGroup.appendChild(patternLabel);
             patternGroup.appendChild(patternInput);
             subContainer.appendChild(patternGroup);
-
             subContainer.appendChild(createColorInput('of_banner_top', 'Topo', '#FFFFFF'));
             subContainer.appendChild(createColorInput('of_banner_bottom', 'Fundo', '#FFFFFF'));
         }
-        
         if (subContainer.hasChildNodes()) {
             optionsContainer.appendChild(subContainer);
         }
-
         if (type === 'of_design') {
             updateOfCapeUrl();
         } else if (type === 'banner') {
@@ -778,15 +765,55 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    optifineRadios.forEach(radio => {
-        radio.addEventListener('change', () => {
-            renderOptions(radio.value);
-            document.getElementById('capeSelector').value = '1';
-        });
+// CÓDIGO NOVO E CORRIGIDO PARA A LABEL INTEIRA
+	optifineRadios.forEach(radio => {
+    // Encontra a <label> que é "mãe" do rádio
+    const label = radio.closest('label');
+    if (!label) {
+        // Se, por algum motivo, não houver label, pula para o próximo
+        return;
+    }
+
+    // Adiciona o listener de 'mousedown' na LABEL
+    label.addEventListener('mousedown', function() {
+        // Guarda o estado do RÁDIO (não da label)
+        radio.wasChecked = radio.checked;
     });
 
+    // Adiciona o listener de 'click' na LABEL
+    label.addEventListener('click', function(event) {
+        // 1. Previne a ação padrão do navegador.
+        // Isso nos dá controle total sobre marcar e desmarcar.
+        event.preventDefault();
+
+        // 2. LÓGICA ESPECIAL PARA DESMARCAR
+        // Se clicamos na label do "Remover Capa" e ele já estava marcado...
+        if (radio.value === 'none' && radio.wasChecked) {
+            // ...nós o desmarcamos.
+            radio.checked = false;
+        } else {
+            // 3. LÓGICA PADRÃO PARA MARCAR
+            // Para qualquer outro clique, nós marcamos o rádio correspondente.
+            radio.checked = true;
+        }
+
+        // 4. ATUALIZA A INTERFACE (código que já tínhamos)
+        // Roda a lógica de atualização com base no estado final dos rádios.
+        const finalCheckedRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
+        const finalValue = finalCheckedRadio ? finalCheckedRadio.value : 'none';
+
+        renderOptions(finalValue);
+        document.getElementById('capeSelector').value = '1';
+
+    });
+});
+
+    // 2. LÓGICA CORRIGIDA PARA O BOTÃO "APLICAR" (à prova de falhas)
     applyBtn.addEventListener('click', () => {
-        const selectedType = document.querySelector('input[name="optifine_cape_type"]:checked').value;
+        const selectedRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
+        // Se NADA estiver selecionado, age como se "none" fosse escolhido.
+        const selectedType = selectedRadio ? selectedRadio.value : 'none';
+
         if (selectedType === 'none') {
             setCape(null);
             return;
@@ -798,8 +825,11 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Por favor, preencha os detalhes da capa OptiFine.');
         }
     });
-    
-    renderOptions(document.querySelector('input[name="optifine_cape_type"]:checked').value);
+
+    // 3. LÓGICA CORRIGIDA PARA A INICIALIZAÇÃO DA PÁGINA (à prova de falhas)
+    const initialRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
+    const initialValue = initialRadio ? initialRadio.value : 'none';
+    renderOptions(initialValue);
 });
 </script>
 <script>
