@@ -1,0 +1,195 @@
+.facebook_button {
+    display: inline-block;
+    background: #3a5999 url(../images3/facebook_small.png) 10px center no-repeat;
+    /*background: #627aac url(http://i.stack.imgur.com/ZW4QC.png) left no-repeat;*/
+    border: 1px solid #29447e;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    height: 42px;
+    width: 193px;
+    padding-right: 7px;
+    padding-left: 33px;
+    font-weight: bold;
+    font-size: 13px;
+    color: white;
+    text-decoration: none;
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    line-height: 22px;
+    cursor: pointer;
+}
+
+button.buttonText {
+    background: #dc4e41 url('../images3/gplus.png') no-repeat center;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #dc4e41;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    height: 42px;
+    width: 193px;
+    padding-right: 7px;
+    padding-left: 33px;
+    font-weight: bold;
+    font-size: 13px;
+    color: white;
+    text-decoration: none;
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    line-height: 22px;
+    cursor: pointer;
+}
+
+
+button.gplus-signup {
+    background: #dc4e41 url('../images3/gplus-signup.png') no-repeat center;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #dc4e41;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    height: 42px;
+    width: 193px;
+    padding-right: 7px;
+    padding-left: 33px;
+    font-weight: bold;
+    font-size: 13px;
+    color: white;
+    text-decoration: none;
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    line-height: 22px;
+    cursor: pointer;
+}
+
+.js-active{
+    font-weight: bold;
+}
+
+.edit-about-me{
+    outline: 1px solid #428bca;
+}
+
+.empty-search-query{
+    border: 1px solid #C5C5C5;
+    padding: 20px;
+    background: none repeat scroll 0% 0% #C0E7F2;
+    box-sizing: border-box;
+    color: #006187;
+}
+
+.user-avatar{
+    width: 45px;
+    height: 45px;
+    float: left;
+    margin-right: 8px;
+}
+
+/*skin preview styles*/
+
+.detail_partnew {
+    margin-left: 20px;
+    width: 434px;
+    padding-top: 5px;
+    height: 273px;
+    float: left;
+    background-image: url(../../../../../../web/images3/river_BG.png);
+    background-repeat: no-repeat;
+    /*z-index: 99999999;*/
+    position: relative;
+    /*margin-left: 20px;*/
+    /*width: 434px;*/
+    /*padding-top: 5px;*/
+    /*height: 273px;*/
+    /*float: left;*/
+    /*background-image: url(../images3/river_BG.png);*/
+    /*background-repeat: no-repeat;*/
+}
+
+.previewCanvas {
+    width: 540px !important;
+    height: 347px !important;
+    /*width: 500px !important;*/
+    /*padding-left: 0px !important;
+    padding-top: 0px !important;
+    height: 320px !important;*/
+    /*z-index: 9999999 !important;*/
+    /*position: relative !important;*/
+    /*width: 500px;*/
+    /*height: 270px;*/
+    /*position: relative;*/
+    /*margin-top: 12px !important;*/
+    /*margin-left: -50px !important;*/
+}
+
+#editorP {
+    width: 540px;
+    height: 347px;
+    /*z-index: 999999;*/
+    position: relative;
+    /*margin-left: -38px;*/
+}
+
+
+.unfollow-btn-prof{
+    background-color: rgb(59, 86, 110);
+}
+
+.unfollow{
+    margin-top: 3px;
+}
+
+.followers-block{
+    margin-bottom: 15px;
+
+}
+
+.btn-default{
+    background-color: #717171;
+}
+
+
+.bad-field{
+    outline: 2px solid red;
+}
+
+.skin-created-notice{
+    color: #31708F;
+    background-color: #D9EDF7;
+    border-color: #BCE8F1;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.field-err-message{
+    margin: 5px 0;
+    font-size: 12px;
+    color: red;
+}
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent;
+}
+
+/* Adição global */
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}

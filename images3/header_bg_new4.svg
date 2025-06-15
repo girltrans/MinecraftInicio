@@ -1,0 +1,11 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 120" width="1920" height="120">
+	<title>Top banner 1920x120-svg</title>
+	<defs>
+		<image width="1920" height="120" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB4AAAAB4AQMAAAApCn1/AAAAAXNSR0IB2cksfwAAAANQTFRF////p8QbyAAAAJxJREFUeJztzwENACAMwDDu3zQuTlJWBducz8zrgG0N6xrWNaxrWNewrmFdw7qGdQ3rGtY1rGtY17CuYV3DuoZ1Desa1jWsa1jXsK5hXcO6hnUN6xrWNaxrWNewrmFdw7qGdQ3rGtY1rGtY17CuYV3DuoZ1Desa1jWsa1jXsK5hXcO6hnUN6xrWNaxrWNewrmFdw7qGdQ3rGtY1rLslKQB5+w2V9gAAAABJRU5ErkJggg=="/>
+		<image width="1920" height="120" id="img2" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB4AAAAB4AgMAAABuqgevAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAxQTFRFvfH/ZM3tALboAJG9pT+ltAAAA7pJREFUeJzt28tx2zAUQFFokRLcj0vIIm4yyiIlpJ+U4IWtgQABfD9CHslKnu9dxNaHjxgeZoOhD4VSd3j0Aui+AZw8gJMHcPIATh7AyQM4eQAnD+DkHV7kO6+/zz/rB8fPXc1y376ff9b1La308EO/9/br/PPp+fTP3z+3Wdqt6wuv61tb6WwKcAH4HwzgKIBbAAP8+AAGWAZwC2CAHx/AAMsAbn0J4J8X0YXUVawXejOgDd8dqlTEqE5onde9KdWnlbBfoqfnLrqQuop1ymZAvdriPSulIkZt7j1x3naOkbWCc+Nmb9VLCLATwGMGwHEAW6MAns8xAhjgHsBRAI8ZAMcBbI0CeD7HCGCAewBHJQLedLx89jm7lC7NVcs4TVHH6sTFapfydHk/Z5fSp7lmGacp6lhd/+/xAjDA9w3gFsA7UwCeA7gADPCNAxjgtSkAOwFcAL5jAAO8NuUDwG3fUG8UHqeXzu7ji/GB/Rhc5Vo1G1uVV2ylqvPqR+3avqHeKBze7u6jtddpPwZXuVbNxiKv2ErV5xW3eHsJMMAF4MuxAE/DAQY4COA4gGsAAwxwAfhyLMDTcIABDgI47gpgoVe3/VyGvikYy49zzd/bTLES98q84vqB9Vye85jeaFYRenXbz2Xom4Kx/Ng3nL+3mbK3qs2U+UFBd+HW38IWtbPbH7oDGOARwGp8/w3gzRQrgC9HAOy81AEMMMAjgNX4/hvAmylWAF+OANh5qQMY4NTAb+cXzpUNHF+NB90Gg3WHWHeSHnWcpMYR1tniI2qbXUDrzz1tH6HyZjzoNhisO8S6k/SoupupjrDOFh9xTqj1rUqAWwADLN4DWAQwwAVggFUA1wAG2PkqwACP9wA2pgAM8L2BxdsjcfGd1NNu/ZIft19xdyntW8KaHOXeA6IKYpkpb5162q1f8vGedSfNObuj9vN70TLchhrAI4ABLgC3AAZYBDDAuwHcArgArL5aAC4F4BbAAIsAvjfwes6+5rxVGeU67k0utvcq60dy9jXnrcoo13FvcrG9Y1YrgOMABjgKYDEFYID1AICDAI4DGOAogMUUgAHWAwAOAjjuywLbF3UNeO+IhSnujXDr3Cfg1oD3jliY4t4IawEcB7D8AOBgFMCrUwBeDeA4gOUHAAejAF6dAvBqAMcBLD8AOBgF8OoUgFf7EPD9O153m/zPzX8ReocAfnQAJw/g5AGcPICTB3DyAE4ewMkDOHlfE5huFcDJAzh5ACcP4OQBnDyAkwdw8gBOHsDJewelAAS64LJ6wgAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="img1" href="#img1" transform="matrix(1,0,0,1,0,0)"/>
+	<use id="img2" style="opacity: .7" href="#img2" transform="matrix(1,0,0,1,0,0)"/>
+</svg>
