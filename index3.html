@@ -1,0 +1,910 @@
+<!DOCTYPE html><html><head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="description" content="Cria As Suas Próprias Skins De Minecraft, A Partir Do Zero. Ou Edita Skins Existentes No Seu Browser.">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+        <meta name="format-detection" content="telephone=no">
+        <meta http-equiv="x-rim-auto-match" content="none">
+                        <title>Minecraft Início</title>
+        <!-- Prefetch DNS for external assets -->
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+                <link rel="dns-prefetch" href="//www.statcounter.com">
+        <link rel="dns-prefetch" href="//cdn.domain.com">
+
+        <!-- Preconnect for external assets -->
+        <link rel="preconnect" href="//fonts.googleapis.com" crossorigin="">
+                <link rel="preconnect" href="//www.statcounter.com" crossorigin="">
+        <link rel="preconnect" href="//cdn.domain.com" crossorigin="">
+													
+        <link rel="icon" type="image/x-icon" href="images/favicon.png">
+        <link rel="stylesheet" type="text/css" href="css2/jgrowl.css">
+            <link href="css2/styles.css" rel="stylesheet" type="text/css">
+    <!-- remove it after create templates -->
+    <link href="css2/styles_mike.css" rel="stylesheet" type="text/css">
+    <!-- end -->
+    <link href="css2/bootstrap_modal.css" rel="stylesheet" type="text/css">
+
+    <link href="css2/select2.css" rel="stylesheet" type="text/css">
+    <link href="css2/styles-min3.css" rel="stylesheet" type="text/css">
+		    <link href="css2/fonts.css" rel="stylesheet" type="text/css">
+        <script src="js2/mobile-detect.min.js"></script>                        
+		</script>
+		</script>
+    <style>
+    body {
+        background-size: cover;
+        color: #f7f7fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+    }
+    </style>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .content { max-width: 1200px; margin: 0 auto; }
+    </style>
+<style>
+  /* Remove a aparência padrão do rádio button */
+  input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Tamanho do nosso rádio button customizado */
+    width: 12px;
+    height: 12px;
+
+    /* Estilo do círculo externo (azul) */
+    box-shadow:0 2px 18px #8b1616;
+    border-radius: 50%; /* Deixa o elemento redondo */
+    background-color: #1e1e1e; /* Cor de fundo quando não está clicado */
+
+    /* Garante que o clique seja preciso */
+    cursor: pointer;
+
+    /* Posicionamento do ponto interno */
+    display: inline-block;
+    position: relative;
+    vertical-align: middle; /* Alinha com o texto */
+  }
+
+  /* Estilo do rádio button quando está selecionado (clicado) */
+  input[type="radio"]:checked {
+    background-color: #E8B901; /* O meio fica amarelo */
+  }
+
+  /* Para um efeito visual mais suave */
+  input[type="radio"], input[type="radio"]:checked {
+    transition: all 0.2s ease-in-out;
+  }
+
+  label {
+    cursor: pointer;
+    font-family: sans-serif;
+  }
+</style>
+</head>
+<body>
+    <nav class="navbar">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+
+    <a href="https://24082004.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;">
+   <img src="images2/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px; box-shadow: 0 2px 10px #0004;">
+        <span style="
+		font-family: 'Righteous', cursive;
+        font-weight: 700;
+        font-size: 1.9rem;
+        color: #e8b901;
+        margin-left: 0.6rem;
+        user-select: none;
+      ">
+        Início
+      </span>
+ </a>
+    <a href="./index2.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Minecraft Verificar Nicks</a>
+    <b><a href="./index.html" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Testar Skin e Capa</a>
+	<a href="./index3.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Editar Skin</a></b>
+</nav>
+    <div class="content-wrapper">
+    <div class="content">
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Verificar Nicks</title>
+</head>
+<body>
+    <a rel="nofollow" href="https://github.com/girltrans" target="_blank" title="GitHub Repositório" class="github"><img src="./icons/github.png" alt="GitHub Icon" title="GitHub"></a>
+	<h1 style="text-align:center; color:#8B1616; margin-top:2rem; font-family: 'Righteous', cursive; font-size:2.4rem;">Editar Skin</h1>
+	<div style="text-align: center; color:##8B1616; margin-top:2rem; font-family: 'Righteous', cursive;">
+	    <p style="font-size: 2.4rem; color: #8B1616; margin-top: 5px;">
+        Aviso:
+    </p>
+    <p style="font-size: 0.8rem; color: #e8b901; margin-top: 5px;">
+        A Skin É Limpa Sempre Que o Usuário Sair ou Recarregar a Página. (Não Guardo Cookies / Não Coleto Dados)
+    </p>
+</div>
+    </div>
+    <div class="wrapper clearfix">
+
+        <div class="main">
+            <div class="site-overlay"></div>
+            <!-- Top Banner for desktop or mobile -->
+                                                                              <div class="top-ads">
+            <div class="ads">
+                <div class="top-banner-large">
+                    <div style="min-height: 250px; padding-top: 18px;">
+<!--  [Desktop/Tablet] Desktop Leaderboard - Above the Fold (ATF) -->
+<div data-pw-desk="leaderboard_atf" id="pwDeskLbAtf"></div>
+<!--
+<script type="text/javascript">
+  window.ramp.que.push(function () {
+      window.ramp.addTag("pwDeskLbAtf");
+  })
+</script>
+-->
+</div>
+                </div>
+            </div>
+        </div>
+    
+                                                    </div>
+
+        <div class="content">
+                <h1 class="editor-heading"></h1>
+
+    <link href="css2/farbtastic.css" rel="stylesheet" type="text/css">
+    <div id="hideBlock" style="display:none;"></div>
+    <div id="lt" style="height:1px;width:1px;display:none;z-index:999999;"></div>
+    <form style="visibility: hidden;" action="" method="POST" id="downloadForm" target="_blank">
+        <input type="hidden" id="imageVal" name="imageVal" value="">
+    </form>
+    <form style="visibility: hidden;" action="/upload/" method="POST" id="skinUploadToSiteForm">
+        <input type="hidden" id="imageEditor" name="imageEditor" value="">
+        <input type="hidden" id="imageEditorPreset" name="imageEditorPreset" value="">
+        <input type="hidden" id="imageEditorPresetSelected" name="imageEditorPresetSelected" value="">
+    </form>
+
+
+
+    <div class="avatar-creator clearfix">
+        <div id="toolbox"></div>
+
+        <div class="slide-leftbar">
+            <i class="icon-pencil"></i>
+        </div>
+
+        <div class="slide-rightbar">
+            <i class="icon-settings"></i>
+        </div>
+
+
+        <div class="left-toolbar">
+            <a href="javascript:void(0);" class="tools active" id="colorholder_chose" title="Lápis (p)">
+                <i class="icon-pencil"></i>
+            </a>
+            <a href="javascript:void(0);" id="erasepixel" class="tools" title="Borracha (e)">
+                <i class="icon-erase"></i>
+            </a>
+            <a href="javascript:void(0);" id="autotone" class="tools" title="Tom Automático (a)">
+                <i class="icon-brush"></i>
+            </a>
+            <a href="javascript:void(0);" id="pickcolor" class="tools" title="Seleção De Cores (c)">
+                <i class="icon-pipet"></i>
+            </a>
+            <a href="javascript:void(0);" id="bucket" class="tools" title="Balde (b)">
+                <i class="icon-bucket"></i>
+            </a>
+
+            <a href="javascript:void(0);" id="undo" class="tools w50" style="float:left;margin-right:4px;" title="Voltar (u)">
+                <i class="icon-undo"></i>
+            </a>
+            <a href="javascript:void(0);" id="redo" class="tools w50" title="Refazer (r)">
+                <i class="icon-redo"></i>
+            </a>
+
+            <a href="javascript:void(0);" id="darker" class="tools w50" style="float:left;margin-right:4px;margin-top:-2px;" title="Escurecer a Cor (z)">
+                <i class="icon-brush-plus"></i>
+            </a>
+            <a href="javascript:void(0);" id="lighter" class="tools w50" style="margin-top:-2px;" title="Clarear a Cor (x)">
+                <i class="icon-brush-minus"></i>
+            </a>
+            <a href="javascript:void(0);" id="zoom-in" class="tools w50 zoom-in" title="Aumentar o Zoom (q)">
+                <i class="icon-zoom-in"></i>
+            </a>
+            <a href="javascript:void(0);" id="zoom-out" class="tools w50 zoom-out" title="Diminuir o Zoom (w)">
+                <i class="icon-zoom-out"></i>
+            </a>
+            <a href="javascript:void(0);" id="mirrorTool" class="tools" style="margin-top:-2px;" title="Espelho Ligado/Desligado (m)">
+                <i class="icon-skin"></i>
+            </a>
+
+            <div id="reset" class="reset" title="Limpar Skin">
+                <button class="btn" style="width:90px;">Limpar</button>
+            </div>
+        </div>
+        <div class="left-toolbar-mobile">
+            <div class="tools-wrapper clearfix">
+                <a href="javascript:void(0);" id="mirrorTool" class="tools" title="Espelho Ligado/Desligado (m)">
+                    <i class="icon-skin"></i>
+                </a>
+
+                <a href="javascript:void(0);" class="tools active" id="colorholder_chose" title="Lápis (p)">
+                    <i class="icon-pencil"></i>
+                </a>
+                <a href="javascript:void(0);" id="erasepixel" class="tools" title="Borracha (e)">
+                    <i class="icon-erase"></i>
+                </a>
+                <a href="javascript:void(0);" id="autotone" class="tools" title="Tom Automático (a)">
+                    <i class="icon-brush"></i>
+                </a>
+                <a href="javascript:void(0);" id="pickcolor" class="tools" title="Seleção De Cores (c)">
+                    <i class="icon-pipet"></i>
+                </a>
+                <a href="javascript:void(0);" id="zoom-in" class="tools w50 zoom-in" title="Aumentar o Zoom (q)">
+                    <i class="icon-zoom-in"></i>
+                </a>
+
+                <a href="javascript:void(0);" id="bucket" class="tools" title="Balde (b)">
+                    <i class="icon-bucket"></i>
+                </a>
+
+                <a href="javascript:void(0);" id="undo" class="tools w50" title="Voltar (u)">
+                    <i class="icon-undo"></i>
+                </a>
+                <a href="javascript:void(0);" id="redo" class="tools w50" title="Refazer (r)">
+                    <i class="icon-redo"></i>
+                </a>
+                <a href="javascript:void(0);" id="darker" class="tools w50" title="Escurecer a Cor (z)">
+                    <i class="icon-brush-plus"></i>
+                </a>
+                <a href="javascript:void(0);" id="lighter" class="tools w50" title="Clarear a Cor (x)">
+                    <i class="icon-brush-minus"></i>
+                </a>
+                <a href="javascript:void(0);" id="zoom-out" class="tools zoom-out" title="Diminuir o Zoom (w)">
+                    <i class="icon-zoom-out"></i>
+                </a>
+
+                <div id="reset" class="reset" title="Limpar Skin">
+                    <button class="btn" style="width:90px;">Limpar</button>
+                </div>
+            </div>
+
+
+            <div class="button-wrapper clearfix">
+                <div class="skin-body-overlay"><span class="body-overlay-span">Body & Overlay</span>
+                    <div class="skin-body-overlay-content">
+                        <div class="mobile-right-toggles"></div>
+                    </div>
+                </div>
+
+                <div class="skin-tools-mobile-wrapper">
+                    <div class="skin-tools mobile">
+                        <div class="selects mobile">
+                            <select id="pxs_mobile" name="pxs">
+                                <option value="4px">Longa Steve (4px)</option>
+                                <option value="3px">Alex  Fina (3px)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <!-- Editor Canvas Here -->
+        <div class="canvas-wrapper">
+            <div class="skin-canvas mobile">
+                <div id="editor"></div>
+            </div>
+        </div>
+
+
+        <div class="left-toolbar-tablet">
+                <a href="javascript:void(0);" class="tools active" id="colorholder_chose" title="Lápis (p)">
+                    <i class="icon-pencil"></i>
+                </a>
+                <a href="javascript:void(0);" id="erasepixel" class="tools" title="Borracha (e)">
+                    <i class="icon-erase"></i>
+                </a>
+                <a href="javascript:void(0);" id="autotone" class="tools" title="Tom Automático (a)">
+                    <i class="icon-brush"></i>
+                </a>
+                <a href="javascript:void(0);" id="pickcolor" class="tools" title="Seleção De Cores (c)">
+                    <i class="icon-pipet"></i>
+                </a>
+                <a href="javascript:void(0);" id="zoom-in" class="tools w50 zoom-in" title="Aumentar o Zoom (q)">
+                    <i class="icon-zoom-in"></i>
+                </a>
+
+                <a href="javascript:void(0);" id="bucket" class="tools" title="Balde (b)">
+                    <i class="icon-bucket"></i>
+                </a>
+
+                <a href="javascript:void(0);" id="undo" class="tools w50" title="Voltar (u)">
+                    <i class="icon-undo"></i>
+                </a>
+                <a href="javascript:void(0);" id="redo" class="tools w50" title="Refazer (r)">
+                    <i class="icon-redo"></i>
+                </a>
+                <a href="javascript:void(0);" id="darker" class="tools w50" title="Escurecer a Cor (z)">
+                    <i class="icon-brush-plus"></i>
+                </a>
+                <a href="javascript:void(0);" id="lighter" class="tools w50" title="Clarear a Cor (x)">
+                    <i class="icon-brush-minus"></i>
+                </a>
+                <a href="javascript:void(0);" id="zoom-out" class="tools zoom-out" title="Diminuir o Zoom (w)">
+                    <i class="icon-zoom-out"></i>
+                </a>
+
+
+            <div id="reset" class="reset" title="Limpar Skin">
+                <button class="btn" style="width:90px;">Limpar</button>
+            </div>
+        </div>
+
+
+        <div class="right-toolbar">
+            <div class="color-picker">
+                <br>
+
+                <div id="colorpicker"></div>
+
+                <form>
+                    <span id="colorSpan" style="visibility: hidden;">
+                        <input type="text" id="color" name="color" value="#123456">
+                    </span>
+                </form>
+            </div>
+
+            <div class="right-toggles"></div>
+            <div class="skin-tools">
+                <div class="selects">
+                    <select id="pxs" name="pxs">
+                        <option value="4px">Longa Steve (4px)</option>
+                        <option value="3px">Fina Alex (3px)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="right-btns clearfix">
+                    </a>
+                
+                <a href="javascript:void(0);">
+                    <i class="icon-download" title="Baixar Skin"></i>
+                </a>
+
+                <a href="javascript:void(0);" class="editor_btn3new" data-assert="20">
+                    <i class="icon-upload-comp" title="Carregar Skin"></i>
+                </a>
+                <div class="downloadError" style="display:none;color:red;padding-left:3px;">Nenhuma Skin Criada.
+                </div>
+                <div class="uploadError" style="display:none;color:red;padding-left:3px;">Não é Possível Carregar Uma Skin Em Branco
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="showSkin" style="display:none;">
+        <canvas class="skin" id="skin" width="64" height="32"></canvas>
+        <canvas class="uploadCanvas" id="uploadCanvas" width="64" height="64"></canvas>
+        <canvas class="skin" id="skinMap" width="512" height="256" style="width: 64px; height: 32px;"></canvas>
+        <span id="hideSkin" style="display:none">◳</span>
+    </div>
+
+    <div class="right-block-commerce">
+        <div class="right-block-commerce-inner" style="display:block;">
+                            
+                    </div>
+    </div>
+
+    <!-- Bottom banner -->
+                                    <div class="bottom-ads">
+                <div class="ads">
+                    <!--  [Desktop/Tablet] Desktop Leaderboard - Below the Fold (BTF) -->
+<!-- <div data-pw-desk="leaderboard_btf" id="pwDeskLbBtf1"></div> -->
+<!--
+<script type="text/javascript">
+  window.ramp.que.push(function () {
+      window.ramp.addTag("pwDeskLbBtf1");
+  })
+</script>
+-->
+                </div>
+            </div>
+            
+    
+        </div>
+
+    </div>
+
+    <!-- Global information modal -->
+    <div class="modal fade" id="global_information_modal" tabindex="-1" role="dialog" aria-labelledby="global_information_modal">
+        <div class="modal-dialog info-modal" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <div class="modal-info">
+                        <br>
+                        <h3 class="js-header-information-modal"></h3>
+                    </div>
+                </div>
+                <div class="modal-footer modal-info-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Arquivo Inválido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <div class="cmp_ads">
+                    
+                </div>
+        <!-- End Global information modal -->
+            <script>
+        var skindex_url = window.location.protocol + '//' + window.location.hostname + './index3.html';
+        var md = new MobileDetect(window.navigator.userAgent);
+        // Safari private window check
+        if (typeof localStorage === 'object') {
+            try {
+                localStorage.setItem('localStorage', 1);
+                localStorage.removeItem('localStorage');
+            } catch (e) {
+                Storage.prototype._setItem = Storage.prototype.setItem;
+                Storage.prototype.setItem = function () {
+                };
+                alert('o nosso browser não suporta o armazenamento de definições localmente. No Safari, a causa mais comum desta situação é a utilização do "Modo de navegação privada". Algumas definições poderão não ser guardadas ou algumas funcionalidades poderão não funcionar corretamente para si. Tente utilizar o modo não privado.');
+                // window.location.href = skindex_url;
+            }
+        }
+    </script>
+    <script>
+        console.log("Limpando Dados Da Skin Para Um Novo Início...");
+        localStorage.removeItem('uploadedImage');
+        localStorage.removeItem('paintArr');
+        localStorage.removeItem('countT');
+        localStorage.removeItem('layerJson');
+        localStorage.removeItem('switchArr');
+        console.log("Limpeza Da Skin Concluída.");
+    </script>
+<script src="js2/jquery-1.11.3.min.js"></script>
+<script src="js2/lazysizes.min.js"></script>
+<script src="js2/mobile-menu.js"></script>
+<script src="js2/select2.js"></script>
+<script src="js2/jquery.cookie.js"></script>
+<script src="js2/jgrowl.js"></script>
+<script src="js2/util.js"></script>
+<script src="js2/resolution-change.js"></script>
+<script>
+    // Set global variables for external scripts
+    window.currentTheme = "light";
+    window.serverDevice = "0";
+    window.getUsernameUrl = "/get-username";
+</script>
+<script src="js2/theme-device-manager.js"></script>
+        
+    <script src="js2/bootstrap_modal.min.js"></script>
+<script src="js2/moment.min.js"></script>
+<script src="js2/textarea-helper.js"></script>
+<script src="js2/bootstrap_tooltip.js"></script>
+<script>
+    // Set global variables for external scripts
+    window.addVoteUrl = "/add-vote";
+    window.addRankUrl = "/add-rank";
+    window.registerUrl = "/register/";
+    window.loginUrl = "/login/";
+    window.unfollowUserUrl = "/profile/actions/act/unfollow-user";
+    window.getVoteCountUrl = "/get-vote";
+</script>
+<script src="js2/user-info-check.js"></script>
+
+    <script src="js2/bowser.js"></script>
+    <script src="js2/three.59.js"></script>
+    <script src="js2/newOrbit.js"></script>
+    <script src="js2/app3.js"></script>
+    <script src="js2/farbtastic.js"></script>
+    <script src="js2/tinycolor.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $.removeCookie("uploadFromGrabber");
+            localStorage.removeItem('uploadKeyBtn');
+            localStorage.removeItem('uploadKey');
+            localStorage.removeItem('imageForGrabber');
+            var eraseActive = null,
+                pickerActive = null,
+                paintActive = null,
+                brushActive = null,
+                bucketActive = null,
+                mirrorActive = null;
+
+            function toggleBtn(name, shortName) {
+                $('.avatar-creator a').removeClass('active');
+                $('.avatar-creator #' + name).addClass('active');
+            }
+
+            function resetActive() {
+                eraseActive = null;
+                pickerActive = null;
+                paintActive = null;
+                brushActive = null;
+                bucketActive = null;
+                mirrorActive = null;
+            }
+
+            function ColorLuminance(hex, lum, tonik) {
+                if (tonik === "darker") {
+                    var rgb = tinycolor(hex).darken(5).toString();
+                } else {
+                    var rgb = tinycolor(hex).lighten(5).toString();
+                }
+                $("#colorholder_div").css("background", rgb);
+                $("#color").css("background", rgb);
+                $("#color").val(rgb);
+                $(".colorbip").css("background", rgb);
+                $("#color").trigger('keyup');
+
+                return rgb;
+            }
+
+            var setBorderToColor = function () {
+                var rgb = tinycolor($('#color').val()).darken(15).toString();
+                $('#color').css({
+                    "border-color": rgb,
+                    "border-width": "1px !important",
+                    "border-style": "solid",
+                    "border-radius": "50%"
+                });
+            }
+
+            $('#colorpicker').farbtastic('#color').mouseup(function () {
+                if (eraseActive === 1) {
+                    toggleBtn('colorpicker');
+                    resetActive();
+                    paintActive = 1;
+                    $('#colorholder_chose').addClass('active');
+                    setBorderToColor();
+                }
+            });
+
+            setBorderToColor();
+            $('#colorSpan').css('visibility', 'visible');
+
+            $('.avatar-creator #colorholder_chose').on('click', function (e) {
+                e.preventDefault();
+                toggleBtn('colorholder_chose');
+                resetActive();
+                paintActive = 1;
+                $('#colorholder_chose').addClass('active');
+                if ($('#colorholder_chose').hasClass('activeHide')) {
+                    $('#colorholder_chose').removeClass('activeHide');
+                }
+            });
+
+            $(document).on('paste blur keyup mousemove', '#colorpicker *, #color', function (event) {
+                if (event.type == 'paste' || event.type == 'blur') {
+                    $("#color").val('');
+                    var element = $(event.target);
+                    var count = 0;
+                    setTimeout(function () {
+                        var text = $(element).val();
+                        if (count === 0) {
+                            var firstColor = text.charAt(0);
+                            if (firstColor !== "#" && text.length > 0) {
+                                $("#color").val("#" + text);
+                                $.farbtastic('#colorpicker').setColor("#" + text);
+                            } else if (text.length >= 7) {
+                                $("#color").val(text.slice(0, 7));
+                                $.farbtastic('#colorpicker').setColor($("#color").val());
+                            } else {
+                                $("#color").val(text);
+                                $.farbtastic('#colorpicker').setColor(text);
+                            }
+                            setBorderToColor();
+                        }
+                        count++;
+                    }, 100);
+                } else {
+                    setBorderToColor();
+                }
+            });
+
+            $('#colorpicker *, #color').on('keyup', function () {
+                var curVal = $("#color").val();
+                var firstColor = curVal.charAt(0);
+                if (firstColor !== "#" && curVal.length > 0) {
+                    $("#color").val("#" + curVal);
+                }
+
+                if (curVal.length >= 7) {
+                    $("#color").val(curVal.slice(0, 7));
+                    $("#color").blur();
+                    if (eraseActive === 1 || pickerActive === 1) {
+                        $('#colorholder_chose').trigger('click');
+                    }
+                    $.farbtastic('#colorpicker').color = $("#color").val();
+                }
+                var color = $("#color").css('background-color');
+                setBorderToColor();
+            });
+
+            $('#colorpicker *, #color').on('mouseup', function () {
+                if ($("#color").val() === "" && typeof $.farbtastic('#colorpicker').color !== "undefined") {
+                    $("#color").val($.farbtastic('#colorpicker').color);
+                    $("#color").blur();
+                    $('#colorholder_chose').trigger('click');
+                    $.farbtastic('#colorpicker').color = $("#color").val();
+                }
+                var color = $("#color").css('background-color');
+                setBorderToColor();
+            });
+
+            $('#colorpicker *, #color').on('blur', function () {
+                if ($("#color").val() === "") {
+                    $("#color").val($.farbtastic('#colorpicker').color);
+                    $.farbtastic('#colorpicker').setColor($("#color").val());
+                    setBorderToColor();
+                }
+            });
+
+            $('.avatar-creator #pickcolor').on('click', function (e) {
+                e.preventDefault();
+                toggleBtn('pickcolor');
+                resetActive();
+                pickerActive = 1;
+            });
+
+            $('.avatar-creator #bucket').on('click', function (e) {
+                e.preventDefault();
+                toggleBtn('bucket');
+                resetActive();
+                $('#colorholder_chose').addClass('active').addClass('activeHide');
+                paintActive = 1;
+                bucketActive = 1;
+                if ($(this).parent().find('#mirrorTool').hasClass('mirrorToolOn') || $(this).parent().find('#mirrorTool').hasClass('active')) {
+                    $(this).parent().find('#mirrorTool').removeClass('active').removeClass('mirrorToolOn').addClass('mirrorToolOff');
+                }
+            });
+
+            $('.avatar-creator #autotone').on('click', function (e) {
+                e.preventDefault();
+                toggleBtn('autotone');
+                resetActive();
+                $('#colorholder_chose').removeClass('activeHide');
+                brushActive = 1;
+            });
+
+            $('.avatar-creator #erasepixel').on('click', function (e) {
+                e.preventDefault();
+                toggleBtn('erasepixel');
+                resetActive();
+                $('#colorholder_chose').removeClass('activeHide');
+                eraseActive = 1;
+            });
+
+            $('.avatar-creator #mirrorTool').on('click', function (e) {
+                e.preventDefault();
+                if ($(this).hasClass('mirrorToolOn')) {
+                    mirrorActive = null;
+                    $(this).removeClass('mirrorToolOn').removeClass('active');
+                } else {
+                    if ($('.avatar-creator #autotone').hasClass('active')) {
+                        brushActive = 1;
+                    } else if ($('.avatar-creator #colorholder_chose').hasClass('active')) {
+                        paintActive = 1;
+                        if ($('.avatar-creator #bucket').hasClass('active')) {
+                            bucketActive = null;
+                            if ($('.left-toolbar-mobile').is(':visible')) {
+                                $('.left-toolbar-mobile #colorholder_chose').addClass('active');
+                                $('.left-toolbar-tablet #colorholder_chose').addClass('active');
+                            } else {
+                                $('.avatar-creator #colorholder_chose').removeClass('activeHide');
+                            }
+                            $('.avatar-creator #bucket').removeClass('active');
+                        }
+                    } else if ($('.avatar-creator #erasepixel').hasClass('active')) {
+                        eraseActive = 1;
+                    } else if ($('.avatar-creator #pickcolor').hasClass('active')) {
+                        pickerActive = 1;
+                    } else {
+                        $('.left-toolbar a').removeClass('active');
+                    }
+                    resetActive();
+                    if ($(this).hasClass('active')) {
+                        $(this).removeClass('active').removeClass('mirrorToolOn').addClass('mirrorToolOff');
+                    } else {
+                        $(this).addClass('active').removeClass('mirrorToolOff').addClass('mirrorToolOn');
+                    }
+                    mirrorActive = 1;
+                }
+            });
+
+            $('.avatar-creator #darker').on('click', function (e) {
+                e.preventDefault();
+                ColorLuminance($('#color').val(), -0.05, 'darker');
+                setBorderToColor();
+            });
+
+            $('.avatar-creator #lighter').on('click', function (e) {
+                e.preventDefault();
+                ColorLuminance($('#color').val(), 0.05, 'lighter');
+                setBorderToColor();
+            });
+
+$('.avatar-creator .icon-upload-site').on('click', function (e) {
+    e.preventDefault();
+    var blank = isCanvasBlank($('#uploadCanvas')[0]);
+    setTimeout(function () {
+        if (!blank) {
+            $('.downloadError').hide();
+            $('.uploadError').hide();
+            setTimeout(function () {
+                // // window.location.href = '/login/'
+            }, 1500);
+        } else {
+            $('.downloadError').hide();
+            $('.uploadError').show();
+            setTimeout(function () {
+                $('.uploadError').hide();
+            }, 2000);
+        }
+    }, 100);
+});
+
+            function isCanvasBlank(canvas) {
+                var blank = document.createElement('canvas');
+                blank.width = canvas.width;
+                blank.height = canvas.height;
+
+                return canvas.toDataURL() == blank.toDataURL();
+            }
+
+            $('body').on('keydown', function (e) {
+                var keyCode = (window.event) ? e.keyCode : e.which;
+                if (keyCode === 80) {          // 'p' keycode / pencil tool
+                    $('#colorholder_chose').trigger('click');
+                } else if (keyCode === 65) {   // 'a' keycode / autotone tool
+                    $('#autotone').trigger('click');
+                } else if (keyCode === 67) {   // 'c' keycode / color picker tool
+                    $('#pickcolor').trigger('click');
+                } else if (keyCode === 69) {   // 'e' keycode / eraser tool
+                    $('#erasepixel').trigger('click');
+                } else if (e.keyCode === 81) { // 'q' keycode / zoom in tool
+                    $('.zoom-in').trigger('click');
+                } else if (e.keyCode === 87) { // 'w' keycode / zoom out tool
+                    $('.zoom-out').trigger('click');
+                } else if (e.keyCode === 66) { // 'b' keycode / bucket tool
+                    $('.avatar-creator #bucket').trigger('click');
+                } else if (e.keyCode === 77) { // 'm' keycode / mirror tool
+                    $('.avatar-creator #mirrorTool').trigger('click');
+                } else if (keyCode === 90) {   // 'z' keycode / darken color tool
+                    ColorLuminance($('#color').val(), -0.05, 'darker');
+                    setBorderToColor();
+                } else if (keyCode === 88) {   // 'x' keycode / lighten color tool
+                    ColorLuminance($('#color').val(), 0.05, 'lighter');
+                    setBorderToColor();
+                }
+            });
+        });
+    </script>
+
+    <script type="text/html" id="toggles-template">
+        <div id="toggles">
+            <div class="controls">
+                <div title="Ocultar/Mostrar a Pele Do Corpo" class="underlay ed_gridbtn_body"><a id="showObject"
+                                                                                     class="btn btn-default">Corpo</a>
+                </div>
+                <div title="Ocultar/Mostrar Sobreposição De Pele" class="overlay ed_gridbtn_overlay"><a id="showOverlay"
+                                                                                          class="btn btn-default">Interior</a></div>
+            </div>
+
+            <div class="model-body">
+                <div data-parts="headOverlay,head" class="head ed_head"><a> </a></div>
+                <div data-parts="armROverlay,armR" class="armR ed_leftarm"><a> </a></div>
+                <div data-parts="bodyOverlay,body" class="body ed_body"><a> </a></div>
+                <div data-parts="armLOverlay,armL" class="armL ed_leftarm"><a> </a></div>
+                <div data-parts="legROverlay,legR" class="legL ed_leg_left"><a> </a></div>
+                <div data-parts="legLOverlay,legL" class="legR ed_leg_right"><a> </a></div>
+            </div>
+
+        </div>
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('html').addClass('footer-editor');
+            $('.body-overlay-span').on('click', function (e) {
+                e.preventDefault();
+                $('.skin-body-overlay-content').toggleClass('open');
+                return false;
+            });
+            $(document).on('touchstart click', function (evt) {
+                if (evt.target.className == "body-overlay-span")
+                    return;
+                if (evt.target.className == "skin-body-overlay-content")
+                    return;
+                if ($(evt.target).closest('.skin-body-overlay-content').length)
+                    return;
+                if ($('.skin-body-overlay-content').is('.open')) {
+                    $('.skin-body-overlay > span').trigger('click');
+                }
+            });
+        });
+    </script>
+<script>
+$(document).ready(function() {
+    $('#reset').on('click', function(e) {
+        e.preventDefault(); 
+        window.location.href = 'index3.html';
+    });
+});
+</script>
+<script>
+$(document).ready(function() {
+    // Esta função já existe no seu arquivo app3.js, então podemos usá-la.
+    function isCanvasBlank(canvas) {
+        const blank = document.createElement('canvas');
+        blank.width = canvas.width;
+        blank.height = canvas.height;
+        return canvas.toDataURL() == blank.toDataURL();
+    }
+
+    // Seleciona o link <a> que envolve o ícone de download
+    const downloadButtonLink = $('.right-btns .icon-download').parent('a');
+    
+    // Limpa qualquer outra função de clique para garantir que só a nossa funcione
+    downloadButtonLink.off('click'); 
+
+    // Adiciona nossa função de clique inteligente
+    downloadButtonLink.on('click', function(e) {
+        e.preventDefault(); // Impede qualquer comportamento padrão do link
+
+        const editorCanvas = $('#uploadCanvas')[0];
+        const isBlank = isCanvasBlank(editorCanvas);
+
+if (isBlank) {
+    // SE ESTIVER EM BRANCO: mostre um alerta e não faça nada.
+    alert('Não é Possível Baixar Uma Skin Em Branco.');
+
+            
+            // Opcional: esconde a mensagem depois de 3 segundos
+            setTimeout(function() {
+                $('.downloadError').hide();
+            }, 3000);
+
+        } else {
+            // SE NÃO ESTIVER EM BRANCO: inicie o download.
+            $('.downloadError').hide(); // Garante que a mensagem de erro esteja escondida
+
+            try {
+                const link = document.createElement('a');
+                link.download = 'minha_skin.png'; // Nome do arquivo
+                link.href = editorCanvas.toDataURL('image/png'); // Pega a imagem do canvas
+                link.click(); // Simula o clique no link para baixar
+                link.remove(); // Remove o link da página
+            } catch (err) {
+                console.error("Erro ao tentar baixar a skin:", err);
+                alert('Ocorreu um erro ao tentar baixar a skin.');
+            }
+        }
+    });
+});
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (navigator.userAgent.toLowerCase().includes("firefox")) {
+      document.body.style.zoom = "85%";
+    }
+  });
+</script>
+<script>
+  function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+
+  if (isMobileDevice()) {
+    document.body.classList.add('allow-scroll');
+  }
+</script>
+</body>
+</html>
