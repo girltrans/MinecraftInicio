@@ -33,7 +33,6 @@ a.github {
     position: fixed;
     width: 40px;
     height: 40px;
-    z-index: 999;
     right: 0;
     top: 0;
     margin: 2rem;
@@ -41,7 +40,6 @@ a.github {
 .github img {
     width: 100%;
     height: 100%;
-    z-index: 998;
     filter: invert(1);
     opacity: .2;
 }
@@ -401,7 +399,6 @@ button.btn.btn-danger.unfollow {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 997;
     gap: 2.5rem;
     padding: 1.2rem 0;
     background: rgba(0, 0, 0, 1);
@@ -574,7 +571,6 @@ html.footer-editor {
   -moz-box-shadow: inset 0 0 0 4px #8b1616;
   background-color: #1e1e1e;
   background-image: none;
-  margin-top: 293px;
   border: 2px solid #8B1616;
   box-shadow: 0 2px 18px #8b1616;
 }
@@ -695,7 +691,6 @@ html.footer-editor {
   border: 2px solid #8B1616;
   box-shadow: 0 2px 18px #8b1616;
   margin-bottom: 15px;
-  margin-top: 293px;
   padding: 15px;
   margin-left: 10px;
 }
@@ -2769,7 +2764,6 @@ textarea.profile-about-text {
 #editor {
   height: 585px;
   width: 630px;
-  margin-top: 293px;
   position: relative;
 }
 #model-render {
