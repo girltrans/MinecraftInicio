@@ -272,6 +272,7 @@ img, video {
 }
 .content-wrapper h1 {
   text-align: left;
+  margin: auto;
   clear: both;
   display: block;
 }
