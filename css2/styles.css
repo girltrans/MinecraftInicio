@@ -40,8 +40,6 @@ button.buttonText {
     line-height: 22px;
     cursor: pointer;
 }
-
-
 button.gplus-signup {
     background: #dc4e41 url('../images3/gplus-signup.png') no-repeat center;
     display: inline-block;
@@ -63,7 +61,18 @@ button.gplus-signup {
     line-height: 22px;
     cursor: pointer;
 }
-
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 1.2rem 0;
+    background: rgba(0, 0, 0, 1);
+    backdrop-filter: blur(12px);
+    border-radius: 0 0 20px 20px;
+    width: 99vw;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
 .js-active{
     font-weight: bold;
 }
