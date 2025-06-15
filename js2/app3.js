@@ -4325,7 +4325,6 @@ if (localStorage.getItem("paintArr") == null) {
 
     $(".avatar-creator #reset").on("click", function () {
       if (confirm("Todo o trabalho será perdido! Tem certeza?")) {
-      if (confirm) {
         g.model.loopOverParts(function (a) {
           for (var c = a.geometry.faces, d = 0; d < c.length; d++)
             g.layerModel.setFaceColor(c[d], new THREE.Color().setAlpha());
