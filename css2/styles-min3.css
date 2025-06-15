@@ -33,6 +33,7 @@ a.github {
     position: fixed;
     width: 40px;
     height: 40px;
+    z-index: 999;
     right: 0;
     top: 0;
     margin: 2rem;
@@ -40,6 +41,7 @@ a.github {
 .github img {
     width: 100%;
     height: 100%;
+    z-index: 998;
     filter: invert(1);
     opacity: .2;
 }
@@ -399,6 +401,7 @@ button.btn.btn-danger.unfollow {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 997;
     gap: 2.5rem;
     padding: 1.2rem 0;
     background: rgba(0, 0, 0, 1);
