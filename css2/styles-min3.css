@@ -2772,17 +2772,6 @@ textarea.profile-about-text {
   margin-top: 293px;
   position: relative;
 }
-#model-render {
-  margin: 0 auto;
-  display: block;
-  position: relative;
-  background: #1E1E1E;
-  background-color: #1e1e1e;
-  background-image: none;
-  border: 2px solid #8B1616;
-  box-shadow: 0 2px 18px #8b1616;
-  margin-top: 0px;
-}
 #toggles {
   right: 5px;
   bottom: 5px;
