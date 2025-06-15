@@ -109,6 +109,7 @@
 }
 .modal-body {
   position: relative;
+  background-color: #1e1e1e;
   padding: 15px;
 }
 .modal-footer {
