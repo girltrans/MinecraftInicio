@@ -4239,6 +4239,7 @@ textarea {
   }
   .content {
     margin-bottom: 0;
+    margin-bottom: 50px;
   }
   body.flex-box .wrapper .content .login {
     width: 100%;
