@@ -2764,6 +2764,7 @@ textarea.profile-about-text {
 #editor {
   height: 585px;
   width: 630px;
+  margin-top: 293px;
   position: relative;
 }
 #model-render {
