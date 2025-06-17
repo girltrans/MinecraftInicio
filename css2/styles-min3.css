@@ -1820,10 +1820,14 @@ textarea.profile-about-text {
 }
 .modal-info {
   text-align: center;
+  text-align: center;
+  color: #e8b901;
 }
 .modal-info h3 {
-  font-weight: 400;
   font-size: 14px;
+  font-weight: 700;
+  border: 2px solid #8B1616;
+  box-shadow: 0 2px 18px #8b1616;
   margin-bottom: 12px;
 }
 .modal-info .user-avatar {
