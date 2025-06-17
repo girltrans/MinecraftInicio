@@ -542,6 +542,8 @@ html.footer-editor {
 .avatar-creator .left-toolbar {
   width: 90px;
   float: left;
+  position: relative;
+  top: 293px;
 }
 .avatar-creator .skin-canvas {
   float: left;
