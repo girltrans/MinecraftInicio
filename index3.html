@@ -839,11 +839,12 @@ $(document).ready(function() {
         e.preventDefault(); // Impede qualquer comportamento padrão do link
 
         const editorCanvas = $('#uploadCanvas')[0];
+        // AQUI ESTÁ A CORREÇÃO: trocamos isBlank por isCanvasBlank
         const isBlank = isCanvasBlank(editorCanvas);
 
-if (isBlank) {
-    // SE ESTIVER EM BRANCO: mostre um alerta e não faça nada.
-    alert('Não é Possível Baixar Uma Skin Em Branco.');
+        if (isBlank) {
+            // SE ESTIVER EM BRANCO: mostre um alerta e não faça nada.
+            alert('Não é Possível Baixar Uma Skin Em Branco.');
 
             
             // Opcional: esconde a mensagem depois de 3 segundos
