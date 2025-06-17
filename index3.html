@@ -370,7 +370,7 @@
                 </a>
                 <div class="downloadError" style="display:none;color:red;padding-left:3px;">Nenhuma Skin Criada.
                 </div>
-                <div class="uploadError" style="display:none;color:red;padding-left:3px;">Não é Possível Carregar Uma Skin Em Branco
+                <div class="uploadError" style="display:none;color:red;padding-left:3px;">Editor Em Branco
                 </div>
             </div>
         </div>
@@ -716,7 +716,10 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
     var blank = isCanvasBlank($('#uploadCanvas')[0]);
     setTimeout(function () {
         if (!blank) {
+    	    alert('Não é Possível Baixar Uma Skin Em Branco.');
+            setTimeout(function() {
             $('.downloadError').hide();
+            }, 3000);
             $('.uploadError').hide();
             setTimeout(function () {
                 // // window.location.href = '/login/'
