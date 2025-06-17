@@ -828,41 +828,55 @@ $(document).ready(function() {
         return canvas.toDataURL() === blank.toDataURL();
     }
 
+    // Seleciona o elemento de erro e o esconde por padrão
+    const erroDownload = $('.downloadError');
+    erroDownload.hide();
+
     // Adiciona o evento de clique diretamente no ID do nosso botão
     $('#botaoBaixarSkin').on('click', function(event) {
-        // Impede a ação padrão do navegador (como seguir um link)
+        // Impede a ação padrão e a propagação para outros scripts
         event.preventDefault(); 
-        // Impede que o evento de clique "borbulhe" e acione outros scripts
         event.stopPropagation(); 
 
         const editorCanvas = $('#uploadCanvas')[0];
 
         if (isCanvasBlank(editorCanvas)) {
-            // Se o canvas estiver em branco, mostra um alerta
-            alert('Não é Possível Baixar Uma Skin Em Branco.');
+            // Se o canvas estiver em branco, mostra a mensagem de erro no div
+            erroDownload.text('Não é Possível Baixar Uma Skin Em Branco.').show();
+            
+            // Esconde a mensagem automaticamente após 3 segundos
+            setTimeout(function() {
+                erroDownload.hide();
+            }, 3000);
+
         } else {
-            // Se não estiver em branco, cria um link temporário e inicia o download
+            // Se não estiver em branco, esconde qualquer erro antigo e inicia o download
+            erroDownload.hide();
             try {
                 const link = document.createElement('a');
                 link.download = 'minha_skin.png'; // Nome do arquivo
                 link.href = editorCanvas.toDataURL('image/png');
-
-                // Adiciona o link ao corpo do documento, clica nele e depois o remove
+                
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-
+                
             } catch (err) {
+                // Em caso de erro no download, mostra a mensagem no div
                 console.error("Erro ao tentar baixar a skin:", err);
-                alert('Ocorreu um erro ao tentar baixar a skin.');
+                erroDownload.text('Ocorreu um erro ao tentar baixar a skin.').show();
+                
+                // Esconde a mensagem automaticamente após 3 segundos
+                setTimeout(function() {
+                    erroDownload.hide();
+                }, 3000);
             }
         }
     });
 
-    // Este código impede que o formulário de download seja enviado
+    // Este código impede que o formulário de download seja enviado, agora sem alerta.
     $('#downloadForm').on('submit', function(event) {
         event.preventDefault();
-        alert('O envio do formulário de download foi bloqueado para evitar redirecionamento.');
     });
 });
 </script>
