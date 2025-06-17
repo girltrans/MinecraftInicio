@@ -4036,6 +4036,8 @@ footer:not(:root) {
 }
 .modal {
   z-index: 9999;
+  position: absolute;
+  align-content: center;
 }
 .antiblock-wrapper {
   float: left;
