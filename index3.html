@@ -361,9 +361,9 @@
             <div class="right-btns clearfix">
                     </a>
                 
-                <a href="javascript:void(0);">
-                    <i class="icon-download" title="Baixar Skin"></i>
-                </a>
+		<a id="botaoBaixarSkin" title="Baixar Skin">
+    		    <i class="icon-download"></i>
+		    </a>
 
                 <a href="javascript:void(0);" class="editor_btn3new" data-assert="20">
                     <i class="icon-upload-comp" title="Carregar Skin"></i>
@@ -820,53 +820,49 @@ $(document).ready(function() {
 </script>
 <script>
 $(document).ready(function() {
-    // Esta função já existe no seu arquivo app3.js, então podemos usá-la.
+    // Função para verificar se o canvas está em branco
     function isCanvasBlank(canvas) {
         const blank = document.createElement('canvas');
         blank.width = canvas.width;
         blank.height = canvas.height;
-        return canvas.toDataURL() == blank.toDataURL();
+        return canvas.toDataURL() === blank.toDataURL();
     }
 
-    // Seleciona o link <a> que envolve o ícone de download
-    const downloadButtonLink = $('.right-btns .icon-download').parent('a');
-    
-    // Limpa qualquer outra função de clique para garantir que só a nossa funcione
-    downloadButtonLink.off('click'); 
-
-    // Adiciona nossa função de clique inteligente
-    downloadButtonLink.on('click', function(e) {
-        e.preventDefault(); // Impede qualquer comportamento padrão do link
+    // Adiciona o evento de clique diretamente no ID do nosso botão
+    $('#botaoBaixarSkin').on('click', function(event) {
+        // Impede a ação padrão do navegador (como seguir um link)
+        event.preventDefault(); 
+        // Impede que o evento de clique "borbulhe" e acione outros scripts
+        event.stopPropagation(); 
 
         const editorCanvas = $('#uploadCanvas')[0];
-        // AQUI ESTÁ A CORREÇÃO: trocamos isBlank por isCanvasBlank
-        const isBlank = isCanvasBlank(editorCanvas);
 
-        if (isBlank) {
-            // SE ESTIVER EM BRANCO: mostre um alerta e não faça nada.
+        if (isCanvasBlank(editorCanvas)) {
+            // Se o canvas estiver em branco, mostra um alerta
             alert('Não é Possível Baixar Uma Skin Em Branco.');
-
-            
-            // Opcional: esconde a mensagem depois de 3 segundos
-            setTimeout(function() {
-                $('.downloadError').hide();
-            }, 3000);
-
         } else {
-            // SE NÃO ESTIVER EM BRANCO: inicie o download.
-            $('.downloadError').hide(); // Garante que a mensagem de erro esteja escondida
-
+            // Se não estiver em branco, cria um link temporário e inicia o download
             try {
                 const link = document.createElement('a');
                 link.download = 'minha_skin.png'; // Nome do arquivo
-                link.href = editorCanvas.toDataURL('image/png'); // Pega a imagem do canvas
-                link.click(); // Simula o clique no link para baixar
-                link.remove(); // Remove o link da página
+                link.href = editorCanvas.toDataURL('image/png');
+
+                // Adiciona o link ao corpo do documento, clica nele e depois o remove
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
             } catch (err) {
                 console.error("Erro ao tentar baixar a skin:", err);
                 alert('Ocorreu um erro ao tentar baixar a skin.');
             }
         }
+    });
+
+    // Este código impede que o formulário de download seja enviado
+    $('#downloadForm').on('submit', function(event) {
+        event.preventDefault();
+        alert('O envio do formulário de download foi bloqueado para evitar redirecionamento.');
     });
 });
 </script>
