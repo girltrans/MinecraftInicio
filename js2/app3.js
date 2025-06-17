@@ -4923,7 +4923,7 @@ if (localStorage.getItem("paintArr") == null) {
             var errMess = "";
 
             if (!type.match("image/png")) {
-              errMess += "<p>Only the .png images are allowed</p>";
+              errMess += "<p>Somente as imagens .png são permitidas</p>";
               errors++;
             } else {
               if (
@@ -4931,7 +4931,7 @@ if (localStorage.getItem("paintArr") == null) {
                 (this.width !== 64 || this.height !== 64)
               ) {
                 errMess +=
-                  "<p>Only 64x64 and 64x32 .png images are allowed</p>";
+                  "<p>Apenas as imagens 64x64 e 64x32 .png são permitidas</p>";
                 errors++;
               }
             }
