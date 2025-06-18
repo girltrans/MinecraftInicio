@@ -1025,5 +1025,28 @@ $(document).ready(function() {
     MobileLayoutManager.init();
 
 </script>
+<script>
+// Espera o documento HTML ser completamente carregado antes de rodar o script
+document.addEventListener('DOMContentLoaded', function() {
+
+  // 1. Encontra o seu input pelo ID, que é "color"
+  const inputColor = document.getElementById('color');
+
+  // 2. Adiciona um "ouvinte" para o evento de pressionar uma tecla ('keydown')
+  inputColor.addEventListener('keydown', function(event) {
+    
+    // 3. Verifica se a tecla pressionada foi o "Enter"
+    if (event.key === 'Enter') {
+      
+      // 4. Se foi o Enter, previne a ação padrão (como enviar o formulário)
+      event.preventDefault();
+      
+      // (Opcional) Mostra uma mensagem no console para confirmar que funcionou
+      console.log('A tecla Enter foi bloqueada neste campo.');
+    }
+  });
+
+});
+</script>
 </body>
 </html>
