@@ -171,8 +171,6 @@ img, video {
   min-height: calc(100vh - 130px - 142px);
   width: 980px;
   margin: 0 auto;
-  position: relative;
-  top: -314px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
