@@ -4937,7 +4937,7 @@ if (localStorage.getItem("paintArr") == null) {
             }
             if (rounded > fileSizeLimit) {
               errMess +=
-                "<p>The maximum allowed file size is " +
+                "<p>Tamanho máximo Permitido de Arquivo é " +
                 fileSizeLimit +
                 "KB</p>";
               errors++;
