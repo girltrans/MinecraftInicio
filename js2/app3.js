@@ -3736,7 +3736,6 @@ if (localStorage.getItem("paintArr") == null) {
         localStorage.setItem("switchArr", []);
         localStorage.setItem("countT", 0);
         localStorage.setItem("uploadedImage", baseImage);
-        window.location.href = skindex_url + "./index3.html";
       }
     }, 3000);
     x = readCookie("bHistory");
