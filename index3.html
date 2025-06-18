@@ -201,7 +201,7 @@
             <a href="javascript:void(0);" id="zoom-in" class="tools w50 zoom-in" title="Aumentar o Zoom (q)">
                 <i class="icon-zoom-in"></i>
             </a>
-            <a href="javascript:void(0);" id="zoom-out" class="tools w50 zoom-out" title="Diminuir o Zoom (w)">
+            <a href="javascript:void(0);" id="zoom-out" class="tool#s w50 zoom-out" title="Diminuir o Zoom (w)">
                 <i class="icon-zoom-out"></i>
             </a>
             <a href="javascript:void(0);" id="mirrorTool" class="tools" style="margin-top:-2px;" title="Espelho Ligado/Desligado (m)">
@@ -815,44 +815,8 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
     </script>
 <script>
 $(document).ready(function() {
-    // Este seletor garante que nosso script tenha prioridade total sobre o botão "Limpar".
-    // .off('click') remove qualquer outro evento de clique que o app3.js tenha adicionado.
-    $('.avatar-creator').off('click', '#reset').on('click', '#reset', function(e) {
-        
-        // Impede o recarregamento da página de TODAS as formas possíveis.
-        e.preventDefault();
-        e.stopImmediatePropagation();
-
-        // 1. Limpa o modelo 3D na tela, definindo todas as faces como transparentes.
-        // 'g' é o objeto principal do editor que está no escopo global.
-        if (g && g.model && g.layerModel) {
-            g.model.loopOverParts(function(part) {
-                for (var i = 0; i < part.geometry.faces.length; i++) {
-                    // setAlpha() cria uma cor transparente.
-                    g.layerModel.setFaceColor(part.geometry.faces[i], new THREE.Color().setAlpha());
-                }
-            });
-            g.model.render(); // Redesenha o modelo para mostrar a limpeza.
-        }
-
-        // 2. Limpa o histórico de ações (Desfazer/Refazer).
-        // Estas são as variáveis globais que o editor usa.
-        if (typeof paintArr !== 'undefined') {
-            paintArr = [];
-        }
-        if (typeof countT !== 'undefined') {
-            countT = 0;
-        }
-        // Atualiza o armazenamento local para que o histórico não volte se a página for recarregada depois.
-        localStorage.setItem('paintArr', '[]');
-        localStorage.setItem('countT', '0');
-
-        // 3. Limpa o canvas 2D que é usado para o download.
-        var canvas = document.getElementById("uploadCanvas");
-        if (canvas) {
-            var ctx = canvas.getContext("2d");
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
+    $('#reset').on('click', function(e) {
+        e.preventDefault(); 
     });
 });
 </script>
