@@ -815,47 +815,55 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
     </script>
 <script>
 $(document).ready(function() {
+    
+    let skinEmBranco = null; // Variável para guardar a imagem da skin limpa
 
-    // Espera o editor (objeto 'g') carregar completamente
-    var inicializadorDoReset = setInterval(function() {
+    // Esta função fica verificando se o editor (objeto 'g') já carregou
+    const inicializador = setInterval(function() {
 
-        // Adicionamos g.modelToggles à verificação para ter certeza que tudo está pronto
-        if (typeof g !== 'undefined' && g.model && g.layerPresenter && g.modelToggles) {
+        // Quando 'g' e suas partes importantes existirem...
+        if (typeof g !== 'undefined' && g.transporter && g.layerModel && g.layerPresenter) {
             
-            clearInterval(inicializadorDoReset);
+            // ...paramos o verificador.
+            clearInterval(inicializador);
 
-            var resetButton = $('#reset');
+            // 1. Capturamos o estado inicial da skin (a imagem em branco com quadriculado)
+            // e guardamos na nossa variável.
+            skinEmBranco = g.transporter.download();
 
-            // Remove a função de clique antiga que recarrega a página
+            const resetButton = $('#reset');
+
+            // 2. Removemos a função de clique antiga que recarrega a página.
             resetButton.off('click');
 
-            // Adiciona nossa nova função de clique
+            // 3. Adicionamos nossa função de clique final.
             resetButton.on('click', function(e) {
                 e.preventDefault();
-                e.stopImmediatePropagation();
+                e.stopPropagation();
 
-                // 1. Recria o modelo 3D do zero (isso restaura as faces)
-                g.model.redrawModel();
-
-                // 2. ATIVA A VISIBILIDADE DAS PARTES DO CORPO (ESTA É A CORREÇÃO!)
-                // Esta função lê o estado dos botões "Corpo" e "Interior" e
-                // torna as partes do modelo visíveis novamente, mostrando o padrão quadriculado.
-                g.modelToggles.toggle();
-
-                // 3. Limpa o histórico de ações (Desfazer/Refazer)
-                g.layerPresenter.resetArr();
-
-                // 4. Limpa o canvas 2D que é usado para download
-                var canvas = document.getElementById("uploadCanvas");
-                if (canvas) {
-                    var ctx = canvas.getContext("2d");
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (!skinEmBranco) {
+                    // Se, por algum motivo, a skin em branco não foi salva, recarregamos.
+                    // Isso é uma medida de segurança.
+                    window.location.reload();
+                    return;
                 }
+
+                // O "truque": usamos a função de carregar imagem do próprio editor
+                // para carregar a nossa imagem da skin em branco que salvamos no início.
+                // Isso efetivamente "limpa" o editor.
+                
+                // Verifica o tipo da skin (Steve 4px ou Alex 3px)
+                const tipoDaSkin = (typeof selVal !== 'undefined' && selVal === '3px') ? 'skin64_3px' : 'skin64';
+
+                g.transporter.setUVImage(skinEmBranco, tipoDaSkin).done(function() {
+                    // Após carregar a imagem em branco, também resetamos o histórico.
+                    g.layerPresenter.resetArr();
+                });
             });
 
-            console.log("Função de Limpar APRIMORADA foi aplicada com sucesso!");
+            console.log("Sistema de 'Limpar' foi corrigido com sucesso!");
         }
-    }, 100); 
+    }, 200); // Aumentamos um pouco o tempo para dar mais garantia de que tudo carregou.
 });
 </script>
 <script>
