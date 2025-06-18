@@ -816,32 +816,36 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
 <script>
 $(document).ready(function() {
 
-    // Cria um loop que espera o editor 'g' estar pronto
+    // Espera o editor (objeto 'g') carregar completamente
     var inicializadorDoReset = setInterval(function() {
 
-        // Quando o objeto 'g' e suas partes existirem...
-        if (typeof g !== 'undefined' && g.model && g.layerPresenter) {
+        // Adicionamos g.modelToggles à verificação para ter certeza que tudo está pronto
+        if (typeof g !== 'undefined' && g.model && g.layerPresenter && g.modelToggles) {
             
-            // Para o loop de verificação
             clearInterval(inicializadorDoReset);
 
-            // ATENÇÃO: Em vez de remover o evento antigo, vamos adicionar o nosso
-            // na FRENTE dele para interceptar o clique.
-            // Para isso, usamos um seletor mais genérico que pega o clique primeiro.
-            $(document).on('click', '#reset', function(e) {
-                
-                // 1. PREVENÇÃO IMEDIATA
-                // Impede que a página recarregue E impede que qualquer outra função 
-                // de clique para este mesmo botão seja executada (como a do app3.js).
+            var resetButton = $('#reset');
+
+            // Remove a função de clique antiga que recarrega a página
+            resetButton.off('click');
+
+            // Adiciona nossa nova função de clique
+            resetButton.on('click', function(e) {
+                e.preventDefault();
                 e.stopImmediatePropagation();
-                e.preventDefault(); 
-                
-                // 2. LÓGICA DE LIMPEZA CORRETA
-                // Agora executamos a nossa lógica de limpeza sem o recarregamento.
-                // Como esta parte já estava funcionando, mantemos igual.
+
+                // 1. Recria o modelo 3D do zero (isso restaura as faces)
                 g.model.redrawModel();
+
+                // 2. ATIVA A VISIBILIDADE DAS PARTES DO CORPO (ESTA É A CORREÇÃO!)
+                // Esta função lê o estado dos botões "Corpo" e "Interior" e
+                // torna as partes do modelo visíveis novamente, mostrando o padrão quadriculado.
+                g.modelToggles.toggle();
+
+                // 3. Limpa o histórico de ações (Desfazer/Refazer)
                 g.layerPresenter.resetArr();
 
+                // 4. Limpa o canvas 2D que é usado para download
                 var canvas = document.getElementById("uploadCanvas");
                 if (canvas) {
                     var ctx = canvas.getContext("2d");
@@ -849,9 +853,9 @@ $(document).ready(function() {
                 }
             });
 
-            console.log("Função de Limpar foi corrigida sem afetar outros botões.");
+            console.log("Função de Limpar APRIMORADA foi aplicada com sucesso!");
         }
-    }, 100);
+    }, 100); 
 });
 </script>
 <script>
