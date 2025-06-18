@@ -578,7 +578,7 @@ html.footer-editor {
   box-shadow: inset 0 0 0 0 #8b1616;
 }
 .avatar-creator .left-toolbar a.mirrorToolOn {
-  background-color: #8b1616;
+  background-color: #565657;
 }
 .avatar-creator .left-toolbar a.mirrorToolOff {
   background-color: #8b1616;
@@ -2934,6 +2934,7 @@ html.footer-editor .skin-tools select {
   font-weight: 700;
   text-align: center;
   box-shadow: 0 2px 18px #8b1616;
+  cursor: pointer;
 }
 .skin-tools .slider {
   width: 200px;
@@ -2993,6 +2994,7 @@ html.footer-editor .skin-tools select {
   box-shadow: 0 2px 18px #8b1616;
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 .avatar-creator .right-toolbar .right-btns .icon-upload-comp {
   background: url(../images3/icon-uploads.png) no-repeat;
