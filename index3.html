@@ -938,10 +938,7 @@ $(document).ready(function() {
 
             const styles = `
                 /* Os estilos injetados têm alta prioridade */
-                .mobile-view .wrapper {
-		position: relative;
-		top: 920px;
-		}
+                .mobile-view .wrapper,
                 .mobile-view .header-wrapper,
                 .mobile-view .content-wrapper,
                 .mobile-view .footer {
@@ -970,7 +967,8 @@ $(document).ready(function() {
 	            top: 240px;
                 }
                 
-                .mobile-view .left-toolbar, 
+                .mobile-view .left-toolbar {
+		}
                 .mobile-view .right-toolbar {
                     float: none;
                     width: 100%;
