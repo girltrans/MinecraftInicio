@@ -814,39 +814,34 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
         });
     </script>
 <script>
-// Roda essa função quando a estrutura básica da página estiver pronta
 $(document).ready(function() {
 
-    // Esta função fica verificando a cada 100 milissegundos
-    // se o editor (objeto 'g') já foi carregado pelo app3.js
+    // Cria um loop que espera o editor 'g' estar pronto
     var inicializadorDoReset = setInterval(function() {
 
-        // Se 'g' e suas partes importantes (model, layerPresenter) já existem...
+        // Quando o objeto 'g' e suas partes existirem...
         if (typeof g !== 'undefined' && g.model && g.layerPresenter) {
             
-            // ...o trabalho está feito, então paramos o verificador.
+            // Para o loop de verificação
             clearInterval(inicializadorDoReset);
 
-            // Seleciona o botão de reset
-            var resetButton = $('#reset');
-
-            // 1. Remove COMPLETAMENTE qualquer função de clique que o app3.js tenha colocado nele.
-            // Isso é essencial para evitar o recarregamento.
-            resetButton.off('click');
-
-            // 2. Adiciona a nossa NOVA e CORRETA função de clique.
-            resetButton.on('click', function(e) {
-                e.preventDefault(); // Previne qualquer comportamento padrão do navegador
-
-                // Funções internas do app3.js que fazem a limpeza corretamente:
+            // ATENÇÃO: Em vez de remover o evento antigo, vamos adicionar o nosso
+            // na FRENTE dele para interceptar o clique.
+            // Para isso, usamos um seletor mais genérico que pega o clique primeiro.
+            $(document).on('click', '#reset', function(e) {
                 
-                // Recria o modelo 3D do zero, o que restaura o padrão quadriculado
+                // 1. PREVENÇÃO IMEDIATA
+                // Impede que a página recarregue E impede que qualquer outra função 
+                // de clique para este mesmo botão seja executada (como a do app3.js).
+                e.stopImmediatePropagation();
+                e.preventDefault(); 
+                
+                // 2. LÓGICA DE LIMPEZA CORRETA
+                // Agora executamos a nossa lógica de limpeza sem o recarregamento.
+                // Como esta parte já estava funcionando, mantemos igual.
                 g.model.redrawModel();
-                
-                // Limpa o histórico de ações (Desfazer/Refazer)
                 g.layerPresenter.resetArr();
 
-                // Limpa também o canvas 2D auxiliar que é usado para download
                 var canvas = document.getElementById("uploadCanvas");
                 if (canvas) {
                     var ctx = canvas.getContext("2d");
@@ -854,9 +849,9 @@ $(document).ready(function() {
                 }
             });
 
-            console.log("Função de Limpar corrigida e aplicada com sucesso!");
+            console.log("Função de Limpar foi corrigida sem afetar outros botões.");
         }
-    }, 100); // O tempo da verificação é 100ms. É bem rápido.
+    }, 100);
 });
 </script>
 <script>
