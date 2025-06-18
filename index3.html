@@ -815,55 +815,58 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
     </script>
 <script>
 $(document).ready(function() {
-    
-    let skinEmBranco = null; // Variável para guardar a imagem da skin limpa
+    console.log("Documento pronto. Procurando pelo editor...");
 
-    // Esta função fica verificando se o editor (objeto 'g') já carregou
-    const inicializador = setInterval(function() {
+    var tentativas = 0;
+    var maxTentativas = 50; // Tenta por 10 segundos no total
 
-        // Quando 'g' e suas partes importantes existirem...
-        if (typeof g !== 'undefined' && g.transporter && g.layerModel && g.layerPresenter) {
+    var inicializador = setInterval(function() {
+        tentativas++;
+
+        // Verifica se o objeto 'g' do editor existe
+        if (typeof g !== 'undefined' && g.transporter) {
             
-            // ...paramos o verificador.
-            clearInterval(inicializador);
+            clearInterval(inicializador); // Para o loop de verificação
+            console.log("Editor 'g' encontrado! Modificando o botão 'Limpar'.");
 
-            // 1. Capturamos o estado inicial da skin (a imagem em branco com quadriculado)
-            // e guardamos na nossa variável.
-            skinEmBranco = g.transporter.download();
+            var resetButton = $('#reset');
 
-            const resetButton = $('#reset');
-
-            // 2. Removemos a função de clique antiga que recarrega a página.
+            // Remove QUALQUER evento de clique anterior do botão
             resetButton.off('click');
 
-            // 3. Adicionamos nossa função de clique final.
+            // Adiciona nossa função de clique segura
             resetButton.on('click', function(e) {
+                // Previne o recarregamento e outros scripts
                 e.preventDefault();
-                e.stopPropagation();
-
-                if (!skinEmBranco) {
-                    // Se, por algum motivo, a skin em branco não foi salva, recarregamos.
-                    // Isso é uma medida de segurança.
-                    window.location.reload();
-                    return;
-                }
-
-                // O "truque": usamos a função de carregar imagem do próprio editor
-                // para carregar a nossa imagem da skin em branco que salvamos no início.
-                // Isso efetivamente "limpa" o editor.
+                e.stopImmediatePropagation();
                 
-                // Verifica o tipo da skin (Steve 4px ou Alex 3px)
-                const tipoDaSkin = (typeof selVal !== 'undefined' && selVal === '3px') ? 'skin64_3px' : 'skin64';
+                console.log("Botão 'Limpar' clicado. Tentando limpar a skin sem recarregar.");
 
-                g.transporter.setUVImage(skinEmBranco, tipoDaSkin).done(function() {
-                    // Após carregar a imagem em branco, também resetamos o histórico.
+                try {
+                    // Tenta executar as funções de limpeza
+                    g.model.redrawModel();
+                    g.modelToggles.toggle();
                     g.layerPresenter.resetArr();
-                });
+
+                    var canvas = document.getElementById("uploadCanvas");
+                    if (canvas) {
+                        var ctx = canvas.getContext("2d");
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    }
+                    console.log("Limpeza executada com sucesso!");
+
+                } catch (error) {
+                    console.error("Ocorreu um erro ao tentar limpar a skin:", error);
+                    alert("Ocorreu um erro ao limpar a skin. Verifique o console (F12).");
+                }
             });
 
-            console.log("Sistema de 'Limpar' foi corrigido com sucesso!");
+        } else if (tentativas > maxTentativas) {
+            // Se depois de 10 segundos o editor não carregar, para de tentar.
+            clearInterval(inicializador);
+            console.error("Não foi possível encontrar o objeto 'g' do editor após 10 segundos.");
         }
-    }, 200); // Aumentamos um pouco o tempo para dar mais garantia de que tudo carregou.
+    }, 200);
 });
 </script>
 <script>
