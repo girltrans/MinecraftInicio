@@ -1068,5 +1068,65 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // 1. DEFINIÇÃO DO PREFIXO INTOCÁVEL
+        // Você pode mudar esta string para qualquer outra que desejar.
+        const prefixoEspecial = "!@#$%&*()_-+={}[]|;':,./<>?~`";
+        
+        // Pega o elemento do input pelo seu ID
+        const inputElement = document.getElementById('input-protegido');
+        
+        // Define o valor inicial para garantir que comece certo
+        inputElement.value = prefixoEspecial;
+
+        // Adiciona um "ouvinte" para qualquer alteração no campo
+        inputElement.addEventListener('input', function(event) {
+            
+            const valorAtual = inputElement.value;
+            
+            // 2. VERIFICAÇÃO: O script checa se o valor atual ainda começa com o prefixo definido.
+            // Se não começar, significa que o usuário tentou apagar ou alterar o prefixo.
+            if (!valorAtual.startsWith(prefixoEspecial)) {
+                
+                // 3. CORREÇÃO E MANUTENÇÃO DO CURSOR
+                
+                // Salva a posição atual do cursor para restaurá-la depois
+                let posicaoCursor = inputElement.selectionStart;
+
+                // Pega apenas a parte do texto que o usuário digitou (o que vem DEPOIS do prefixo)
+                const textoDoUsuario = valorAtual.substring(prefixoEspecial.length);
+                
+                // Reconstrói o valor do campo, forçando o prefixo no início
+                inputElement.value = prefixoEspecial + textoDoUsuario;
+
+                // Restaura a posição do cursor. Se o usuário tentou clicar no meio do prefixo,
+                // o cursor é forçado para o final do prefixo, que é a primeira posição editável.
+                const novaPosicaoCursor = Math.max(posicaoCursor, prefixoEspecial.length);
+                inputElement.setSelectionRange(novaPosicaoCursor, novaPosicaoCursor);
+            }
+        });
+
+        // Impede que o usuário posicione o cursor dentro do prefixo com o clique do mouse
+        inputElement.addEventListener('click', function() {
+            if (inputElement.selectionStart < prefixoEspecial.length) {
+                inputElement.setSelectionRange(prefixoEspecial.length, prefixoEspecial.length);
+            }
+        });
+        
+        // Impede que o usuário use as setas do teclado para entrar no prefixo
+         inputElement.addEventListener('keydown', function(event) {
+            const isCursorNoInicio = inputElement.selectionStart === prefixoEspecial.length;
+
+            // Se o cursor estiver no início da área editável e a tecla for Backspace ou Seta para Esquerda,
+            // impede a ação para não apagar/entrar no prefixo.
+            if (isCursorNoInicio && (event.key === 'Backspace' || event.key === 'ArrowLeft')) {
+                event.preventDefault();
+            }
+        });
+
+    });
+    </script>
 </body>
 </html>
