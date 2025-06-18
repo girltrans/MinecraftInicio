@@ -3736,6 +3736,7 @@ if (localStorage.getItem("paintArr") == null) {
         localStorage.setItem("switchArr", []);
         localStorage.setItem("countT", 0);
         localStorage.setItem("uploadedImage", baseImage);
+        window.location.href = skindex_url + "./index3.html";
       }
     }, 3000);
     x = readCookie("bHistory");
@@ -4322,8 +4323,10 @@ if (localStorage.getItem("paintArr") == null) {
       });
     });
 
-    $(".avatar-creator #reset").on("click", function () {
-      if (confirm("Todo o trabalho será perdido! Tem certeza?")) {
+    $(".avatar-creator #reset").on("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (confirm("Todo o trabalho será perdido! Tem certeza?")) {
         g.model.loopOverParts(function (a) {
           for (var c = a.geometry.faces, d = 0; d < c.length; d++)
             g.layerModel.setFaceColor(c[d], new THREE.Color().setAlpha());
