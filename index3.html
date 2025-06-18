@@ -815,8 +815,42 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
     </script>
 <script>
 $(document).ready(function() {
-    $('#reset').on('click', function(e) {
-        e.preventDefault(); 
+    // Garante que nosso script seja o único a controlar o botão "Limpar"
+    $('.avatar-creator').off('click', '#reset').on('click', '#reset', function(e) {
+        
+        // Impede qualquer comportamento padrão ou a execução de outros scripts
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        // 1. Recria o modelo 3D do zero.
+        // Esta é a função interna do editor que restaura o modelo ao seu
+        // estado original, incluindo o padrão quadriculado.
+        if (g && g.model && typeof g.model.redrawModel === 'function') {
+            g.model.redrawModel();
+        }
+
+        // 2. Limpa o histórico de ações (Desfazer/Refazer).
+        // Encontramos a função que o editor usa para isso.
+        if (g && g.layerPresenter && typeof g.layerPresenter.resetArr === 'function') {
+            g.layerPresenter.resetArr();
+        } else {
+            // Alternativa caso a função acima não seja encontrada
+            if (typeof paintArr !== 'undefined') {
+                paintArr = [];
+            }
+            if (typeof countT !== 'undefined') {
+                countT = 0;
+            }
+            localStorage.setItem('paintArr', '[]');
+            localStorage.setItem('countT', '0');
+        }
+
+        // 3. Limpa o canvas 2D que é usado para download.
+        var canvas = document.getElementById("uploadCanvas");
+        if (canvas) {
+            var ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
     });
 });
 </script>
