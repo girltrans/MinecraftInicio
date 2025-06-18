@@ -88,26 +88,16 @@
 </style>
 </head>
 <body>
-    <nav class="navbar">
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-
-    <a href="https://24082004.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;">
-   <img src="images2/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px; box-shadow: 0 2px 10px #0004;">
-        <span style="
-		font-family: 'Righteous', cursive;
-        font-weight: 700;
-        font-size: 1.9rem;
-        color: #e8b901;
-        margin-left: 0.6rem;
-        user-select: none;
-      ">
-        Início
-      </span>
- </a>
-    <a href="./index2.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Minecraft Verificar Nicks</a>
-    <b><a href="./index.html" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Testar Skin e Capa</a>
-	<a href="./index3.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Editar Skin</a></b>
-</nav>
+<nav class="navbar">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&amp;display=swap" rel="stylesheet">
+    <a href="https://24082004.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;" bis_skin_checked="1">
+        <img src="images/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px; box-shadow: 0 2px 10px #0004;">
+        <span style="font-family: 'Righteous', cursive; font-weight: 700; font-size: 1.9rem; color: #e8b901; margin-left: 0.6rem; user-select: none;">Início</span>
+    </a>
+    <a href="./index2.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;" bis_skin_checked="1">Minecraft Verificar Nicks</a>
+    <b><a href="./index.html" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;" bis_skin_checked="1">Testar Skin e Capa</a>
+	<a href="./index3.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;" bis_skin_checked="1">Editar Skin</a></b>
+    </nav>
     <div class="content-wrapper">
     <div class="content">
         
@@ -120,7 +110,7 @@
 	<div style="text-align: center; color:##8B1616; margin-top:2rem; font-family: 'Righteous', cursive;">
 	    <p style="font-size: 2.4rem; color: #8B1616; margin-top: 5px;">↓ Aviso ↓</p>
     <p style="font-size: 0.8rem; color: #e8b901; margin-top: 5px;">
-        A Skin É Limpa Sempre Que o Usuário Sair ou Recarregar a Página. (Não Guardo Cookies / Não Coleto Dados)
+        A Skin É Salva Sempre Que o Usuário Sair ou Recarregar a Página.
     </p>
 </div>
     </div>
@@ -211,7 +201,7 @@
             <a href="javascript:void(0);" id="zoom-in" class="tools w50 zoom-in" title="Aumentar o Zoom (q)">
                 <i class="icon-zoom-in"></i>
             </a>
-            <a href="javascript:void(0);" id="zoom-out" class="tools w50 zoom-out" title="Diminuir o Zoom (w)">
+            <a href="javascript:void(0);" id="zoom-out" class="tool#s w50 zoom-out" title="Diminuir o Zoom (w)">
                 <i class="icon-zoom-out"></i>
             </a>
             <a href="javascript:void(0);" id="mirrorTool" class="tools" style="margin-top:-2px;" title="Espelho Ligado/Desligado (m)">
@@ -295,7 +285,7 @@
 
         <!-- Editor Canvas Here -->
         <div class="canvas-wrapper">
-            <div class="skin-canvas mobile">
+		<div class="skin-canvas mobile">
                 <div id="editor"></div>
             </div>
         </div>
@@ -353,7 +343,7 @@
 
                 <form>
                     <span id="colorSpan" style="visibility: hidden;">
-                        <input type="text" id="color" name="color" value="#123456">
+                        <input type="text" id="color" name="color" value="#000000">
                     </span>
                 </form>
             </div>
@@ -371,16 +361,16 @@
             <div class="right-btns clearfix">
                     </a>
                 
-                <a href="javascript:void(0);">
-                    <i class="icon-download" title="Baixar Skin"></i>
-                </a>
+		<a id="botaoBaixarSkin" title="Baixar Skin">
+    		    <i class="icon-download"></i>
+		    </a>
 
                 <a href="javascript:void(0);" class="editor_btn3new" data-assert="20">
                     <i class="icon-upload-comp" title="Carregar Skin"></i>
                 </a>
-                <div class="downloadError" style="display:none;color:red;padding-left:3px;">Nenhuma Skin Criada.
+                <div class="downloadError" style="display:none;color:red;padding-left:3px;">Editor Em Branco.
                 </div>
-                <div class="uploadError" style="display:none;color:red;padding-left:3px;">Não é Possível Carregar Uma Skin Em Branco
+                <div class="uploadError" style="display:none;color:red;padding-left:3px;">Imagem Inválida.
                 </div>
             </div>
         </div>
@@ -456,15 +446,6 @@
                 // window.location.href = skindex_url;
             }
         }
-    </script>
-    <script>
-        console.log("Limpando Dados Da Skin Para Um Novo Início...");
-        localStorage.removeItem('uploadedImage');
-        localStorage.removeItem('paintArr');
-        localStorage.removeItem('countT');
-        localStorage.removeItem('layerJson');
-        localStorage.removeItem('switchArr');
-        console.log("Limpeza Da Skin Concluída.");
     </script>
 <script src="js2/jquery-1.11.3.min.js"></script>
 <script src="js2/lazysizes.min.js"></script>
@@ -735,7 +716,10 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
     var blank = isCanvasBlank($('#uploadCanvas')[0]);
     setTimeout(function () {
         if (!blank) {
+    	    alert('Nenhuma Skin Criada.');
+            setTimeout(function() {
             $('.downloadError').hide();
+            }, 3000);
             $('.uploadError').hide();
             setTimeout(function () {
                 // // window.location.href = '/login/'
@@ -831,52 +815,63 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
     </script>
 <script>
 $(document).ready(function() {
-    // Esta função já existe no seu arquivo app3.js, então podemos usá-la.
+    // Função para verificar se o canvas está em branco
     function isCanvasBlank(canvas) {
         const blank = document.createElement('canvas');
         blank.width = canvas.width;
         blank.height = canvas.height;
-        return canvas.toDataURL() == blank.toDataURL();
+        return canvas.toDataURL() === blank.toDataURL();
     }
 
-    // Seleciona o link <a> que envolve o ícone de download
-    const downloadButtonLink = $('.right-btns .icon-download').parent('a');
-    
-    // Limpa qualquer outra função de clique para garantir que só a nossa funcione
-    downloadButtonLink.off('click'); 
+    // Seleciona o elemento de erro e o esconde por padrão
+    const erroDownload = $('.downloadError');
+    erroDownload.hide();
 
-    // Adiciona nossa função de clique inteligente
-    downloadButtonLink.on('click', function(e) {
-        e.preventDefault(); // Impede qualquer comportamento padrão do link
+    // Adiciona o evento de clique diretamente no ID do nosso botão
+    $('#botaoBaixarSkin').on('click', function(event) {
+        // Impede a ação padrão e a propagação para outros scripts
+        event.preventDefault(); 
+        event.stopPropagation(); 
 
         const editorCanvas = $('#uploadCanvas')[0];
-        const isBlank = isCanvasBlank(editorCanvas);
 
-if (isBlank) {
-    // SE ESTIVER EM BRANCO: mostre um alerta e não faça nada.
-    alert('Não é Possível Baixar Uma Skin Em Branco.');
-
+        if (isCanvasBlank(editorCanvas)) {
+            // Se o canvas estiver em branco, mostra a mensagem de erro no div
+            erroDownload.text('Nenhuma Skin Criada.').show();
             
-            // Opcional: esconde a mensagem depois de 3 segundos
+            // Esconde a mensagem automaticamente após 3 segundos
             setTimeout(function() {
-                $('.downloadError').hide();
+                erroDownload.hide();
             }, 3000);
 
         } else {
-            // SE NÃO ESTIVER EM BRANCO: inicie o download.
-            $('.downloadError').hide(); // Garante que a mensagem de erro esteja escondida
-
+            // Se não estiver em branco, esconde qualquer erro antigo e inicia o download
+            erroDownload.hide();
             try {
                 const link = document.createElement('a');
                 link.download = 'minha_skin.png'; // Nome do arquivo
-                link.href = editorCanvas.toDataURL('image/png'); // Pega a imagem do canvas
-                link.click(); // Simula o clique no link para baixar
-                link.remove(); // Remove o link da página
+                link.href = editorCanvas.toDataURL('image/png');
+                
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
             } catch (err) {
+                // Em caso de erro no download, mostra a mensagem no div
                 console.error("Erro ao tentar baixar a skin:", err);
-                alert('Ocorreu um erro ao tentar baixar a skin.');
+                erroDownload.text('Ocorreu um erro ao tentar baixar a skin.').show();
+                
+                // Esconde a mensagem automaticamente após 3 segundos
+                setTimeout(function() {
+                    erroDownload.hide();
+                }, 3000);
             }
         }
+    });
+
+    // Este código impede que o formulário de download seja enviado, agora sem alerta.
+    $('#downloadForm').on('submit', function(event) {
+        event.preventDefault();
     });
 });
 </script>
@@ -895,23 +890,6 @@ if (isBlank) {
   if (isMobileDevice()) {
     document.body.classList.add('allow-scroll');
   }
-</script>
-<script>
-    // Verifica se o protocolo da página é 'file:' (ou seja, aberta como um arquivo local)
-    if (window.location.protocol === 'file:') {
-
-        // Pega o caminho completo do arquivo, por exemplo: /C:/Users/User/Desktop/project/outro_arquivo.html
-        const caminhoAtual = window.location.pathname;
-
-        // Verifica se o caminho atual NÃO TERMINA com 'index3.html'
-        // Isso é crucial para evitar um loop de redirecionamento infinito.
-        if (!caminhoAtual.endsWith('index3.html')) {
-
-            // Se não for o index3.html, redireciona para ele.
-            console.log("Redirecionando para a página principal...");
-            window.location.href = 'index3.html';
-        }
-    }
 </script>
 </body>
 </html>
