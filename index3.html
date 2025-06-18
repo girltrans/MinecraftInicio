@@ -815,49 +815,9 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
     </script>
 <script>
 $(document).ready(function() {
-    // Delega o evento de clique para o elemento pai para garantir que ele funcione
-    // mesmo que o editor seja redesenhado.
-    $('.avatar-creator').on('click', '#reset', function(e) {
-        e.preventDefault(); // Impede o comportamento padrão
-        e.stopPropagation(); // Impede que outros scripts de clique sejam acionados
-
-        // Adicionamos um pop-up de confirmação, igual ao original.
-        if (confirm("Todo o trabalho será perdido! Tem certeza?")) {
-
-            // 1. Limpa o modelo 3D, definindo todas as faces como transparentes
-            g.model.loopOverParts(function(part) {
-                for (var c = part.geometry.faces, d = 0; d < c.length; d++) {
-                    g.layerModel.setFaceColor(c[d], new THREE.Color().setAlpha());
-                }
-            });
-            g.model.render(); // Atualiza a visualização do modelo
-
-            // 2. Limpa o histórico de "desfazer/refazer" e os dados de pintura
-            paintArr = [];
-            countT = 0;
-            localStorage.setItem('paintArr', '[]');
-            localStorage.setItem('countT', '0');
-
-            // 3. Reseta a imagem de fundo no canvas de upload
-            var canvas = document.getElementById("uploadCanvas");
-            var ctx = canvas.getContext("2d");
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // 4. Reseta os toggles de visualização (cabeça, corpo, etc.)
-            var rightToggles = $('.right-toggles').is(':visible') ? $('.right-toggles') : $('.mobile-right-toggles');
-            var modelBodyHTML = localStorage.getItem('basicModelBody');
-
-            if (rightToggles.length > 0 && modelBodyHTML) {
-                rightToggles.find('.model-body').html(modelBodyHTML);
-                rightToggles.find('.controls div').removeClass('unchecked');
-                localStorage.setItem('model-underlay', '1');
-                localStorage.setItem('model-overlay', '1');
-                if (g && g.modelToggles && typeof g.modelToggles.toggle === 'function') {
-                    g.modelToggles.toggle();
-                }
-            }
-             // A LINHA DE REDIRECIONAMENTO FOI REMOVIDA DAQUI
-        }
+    $('#reset').on('click', function(e) {
+        e.preventDefault(); 
+        window.location.href = 'index3.html';
     });
 });
 </script>
