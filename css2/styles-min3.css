@@ -541,7 +541,7 @@ html.footer-editor {
   width: 90px;
   float: left;
   position: relative;
-  top: 293px;
+  top: 255px;
 }
 .avatar-creator .skin-canvas {
   float: left;
@@ -697,6 +697,8 @@ html.footer-editor {
   margin-top: 293px;
   padding: 15px;
   margin-left: 10px;
+  position: relative;
+  top: -38px;
 }
 .clicked-dislike,
 .clicked-like {
@@ -2779,6 +2781,7 @@ textarea.profile-about-text {
   margin: 0 auto;
   display: block;
   position: relative;
+  top: -38px;
   background: #1E1E1E;
   background-color: #1e1e1e;
   background-image: none;
