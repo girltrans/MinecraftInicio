@@ -1048,5 +1048,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 </script>
+    <script>
+        // Espera o documento HTML ser completamente carregado
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Encontra o campo de texto pelo seu ID
+            const colorInput = document.getElementById('color');
+
+            // Adiciona um "ouvinte" para o evento 'input'
+            colorInput.addEventListener('input', function(event) {
+                
+                let valorAtual = event.target.value;
+
+                // 1. Remove TODOS os caracteres '#' do valor atual
+                let valorSemHash = valorAtual.replace(/#/g, '');
+
+                // 2. Define o valor do campo como sendo '#' + o valor limpo
+                event.target.value = '#' + valorSemHash;
+            });
+        });
+    </script>
 </body>
 </html>
