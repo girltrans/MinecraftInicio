@@ -1,6 +1,6 @@
 var Editor = Editor || {};
 var skindex_url =
-  window.location.protocol + "./index3.html" + window.location.hostname + "./index3.html";
+  window.location.protocol + "//" + window.location.hostname + "/";
 
 /*
  * Mapping the minecraft skin
