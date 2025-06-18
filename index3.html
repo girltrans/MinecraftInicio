@@ -815,58 +815,10 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
     </script>
 <script>
 $(document).ready(function() {
-    console.log("Documento pronto. Procurando pelo editor...");
-
-    var tentativas = 0;
-    var maxTentativas = 50; // Tenta por 10 segundos no total
-
-    var inicializador = setInterval(function() {
-        tentativas++;
-
-        // Verifica se o objeto 'g' do editor existe
-        if (typeof g !== 'undefined' && g.transporter) {
-            
-            clearInterval(inicializador); // Para o loop de verificação
-            console.log("Editor 'g' encontrado! Modificando o botão 'Limpar'.");
-
-            var resetButton = $('#reset');
-
-            // Remove QUALQUER evento de clique anterior do botão
-            resetButton.off('click');
-
-            // Adiciona nossa função de clique segura
-            resetButton.on('click', function(e) {
-                // Previne o recarregamento e outros scripts
-                e.preventDefault();
-                e.stopImmediatePropagation();
-                
-                console.log("Botão 'Limpar' clicado. Tentando limpar a skin sem recarregar.");
-
-                try {
-                    // Tenta executar as funções de limpeza
-                    g.model.redrawModel();
-                    g.modelToggles.toggle();
-                    g.layerPresenter.resetArr();
-
-                    var canvas = document.getElementById("uploadCanvas");
-                    if (canvas) {
-                        var ctx = canvas.getContext("2d");
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    }
-                    console.log("Limpeza executada com sucesso!");
-
-                } catch (error) {
-                    console.error("Ocorreu um erro ao tentar limpar a skin:", error);
-                    alert("Ocorreu um erro ao limpar a skin. Verifique o console (F12).");
-                }
-            });
-
-        } else if (tentativas > maxTentativas) {
-            // Se depois de 10 segundos o editor não carregar, para de tentar.
-            clearInterval(inicializador);
-            console.error("Não foi possível encontrar o objeto 'g' do editor após 10 segundos.");
-        }
-    }, 200);
+    $('#reset').on('click', function(e) {
+        e.preventDefault(); 
+        window.location.href = 'index3.html';
+    });
 });
 </script>
 <script>
