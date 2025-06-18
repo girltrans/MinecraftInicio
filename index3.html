@@ -1045,66 +1045,49 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('A tecla Enter foi bloqueada neste campo.');
     }
   });
-
 });
 </script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        const inputElement = document.getElementById('input-filtrado');
-        const avisoElement = document.getElementById('aviso-caracter');
+        // Espera o documento HTML ser completamente carregado
+        document.addEventListener('DOMContentLoaded', function() {
 
-        // 1. LISTA NEGRA DE CARACTERES
-        // A expressão regular abaixo contém todos os caracteres que você listou.
-        // O 'g' no final significa que ele vai procurar e remover todas as ocorrências.
-        const regexCaracteresProibidos = /[!@#\$%\^&\*\(\)_\-+={}\[\]|;':",\.\/<>?~`]/g;
+            // Encontra o campo de texto pelo seu ID
+            const colorInput = document.getElementById('color');
 
-        
-        // 2. OUVINTE 'input': Remove os caracteres proibidos após serem digitados/colados
-        inputElement.addEventListener('input', function(event) {
-            
-            const valorOriginal = event.target.value;
-            
-            // Verifica se o valor contém algum dos caracteres proibidos
-            if (regexCaracteresProibidos.test(valorOriginal)) {
+            // Adiciona um "ouvinte" para o evento 'input'
+            colorInput.addEventListener('input', function(event) {
                 
-                // Salva a posição do cursor antes de alterar o valor
-                let cursorPos = event.target.selectionStart;
-                
-                // Remove os caracteres proibidos
-                const valorFiltrado = valorOriginal.replace(regexCaracteresProibidos, '');
-                
-                // Calcula quantos caracteres foram removidos antes do cursor
-                const caracteresRemovidosAntesDoCursor = valorOriginal.substring(0, cursorPos).match(regexCaracteresProibidos)?.length || 0;
+                let valorAtual = event.target.value;
 
-                // Atualiza o valor do campo
-                event.target.value = valorFiltrado;
-                
-                // Restaura a posição do cursor corretamente
-                event.target.setSelectionRange(cursorPos - caracteresRemovidosAntesDoCursor, cursorPos - caracteresRemovidosAntesDoCursor);
-                
-                // Mostra um aviso ao usuário
-                avisoElement.style.display = 'block';
-                setTimeout(() => { avisoElement.style.display = 'none'; }, 2000);
-            }
+                // 1. Remove TODOS os caracteres '#' do valor atual
+                let valorSemHash = valorAtual.replace(/#/g, '');
+
+                // 2. Define o valor do campo como sendo '#' + o valor limpo
+                event.target.value = '#' + valorSemHash;
+            });
         });
-
-        // 3. OUVINTE 'keydown': Bloqueia a tecla Backspace ANTES que ela apague
-        inputElement.addEventListener('keydown', function(event) {
-            
-            // Verifica se a tecla pressionada foi 'Backspace'
-            if (event.key === 'Backspace') {
-                
-                // Impede a ação padrão da tecla (que seria apagar o caractere)
-                event.preventDefault(); 
-                
-                // Mostra um aviso ao usuário
-                avisoElement.style.display = 'block';
-                setTimeout(() => { avisoElement.style.display = 'none'; }, 2000);
-            }
-        });
-
-    });
     </script>
+<script>
+// Espera o documento HTML ser completamente carregado antes de rodar o script
+document.addEventListener('DOMContentLoaded', function() {
+
+  // 1. Encontra o seu input pelo ID, que é "color"
+  const inputColor = document.getElementById('color');
+
+  // 2. Adiciona um "ouvinte" para o evento de pressionar uma tecla ('keydown')
+  inputColor.addEventListener('keydown', function(event) {
+    
+    // 3. Verifica se a tecla pressionada foi o "Enter"
+    if (event.key === 'Backspace') {
+      
+      // 4. Se foi o Enter, previne a ação padrão (como enviar o formulário)
+      event.preventDefault();
+      
+      // (Opcional) Mostra uma mensagem no console para confirmar que funcionou
+      console.log('A tecla Espaço foi bloqueada neste campo.');
+    }
+  });
+});
+</script>
 </body>
 </html>
