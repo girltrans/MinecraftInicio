@@ -4387,6 +4387,7 @@ if (localStorage.getItem("paintArr") == null) {
           var obj = D.children[i];
           D.remove(obj);
         }
+        window.location.href = skindex_url + "./index3.html";
       }
     });
 
