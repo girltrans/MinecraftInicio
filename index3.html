@@ -1025,39 +1025,27 @@ $(document).ready(function() {
     MobileLayoutManager.init();
 
 </script>
-    <script>
-    // Espera o documento HTML ser completamente carregado
-    document.addEventListener('DOMContentLoaded', function() {
-    
-        // 1. Encontra o seu input pelo ID
-        const inputElement = document.getElementById('color');
-    
-        // 2. Adiciona um "ouvinte" para o evento de pressionar uma tecla ('keydown')
-        inputElement.addEventListener('keydown', function(event) {
-            
-            const tecla = event.key;
+<script>
+// Espera o documento HTML ser completamente carregado antes de rodar o script
+document.addEventListener('DOMContentLoaded', function() {
 
-            // 3. CRIA UMA LISTA DE EXCEÇÕES (TECLAS DE CONTROLE PERMITIDAS)
-            // Teclas como 'Backspace', 'Delete', 'ArrowLeft', 'Tab', etc., têm mais de 1 caractere de comprimento.
-            // Teclas de atalho como Ctrl+C (copiar) não disparam um 'key' visível, então continuarão funcionando.
-            if (tecla.length > 1) {
-                return; // Permite a tecla e não faz nada.
-            }
+  // 1. Encontra o seu input pelo ID, que é "color"
+  const inputColor = document.getElementById('color');
 
-            // 4. VERIFICA SE A TECLA NÃO É LETRA OU NÚMERO
-            // A expressão regular /^[a-zA-Z0-9]$/ testa se a tecla é uma letra (maiúscula ou minúscula) ou um número.
-            // O sinal de ! inverte a lógica, ou seja, "se a tecla NÃO for letra ou número...".
-            // Isso irá bloquear automaticamente a barra de espaço (' ') e todos os outros símbolos.
-            if (!/^[a-zA-Z0-9]$/.test(tecla)) {
-                
-                // 5. BLOQUEIA A TECLA
-                // Previne a ação padrão, impedindo que o caractere apareça no campo.
-                event.preventDefault();
-                
-                console.log(`A tecla "${tecla}" foi bloqueada.`);
-            }
-        });
-    });
-    </script>
+  // 2. Adiciona um "ouvinte" para o evento de pressionar uma tecla ('keydown')
+  inputColor.addEventListener('keydown', function(event) {
+    
+    // 3. Verifica se a tecla pressionada foi o "Enter"
+    if (event.key === 'Enter') {
+      
+      // 4. Se foi o Enter, previne a ação padrão (como enviar o formulário)
+      event.preventDefault();
+      
+      // (Opcional) Mostra uma mensagem no console para confirmar que funcionou
+      console.log('A tecla Enter foi bloqueada neste campo.');
+    }
+  });
+});
+</script>
 </body>
 </html>
