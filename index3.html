@@ -1025,5 +1025,31 @@ $(document).ready(function() {
     MobileLayoutManager.init();
 
 </script>
+   <script>
+    // Espera o documento HTML ser completamente carregado
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Encontra o seu input pelo ID, que é "color"
+        const inputElement = document.getElementById('color');
+
+        // Adiciona um "ouvinte" para o evento de pressionar uma tecla ('keydown')
+        inputElement.addEventListener('keydown', function(event) {
+            
+            // Verifica SE a tecla pressionada foi o "Enter"
+            if (event.key === 'Enter') {
+                
+                // Se foi o Enter, previne a ação padrão (bloqueia)
+                event.preventDefault();
+                
+                // Mostra uma mensagem no console para confirmar o bloqueio
+                console.log('A tecla Enter foi bloqueada.');
+
+            } else {
+                // Para qualquer outra tecla, mostra no console que ela foi permitida
+                 console.log(`Tecla permitida: ${event.key}`);
+            }
+        });
+    });
+    </script>
 </body>
 </html>
