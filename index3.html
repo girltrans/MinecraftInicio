@@ -818,6 +818,10 @@ $(document).ready(function() {
     $('#reset').on('click', function(e) {
         e.preventDefault(); 
         window.location.href = 'index3.html';
+	} else {
+            // Se o usuário clicar em "Cancelar", nada acontece e a função termina.
+            return false;
+        }
     });
 });
 </script>
