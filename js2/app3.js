@@ -4323,12 +4323,37 @@ if (localStorage.getItem("paintArr") == null) {
       });
     });
 
-    $(".avatar-creator #reset").on("click", function () {
-      if (confirm("Todo o trabalho será perdido! Tem certeza?")) {
-        g.model.loopOverParts(function (a) {
-          for (var c = a.geometry.faces, d = 0; d < c.length; d++)
-            g.layerModel.setFaceColor(c[d], new THREE.Color().setAlpha());
-        });
+$(".avatar-creator #reset").on("click", function (e) {
+    e.preventDefault();
+
+    // A caixa de diálogo de confirmação é exibida aqui.
+    if (confirm("Todo o trabalho será perdido! Tem certeza?")) {
+        
+        // ESTE BLOCO SÓ É EXECUTADO SE VOCÊ CLICAR "OK"
+        
+        // 1. Recria o modelo 3D com o padrão quadriculado.
+        if (g && g.model && typeof g.model.redrawModel === 'function') {
+            g.model.redrawModel();
+        }
+
+        // 2. Torna as partes do corpo visíveis.
+        if (g && g.modelToggles && typeof g.modelToggles.toggle === 'function') {
+            g.modelToggles.toggle();
+        }
+
+        // 3. Limpa o histórico de ações.
+        if (g && g.layerPresenter && typeof g.layerPresenter.resetArr === 'function') {
+            g.layerPresenter.resetArr();
+        }
+
+        // 4. Limpa o canvas de download.
+        var canvas = document.getElementById("uploadCanvas");
+        if (canvas) {
+            var ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
+});
         g.model.render();
         sessionStorage.setItem(
           "basicModelBody",
