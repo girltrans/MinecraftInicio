@@ -872,5 +872,154 @@ $(document).ready(function() {
     document.body.classList.add('allow-scroll');
   }
 </script>
+<script>
+    /**
+     * Script de Adaptação Automática para Dispositivos Móveis
+     *
+     * Este script detecta o tamanho da tela e aplica mudanças estruturais e de estilo
+     * para otimizar a visualização em dispositivos móveis.
+     */
+    const MobileLayoutManager = {
+        // Ponto de quebra: abaixo deste valor, o layout mobile é ativado.
+        breakpoint: 768, 
+        
+        // Flag para saber se o modo mobile já está ativo.
+        isMobile: false,
+
+        // Função principal que orquestra as mudanças.
+        init: function() {
+            // Adiciona "ouvintes" para o carregamento da página e redimensionamento da janela.
+            window.addEventListener('DOMContentLoaded', () => this.checkAndApplyLayout());
+            window.addEventListener('resize', () => this.checkAndApplyLayout());
+        },
+
+        // Verifica o tamanho da tela e decide se aplica ou remove o layout mobile.
+        checkAndApplyLayout: function() {
+            const screenWidth = window.innerWidth;
+
+            if (screenWidth <= this.breakpoint && !this.isMobile) {
+                // Se a tela é pequena e o modo mobile não está ativo, ativa.
+                console.log("Ativando layout mobile...");
+                this.activateMobileLayout();
+                this.isMobile = true;
+            } else if (screenWidth > this.breakpoint && this.isMobile) {
+                // Se a tela ficou grande e o modo mobile estava ativo, desativa.
+                console.log("Desativando layout mobile...");
+                this.deactivateMobileLayout();
+                this.isMobile = false;
+            }
+        },
+
+        // Aplica todas as otimizações para o modo mobile.
+        activateMobileLayout: function() {
+            // Adiciona uma classe ao body para CSS targeting.
+            document.body.classList.add('mobile-view');
+            
+            // Injeta os estilos CSS necessários para o mobile.
+            this.injectMobileCSS();
+
+            // Executa manipulações complexas no DOM.
+            this.rearrangeElements();
+        },
+
+        // Reverte as otimizações e volta ao layout de desktop.
+        deactivateMobileLayout: function() {
+            document.body.classList.remove('mobile-view');
+            this.removeMobileCSS();
+            // Aqui você poderia adicionar uma função para reverter rearrangeElements, se necessário.
+        },
+
+        // Cria e injeta uma tag <style> com todas as regras para mobile.
+        injectMobileCSS: function() {
+            // Evita injetar o mesmo CSS várias vezes.
+            if (document.getElementById('mobile-styles')) {
+                return;
+            }
+
+            const styles = `
+                /* Os estilos injetados têm alta prioridade */
+                .mobile-view .wrapper,
+                .mobile-view .header-wrapper,
+                .mobile-view .content-wrapper,
+                .mobile-view .footer {
+                    width: 100% !important;
+                    min-width: unset !important;
+                    padding: 0 15px;
+                    box-sizing: border-box;
+                }
+
+                .mobile-view .left-ads,
+                .mobile-view .right-ads {
+                    display: none !important;
+                }
+
+                .mobile-view .navbar {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 1rem;
+                    padding: 1rem;
+                }
+
+                .mobile-view .avatar-creator {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                
+                .mobile-view .left-toolbar, 
+                .mobile-view .right-toolbar {
+                    position: static;
+                    float: none;
+                    width: 100%;
+                    margin-top: 20px;
+                }
+
+                .mobile-view .left-toolbar {
+                    display: none; /* Esconde a barra de desktop original */
+                }
+
+                /* Garante que a barra mobile, que já existe no HTML, apareça */
+                .mobile-view .left-toolbar-mobile {
+                    display: block;
+                }
+            `;
+
+            const styleSheet = document.createElement("style");
+            styleSheet.id = 'mobile-styles';
+            styleSheet.type = "text/css";
+            styleSheet.innerText = styles;
+            document.head.appendChild(styleSheet);
+        },
+        
+        // Remove a folha de estilos mobile.
+        removeMobileCSS: function() {
+            const styleSheet = document.getElementById('mobile-styles');
+            if (styleSheet) {
+                styleSheet.parentNode.removeChild(styleSheet);
+            }
+        },
+
+        // Exemplo de manipulação do DOM: mover elementos.
+        rearrangeElements: function() {
+            // Exemplo: Mover a barra de busca para dentro de um menu mobile.
+            // Esta é uma simulação. Você precisaria ter um #mobile-menu-container no seu HTML.
+            const searchBar = document.querySelector('.search');
+            const mobileMenuContainer = document.getElementById('mobile-menu-container');
+
+            if (searchBar && mobileMenuContainer) {
+                // Guarda a posição original da busca para poder restaurá-la depois.
+                if (!searchBar.dataset.originalParent) {
+                    searchBar.dataset.originalParent = '.header-wrapper'; // Supondo que estava aqui
+                    searchBar.dataset.originalNextSibling = searchBar.nextElementSibling ? 'true' : 'false';
+                }
+                console.log("Movendo barra de busca para o contêiner mobile.");
+                mobileMenuContainer.appendChild(searchBar);
+            }
+        }
+    };
+
+    // Inicia o gerenciador de layout.
+    MobileLayoutManager.init();
+
+</script>
 </body>
 </html>
