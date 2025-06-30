@@ -23,12 +23,13 @@ overscroll-behavior: none;}
 }
 input[type=""], input[type="number"], select {
     padding: 0.1rem;
-	font-size:1.18rem;
+    font-size:1.18rem;
     background-color: #1e1e1e;
     color: #E8B901;
+    cursor: pointer;
     border: 1px solid #8B1616;
-	box-shadow:0 2px 18px #8b1616;
-	margin-bottom:0.7rem;
+    box-shadow:0 2px 18px #8b1616;
+    margin-bottom:0.7rem;
     width: -100%;
 }
 a.github {
