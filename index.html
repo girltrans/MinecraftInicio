@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
@@ -100,7 +99,6 @@
 		flex: 1 1 280px;
 		min-width: 280px;
 		max-width: 320px;
-		background: rgba(18, 18, 18, 1);
 		border-radius: 16px;
 		padding: 1.2rem 1rem 1.5rem 1rem;
 		box-shadow: 0 2px 18px #8b1616;
@@ -195,16 +193,67 @@
         margin-top: 0.5rem;
         height: 1em;
     }
+    body.theme-light-bg {
+        background-image: linear-gradient(rgba(247, 255, 250, 1), rgba(247, 255, 250, 1)), url('images/background2.png');
+    }
+    body.theme-rainbow-bg {
+        background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/background3.png');
+    }
+body.theme-light-bg {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('images/background2.png');
+}
+@keyframes rainbow-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+body.theme-rainbow-bg {
+    background-image: 
+        linear-gradient(
+            -45deg,
+            #ee7752,
+            #e73c7e,
+            #23a6d5,
+			#FF0000,
+			#FFA500,
+			#FFFF00,
+			#00FF00,
+			#0000FF,
+			#4B0082,
+			#EE82EE,
+            #23d5ab
+        ),
+        url('images/background3.png');
+    background-size: 400% 400%, cover;
+    animation: rainbow-animation 15s ease infinite;
+}
+body.theme-light-bg .github img {
+    filter: invert(0);  /* Remove a inversão, fazendo o ícone voltar a ser preto */
+    opacity: 0.6;       /* Aumenta a opacidade para que ele fique bem visível */
+}
     </style>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 </head>
-<body>
+<body class="theme-rainbow-bg">
     <nav class="navbar">
+    <div class="theme-selector">
+        <select id="theme_switcher" title="Mudar Tema do Site" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;/* -webkit-box-align: center; */">
+            <option value="dark">🌙 Escuro</option>
+            <option value="light">☀️ Claro</option>
+            <option value="rainbow">🌈 Arco-Íris</option>
+        </select>
+    </div>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <a href="https://24082004.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;">
-        <img src="images/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px; box-shadow: 0 2px 10px #0004;">
+        <img src="images/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px;">
         <span style="font-family: 'Righteous', cursive; font-weight: 700; font-size: 1.9rem; color: #e8b901; margin-left: 0.6rem; user-select: none;">Início</span>
     </a>
     <a href="./index2.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Minecraft Verificar Nicks</a>
@@ -215,7 +264,7 @@
     <div class="content">
     <a rel="nofollow" href="https://github.com/girltrans" target="_blank" title="GitHub Repositório" class="github"><img src="./icons/github.png" alt="GitHub Icon" title="GitHub"></a>
     <h1 style="text-align:center; color:#e8b901; margin-top:2rem; font-family: 'Righteous', cursive; font-size:2.4rem;">Testar Skin e Capa</h1>
-    <div class="studio-container" style="max-width:1100px; background:rgba(0,0,0,1); border-radius:22px; box-shadow:0 8px 32px #0005; padding:2.5rem 2rem 2.5rem 2rem; display:flex; flex-wrap:wrap; gap:2.5rem; align-items:flex-start; justify-content:center;">
+    <div class="studio-container" style="max-width:1100px; border-radius:22px; box-shadow:0 8px 32px #0005; padding:2.5rem 2rem 2.5rem 2rem; display:flex; flex-wrap:wrap; gap:2.5rem; align-items:flex-start; justify-content:center;">
       
       <div class="viewer-panel" style="flex:1 1 360px; min-width:340px; max-width:420px; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
         <canvas id="skin_container" width="360" height="480" style="border-radius:18px; background:#121212; box-shadow:0 2px 18px #8b1616; cursor: move;"></canvas>
@@ -380,6 +429,34 @@ let currentBackEquipment = "cape";
 let availableAnimations = {}; 
 
 document.addEventListener('DOMContentLoaded', () => {
+    // ===== INÍCIO DA ADIÇÃO DA LÓGICA DO TEMA =====
+    const themeSwitcher = document.getElementById('theme_switcher');
+    
+    function applyTheme(theme) {
+        // Remove as classes de tema antigas para evitar conflitos
+        document.body.classList.remove('theme-light-bg', 'theme-rainbow-bg');
+
+        if (theme === 'light') {
+            document.body.classList.add('theme-light-bg');
+        } else if (theme === 'rainbow') {
+            document.body.classList.add('theme-rainbow-bg');
+        }
+        // Nenhuma classe é adicionada para o tema 'dark', pois ele usa o estilo padrão do body.
+        
+        // Salva a escolha do usuário no navegador
+        localStorage.setItem('site_theme', theme);
+    }
+
+    // Adiciona o evento de mudança ao seletor
+    themeSwitcher.addEventListener('change', function() {
+        applyTheme(this.value);
+    });
+
+    // Ao carregar a página, verifica se há um tema salvo e o aplica
+    const savedTheme = localStorage.getItem('site_theme') || 'dark';
+    themeSwitcher.value = savedTheme;
+    applyTheme(savedTheme);
+    // ===== FIM DA ADIÇÃO DA LÓGICA DO TEMA =====
     availableAnimations = {
       idle: new skinview3d.IdleAnimation(),
       walk: new skinview3d.WalkingAnimation(),
