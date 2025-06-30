@@ -24,7 +24,7 @@ overscroll-behavior: none;}
 input[type=""], input[type="number"], select {
     padding: 0.1rem;
     font-size:1.18rem;
-    background-color: #1e1e1e;
+    background-color: #121212;
     color: #E8B901;
     cursor: pointer;
     border: 1px solid #8B1616;
