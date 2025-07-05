@@ -242,7 +242,7 @@ body.theme-light-bg .github img {
         }
 
         try {
-            const res = await fetch(`https://api.mojang.com/users/profiles/minecraft/${nick}`);
+            const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
             if (!res.ok) {
                 resultado.innerHTML = `⚠️ Erro: ${res.status}`;
                 return;
@@ -382,7 +382,7 @@ if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
 
         let disponiveis = [];
         for (let nick of combos) {
-            const res = await fetch(`https://api.mojang.com/users/profiles/minecraft/${nick}`);
+            const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
             if (res.ok) {
                 const data = await res.json();
                 if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
@@ -426,7 +426,7 @@ async function verificarLista() {
 
     for (let nick of nicks) {
         try {
-            const res = await fetch(`https://api.mojang.com/users/profiles/minecraft/${nick}`);
+            const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
             const data = await res.json();
             if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
                 disponiveisGlobal.push(nick);
