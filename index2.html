@@ -112,7 +112,7 @@ body.theme-light-bg .github img {
 <body class="theme-rainbow-bg">
     <nav class="navbar">
     <div class="theme-selector">
-        <select id="theme_switcher" title="Mudar Tema Do Site" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;padding-right: 2.3rem;">
+        <select id="theme_switcher" title="Mudar Tema Do Site" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;p[...]
             <option value="dark">🌙 Escuro</option>
             <option value="light">☀️ Claro</option>
             <option value="rainbow">🌈 Arco-Íris</option>
@@ -133,9 +133,9 @@ body.theme-light-bg .github img {
         Início
       </span>
  </a>
-    <a href="./index2.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.18s;">Verificar Nicks</a>
-    <b><a href="./index.html" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.18s;">Início Site</a></b>
-	<a href="./index3.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.18s;">Gerador</a>
+    <a href="./index2.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transitio[...]
+    <b><a href="./index.html" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transit[...]
+	<a href="./index3.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: [...]
 </nav>
     <div class="content-wrapper">
     <div class="content">
@@ -442,12 +442,19 @@ body.theme-light-bg .github img {
 
         let disponiveis = [];
         for (let nick of combos) {
-            const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
-            if (res.ok) {
-                const data = await res.json();
-                if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
+            try {
+                const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
+                if (res.status === 400) {
+                    // Nick disponível (resposta 400 da API)
                     disponiveis.push(nick);
+                } else if (res.ok) {
+                    const data = await res.json();
+                    if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
+                        disponiveis.push(nick);
+                    }
                 }
+            } catch {
+                // Ignora erro e segue para o próximo nick
             }
         }
 
@@ -487,9 +494,14 @@ async function verificarLista() {
     for (let nick of nicks) {
         try {
             const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
-            const data = await res.json();
-            if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
+            if (res.status === 400) {
+                // Nick disponível (resposta 400 da API)
                 disponiveisGlobal.push(nick);
+            } else if (res.ok) {
+                const data = await res.json();
+                if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
+                    disponiveisGlobal.push(nick);
+                }
             }
         } catch {
             resultado.innerHTML += `<br>⚠️ Erro ao verificar ${nick}`;
