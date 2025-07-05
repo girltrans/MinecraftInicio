@@ -8,14 +8,6 @@
         <meta name="format-detection" content="telephone=no">
         <meta http-equiv="x-rim-auto-match" content="none">
                         <title>Minecraft Início</title>
-	  <script>
-    try {
-      var temaSalvo = localStorage.getItem('tema');
-      if (temaSalvo) {
-        document.documentElement.className = temaSalvo;
-      }
-    } catch(e){}
-	  </script>
         <!-- Prefetch DNS for external assets -->
         <link rel="dns-prefetch" href="//fonts.googleapis.com">
                 <link rel="dns-prefetch" href="//www.statcounter.com">
@@ -36,7 +28,18 @@
 
     <link href="css2/select2.css" rel="stylesheet" type="text/css">
     <link href="css2/styles-min3.css" rel="stylesheet" type="text/css">
-		    <link href="css2/fonts.css" rel="stylesheet" type="text/css">
+    <link href="css2/fonts.css" rel="stylesheet" type="text/css">
+    <script>
+    // APLICA O TEMA MAIS CEDO POSSÍVEL, ANTES DO CSS
+    (function() {
+      try {
+        var tema = localStorage.getItem('site_theme') || 'dark';
+        if (tema === 'light') document.documentElement.className = 'theme-light-bg';
+        else if (tema === 'rainbow') document.documentElement.className = 'theme-rainbow-bg';
+        // Se for dark, deixa sem classe
+      } catch(e){}
+    })();
+    </script>
         <script src="js2/mobile-detect.min.js"></script>                        
 		</script>
 		</script>
@@ -93,10 +96,10 @@
     cursor: pointer;
     font-family: sans-serif;
   }
-    body.theme-light-bg {
+    html.theme-light-bg {
         background-image: linear-gradient(rgba(247, 255, 250, 1), rgba(247, 255, 250, 1)), url('images/background2.png');
     }
-    body.theme-rainbow-bg {
+    html.theme-rainbow-bg {
         background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/background3.png');
     }
 @keyframes rainbow-animation {
@@ -110,7 +113,7 @@
     background-position: 0% 50%;
   }
 }
-body.theme-rainbow-bg {
+html.theme-rainbow-bg {
     background-image: 
         linear-gradient(
             -45deg,
@@ -130,7 +133,7 @@ body.theme-rainbow-bg {
     background-size: 400% 400%, cover;
     animation: rainbow-animation 15s ease infinite;
 }
-body.theme-light-bg .github img {
+html.theme-light-bg .github img {
     filter: invert(0);  /* Remove a inversão, fazendo o ícone voltar a ser preto */
     opacity: 0.6;       /* Aumenta a opacidade para que ele fique bem visível */
 }
