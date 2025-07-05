@@ -19,6 +19,14 @@
     <meta charset="UTF-8">
 
     <title>Minecraft Início</title>
+  <script>
+    try {
+      var temaSalvo = localStorage.getItem('tema');
+      if (temaSalvo) {
+        document.documentElement.className = temaSalvo;
+      }
+    } catch(e){}
+  </script>
     <style>
 	input[type="radio"] {
     -webkit-appearance: none;
@@ -242,7 +250,7 @@ body.theme-light-bg .github img {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 </head>
-<body class="theme-rainbow-bg">
+<body>
     <nav class="navbar">
     <div class="theme-selector">
         <select id="theme_switcher" title="Mudar Tema Do Site" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;/* -webkit-box-align: center; */">
