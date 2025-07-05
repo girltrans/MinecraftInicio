@@ -672,5 +672,16 @@ document.getElementById("btnDownload").classList.add("hidden");
     }
   });
 </script>
+<script>
+// Impede scroll lateral, permitindo apenas scroll para baixo
+document.documentElement.style.overflowX = 'hidden';
+document.body.style.overflowX = 'hidden';
+
+window.addEventListener('scroll', function() {
+  if (window.scrollX !== 0) {
+    window.scrollTo(0, window.scrollY);
+  }
+});
+</script>
 </body>
 </html>
