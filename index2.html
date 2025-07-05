@@ -242,9 +242,7 @@ body.theme-light-bg .github img {
         }
 
         try {
-        const response = await fetch(`https://playerdb.co/api/player/minecraft/${playerName}`);
-        const responseJson = await response.json();
-        if (!response.ok || !responseJson.success) {
+        const response = await fetch(`https://playerdb.co/api/player/minecraft/$ID`);
             if (!res.ok) {
                 resultado.innerHTML = `⚠️ Erro: ${res.status}`;
                 return;
@@ -384,7 +382,7 @@ if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
 
         let disponiveis = [];
         for (let nick of combos) {
-            const res = await fetch(`https://api.minetools.eu/uuid/${nick}`);
+            const res = await fetch(`https://playerdb.co/api/player/minecraft/$ID`);
             if (res.ok) {
                 const data = await res.json();
                 if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
