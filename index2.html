@@ -356,8 +356,10 @@ if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
     </div>`
 }
 
-        } catch {
-            resultado.innerHTML = "⚠️ Erro ao conectar com a API.";
+            const response = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
+            if (!res.ok) {
+                resultado.innerHTML = "⚠️ Erro ao conectar com a API.";
+                return;
         }
     }
 
