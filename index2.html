@@ -16,8 +16,24 @@
         min-height: 100vh;
     }
     body.theme-light-bg {
+        background-image: linear-gradient(rgba(247, 255, 250, 1), rgba(247, 255, 250, 1)), url('images/background2.png');
+    }
+    body.theme-rainbow-bg {
+        background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/background3.png');
+    }
+    body.theme-light-bg {
         background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('images/background2.png');
-        color: #1e1e1e;
+    }
+    @keyframes rainbow-animation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
     body.theme-rainbow-bg {
         background-image: 
@@ -38,17 +54,6 @@
             url('images/background3.png');
         background-size: 400% 400%, cover;
         animation: rainbow-animation 15s ease infinite;
-    }
-    @keyframes rainbow-animation {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
     }
     body.theme-light-bg .github img {
         filter: invert(0);  /* Remove a inversão, fazendo o ícone voltar a ser preto */
@@ -85,54 +90,35 @@
         cursor: pointer;
         font-family: sans-serif;
       }
-      .navbar {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        background: rgba(18,18,18,0.9);
-        padding: 0.7rem 1.4rem;
-        border-radius: 0 0 20px 20px;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-      .navbar .theme-selector {
-        margin-right: 1rem;
-      }
-      .navbar a {
-        text-decoration: none;
-        transition: background 0.18s;
-      }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="theme-rainbow-bg">
     <nav class="navbar">
-        <div class="theme-selector">
-            <select id="theme_switcher" title="Mudar Tema Do Site" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;">
-                <option value="dark">🌙 Escuro</option>
-                <option value="light">☀️ Claro</option>
-                <option value="rainbow">🌈 Arco-Íris</option>
-            </select>
-        </div>
-        <a href="https://24082004.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;">
-            <img src="images2/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px;">
-            <span style="
-                font-family: 'Righteous', cursive;
-                font-weight: 700;
-                font-size: 1.9rem;
-                color: #e8b901;
-                margin-left: 0.6rem;
-                user-select: none;
-            ">
-                Início
-            </span>
-        </a>
-        <a href="./index2.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none;">Verificar Nick</a>
-        <a href="./index4.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none;">Testar Skin &amp; Capa</a>
-        <a href="./index5.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none;">Editar Skin</a>
-        <a href="./index.html" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none;">Voltar</a>
-        <a href="./index3.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none;">Outros</a>
+    <div class="theme-selector">
+        <select id="theme_switcher" title="Mudar Tema Do Site" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;">
+            <option value="dark">🌙 Escuro</option>
+            <option value="light">☀️ Claro</option>
+            <option value="rainbow">🌈 Arco-Íris</option>
+        </select>
+    </div>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+
+    <a href="https://24082004.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;">
+       <img src="images2/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px;">
+        <span style="
+            font-family: 'Righteous', cursive;
+            font-weight: 700;
+            font-size: 1.9rem;
+            color: #e8b901;
+            margin-left: 0.6rem;
+            user-select: none;
+          ">
+            Início
+        </span>
+    </a>
+    <a href="./index2.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Minecraft Verificar Nicks</a>
+    <b><a href="./index.html" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Testar Skin e Capa</a>
+    <a href="./index3.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Editar Skin</a></b>
     </nav>
     <div class="content-wrapper">
     <div class="content">
@@ -181,7 +167,6 @@
         } else if (theme === 'rainbow') {
             document.body.classList.add('theme-rainbow-bg');
         }
-        // Para tema escuro, nenhuma classe extra (fica padrão do body)
         localStorage.setItem('site_theme', theme);
     }
     themeSwitcher.addEventListener('change', function() {
@@ -191,6 +176,7 @@
     themeSwitcher.value = savedTheme;
     applyTheme(savedTheme);
     // ===== FIM DA LÓGICA DO TEMA =====
+
     document.getElementById("nickListInput").addEventListener("input", function () {
         const linhas = this.value.split("\n");
         const ajustadas = linhas.map(linha => linha.slice(0, 16));
@@ -202,6 +188,7 @@
     const formLista = document.getElementById('form-lista');
     const resultado = document.getElementById('resultado');
     let disponiveisGlobal = [];
+
     modoRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             resultado.textContent = "";
