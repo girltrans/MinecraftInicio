@@ -242,7 +242,7 @@ body.theme-light-bg .github img {
         }
 
         try {
-            const res = await fetch(`https://playerdb.co/api/player/minecraft/${playerName}`);
+            const res = await fetch(`https://playerdb.co/api/player/minecraft/${playernick}`);
             if (!res.ok) {
                 resultado.innerHTML = `⚠️ Erro: ${res.status}`;
                 return;
