@@ -426,7 +426,7 @@ async function verificarLista() {
 
     for (let nick of nicks) {
         try {
-            const res = await fetch(`https://api.minetools.eu/uuid/${nick}`);
+            const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
             const data = await res.json();
             if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
                 disponiveisGlobal.push(nick);
