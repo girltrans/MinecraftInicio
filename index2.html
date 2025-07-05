@@ -356,13 +356,6 @@ if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
     </div>`
 }
 
-            const response = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
-            if (!res.ok) {
-                resultado.innerHTML = "⚠️ Erro ao conectar com a API.";
-                return;
-        }
-    }
-
     async function verificacaoMassa() {
         const count = parseInt(document.getElementById('chars_count').value);
         const tipo = parseInt(document.getElementById('char_type').value);
