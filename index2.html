@@ -382,7 +382,7 @@ if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
 
         let disponiveis = [];
         for (let nick of combos) {
-            const res = await fetch(`https://api.minetools.eu/uuid/${nick}`);
+            const res = await fetch(`https://api.mojang.com/users/profiles/minecraft/${nick}`);
             if (res.ok) {
                 const data = await res.json();
                 if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
@@ -426,7 +426,7 @@ async function verificarLista() {
 
     for (let nick of nicks) {
         try {
-            const res = await fetch(`https://api.minetools.eu/uuid/${nick}`);
+            const res = await fetch(`https://api.mojang.com/users/profiles/minecraft/${nick}`);
             const data = await res.json();
             if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
                 disponiveisGlobal.push(nick);
