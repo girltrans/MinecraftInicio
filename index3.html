@@ -8,6 +8,14 @@
         <meta name="format-detection" content="telephone=no">
         <meta http-equiv="x-rim-auto-match" content="none">
                         <title>Minecraft Início</title>
+	  <script>
+    try {
+      var temaSalvo = localStorage.getItem('tema');
+      if (temaSalvo) {
+        document.documentElement.className = temaSalvo;
+      }
+    } catch(e){}
+	  </script>
         <!-- Prefetch DNS for external assets -->
         <link rel="dns-prefetch" href="//fonts.googleapis.com">
                 <link rel="dns-prefetch" href="//www.statcounter.com">
@@ -128,7 +136,7 @@ body.theme-light-bg .github img {
 }
 </style>
 </head>
-<body class="theme-rainbow-bg">
+<body>
     <nav class="navbar">
     <div class="theme-selector">
         <select id="theme_switcher" title="Mudar Tema Do Site" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;/* -webkit-box-align: center; */">
