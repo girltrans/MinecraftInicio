@@ -232,21 +232,26 @@ body.theme-light-bg .github img {
         });
     });
 
-    async function verificarNick() {
-        const nick = document.getElementById('nick').value.trim();
-        resultado.innerHTML = "⏳ Verificando...";
+async function verificarNick() {
+    const nick = document.getElementById('nick').value.trim();
+    resultado.innerHTML = "⏳ Verificando...";
 
-        if (!nick || nick.length > 16) {
-            resultado.innerHTML = "❌ O nick não pode estar vazio ou ter mais de 16 caracteres!";
-            return;
-        }
+    if (!nick || nick.length > 16) {
+        resultado.innerHTML = "❌ O nick não pode estar vazio ou ter mais de 16 caracteres!";
+        return;
+    }
 
-        try {
-            const res = await fetch(`https://api.minetools.eu/uuid/${nick}`);
-            if (!res.ok) {
-                resultado.innerHTML = `⚠️ Erro: ${res.status}`;
-                return;
-            }
+    try {
+        const res = await fetch(`https://api.mojang.com/users/profiles/minecraft/${nick}`);
+        if (res.status === 200) {
+            // OCUPADO
+            resultado.innerHTML = `❌ O nick <strong>${nick}</strong> está <strong>OCUPADO</strong>`;
+        } else if (res.status === 204) {
+            // DISPONÍVEL
+            resultado.innerHTML = `✅ O nick <strong>${nick}</strong> está <strong>DISPONÍVEL!</strong>`;
+        } else {
+            resultado.innerHTML = `⚠️ Erro: ${res.status}`;
+	    }
 const data = await res.json();
 if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
     resultado.innerHTML = 
