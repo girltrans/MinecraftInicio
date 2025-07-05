@@ -242,11 +242,7 @@ body.theme-light-bg .github img {
         }
 
         try {
-            const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
-            if (!res.ok) {
-                resultado.innerHTML = `⚠️ Erro: ${res.status}`;
-                return;
-            }
+const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
 const data = await res.json();
 if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
     resultado.innerHTML = 
@@ -355,7 +351,10 @@ if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
         </a>
     </div>`
 }
-
+            if (!res.ok) {
+                resultado.innerHTML = `⚠️ Erro: ${res.status}`;
+                return;
+	}
         } catch {
             resultado.innerHTML = "⚠️ Erro ao conectar com a API.";
         }
@@ -431,6 +430,10 @@ async function verificarLista() {
             if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
                 disponiveisGlobal.push(nick);
             }
+	if (!res.ok) {
+        resultado.innerHTML = `⚠️ Erro: ${res.status}`;
+        return;
+	 }
         } catch {
             resultado.innerHTML += `<br>⚠️ Erro ao verificar ${nick}`;
         }
