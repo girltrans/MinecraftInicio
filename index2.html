@@ -106,9 +106,6 @@ body.theme-light-bg .github img {
   }
 </style>
 </head>
-<body>
-
-</head>
 <body class="theme-rainbow-bg">
     <nav class="navbar">
     <div class="theme-selector">
@@ -672,18 +669,16 @@ document.getElementById("btnDownload").classList.add("hidden");
     }
   });
 </script>
-<script>
-window.addEventListener('scroll', function() {
-  // Impede scroll lateral
-  if (window.scrollX !== 0) {
-    window.scrollTo(0, window.scrollY);
-  }
-  // Impede scroll além do fundo
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  if (window.scrollY > maxScroll) {
-    window.scrollTo(0, maxScroll);
-  }
-});
-</script>
+  <script>
+    window.addEventListener('scroll', function() {
+      if (window.scrollX !== 0) {
+        window.scrollTo(0, window.scrollY);
+      }
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (window.scrollY > maxScroll) {
+        window.scrollTo(0, maxScroll);
+      }
+    });
+  </script>
 </body>
 </html>
