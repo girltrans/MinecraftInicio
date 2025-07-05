@@ -242,7 +242,7 @@ body.theme-light-bg .github img {
         }
 
         try {
-        const response = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
+            const res = await fetch(`https://playerdb.co/api/player/minecraft/${playerName}`);
             if (!res.ok) {
                 resultado.innerHTML = `⚠️ Erro: ${res.status}`;
                 return;
@@ -356,6 +356,11 @@ if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
     </div>`
 }
 
+        } catch {
+            resultado.innerHTML = "⚠️ Erro ao conectar com a API.";
+        }
+    }
+
     async function verificacaoMassa() {
         const count = parseInt(document.getElementById('chars_count').value);
         const tipo = parseInt(document.getElementById('char_type').value);
@@ -377,7 +382,7 @@ if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
 
         let disponiveis = [];
         for (let nick of combos) {
-            const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
+            const res = await fetch(`https://api.minetools.eu/uuid/${nick}`);
             if (res.ok) {
                 const data = await res.json();
                 if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
@@ -421,7 +426,7 @@ async function verificarLista() {
 
     for (let nick of nicks) {
         try {
-            const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
+            const res = await fetch(`https://api.minetools.eu/uuid/${nick}`);
             const data = await res.json();
             if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
                 disponiveisGlobal.push(nick);
