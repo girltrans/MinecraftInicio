@@ -96,10 +96,10 @@
     cursor: pointer;
     font-family: sans-serif;
   }
-    html.theme-light-bg {
+    body.theme-light-bg {
         background-image: linear-gradient(rgba(247, 255, 250, 1), rgba(247, 255, 250, 1)), url('images/background2.png');
     }
-    html.theme-rainbow-bg {
+    body.theme-rainbow-bg {
         background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/background3.png');
     }
 @keyframes rainbow-animation {
@@ -113,7 +113,7 @@
     background-position: 0% 50%;
   }
 }
-html.theme-rainbow-bg {
+body.theme-rainbow-bg {
     background-image: 
         linear-gradient(
             -45deg,
@@ -133,24 +133,13 @@ html.theme-rainbow-bg {
     background-size: 400% 400%, cover;
     animation: rainbow-animation 15s ease infinite;
 }
-html.theme-light-bg .github img {
+body.theme-light-bg .github img {
     filter: invert(0);  /* Remove a inversão, fazendo o ícone voltar a ser preto */
     opacity: 0.6;       /* Aumenta a opacidade para que ele fique bem visível */
 }
 </style>
 </head>
 <body>
-<script>
-  try {
-    var temaSalvo = localStorage.getItem('site_theme') || 'dark';
-    if (temaSalvo === 'light') {
-      document.body.classList.add('theme-light-bg');
-    } else if (temaSalvo === 'rainbow') {
-      document.body.classList.add('theme-rainbow-bg');
-    }
-    // Se for dark, não adiciona classe, pois já é o padrão do CSS
-  } catch(e){}
-</script>
     <nav class="navbar">
     <div class="theme-selector">
         <select id="theme_switcher" title="Mudar Tema Do Site" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;/* -webkit-box-align: center; */">
