@@ -137,6 +137,17 @@ body.theme-light-bg .github img {
 </style>
 </head>
 <body>
+<script>
+  try {
+    var temaSalvo = localStorage.getItem('site_theme') || 'dark';
+    if (temaSalvo === 'light') {
+      document.body.classList.add('theme-light-bg');
+    } else if (temaSalvo === 'rainbow') {
+      document.body.classList.add('theme-rainbow-bg');
+    }
+    // Se for dark, não adiciona classe, pois já é o padrão do CSS
+  } catch(e){}
+</script>
     <nav class="navbar">
     <div class="theme-selector">
         <select id="theme_switcher" title="Mudar Tema Do Site" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;/* -webkit-box-align: center; */">
