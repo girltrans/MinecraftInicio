@@ -50,13 +50,13 @@ body.theme-rainbow-bg {
             #ee7752,
             #e73c7e,
             #23a6d5,
-	    #FF0000,
-	    #FFA500,
-	    #FFFF00,
-	    #00FF00,
-	    #0000FF,
-	    #4B0082,
-	    #EE82EE,
+			#FF0000,
+			#FFA500,
+			#FFFF00,
+			#00FF00,
+			#0000FF,
+			#4B0082,
+			#EE82EE,
             #23d5ab
         ),
         url('images/background3.png');
@@ -190,6 +190,7 @@ body::-webkit-scrollbar {
 <script>
     // ===== INÍCIO DA ADIÇÃO DA LÓGICA DO TEMA =====
     const themeSwitcher = document.getElementById('theme_switcher');
+    
     function applyTheme(theme) {
         // Remove as classes de tema antigas para evitar conflitos
         document.body.classList.remove('theme-light-bg', 'theme-rainbow-bg');
@@ -204,10 +205,12 @@ body::-webkit-scrollbar {
         // Salva a escolha do usuário no navegador
         localStorage.setItem('site_theme', theme);
     }
+
     // Adiciona o evento de mudança ao seletor
     themeSwitcher.addEventListener('change', function() {
         applyTheme(this.value);
     });
+
     // Ao carregar a página, verifica se há um tema salvo e o aplica
     const savedTheme = localStorage.getItem('site_theme') || 'dark';
     themeSwitcher.value = savedTheme;
@@ -224,6 +227,7 @@ body::-webkit-scrollbar {
     const formLista = document.getElementById('form-lista');
     const resultado = document.getElementById('resultado');
     let disponiveisGlobal = [];
+
     modoRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             resultado.textContent = "";
@@ -240,12 +244,14 @@ body::-webkit-scrollbar {
     async function verificarNick() {
         const nick = document.getElementById('nick').value.trim().toLowerCase();
         resultado.innerHTML = "⏳ Verificando...";
+
         // Regex para nick válido do Minecraft (1-16 caracteres, letras, números e _)
         const nickRegex = /^[a-zA-Z0-9_]{1,16}$/;
         if (!nickRegex.test(nick)) {
             resultado.innerHTML = "❌ O nick deve ter 1 a 16 caracteres, apenas letras, números ou _.";
             return;
         }
+
         try {
             const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
             if (res.status === 400) {
@@ -534,17 +540,19 @@ body::-webkit-scrollbar {
         helper("", length);
         return results;
     }
-// --------- AJUSTE SÓ NA FUNÇÃO verificarLista ABAIXO -----------
-    async function verificarLista() {
+
+async function verificarLista() {
     const raw = document.getElementById("nickListInput").value;
     const nicks = raw.split("\n").map(n => n.trim().toLowerCase()).filter(Boolean);
     if (nicks.length === 0) {
         resultado.innerHTML = "❌ Nenhum nick válido inserido.";
         return;
     }
+
     resultado.innerHTML = `⏳ Verificando ${nicks.length} nicks...`;
     disponiveisGlobal = [];
     let ocupadosGlobal = [];
+
     for (let nick of nicks) {
         try {
             const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
@@ -562,7 +570,9 @@ body::-webkit-scrollbar {
             // Ignora erro de conexão na lista para não poluir
         }
     }
+
     let finalHTML = "";
+
     // GERA O HTML DETALHADO PARA NICKS DISPONÍVEIS
     if (disponiveisGlobal.length > 0) {
         const disponiveisHTML = disponiveisGlobal.map(nick =>
@@ -593,6 +603,7 @@ body::-webkit-scrollbar {
         finalHTML += `<h4>✅ Nicks disponíveis (${disponiveisGlobal.length}):</h4><div class="nick-list">${disponiveisHTML}</div>`;
         document.getElementById("btnDownload").classList.remove("hidden");
     }
+
     // GERA O HTML DETALHADO PARA NICKS OCUPADOS
     if (ocupadosGlobal.length > 0) {
         const ocupadosHTML = ocupadosGlobal.map(nick =>
@@ -622,6 +633,7 @@ body::-webkit-scrollbar {
         ).join("");
         finalHTML += `<br><h4>❌ Nicks ocupados (${ocupadosGlobal.length}):</h4><div class="nick-list">${ocupadosHTML}</div>`;
     }
+    
     if(finalHTML === "") {
          resultado.innerHTML = "Não foi possível verificar os nicks ou a lista está vazia.";
          document.getElementById("btnDownload").classList.add("hidden");
@@ -629,6 +641,7 @@ body::-webkit-scrollbar {
          resultado.innerHTML = finalHTML;
     }
 }
+    
     function baixarDisponiveis() {
         const blob = new Blob([disponiveisGlobal.join("\n")], { type: "text/plain" });
         const url = URL.createObjectURL(blob);
