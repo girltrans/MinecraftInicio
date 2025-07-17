@@ -253,7 +253,7 @@ body::-webkit-scrollbar {
         }
 
         try {
-            const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
+            const res = await fetch(`https://api.mojang.com/users/profiles/minecraft/${nickInput}`);
             if (res.status === 400) {
                 // Nick disponível (resposta 400 da API)
                 resultado.innerHTML = 
