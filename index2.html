@@ -557,7 +557,9 @@ async function verificarLista() {
 
     for (let nick of nicks) {
         try {
-            const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
+            // URL CORRIGIDA COM O PROXY
+            const proxyUrl = `https://api.allorigins.win/raw?url=https://api.mojang.com/users/profiles/minecraft/${nick}`;
+            const res = await fetch(proxyUrl);
             if (res.status === 400 || res.status === 500) {
                 disponiveisGlobal.push(nick);
             } else if (res.ok) {
