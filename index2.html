@@ -253,9 +253,7 @@ body::-webkit-scrollbar {
         }
 
         try {
-                    // URL CORRIGIDA COM O PROXY
-           const proxyUrl = `https://api.allorigins.win/raw?url=https://api.mojang.com/users/profiles/minecraft/${nickInput}`;
-           const res = await fetch(proxyUrl);
+        	const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
             if (res.status === 400) {
                 // Nick disponível (resposta 400 da API)
                 resultado.innerHTML = 
@@ -557,9 +555,7 @@ async function verificarLista() {
 
     for (let nick of nicks) {
         try {
-            // URL CORRIGIDA COM O PROXY
-            const proxyUrl = `https://api.allorigins.win/raw?url=https://api.mojang.com/users/profiles/minecraft/${nick}`;
-            const res = await fetch(proxyUrl);
+		const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
             if (res.status === 400 || res.status === 500) {
                 disponiveisGlobal.push(nick);
             } else if (res.ok) {
