@@ -561,6 +561,7 @@ async function verificarLista() {
             } else if (res.ok) {
                 const data = await res.json();
                 // LÓGICA CORRIGIDA AQUI
+		if (!res.ok) {
                 if (res.status === 200) {
                     ocupadosGlobal.push(data.data.player.username);
                 } else {
