@@ -242,7 +242,7 @@ body::-webkit-scrollbar {
     });
     // --------- AJUSTE SÓ NA FUNÇÃO verificarNick ABAIXO -----------
     async function verificarNick() {
-        const nick = document.getElementById('nick').value.trim();
+        const nick = document.getElementById('nick').value.trim().toLowerCase();
         resultado.innerHTML = "⏳ Verificando...";
 
         // Regex para nick válido do Minecraft (1-16 caracteres, letras, números e _)
@@ -489,7 +489,7 @@ body::-webkit-scrollbar {
 
 async function verificarLista() {
     const raw = document.getElementById("nickListInput").value;
-    const nicks = raw.split("\n").map(n => n.trim()).filter(Boolean);
+    const nicks = raw.split("\n").map(n => n.trim().toLowerCase()).filter(Boolean);
     if (nicks.length === 0) {
         resultado.innerHTML = "❌ Nenhum nick válido inserido.";
         return;
