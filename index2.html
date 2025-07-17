@@ -1,18 +1,9 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta property="og:description" content="Minecraft Verificar Nicks.">
-    <link rel="icon" href="images2/favicon.png"/>
+	<meta property="og:description" content="Minecraft Verificar Nicks.">
+	<link rel="icon" href="images2/favicon.png"/>
     <title>Minecraft Início</title>
-  <script>
-    try {
-      var temaSalvo = localStorage.getItem('tema');
-      if (temaSalvo) {
-        document.documentElement.className = temaSalvo;
-      }
-    } catch(e){}
-  </script>
     <style>
     body {
         background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
@@ -50,13 +41,13 @@ body.theme-rainbow-bg {
             #ee7752,
             #e73c7e,
             #23a6d5,
-	    #FF0000,
-	    #FFA500,
-	    #FFFF00,
-            #00FF00,
-	    #0000FF,
-	    #4B0082,
-	    #EE82EE,
+			#FF0000,
+			#FFA500,
+			#FFFF00,
+			#00FF00,
+			#0000FF,
+			#4B0082,
+			#EE82EE,
             #23d5ab
         ),
         url('images/background3.png');
@@ -74,7 +65,7 @@ body::-webkit-scrollbar {
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-    .content { max-width: 1200px; margin: 0 auto; }
+        .content { max-width: 1200px; margin: 0 auto; }
     </style>
 <style>
   /* Remove a aparência padrão do rádio button */
@@ -118,6 +109,9 @@ body::-webkit-scrollbar {
 </style>
 </head>
 <body>
+
+</head>
+<body>
     <nav class="navbar">
     <div class="theme-selector">
         <select id="theme_switcher" title="Mudar Tema Do Site" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;/* -webkit-box-align: center; */">
@@ -126,10 +120,8 @@ body::-webkit-scrollbar {
             <option value="rainbow">🌈 Arco-Íris</option>
         </select>
     </div>
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-
     <a href="https://24082004.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;">
-    <img src="images2/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px;">
+   <img src="images2/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px;">
         <span style="
 		font-family: 'Righteous', cursive;
         font-weight: 700;
@@ -253,7 +245,7 @@ body::-webkit-scrollbar {
         }
 
         try {
-        	const res = await fetch(`https://api.ashcon.app/mojang/v2/user/${nick}`);
+        	const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
             if (res.status === 400) {
                 // Nick disponível (resposta 400 da API)
                 resultado.innerHTML = 
@@ -372,7 +364,7 @@ body::-webkit-scrollbar {
             }
             const data = await res.json();
             // LÓGICA CORRIGIDA AQUI
-            if (res.status === 200) {
+            if (data.code === "player.found") {
                 resultado.innerHTML = 
                 `<div class="nick-item">
                     <a  href="https://minotar.net/helm/${nick}/600.png" target="_blank">
@@ -505,7 +497,7 @@ body::-webkit-scrollbar {
         let disponiveis = [];
         for (let nick of combos) {
             try {
-                const res = await fetch(`https://api.ashcon.app/mojang/v2/user/${nick}`);
+                const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
                 if (res.status === 400 || res.status === 500) {
                     disponiveis.push(nick);
                 } else if (res.ok) {
@@ -555,14 +547,13 @@ async function verificarLista() {
 
     for (let nick of nicks) {
         try {
-		const res = await fetch(`https://api.ashcon.app/mojang/v2/user/${nick}`);
+		const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
             if (res.status === 400 || res.status === 500) {
                 disponiveisGlobal.push(nick);
             } else if (res.ok) {
                 const data = await res.json();
                 // LÓGICA CORRIGIDA AQUI
-		if (!res.ok) {
-                if (res.status === 200) {
+                if (data.code === "player.found") {
                     ocupadosGlobal.push(data.data.player.username);
                 } else {
                     disponiveisGlobal.push(nick);
