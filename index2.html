@@ -372,7 +372,7 @@ body::-webkit-scrollbar {
             }
             const data = await res.json();
             // LÓGICA CORRIGIDA AQUI
-            if (data.code === "player.found") {
+            if (res.status === 200) {
                 resultado.innerHTML = 
                 `<div class="nick-item">
                     <a  href="https://minotar.net/helm/${nick}/600.png" target="_blank">
