@@ -55,7 +55,7 @@ body.theme-rainbow-bg {
 	    #FFFF00,
 	    #00FF00,
 	    #0000FF,
-	    #4B0082,
+            #4B0082,
 	    #EE82EE,
             #23d5ab
         ),
@@ -129,7 +129,7 @@ body::-webkit-scrollbar {
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 
     <a href="https://24082004.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;">
-    <img src="images2/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px;">
+   <img src="images2/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px;">
         <span style="
 		font-family: 'Righteous', cursive;
         font-weight: 700;
@@ -240,71 +240,193 @@ body::-webkit-scrollbar {
             else if (radio.value === '3') formLista.classList.remove('hidden');
         });
     });
-    // ===================================================================
-    // FUNÇÕES DE VERIFICAÇÃO ATUALIZADAS
-    // ===================================================================
-
+    // --------- AJUSTE SÓ NA FUNÇÃO verificarNick ABAIXO -----------
     async function verificarNick() {
         const nick = document.getElementById('nick').value.trim().toLowerCase();
         resultado.innerHTML = "⏳ Verificando...";
 
-        const nickRegex = /^[a-z0-9_]{1,16}$/;
+        // Regex para nick válido do Minecraft (1-16 caracteres, letras, números e _)
+        const nickRegex = /^[a-zA-Z0-9_]{1,16}$/;
         if (!nickRegex.test(nick)) {
             resultado.innerHTML = "❌ O nick deve ter 1 a 16 caracteres, apenas letras, números ou _.";
             return;
         }
 
-        const mostrarDisponivel = (nick) => {
-            resultado.innerHTML = 
-            `<div class="nick-item">
-                <a href="https://minotar.net/helm/${nick}/600.png" target="_blank">
-                    <img src="./icons/steve.png" class="img-fluid" alt="${nick} Cabeça" title="${nick} Cabeça">
-                </a>
-                <a href="https://starlightskins.lunareclipse.studio/render/mojavatar/xcvb/full" target="_blank">
-                    <img src="./icons/steve.png" alt="${nick} Mini" title="${nick} Mini">
-                </a>
-                ✅ O nick <strong>${nick}</strong> está <strong>DISPONÍVEL!</strong>
-                <a href="https://namemc.com/${nick}" target="_blank"><img src="./icons/favicon-30.png" alt="NameMC" title="NameMC"></a>
-            </div>`;
-        };
-
-        const mostrarOcupado = (nick) => {
-             resultado.innerHTML = 
-             `<div class="nick-item">
-                <a href="https://minotar.net/helm/${nick}/600.png" target="_blank">
-                    <img src="https://minotar.net/helm/${nick}/600.png" class="img-fluid" alt="${nick} Cabeça" title="${nick} Cabeça">
-                </a>
-                <a href="https://starlightskins.lunareclipse.studio/render/mojavatar/${nick}/full" target="_blank">
-                    <img src="https://starlightskins.lunareclipse.studio/render/mojavatar/${nick}/full" class="img-fluid" alt="${nick} Mini" title="${nick} Mini">
-                </a>
-                ❌ O nick <strong>${nick}</strong> está <strong>OCUPADO</strong>
-                <a href="https://namemc.com/${nick}" target="_blank"><img src="./icons/favicon-30.png" alt="NameMC" title="NameMC"></a>
-            </div>`;
-        };
-
         try {
             const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
-            
-            if (res.status === 400 || res.status === 500) {
-                mostrarDisponivel(nick);
+            if (res.status === 400) {
+                // Nick disponível (resposta 400 da API)
+                resultado.innerHTML = 
+                `<div class="nick-item">
+                    <a  href="https://minotar.net/helm/${nick}/600.png" target="_blank">
+                        <img src="https://minotar.net/helm/${nick}/600.png" class="img-fluid" alt="${nick} Cabeça" title="${nick} Cabeça">
+                    </a>
+                    <a  href="https://starlightskins.lunareclipse.studio/render/mojavatar/xcvb/full" target="_blank">
+                        <img src="./icons/steve.png" alt="${nick} Mini" title="${nick} Mini">
+                    </a>
+                    ✅ O nick <strong>${nick}</strong> está <strong>DISPONÍVEL!</strong>
+                    <a href="https://namemc.com/${nick}" target="_blank">
+                        <img src="./icons/favicon-30.png" alt="NameMC" title="NameMC">
+                    </a>
+                    <a href="https://capes.me/capes?user=${nick}" target="_blank">
+                        <img src="./icons/capesme.png" alt="CapesME" title="CapesME">
+                    </a>
+                    <a href="https://skinmc.net/s/profiles?search=${nick}" target="_blank">
+                        <img src="./icons/skinmc.png" alt="SkinMC" title="SkinMC">
+                    </a>
+                    <a href="https://crafty.gg/@${nick}" target="_blank">
+                        <img src="./icons/craftygg.png" alt="CraftyGG" title="CraftyGG">
+                    </a>
+                    <a href="https://livzmc.net/user/${nick}" target="_blank">
+                        <img src="./icons/livzmc.png" alt="LivzMc" title="LivzMc">
+                    </a>
+                    <a href="https://bedrock.lol/players/${nick}" target="_blank">
+                        <img src="./icons/bedrocklol.jpg" alt="BedrockLOL" title="Bedrock.lol">
+                    </a>
+                    <a href="https://sky.shiiyu.moe/stats/${nick}" target="_blank">
+                        <img src="./icons/skycrypt.png" alt="SkyCrypt" title="SkyCrypt">
+                    </a>
+                    <a href="https://plancke.io/hypixel/player/stats/${nick}" target="_blank">
+                        <img src="./icons/planckeio.png" alt="Plancke.io" title="Plancke.io">
+                    </a>
+                    <a href="https://25karma.xyz/player/${nick}" target="_blank">
+                        <img src="./icons/25karma.png" alt="25Karma" title="25Karma">
+                    </a>
+                    <a href="https://mush.com.br/player/${nick}" target="_blank">
+                        <img src="./icons/mushmcperfil.png" alt="MushMC Perfil" title="MushMC Perfil">
+                    </a>
+                    <a href="https://forum.mush.com.br/user/${nick}" target="_blank">
+                        <img src="./icons/mushmcforum.png" alt="MushMC Fórum" title="MushMC Fórum">
+                    </a>
+                    <a href="https://flamemc.com.br/player/${nick}" target="_blank">
+                        <img src="./icons/flamemc.png" alt="FlameMC Perfil" title="FlameMC Perfil">
+                    </a>
+                    <a href="https://www.badlion.net/profile/minecraft/${nick}" target="_blank">
+                        <img src="./icons/badlion.png" alt="BadLion" title="BadLion">
+                    </a>
+                    <a href="https://laby.net/@${nick}" target="_blank">
+                        <img src="./icons/labymod.png" alt="LabyMod" title="LabyMod">
+                    </a>
+                </div>`;
                 return;
             }
-
             if (!res.ok) {
                 resultado.innerHTML = `⚠️ Erro ao consultar a API (código ${res.status})`;
                 return;
             }
-
             const data = await res.json();
-            if (data?.code === "player.found") {
-                 mostrarOcupado(data.data.player.username);
+            if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
+                resultado.innerHTML = 
+                `<div class="nick-item">
+                    <a  href="https://minotar.net/helm/${nick}/600.png" target="_blank">
+                        <img src="https://minotar.net/helm/${nick}/600.png" class="img-fluid" alt="${nick} Cabeça" title="${nick} Cabeça">
+                    </a>
+                    <a  href="https://starlightskins.lunareclipse.studio/render/mojavatar/xcvb/full" target="_blank">
+                        <img src="./icons/steve.png" alt="${nick} Mini" title="${nick} Mini">
+                    </a>
+                    ✅ O nick <strong>${nick}</strong> está <strong>DISPONÍVEL!</strong>
+                    <a href="https://namemc.com/${nick}" target="_blank">
+                        <img src="./icons/favicon-30.png" alt="NameMC" title="NameMC">
+                    </a>
+                    <a href="https://capes.me/capes?user=${nick}" target="_blank">
+                        <img src="./icons/capesme.png" alt="CapesME" title="CapesME">
+                    </a>
+                    <a href="https://skinmc.net/s/profiles?search=${nick}" target="_blank">
+                        <img src="./icons/skinmc.png" alt="SkinMC" title="SkinMC">
+                    </a>
+                    <a href="https://crafty.gg/@${nick}" target="_blank">
+                        <img src="./icons/craftygg.png" alt="CraftyGG" title="CraftyGG">
+                    </a>
+                    <a href="https://livzmc.net/user/${nick}" target="_blank">
+                        <img src="./icons/livzmc.png" alt="LivzMc" title="LivzMc">
+                    </a>
+                    <a href="https://bedrock.lol/players/${nick}" target="_blank">
+                        <img src="./icons/bedrocklol.jpg" alt="BedrockLOL" title="Bedrock.lol">
+                    </a>
+                    <a href="https://sky.shiiyu.moe/stats/${nick}" target="_blank">
+                        <img src="./icons/skycrypt.png" alt="SkyCrypt" title="SkyCrypt">
+                    </a>
+                    <a href="https://plancke.io/hypixel/player/stats/${nick}" target="_blank">
+                        <img src="./icons/planckeio.png" alt="Plancke.io" title="Plancke.io">
+                    </a>
+                    <a href="https://25karma.xyz/player/${nick}" target="_blank">
+                        <img src="./icons/25karma.png" alt="25Karma" title="25Karma">
+                    </a>
+                    <a href="https://mush.com.br/player/${nick}" target="_blank">
+                        <img src="./icons/mushmcperfil.png" alt="MushMC Perfil" title="MushMC Perfil">
+                    </a>
+                    <a href="https://forum.mush.com.br/user/${nick}" target="_blank">
+                        <img src="./icons/mushmcforum.png" alt="MushMC Fórum" title="MushMC Fórum">
+                    </a>
+                    <a href="https://flamemc.com.br/player/${nick}" target="_blank">
+                        <img src="./icons/flamemc.png" alt="FlameMC Perfil" title="FlameMC Perfil">
+                    </a>
+                    <a href="https://www.badlion.net/profile/minecraft/${nick}" target="_blank">
+                        <img src="./icons/badlion.png" alt="BadLion" title="BadLion">
+                    </a>
+                    <a href="https://laby.net/@${nick}" target="_blank">
+                        <img src="./icons/labymod.png" alt="LabyMod" title="LabyMod">
+                    </a>
+                </div>`;
             } else {
-                 mostrarDisponivel(nick);
+                resultado.innerHTML = 
+                `<div class="nick-item">
+                    <a  href="https://minotar.net/helm/${nick}/600.png" target="_blank">
+                        <img src="https://minotar.net/helm/${nick}/600.png" class="img-fluid" alt="${nick} Cabeça" title="${nick} Cabeça">
+                    </a>
+                    <a  href="https://starlightskins.lunareclipse.studio/render/mojavatar/${nick}/full" target="_blank">
+                        <img src="https://starlightskins.lunareclipse.studio/render/mojavatar/${nick}/full" class="img-fluid" alt="${nick} Mini" title="${nick} Mini">
+                    </a>
+                    ❌ O nick <strong>${nick}</strong> está <strong>OCUPADO</strong>
+                    <a href="https://namemc.com/${nick}" target="_blank">
+                        <img src="./icons/favicon-30.png" alt="NameMC" title="NameMC">
+                    </a>
+                    <a href="https://capes.me/capes?user=${nick}" target="_blank">
+                        <img src="./icons/capesme.png" alt="CapesME" title="CapesME">
+                    </a>
+                    <a href="https://skinmc.net/s/profiles?search=${nick}" target="_blank">
+                        <img src="./icons/skinmc.png" alt="SkinMC" title="SkinMC">
+                    </a>
+                    <a href="https://crafty.gg/@${nick}" target="_blank">
+                        <img src="./icons/craftygg.png" alt="CraftyGG" title="CraftyGG">
+                    </a>
+                    <a href="https://livzmc.net/user/${nick}" target="_blank">
+                        <img src="./icons/livzmc.png" alt="LivzMc" title="LivzMc">
+                    </a>
+                    <a href="https://bedrock.lol/players/${nick}" target="_blank">
+                        <img src="./icons/bedrocklol.jpg" alt="BedrockLOL" title="Bedrock.lol">
+                    </a>
+                    <a href="https://sky.shiiyu.moe/stats/${nick}" target="_blank">
+                        <img src="./icons/skycrypt.png" alt="SkyCrypt" title="SkyCrypt">
+                    </a>
+                    <a href="https://plancke.io/hypixel/player/stats/${nick}" target="_blank">
+                        <img src="./icons/planckeio.png" alt="Plancke.io" title="Plancke.io">
+                    </a>
+                    <a href="https://25karma.xyz/player/${nick}" target="_blank">
+                        <img src="./icons/25karma.png" alt="25Karma" title="25Karma">
+                    </a>
+                    <a href="https://mush.com.br/player/${nick}" target="_blank">
+                        <img src="./icons/mushmcperfil.png" alt="MushMC Perfil" title="MushMC Perfil">
+                    </a>
+                    <a href="https://forum.mush.com.br/user/${nick}" target="_blank">
+                        <img src="./icons/mushmcforum.png" alt="MushMC Fórum" title="MushMC Fórum">
+                    </a>
+                    <a href="https://flamemc.com.br/player/${nick}" target="_blank">
+                        <img src="./icons/flamemc.png" alt="FlameMC Perfil" title="FlameMC Perfil">
+                    </a>
+                    <a href="https://www.badlion.net/profile/minecraft/${nick}" target="_blank">
+                        <img src="./icons/badlion.png" alt="BadLion" title="BadLion">
+                    </a>
+                    <a href="https://laby.net/@${nick}" target="_blank">
+                        <img src="./icons/labymod.png" alt="LabyMod" title="LabyMod">
+                    </a>
+                </div>`;
             }
         } catch {
-            resultado.innerHTML = "⚠️ Erro de conexão com a API.";
+            resultado.innerHTML = "⚠️ Erro ao conectar com a API.";
         }
     }
+    // --------- FIM DO AJUSTE DA FUNÇÃO verificarNick -----------
 
     async function verificacaoMassa() {
         const count = parseInt(document.getElementById('chars_count').value);
@@ -329,11 +451,12 @@ body::-webkit-scrollbar {
         for (let nick of combos) {
             try {
                 const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
-                if (res.status === 400 || res.status === 500) {
+                if (res.status === 400) {
+                    // Nick disponível (resposta 400 da API)
                     disponiveis.push(nick);
                 } else if (res.ok) {
                     const data = await res.json();
-                    if (data?.code !== "player.found") {
+                    if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
                         disponiveis.push(nick);
                     }
                 }
@@ -364,60 +487,152 @@ body::-webkit-scrollbar {
         return results;
     }
 
-    async function verificarLista() {
-        const raw = document.getElementById("nickListInput").value;
-        const nicks = raw.split("\n").map(n => n.trim().toLowerCase()).filter(Boolean);
-        if (nicks.length === 0) {
-            resultado.innerHTML = "❌ Nenhum nick válido inserido.";
-            return;
-        }
+async function verificarLista() {
+    const raw = document.getElementById("nickListInput").value;
+    const nicks = raw.split("\n").map(n => n.trim().toLowerCase()).filter(Boolean);
+    if (nicks.length === 0) {
+        resultado.innerHTML = "❌ Nenhum nick válido inserido.";
+        return;
+    }
 
-        resultado.innerHTML = `⏳ Verificando ${nicks.length} nicks...`;
-        disponiveisGlobal = [];
-        let ocupadosGlobal = [];
+    resultado.innerHTML = `⏳ Verificando ${nicks.length} nicks...`;
+    disponiveisGlobal = [];
 
-        for (let nick of nicks) {
-            try {
-                const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
-                if (res.status === 400 || res.status === 500) {
+    for (let nick of nicks) {
+        try {
+            const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
+            if (res.status === 400) {
+                // Nick disponível (resposta 400 da API)
+                disponiveisGlobal.push(nick);
+            } else if (res.ok) {
+                const data = await res.json();
+                if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
                     disponiveisGlobal.push(nick);
-                } else if (res.ok) {
-                    const data = await res.json();
-                    if (data?.code === "player.found") {
-                        ocupadosGlobal.push(data.data.player.username);
-                    } else {
-                        disponiveisGlobal.push(nick);
-                    }
                 }
-            } catch {
-                // Ignora erro de conexão na lista
             }
-        }
-
-        let finalHTML = "";
-        if (disponiveisGlobal.length > 0) {
-            const disponiveisHTML = disponiveisGlobal.map(nick =>
-                `<div class="nick-item">✅ O nick <strong>${nick}</strong> está <strong>DISPONÍVEL!</strong></div>`
-            ).join("");
-            finalHTML += `<h4>✅ Nicks disponíveis (${disponiveisGlobal.length}):</h4><div class="nick-list">${disponiveisHTML}</div>`;
-            document.getElementById("btnDownload").classList.remove("hidden");
-        }
-
-        if (ocupadosGlobal.length > 0) {
-            const ocupadosHTML = ocupadosGlobal.map(nick =>
-                `<div class="nick-item">❌ O nick <strong>${nick}</strong> está <strong>OCUPADO</strong></div>`
-            ).join("");
-            finalHTML += `<br><h4>❌ Nicks ocupados (${ocupadosGlobal.length}):</h4><div class="nick-list">${ocupadosHTML}</div>`;
-        }
-        
-        if(finalHTML === "") {
-             resultado.innerHTML = "Não foi possível verificar os nicks ou a lista está vazia.";
-             document.getElementById("btnDownload").classList.add("hidden");
-        } else {
-             resultado.innerHTML = finalHTML;
+        } catch {
+            resultado.innerHTML += `<br>⚠️ Erro ao verificar ${nick}`;
         }
     }
-        
+
+if (disponiveisGlobal.length > 0) {
+const disponiveisHTML = disponiveisGlobal.map(nick =>
+    `<div class="nick-item">
+		<a  href="https://minotar.net/helm/${nick}/600.png" target="_blank">
+			<img src="https://minotar.net/helm/${nick}/600.png" class="img-fluid" alt="${nick} Cabeça" title="${nick} Cabeça">
+		</a>
+		<a  href="https://starlightskins.lunareclipse.studio/render/mojavatar/xcvb/full" target="_blank">
+			<img src="./icons/steve.png" alt="${nick} Mini" title="${nick} Mini">
+		</a>
+        ✅ O nick <strong>${nick}</strong> está <strong>DISPONÍVEL!</strong>
+        <a href="https://namemc.com/${nick}" target="_blank">
+            <img src="./icons/favicon-30.png" alt="NameMC" title="NameMC">
+        </a>
+        <a href="https://capes.me/capes?user=${nick}" target="_blank">
+            <img src="./icons/capesme.png" alt="CapesME" title="CapesME">
+        </a>
+        <a href="https://skinmc.net/s/profiles?search=${nick}" target="_blank">
+            <img src="./icons/skinmc.png" alt="SkinMC" title="SkinMC">
+        </a>
+        <a href="https://crafty.gg/@${nick}" target="_blank">
+            <img src="./icons/craftygg.png" alt="CraftyGG" title="CraftyGG">
+        </a>
+        <a href="https://livzmc.net/user/${nick}" target="_blank">
+            <img src="./icons/livzmc.png" alt="LivzMc" title="LivzMc">
+        </a>
+        <a href="https://bedrock.lol/players/${nick}" target="_blank">
+            <img src="./icons/bedrocklol.jpg" alt="BedrockLOL" title="Bedrock.lol">
+        </a>
+        <a href="https://sky.shiiyu.moe/stats/${nick}" target="_blank">
+            <img src="./icons/skycrypt.png" alt="SkyCrypt" title="SkyCrypt">
+        </a>
+        <a href="https://plancke.io/hypixel/player/stats/${nick}" target="_blank">
+            <img src="./icons/planckeio.png" alt="BadLion" title="Plancke.io">
+        </a>
+        <a href="https://25karma.xyz/player/${nick}" target="_blank">
+            <img src="./icons/25karma.png" alt="25Karma" title="25Karma">
+        </a>
+        <a href="https://mush.com.br/player/${nick}" target="_blank">
+            <img src="./icons/mushmcperfil.png" alt="MushMC Perfil" title="MushMC Perfil">
+        </a>
+        <a href="https://forum.mush.com.br/user/${nick}" target="_blank">
+            <img src="./icons/mushmcforum.png" alt="MushMC Fórum" title="MushMC Fórum">
+        </a>
+        <a href="https://flamemc.com.br/player/${nick}" target="_blank">
+            <img src="./icons/flamemc.png" alt="FlameMC Perfil" title="FlameMC Perfil">
+        </a>
+        <a href="https://www.badlion.net/profile/minecraft/${nick}" target="_blank">
+            <img src="./icons/badlion.png" alt="BadLion" title="BadLion">
+        </a>
+        <a href="https://laby.net/@${nick}" target="_blank">
+            <img src="./icons/labymod.png" alt="LabyMod" title="LabyMod">
+        </a>
+    </div>`
+).join("");
+
+
+resultado.innerHTML = `✅ Nicks disponíveis (${disponiveisGlobal.length}):<br><div class="nick-list">${disponiveisHTML}</div>`;
+    document.getElementById("btnDownload").classList.remove("hidden");
+} else {
+const ocupadosHTML = nicks.map(nick =>
+    `<div class="nick-item">
+		<a  href="https://minotar.net/helm/${nick}/600.png" target="_blank">
+			<img src="https://minotar.net/helm/${nick}/600.png" class="img-fluid" alt="${nick} Cabeça" title="${nick} Cabeça">
+		</a>
+		<a  href="https://starlightskins.lunareclipse.studio/render/mojavatar/${nick}/full" target="_blank">
+			<img src="https://starlightskins.lunareclipse.studio/render/mojavatar/${nick}/full" class="img-fluid" alt="${nick} Mini" title="${nick} Mini">
+		</a>
+        ❌ O nick <strong>${nick}</strong> está <strong>OCUPADO</strong>
+        <a href="https://namemc.com/${nick}" target="_blank">
+            <img src="./icons/favicon-30.png" alt="NameMC" title="NameMC">
+        </a>
+        <a href="https://capes.me/capes?user=${nick}" target="_blank">
+            <img src="./icons/capesme.png" alt="CapesME" title="CapesME">
+        </a>
+        <a href="https://skinmc.net/s/profiles?search=${nick}" target="_blank">
+            <img src="./icons/skinmc.png" alt="SkinMC" title="SkinMC">
+        </a>
+        <a href="https://crafty.gg/@${nick}" target="_blank">
+            <img src="./icons/craftygg.png" alt="CraftyGG" title="CraftyGG">
+        </a>
+        <a href="https://livzmc.net/user/${nick}" target="_blank">
+            <img src="./icons/livzmc.png" alt="LivzMc" title="LivzMc">
+        </a>
+        <a href="https://bedrock.lol/players/${nick}" target="_blank">
+            <img src="./icons/bedrocklol.jpg" alt="BedrockLOL" title="Bedrock.lol">
+        </a>
+        <a href="https://sky.shiiyu.moe/stats/${nick}" target="_blank">
+            <img src="./icons/skycrypt.png" alt="SkyCrypt" title="SkyCrypt">
+        </a>
+        <a href="https://plancke.io/hypixel/player/stats/${nick}" target="_blank">
+            <img src="./icons/planckeio.png" alt="BadLion" title="Plancke.io">
+        </a>
+        <a href="https://25karma.xyz/player/${nick}" target="_blank">
+            <img src="./icons/25karma.png" alt="25Karma" title="25Karma">
+        </a>
+        <a href="https://mush.com.br/player/${nick}" target="_blank">
+            <img src="./icons/mushmcperfil.png" alt="MushMC Perfil" title="MushMC Perfil">
+        </a>
+        <a href="https://forum.mush.com.br/user/${nick}" target="_blank">
+            <img src="./icons/mushmcforum.png" alt="MushMC Fórum" title="MushMC Fórum">
+        </a>
+        <a href="https://flamemc.com.br/player/${nick}" target="_blank">
+            <img src="./icons/flamemc.png" alt="FlameMC Perfil" title="FlameMC Perfil">
+        </a>
+        <a href="https://www.badlion.net/profile/minecraft/${nick}" target="_blank">
+            <img src="./icons/badlion.png" alt="BadLion" title="BadLion">
+        </a>
+        <a href="https://laby.net/@${nick}" target="_blank">
+            <img src="./icons/labymod.png" alt="LabyMod" title="LabyMod">
+        </a>
+    </div>`
+).join("");
+
+resultado.innerHTML = `<div class="nick-list">${ocupadosHTML}</div>`;
+document.getElementById("btnDownload").classList.add("hidden");
+	}
+}
+    
     function baixarDisponiveis() {
         const blob = new Blob([disponiveisGlobal.join("\n")], { type: "text/plain" });
         const url = URL.createObjectURL(blob);
