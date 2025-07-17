@@ -253,7 +253,9 @@ body::-webkit-scrollbar {
         }
 
         try {
-            const res = await fetch(`https://api.mojang.com/users/profiles/minecraft/${nickInput}`);
+                    // URL CORRIGIDA COM O PROXY
+           const proxyUrl = `https://api.allorigins.win/raw?url=https://api.mojang.com/users/profiles/minecraft/${nickInput}`;
+           const res = await fetch(proxyUrl);
             if (res.status === 400) {
                 // Nick disponível (resposta 400 da API)
                 resultado.innerHTML = 
