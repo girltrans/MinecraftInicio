@@ -505,7 +505,7 @@ body::-webkit-scrollbar {
         let disponiveis = [];
         for (let nick of combos) {
             try {
-                const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
+                const res = await fetch(`https://api.ashcon.app/mojang/v2/user/${nick}`);
                 if (res.status === 400 || res.status === 500) {
                     disponiveis.push(nick);
                 } else if (res.ok) {
@@ -555,13 +555,13 @@ async function verificarLista() {
 
     for (let nick of nicks) {
         try {
-		const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
+		const res = await fetch(`https://api.ashcon.app/mojang/v2/user/${nick}`);
             if (res.status === 400 || res.status === 500) {
                 disponiveisGlobal.push(nick);
             } else if (res.ok) {
                 const data = await res.json();
                 // LÓGICA CORRIGIDA AQUI
-                if (data.code === "player.found") {
+                if (res.status === 200) {
                     ocupadosGlobal.push(data.data.player.username);
                 } else {
                     disponiveisGlobal.push(nick);
