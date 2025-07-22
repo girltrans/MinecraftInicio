@@ -1011,5 +1011,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 </script>
+<script>
+// Espera o documento HTML ser completamente carregado antes de executar o código.
+// Isso garante que o elemento com id="ign" já exista e que outros scripts
+// que possam modificá-lo já tenham terminado.
+document.addEventListener('DOMContentLoaded', function() {
 
-</body></html>
+    // Seleciona a caixa de texto para carregar o nick do jogador
+    const nickLoadInput = document.getElementById('ign');
+
+    // Adiciona um "ouvinte" que reage a qualquer alteração no texto
+    // A verificação 'if (nickLoadInput)' previne erros caso o elemento não seja encontrado.
+    if (nickLoadInput) {
+        nickLoadInput.addEventListener('input', function(event) {
+            // Regex que permite apenas letras, números e underscore.
+            const invalidCharsRegex = /[^a-zA-Z0-9_]/g;
+        
+            // Pega o valor atual, remove os caracteres inválidos e atualiza a caixa de texto.
+            this.value = this.value.replace(invalidCharsRegex, '');
+        });
+    }
+
+});
+</script>
+<script>
+    // Seleciona o container onde as opções da OptiFine irão aparecer
+    const optifineContainer = document.getElementById('optifine_options_container');
+
+    // Adiciona um "ouvinte" ao container que observa alterações nos seus filhos
+    optifineContainer.addEventListener('input', function(event) {
+        
+        // Verifica se a alteração foi no campo de texto para pegar a capa do usuário
+        // Usamos o 'placeholder' para identificar o campo, pois ele não tem um ID fixo
+        if (event.target.placeholder === 'Usuário Com Capa Optifne') {
+            const userInput = event.target;
+            
+            // A mesma "lista negra" de caracteres
+            const invalidCharsRegex = /[^a-zA-Z0-9_]/g;
+            
+            // Pega o valor atual, remove os caracteres inválidos e atualiza o campo
+            userInput.value = userInput.value.replace(invalidCharsRegex, '');
+        }
+    });
+</script>
+</body>
+</html>
