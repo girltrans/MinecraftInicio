@@ -681,7 +681,7 @@ function setAnimation(animName) {
 }
 
 async function getSkinUrlByPlayerName(playerName) {
-    const response = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`);
+    const response = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`, { cache: 'reload' });
     if (!response.ok) {
         throw new Error('A API retornou um erro: ' + response.statusText);
     }
