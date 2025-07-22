@@ -681,33 +681,57 @@ function setAnimation(animName) {
 }
 async function getSkinUrlByPlayerName(playerName) {
     try {
-        // Usamos a API do Mineskin, que é um serviço robusto e direto para isso.
-        // Ele lida com o cache e a comunicação com a Mojang de forma otimizada.
-        const response = await fetch(`https://api.mineskin.org/get/user/${playerName}`);
+        // ETAPA 1: Obter o UUID usando um ponto de acesso confiável e mantido pela comunidade.
+        // Este link é um worker da Cloudflare, projetado para ser um proxy rápido para a API da Mojang.
+        const uuidResponse = await fetch(`https://api.mc-api.net/v3/uuid/${playerName}`);
+        
+        if (uuidResponse.status === 404) {
+            // A própria API já retorna um 404 claro se o jogador não existir.
+            throw new Error('Jogador não encontrado.');
+        }
+        if (!uuidResponse.ok) {
+            throw new Error(`Erro ao buscar o UUID. Status: ${uuidResponse.status}`);
+        }
+        const uuidData = await uuidResponse.json();
+        const uuid = uuidData.uuid;
 
-        if (response.status === 404 || response.status === 400) {
-            // A API retorna 400 para nomes inválidos/não encontrados.
-            throw new Error('Jogador não encontrado pelo Mineskin.');
+        // ETAPA 2: Usar o UUID para obter o perfil.
+        // Para esta etapa, podemos voltar a um proxy mais simples, pois a chamada por UUID raramente falha.
+        // Vamos usar o cors.sh que agora sabemos que funciona com /?
+        const profileResponse = await fetch(`https://cors.sh/?https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`);
+        
+        if (!profileResponse.ok) {
+            throw new Error(`Erro ao buscar o perfil do jogador. Status: ${profileResponse.status}`);
+        }
+        const profileData = await profileResponse.json();
+
+        // ETAPA 3: Decodificar a skin (código inalterado, pois já é o método oficial)
+        const properties = profileData.properties;
+        if (!properties || properties.length === 0) {
+            throw new Error('O perfil do jogador não contém propriedades de textura.');
         }
 
-        if (!response.ok) {
-            throw new Error(`Erro na API do Mineskin. Status: ${response.status}`);
+        const textureProperty = properties.find(prop => prop.name === 'textures');
+        if (!textureProperty) {
+            throw new Error('Propriedade de textura não encontrada no perfil.');
         }
 
-        const playerData = await response.json();
-
-        // O caminho para a URL da skin é direto e mais simples.
-        const skinUrl = playerData.data.texture.url;
-
+        const textureData_encoded = textureProperty.value;
+        const textureData_decoded_string = atob(textureData_encoded);
+        const textureData_decoded_json = JSON.parse(textureData_decoded_string);
+        
+        const skinUrl = textureData_decoded_json.textures.SKIN.url;
+        
         if (!skinUrl) {
-            throw new Error('URL da skin não encontrada na resposta do Mineskin.');
+             throw new Error('URL da skin não encontrada nos dados de textura.');
         }
 
         return skinUrl;
 
     } catch (error) {
-        console.error("Erro detalhado ao buscar skin via Mineskin:", error);
-        throw error; // Lança o erro para a função getSkinByIGN.
+        // Agora, o erro exibido para o usuário será mais direto, como "Jogador não encontrado."
+        console.error("Erro detalhado no processo de busca da skin:", error);
+        throw error; // Lança o erro para que a função `getSkinByIGN` possa mostrá-lo.
     }
 }
 async function getSkinByIGN() {
