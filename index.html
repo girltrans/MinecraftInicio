@@ -220,13 +220,13 @@ body.theme-rainbow-bg {
             #ee7752,
             #e73c7e,
             #23a6d5,
-	    #FF0000,
-	    #FFA500,
-	    #FFFF00,
-	    #00FF00,
-	    #0000FF,
-	    #4B0082,
-	    #EE82EE,
+			#FF0000,
+			#FFA500,
+			#FFFF00,
+			#00FF00,
+			#0000FF,
+			#4B0082,
+			#EE82EE,
             #23d5ab
         ),
         url('images/background3.png');
@@ -681,16 +681,64 @@ function setAnimation(animName) {
 }
 
 async function getSkinUrlByPlayerName(playerName) {
-    const response = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`, { cache: 'reload' });
-    if (!response.ok) {
-        throw new Error('A API retornou um erro: ' + response.statusText);
-    }
-    const playerData = await response.json();
-    const uuid = playerData.id;
-    const skinUrl = `https://crafatar.com/skins/${uuid}`;
-    return skinUrl;
-}
+    try {
+        // ETAPA 1: Obter o UUID atual a partir do nick do jogador.
+        // Usamos a API oficial da Mojang através de um proxy para evitar problemas de CORS.
+        const uuidResponse = await fetch(`https://corsproxy.io/?https://api.mojang.com/users/profiles/minecraft/${playerName}`);
+        if (uuidResponse.status === 204 || uuidResponse.status === 404) {
+            // 204 (No Content) significa que o jogador não foi encontrado.
+            throw new Error('Jogador não encontrado pela API da Mojang.');
+        }
+        if (!uuidResponse.ok) {
+            throw new Error('Erro ao buscar o UUID do jogador.');
+        }
+        const uuidData = await uuidResponse.json();
+        const uuid = uuidData.id;
 
+        // ETAPA 2: Usar o UUID para obter o perfil completo e mais recente do jogador.
+        // Este perfil contém os dados da skin e da capa.
+        const profileResponse = await fetch(`https://corsproxy.io/?https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`);
+        if (!profileResponse.ok) {
+            throw new Error('Erro ao buscar o perfil do jogador.');
+        }
+        const profileData = await profileResponse.json();
+
+        // ETAPA 3: Decodificar os dados da skin.
+        // A URL da skin vem dentro de um JSON que está codificado em Base64.
+        const properties = profileData.properties;
+        if (!properties || properties.length === 0) {
+            throw new Error('O perfil do jogador não contém propriedades de textura.');
+        }
+
+        // Encontra a propriedade 'textures' e decodifica seu valor.
+        const textureProperty = properties.find(prop => prop.name === 'textures');
+        if (!textureProperty) {
+            // Isso acontece com contas muito antigas que nunca entraram no jogo moderno.
+            throw new Error('Propriedade de textura não encontrada no perfil.');
+        }
+
+        const textureData_encoded = textureProperty.value;
+        // atob() é a função do navegador para decodificar Base64.
+        const textureData_decoded_string = atob(textureData_encoded);
+        // JSON.parse() transforma a string decodificada em um objeto JavaScript.
+        const textureData_decoded_json = JSON.parse(textureData_decoded_string);
+
+        // Finalmente, pegamos a URL da skin de dentro do objeto.
+        const skinUrl = textureData_decoded_json.textures.SKIN.url;
+        
+        if (!skinUrl) {
+             throw new Error('URL da skin não encontrada nos dados de textura.');
+        }
+
+        return skinUrl;
+
+    } catch (error) {
+        // Se qualquer uma das etapas falhar, a mensagem de erro será exibida.
+        console.error("Erro detalhado no processo de busca da skin:", error);
+        // Re-lança o erro para que a função que chamou esta saiba que algo deu errado.
+        throw error;
+    }
+}
 async function getSkinByIGN() {
     const ign = document.getElementById('ign').value;
     const statusDiv = document.getElementById('ign_status');
