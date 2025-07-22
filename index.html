@@ -708,22 +708,30 @@ async function getSkinByIGN() {
     loadButton.textContent = 'Carregando...';
     statusDiv.textContent = ''; 
 
-    try {
-        const skinUrl = await getSkinUrlByPlayerName(ign);
-        const response = await fetch(skinUrl, { cache: 'reload' });
-        if (!response.ok) {
-            throw new Error('Falha ao buscar a imagem da skin na rede');
-        }
-        const imageBlob = await response.blob();
-        const localUrl = URL.createObjectURL(imageBlob);
-        setSkin(localUrl);
-        
-        // SALVA O NOME DO JOGADOR PARA USAR NO DOWNLOAD
-        currentPlayerIGN = ign; 
+	// CÓDIGO NOVO E ATUALIZADO
+	try {
+    const skinUrl = await getSkinUrlByPlayerName(ign);
+    
+    // Adiciona um parâmetro de tempo à URL para torná-la única
+    const uniqueUrl = `${skinUrl}?timestamp=${new Date().getTime()}`;
 
-        statusDiv.textContent = 'Skin Carregada Com Sucesso!';
-		    setTimeout(() => { statusDiv.textContent = ''; }, 3000);
-    } catch (error) {
+    // Faz a requisição com a URL única
+    const response = await fetch(uniqueUrl);
+
+    // O resto do código continua igual...
+    if (!response.ok) {
+        throw new Error('Falha ao buscar a imagem da skin na rede');
+    }
+    const imageBlob = await response.blob();
+    const localUrl = URL.createObjectURL(imageBlob);
+    setSkin(localUrl);
+    
+    // SALVA O NOME DO JOGADOR PARA USAR NO DOWNLOAD
+    currentPlayerIGN = ign; 
+
+    statusDiv.textContent = 'Skin Carregada Com Sucesso!';
+    setTimeout(() => { statusDiv.textContent = ''; }, 3000);
+} catch (error) {
         console.error("Falha ao buscar skin:", error);
         statusDiv.textContent = 'Jogador não Encontrado.';
     } finally {
