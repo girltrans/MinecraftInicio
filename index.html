@@ -527,16 +527,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const uploadCapeInput = document.getElementById('uploadCape');
-    if (uploadCapeInput) {
-        uploadCapeInput.addEventListener('change', function () {
-            const file = this.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = (e) => setCape(e.target.result);
-            reader.readAsDataURL(file);
-        });
-    }
+	const uploadCapeInput = document.getElementById('uploadCape');
+	if (uploadCapeInput) {
+    uploadCapeInput.addEventListener('change', function () {
+        // Pega a div de status do NICK para exibir a mensagem.
+        const statusDiv = document.getElementById('ign_status');
+        statusDiv.textContent = ''; // Limpa qualquer mensagem antiga
+
+        const file = this.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            setCape(e.target.result); // Carrega a capa
+            
+            // Exibe a mensagem "Capa Enviada Com Sucesso!" no local correto.
+            statusDiv.textContent = 'Capa Enviada Com Sucesso!';
+            
+            // Define um tempo para a mensagem desaparecer.
+            setTimeout(() => { statusDiv.textContent = ''; }, 3000);
+        };
+        reader.readAsDataURL(file);
+
+        // Limpa o input para permitir o reenvio do mesmo arquivo.
+        this.value = null;
+    });
+}
     
     const animationSelector = document.getElementById('animation_selector');
     if (animationSelector) {
