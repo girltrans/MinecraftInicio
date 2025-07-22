@@ -389,9 +389,9 @@ function exibirNickOcupado(player) {
 	async function verificarNick() {
 		const nick = document.getElementById('nick').value.trim();
 		resultado.innerHTML = "⏳ Verificando...";
-		const nickRegex = /^[a-zA-Z0-9_]{3,16}$/i;
+		const nickRegex = /^[a-zA-Z0-9_]{1,16}$/i;
 		if (!nickRegex.test(nick)) {
-			resultado.innerHTML = "❌ O nick deve ter 3 a 16 caracteres, apenas letras, números ou _";
+			resultado.innerHTML = "❌ O nick deve ter 1 a 16 caracteres, apenas letras, números ou _";
 			return;
 		}
 		const player = await buscarDadosJogador(nick);
@@ -553,6 +553,23 @@ window.addEventListener('scroll', function() {
     window.scrollTo(0, window.scrollY);
   }
 });
+</script>
+<script>
+    // Seleciona a caixa de texto do nick específico
+    const nickInput = document.getElementById('nick');
+
+    // Adiciona um "ouvinte" que reage a qualquer alteração no texto
+    nickInput.addEventListener('input', function(event) {
+        // Esta é a "lista negra" de caracteres.
+        // O regex /[^a-zA-Z0-9_]/g significa:
+        // [^...]    -> Encontre qualquer caractere que NÃO esteja neste conjunto
+        // a-zA-Z0-9_ -> As letras, números e o underscore
+        // g         -> Flag "global", para remover todas as ocorrências.
+        const invalidCharsRegex = /[^a-zA-Z0-9_]/g;
+        
+        // Pega o valor atual, remove os caracteres inválidos e atualiza a caixa de texto.
+        this.value = this.value.replace(invalidCharsRegex, '');
+    });
 </script>
 <script>
     // Seleciona a caixa de texto da lista de nicks
