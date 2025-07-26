@@ -717,6 +717,12 @@ async function getOfficialSkinUrl(playerName) {
     throw new Error('URL da skin não encontrada nos dados da textura');
   }
 
+  // A CORREÇÃO ESSENCIAL ESTÁ AQUI:
+  // Forçamos a URL a usar HTTPS para evitar o erro de "Mixed Content".
+  if (skinUrl.startsWith("http://")) {
+    skinUrl = skinUrl.replace("http://", "https://");
+  }
+
   // Retorna a URL final da textura
   return skinUrl;
 }
