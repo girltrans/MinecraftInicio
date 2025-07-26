@@ -425,8 +425,7 @@ let skinViewer = null;
 let currentCape = null;
 let currentSkin = null;
 let currentBackEquipment = "cape";
-let availableAnimations = {}; 
-let currentPlayerIGN = null;
+let availableAnimations = {};
 
 // A LINHA QUE FALTAVA FOI ADICIONADA AQUI
 let currentPlayerIGN = null;
@@ -434,7 +433,7 @@ let currentPlayerIGN = null;
 document.addEventListener('DOMContentLoaded', () => {
     // ===== INÍCIO DA ADIÇÃO DA LÓGICA DO TEMA =====
     const themeSwitcher = document.getElementById('theme_switcher');
-    
+
     function applyTheme(theme) {
         document.body.classList.remove('theme-light-bg', 'theme-rainbow-bg');
         if (theme === 'light') {
@@ -480,9 +479,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const fileExtension = file.name.split('.').pop().toLowerCase();
             if (!allowedExtensions.includes(fileExtension)) {
                 alert('Tipo De Arquivo Inválido. Por favor, use .png, .jpg ou .jpeg.');
-                return; 
+                return;
             }
-            
+
             const originalFilename = file.name.replace(/\.[^/.]+$/, "");
 
             const reader = new FileReader();
@@ -490,17 +489,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const dataUrl = event.target.result;
                 const img = new Image();
                 img.onload = function() {
-                    const isValidSize = (this.width === 32 && this.height === 64) || 
-                                        (this.width === 64 && this.height === 64) || 
+                    const isValidSize = (this.width === 32 && this.height === 64) ||
+                                        (this.width === 64 && this.height === 64) ||
                                         (this.width === 128 && this.height === 128);
                     if (isValidSize) {
                         setSkin(dataUrl);
-                        
+
                         // ALTERAÇÃO: Exibe a mensagem de sucesso e a faz desaparecer.
                         statusDiv.textContent = 'Skin Enviada Com Sucesso!';
                         setTimeout(() => { statusDiv.textContent = ''; }, 3000);
 
-                        currentPlayerIGN = originalFilename; 
+                        currentPlayerIGN = originalFilename;
                     } else {
                         alert('Dimensões de imagem inválidas. A skin deve ser 32x64, 64x64 ou 128x128 pixels.');
                     }
@@ -530,31 +529,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const uploadCapeInput = document.getElementById('uploadCape');
 	if (uploadCapeInput) {
-    uploadCapeInput.addEventListener('change', function () {
-        // Pega a div de status do NICK para exibir a mensagem.
-        const statusDiv = document.getElementById('ign_status');
-        statusDiv.textContent = ''; // Limpa qualquer mensagem antiga
+		uploadCapeInput.addEventListener('change', function () {
+			// Pega a div de status do NICK para exibir a mensagem.
+			const statusDiv = document.getElementById('ign_status');
+			statusDiv.textContent = ''; // Limpa qualquer mensagem antiga
 
-        const file = this.files[0];
-        if (!file) return;
+			const file = this.files[0];
+			if (!file) return;
 
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            setCape(e.target.result); // Carrega a capa
-            
-            // Exibe a mensagem "Capa Enviada Com Sucesso!" no local correto.
-            statusDiv.textContent = 'Capa Enviada Com Sucesso!';
-            
-            // Define um tempo para a mensagem desaparecer.
-            setTimeout(() => { statusDiv.textContent = ''; }, 3000);
-        };
-        reader.readAsDataURL(file);
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				setCape(e.target.result); // Carrega a capa
 
-        // Limpa o input para permitir o reenvio do mesmo arquivo.
-        this.value = null;
-    });
-}
-    
+				// Exibe a mensagem "Capa Enviada Com Sucesso!" no local correto.
+				statusDiv.textContent = 'Capa Enviada Com Sucesso!';
+
+				// Define um tempo para a mensagem desaparecer.
+				setTimeout(() => { statusDiv.textContent = ''; }, 3000);
+			};
+			reader.readAsDataURL(file);
+
+			// Limpa o input para permitir o reenvio do mesmo arquivo.
+			this.value = null;
+		});
+	} // A CHAVE EXTRA FOI REMOVIDA DAQUI
+
     const animationSelector = document.getElementById('animation_selector');
     if (animationSelector) {
         animationSelector.addEventListener('change', () => {
@@ -569,7 +568,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Nenhuma Skin Disponível.');
                 return;
             }
-            
+
             // Pega a div onde a mensagem será exibida
             const statusDiv = document.getElementById('ign_status');
             const filename = currentPlayerIGN ? `${currentPlayerIGN}.png` : 'skin.png';
@@ -612,73 +611,73 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     const skinForm = document.getElementById('skin-loader-form');
     if (skinForm) {
         skinForm.addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            getSkinByIGN(); 
+            event.preventDefault();
+            getSkinByIGN();
         });
     }
 });
 
 
 function initViewer() {
-  let initialSkin = "https://textures.minecraft.net/texture/3b60a1f6d562f52aaebbf1434f1de147933a3affe0e764fa49ea057536623cd3";
-  skinViewer = new skinview3d.SkinViewer({
-    canvas: document.getElementById("skin_container"),
-    width: 360,
-    height: 480,
-    skin: initialSkin
-  });
-  
-  skinViewer.background = 0x121212;
-  setAnimation('idle'); 
+ let initialSkin = "https://textures.minecraft.net/texture/3b60a1f6d562f52aaebbf1434f1de147933a3affe0e764fa49ea057536623cd3";
+ skinViewer = new skinview3d.SkinViewer({
+   canvas: document.getElementById("skin_container"),
+   width: 360,
+   height: 480,
+   skin: initialSkin
+ });
+
+ skinViewer.background = 0x121212;
+ setAnimation('idle');
 }
 
 async function setSkin(url) {
-  skinViewer.loadSkin(url); 
-  currentSkin = url;
-  document.getElementById('ign_status').textContent = '';
+ skinViewer.loadSkin(url);
+ currentSkin = url;
+ document.getElementById('ign_status').textContent = '';
 }
 
 async function setCape(url) {
-  currentCape = url;
-  const optifineStatus = document.getElementById('optifine_status');
-  if (optifineStatus) optifineStatus.textContent = '';
-  if (!skinViewer) return;
-  if (url === null) {
-    skinViewer.loadCape(null);
-    return;
-  }
-  if (optifineStatus) optifineStatus.textContent = '';
-  try {
-    console.log("Tentando carregar capa de:", url);
-    await skinViewer.loadCape(url, { backEquipment: currentBackEquipment });
-    if (optifineStatus) optifineStatus.textContent = '';
-  } catch (error) {
-    console.error("Falha ao carregar a capa:", error);
-    alert("Certifique-se Que É Uma Capa Compatível. / Certifique-se Que o Usuário Está Correto! Numeros, Maiúsculas e Minúsculas.");
-    if (optifineStatus) optifineStatus.textContent = '';
-  }
+ currentCape = url;
+ const optifineStatus = document.getElementById('optifine_status');
+ if (optifineStatus) optifineStatus.textContent = '';
+ if (!skinViewer) return;
+ if (url === null) {
+   skinViewer.loadCape(null);
+   return;
+ }
+ if (optifineStatus) optifineStatus.textContent = '';
+ try {
+   console.log("Tentando carregar capa de:", url);
+   await skinViewer.loadCape(url, { backEquipment: currentBackEquipment });
+   if (optifineStatus) optifineStatus.textContent = '';
+ } catch (error) {
+   console.error("Falha ao carregar a capa:", error);
+   alert("Certifique-se Que É Uma Capa Compatível. / Certifique-se Que o Usuário Está Correto! Numeros, Maiúsculas e Minúsculas.");
+   if (optifineStatus) optifineStatus.textContent = '';
+ }
 }
 
 function toggleElytra() {
-  const checked = document.getElementById('elytra_checkbox').checked;
-  currentBackEquipment = checked ? "elytra" : "cape";
-  if (skinViewer && currentCape) {
-    skinViewer.loadCape(currentCape, { backEquipment: currentBackEquipment });
-  }
+ const checked = document.getElementById('elytra_checkbox').checked;
+ currentBackEquipment = checked ? "elytra" : "cape";
+ if (skinViewer && currentCape) {
+   skinViewer.loadCape(currentCape, { backEquipment: currentBackEquipment });
+ }
 }
 
 function setAnimation(animName) {
-  if (!skinViewer) return;
-  if (!animName || animName === 'none') {
-    skinViewer.animation = null;
-  } else {
-    skinViewer.animation = availableAnimations[animName];
-    if (skinViewer.animation) skinViewer.animation.speed = 1;
-  }
+ if (!skinViewer) return;
+ if (!animName || animName === 'none') {
+   skinViewer.animation = null;
+ } else {
+   skinViewer.animation = availableAnimations[animName];
+   if (skinViewer.animation) skinViewer.animation.speed = 1;
+ }
 }
 
 async function getSkinUrlByPlayerName(playerName) {
@@ -696,9 +695,9 @@ async function getSkinByIGN() {
     const ign = document.getElementById('ign').value;
     const statusDiv = document.getElementById('ign_status');
     const loadButton = document.querySelector('#skin-loader-form button');
-    
-	
-    currentPlayerIGN = null; 
+
+
+    currentPlayerIGN = null;
 
     if (!ign) {
         statusDiv.textContent = 'Por favor, digite um nick.';
@@ -707,7 +706,7 @@ async function getSkinByIGN() {
 
     loadButton.disabled = true;
     loadButton.textContent = 'Carregando...';
-    statusDiv.textContent = ''; 
+    statusDiv.textContent = '';
 
 // CÓDIGO NOVO E ATUALIZADO (COM AMBAS AS TÉCNICAS)
 try {
@@ -737,6 +736,7 @@ try {
 } finally {
     loadButton.disabled = false;
     loadButton.textContent = 'Carregar Nick';
+}
 }
 </script>
 <script>
