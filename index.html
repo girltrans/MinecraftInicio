@@ -684,7 +684,7 @@ async function getOfficialSkinUrl(playerName) {
   // --- ETAPA 1: Converter Nome de Usuário para UUID ---
   const uuidResponse = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`, { cache: 'reload' });
   if (!uuidResponse.ok) {
-    throw new Error('Jogador não encontrado');
+    throw new Error('Tente Novamente, Atualizando Skin!');
   }
   const playerData = await uuidResponse.json();
   const uuid = playerData.id;
@@ -694,7 +694,7 @@ async function getOfficialSkinUrl(playerName) {
   }
 
   // --- ETAPA 2: Usar o UUID para buscar o perfil completo ---
-  const profileResponse = await fetch(`https://api.gapple.pw/cors/sessionserver/${uuid}`);
+  const profileResponse = await fetch(`https://api.gapple.pw/cors/sessionserver/${uuid}`, { cache: 'reload' });
   if (!profileResponse.ok) {
     throw new Error('Não foi possível obter o perfil da sessão do jogador');
   }
