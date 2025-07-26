@@ -421,6 +421,7 @@ body.theme-light-bg .github img {
 <script src="js/skinview3d.bundle.js"></script>
 <script>
 // SCRIPTS ORIGINAIS (COM FUNÇÃO setCape MELHORADA)
+let urlDaSkinEmCache = null; 
 let skinViewer = null;
 let currentCape = null;
 let currentSkin = null;
@@ -691,12 +692,16 @@ async function getSkinUrlByPlayerName(playerName) {
     return skinUrl;
 }
 
+// =========================================================================
+// SUBSTITUA SUA FUNÇÃO getSkinByIGN INTEIRA POR ESTE BLOCO DE CÓDIGO ABAIXO
+// =========================================================================
+
+// NOVA FUNÇÃO PRINCIPAL
 async function getSkinByIGN() {
     const ign = document.getElementById('ign').value;
     const statusDiv = document.getElementById('ign_status');
     const loadButton = document.querySelector('#skin-loader-form button');
-
-
+    
     currentPlayerIGN = null;
 
     if (!ign) {
@@ -706,37 +711,81 @@ async function getSkinByIGN() {
 
     loadButton.disabled = true;
     loadButton.textContent = 'Carregando...';
-    statusDiv.textContent = '';
+    statusDiv.textContent = 'Limpando cache antigo...'; // Mensagem inicial
 
-// CÓDIGO NOVO E ATUALIZADO (COM AMBAS AS TÉCNICAS)
-try {
-    const skinUrl = await getSkinUrlByPlayerName(ign);
+    try {
+        // Etapa 1: Descobrir a URL da skin que vamos buscar
+        const skinUrl = await getSkinUrlByPlayerName(ign);
 
-    // TÉCNICA 1: Adiciona um parâmetro de tempo à URL para torná-la única
-    const uniqueUrl = `${skinUrl}?timestamp=${new Date().getTime()}`;
+        // Etapa 2: Usar nossa nova função para buscar e gerenciar o cache
+        statusDiv.textContent = 'Buscando nova skin...';
+        const response = await fetchAndCacheSkin(skinUrl);
 
-    // TÉCNICA 2: Faz a requisição com a URL única E com a opção de forçar o reload
-    const response = await fetch(uniqueUrl, { cache: 'reload' });
+        // Etapa 3: Processar a resposta e exibir (como antes)
+        if (!response.ok) {
+            throw new Error(`Falha ao buscar a imagem da skin: ${response.statusText}`);
+        }
+        const imageBlob = await response.blob();
+        const localUrl = URL.createObjectURL(imageBlob);
+        setSkin(localUrl);
 
-    if (!response.ok) {
-        throw new Error('Falha ao buscar a imagem da skin na rede');
+        // SALVA O NOME DO JOGADOR PARA USAR NO DOWNLOAD
+        currentPlayerIGN = ign;
+
+        statusDiv.textContent = 'Skin Carregada Com Sucesso!';
+        setTimeout(() => { statusDiv.textContent = ''; }, 3000);
+
+    } catch (error) {
+        console.error("Falha ao buscar e gerenciar cache da skin:", error);
+        statusDiv.textContent = 'Jogador não Encontrado ou falha na rede.';
+    } finally {
+        loadButton.disabled = false;
+        loadButton.textContent = 'Carregar Nick';
     }
-    const imageBlob = await response.blob();
-    const localUrl = URL.createObjectURL(imageBlob);
-    setSkin(localUrl);
-
-    // SALVA O NOME DO JOGADOR PARA USAR NO DOWNLOAD
-    currentPlayerIGN = ign;
-
-    statusDiv.textContent = 'Skin Carregada Com Sucesso!';
-    setTimeout(() => { statusDiv.textContent = ''; }, 3000);
-} catch (error) {
-    console.error("Falha ao buscar skin:", error);
-    statusDiv.textContent = 'Jogador não Encontrado.';
-} finally {
-    loadButton.disabled = false;
-    loadButton.textContent = 'Carregar Nick';
 }
+
+// NOVA FUNÇÃO AUXILIAR 1: Limpa o cache da skin anterior
+async function limparCacheDaSkinAnterior() {
+    // Se não há URL de skin antiga guardada, não faz nada
+    if (!urlDaSkinEmCache) {
+        return;
+    }
+
+    try {
+        const cache = await caches.open('cache-de-skins-v1'); // Abre nossa "caixa" de cache
+        await cache.delete(urlDaSkinEmCache); // Deleta a entrada da URL antiga
+        console.log('Cache da skin anterior removido:', urlDaSkinEmCache);
+        urlDaSkinEmCache = null; // Limpa a variável
+    } catch (e) {
+        console.error("Erro ao limpar o cache antigo:", e);
+    }
+}
+
+// NOVA FUNÇÃO AUXILIAR 2: Busca a nova skin e gerencia o cache
+async function fetchAndCacheSkin(skinUrl) {
+    // ETAPA EXTRA: Limpa o cache da skin pesquisada anteriormente
+    await limparCacheDaSkinAnterior();
+    
+    const cache = await caches.open('cache-de-skins-v1'); // Abre nossa "caixa" de cache
+
+    // Importante: Usamos um proxy CORS para poder salvar a resposta no cache
+    const urlViaProxy = `https://corsproxy.io/?${encodeURIComponent(skinUrl)}`;
+
+    console.log("Buscando skin via proxy:", urlViaProxy);
+    const response = await fetch(urlViaProxy);
+
+    // Se a busca foi bem-sucedida, salvamos no cache
+    if (response.ok) {
+        // 'response.clone()' é necessário porque uma resposta só pode ser lida uma vez.
+        // Clonamos para que uma cópia vá para o cache e a outra possa ser usada pelo programa.
+        await cache.put(skinUrl, response.clone());
+        console.log('Nova skin salva no cache:', skinUrl);
+        
+        // Guarda a URL da skin que acabamos de salvar para poder deletá-la na próxima vez
+        urlDaSkinEmCache = skinUrl; 
+    }
+
+    return response; // Retorna a resposta original para ser usada
 }
 </script>
 <script>
