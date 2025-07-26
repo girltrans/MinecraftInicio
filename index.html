@@ -708,28 +708,34 @@ async function getSkinByIGN() {
     loadButton.textContent = 'Carregando...';
     statusDiv.textContent = ''; 
 
-    try {
-        const skinUrl = await getSkinUrlByPlayerName(ign);
-        const response = await fetch(skinUrl, { cache: 'reload' });
-        if (!response.ok) {
-            throw new Error('Falha ao buscar a imagem da skin na rede');
-        }
-        const imageBlob = await response.blob();
-        const localUrl = URL.createObjectURL(imageBlob);
-        setSkin(localUrl);
-        
-        // SALVA O NOME DO JOGADOR PARA USAR NO DOWNLOAD
-        currentPlayerIGN = ign; 
+// CÓDIGO NOVO E ATUALIZADO (COM AMBAS AS TÉCNICAS)
+try {
+    const skinUrl = await getSkinUrlByPlayerName(ign);
 
-        statusDiv.textContent = 'Skin Carregada Com Sucesso!';
-		    setTimeout(() => { statusDiv.textContent = ''; }, 3000);
-    } catch (error) {
-        console.error("Falha ao buscar skin:", error);
-        statusDiv.textContent = 'Jogador não Encontrado.';
-    } finally {
-        loadButton.disabled = false;
-        loadButton.textContent = 'Carregar Nick';
+    // TÉCNICA 1: Adiciona um parâmetro de tempo à URL para torná-la única
+    const uniqueUrl = `${skinUrl}?timestamp=${new Date().getTime()}`;
+
+    // TÉCNICA 2: Faz a requisição com a URL única E com a opção de forçar o reload
+    const response = await fetch(uniqueUrl, { cache: 'reload' });
+
+    if (!response.ok) {
+        throw new Error('Falha ao buscar a imagem da skin na rede');
     }
+    const imageBlob = await response.blob();
+    const localUrl = URL.createObjectURL(imageBlob);
+    setSkin(localUrl);
+
+    // SALVA O NOME DO JOGADOR PARA USAR NO DOWNLOAD
+    currentPlayerIGN = ign;
+
+    statusDiv.textContent = 'Skin Carregada Com Sucesso!';
+    setTimeout(() => { statusDiv.textContent = ''; }, 3000);
+} catch (error) {
+    console.error("Falha ao buscar skin:", error);
+    statusDiv.textContent = 'Jogador não Encontrado.';
+} finally {
+    loadButton.disabled = false;
+    loadButton.textContent = 'Carregar Nick';
 }
 </script>
 <script>
