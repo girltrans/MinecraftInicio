@@ -757,7 +757,7 @@ async function getSkinByIGN() {
 		    setTimeout(() => { statusDiv.textContent = ''; }, 3000);
     } catch (error) {
         console.error("Falha ao buscar skin:", error);
-        statusDiv.textContent = 'Jogador não Encontrado.';
+        statusDiv.textContent = 'Jogador não Encontrado Ou Atualizando Skin.';
     } finally {
         loadButton.disabled = false;
         loadButton.textContent = 'Carregar Nick';
