@@ -706,23 +706,19 @@ async function getOfficialSkinUrl(playerName) {
     throw new Error('Propriedade de texturas não encontrada no perfil');
   }
 
-  // Decodifica o valor que está em Base64
   const decodedValue = atob(texturesProperty.value);
-  // Transforma o texto decodificado em um objeto JSON
   const textureData = JSON.parse(decodedValue);
 
-  // Extrai a URL final da skin
-  const skinUrl = textureData.textures?.SKIN?.url;
+  // Extrai a URL final da skin (insegura)
+  let skinUrl = textureData.textures?.SKIN?.url; // Mudamos para 'let' para poder modificar
   if (!skinUrl) {
     throw new Error('URL da skin não encontrada nos dados da textura');
   }
-
-  // A CORREÇÃO ESSENCIAL ESTÁ AQUI:
-  // Forçamos a URL a usar HTTPS para evitar o erro de "Mixed Content".
+  // Verifica se a URL começa com "http://"
   if (skinUrl.startsWith("http://")) {
+    // Se começar, substitui "http://" por "https://"
     skinUrl = skinUrl.replace("http://", "https://");
   }
-
   // Retorna a URL final da textura
   return skinUrl;
 }
