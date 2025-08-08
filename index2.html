@@ -61,6 +61,17 @@ body.theme-light-bg .github img {
 body::-webkit-scrollbar {
   display: none;
 }
+body {
+  overflow-x: auto;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+body {
+  scrollbar-width: none;
+  /* Também para IE e Edge (versões mais antigas) */
+  -ms-overflow-style: none;
+}
     </style>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -507,7 +518,27 @@ function exibirNickOcupado(player) {
 		return results;
 	}
 </script>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+    function isMobileDevice() {
+        // Expressão regular para testar os tipos de dispositivos móveis mais comuns
+        return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
 
+    // Verifica se o código está sendo executado em um navegador (e não no servidor)
+    if (typeof window !== 'undefined' && isMobileDevice()) {
+        
+        // Rola a página horizontalmente para o final do conteúdo (extrema direita)
+        // O valor document.body.scrollWidth representa a largura total rolável da página.
+        window.scrollTo({
+            top: 0, // Mantém a posição vertical no topo
+            left: document.body.scrollWidth, // Move a posição horizontal para o final
+            behavior: 'auto' // 'auto' faz a rolagem ser instantânea
+        });
+        
+    }
+});
+</script>
 <script>
     document.getElementById("nick").addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
