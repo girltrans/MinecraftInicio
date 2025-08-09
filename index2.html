@@ -5,9 +5,11 @@
 	<link rel="icon" href="images2/favicon.png"/>
     <title>Minecraft Início</title>
     <style>
-    html, body {
-    overscroll-behavior-x: contain;
-    }
+	html, body {
+	width: 100%;
+	overflow-x: hidden; /* Proíbe a rolagem NO CORPO da página */
+	overscroll-behavior-x: contain; /* Mantém a correção de gesto */
+	}
     body {
     background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
     url('images2/background.png') no-repeat center center fixed;
@@ -127,16 +129,6 @@
 	.reload-button:hover {
     opacity: 1;
     transform: rotate(90deg); /* Gira o ícone ao passar o mouse */
-	}
-	#resultado {
-	overflow-x: auto; /* Habilita a rolagem horizontal */
-	-webkit-overflow-scrolling: touch; /* Melhora a rolagem no iOS */
-	scrollbar-width: none; /* Esconde a barra no Firefox */
-	-ms-overflow-style: none; /* Esconde a barra no IE/Edge */
-	}
-
-	#resultado::-webkit-scrollbar {
-	display: none; /* Esconde a barra no Chrome/Safari */
 	}
 	</style>
 </head>
@@ -265,6 +257,37 @@
             else if (radio.value === '3') formLista.classList.remove('hidden');
         });
     });
+	function ajustarLayoutMobile() {
+    // Só executa em dispositivos móveis
+    if (!/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+        return;
+    }
+
+    const resultadoDiv = document.getElementById('resultado');
+    const nickItem = resultadoDiv.querySelector('.nick-item');
+    const reloadButton = resultadoDiv.querySelector('.reload-button');
+
+    if (!resultadoDiv || !nickItem || !reloadButton) {
+        return; // Sai se algum elemento não for encontrado
+    }
+
+    // 1. Força o contêiner a ser rolável e o conteúdo a ficar em linha única
+    resultadoDiv.style.overflowX = 'auto';
+    resultadoDiv.style.webkitOverflowScrolling = 'touch';
+    nickItem.style.whiteSpace = 'nowrap';
+    nickItem.style.display = 'inline-flex';
+    nickItem.style.alignItems = 'center';
+
+    // 2. Mede a margem negativa exata do botão de recarregar
+    const margemNegativa = parseFloat(window.getComputedStyle(reloadButton).marginLeft);
+    const offset = Math.abs(margemNegativa); // Converte -47px para 47
+
+    // 3. Cria um "espaço seguro" à esquerda do contêiner rolável
+    resultadoDiv.style.paddingLeft = `${offset}px`;
+
+    // 4. Rola a área de resultados para a posição exata que faz o botão aparecer
+    resultadoDiv.scrollLeft = offset;
+	}
 	async function buscarDadosJogador(nomeJogador) {
 		try {
 			const response = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${nomeJogador}`);
@@ -281,7 +304,7 @@
 			return null;
 		}
 	}
-function recarregarAvatar(uuid) {
+	function recarregarAvatar(uuid) {
     // --- INÍCIO DO MODO DE DIAGNÓSTICO ---
     console.log("--- Função recarregarAvatar iniciada ---");
     
@@ -339,8 +362,8 @@ function recarregarAvatar(uuid) {
     imgMini.src = novaUrlMini;
     
     console.log("--- Função recarregarAvatar concluída ---");
-}
-function exibirNickOcupado(player) {
+	}
+	function exibirNickOcupado(player) {
     const nomeJogador = player.name;
     const uuid = player.uuid;
 
@@ -375,7 +398,7 @@ function exibirNickOcupado(player) {
             <a href="https://www.badlion.net/profile/minecraft/${nomeJogador}" target="_blank"><img src="./icons/badlion.png" alt="BadLion" title="BadLion"></a>
             <a href="https://laby.net/@${nomeJogador}" target="_blank"><img src="./icons/labymod.png" alt="LabyMod" title="LabyMod"></a>
         </div>`;
-}
+	}
 
 	function exibirNickDisponivel(nomeJogador) {
 		return `
@@ -414,6 +437,7 @@ function exibirNickOcupado(player) {
 		} else {
 			resultado.innerHTML = exibirNickDisponivel(nick);
 		}
+		    ajustarLayoutMobile();
 	}
 	
 	async function verificarLista() {
@@ -452,6 +476,7 @@ function exibirNickOcupado(player) {
 		} else {
 			resultado.innerHTML = finalHTML;
 		}
+		ajustarLayoutMobile();
 	}
 	
 	function baixarDisponiveis() {
