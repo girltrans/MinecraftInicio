@@ -1094,6 +1094,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <select id="idiomaSelect" onchange="changeLanguage(this.value)" 
       style="padding:5px;border-radius:5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right: 20px;position:relative;top:8px;background:#121212;cursor:pointer;">
       <option value="pt-BR">Português 🇧🇷</option>
+	  <option value="pt-PT">Português 🇵🇹</option>
       <option value="es">Español 🇪🇸</option>
       <option value="en">English 🇺🇸</option>
       <option value="fr">Français 🇫🇷</option>
@@ -1101,6 +1102,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <option value="ko">한국어 🇰🇷</option>
       <option value="zh-CN">中文-简体 🇨🇳</option>
       <option value="zh-TW">中文-繁體 🇨🇳</option>
+	  <option value="ru">Русский 🇷🇺</option>
     </select>
   `;
   // Coloca logo após o seletor de temas
@@ -1117,13 +1119,15 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
 	const translations = {
 	  "pt-BR": { titulo: "Bem-vindo ao site", descricao: "Este é o conteúdo inicial." },
+	  "pt-PT": { titulo: "Bem-vindo ao site", descricao: "Este é o conteúdo inicial." },
 	  "en": { titulo: "Welcome to the website", descricao: "This is the initial content." },
 	  "es": { titulo: "Bienvenido al sitio web", descricao: "Este es el contenido inicial." },
 	  "fr": { titulo: "Bienvenue sur le site", descricao: "Ceci est le contenu initial." },
 	  "ja": { titulo: "ウェブサイトへようこそ", descricao: "これは初期コンテンツです。" },
 	  "ko": { titulo: "웹사이트에 오신 것을 환영합니다", descricao: "이것은 초기 콘텐츠입니다." },
 	  "zh-CN": { titulo: "欢迎来到网站", descricao: "这是初始内容。" },
-	  "zh-TW": { titulo: "歡迎來到網站", descricao: "這是初始內容。" }
+	  "zh-TW": { titulo: "歡迎來到網站", descricao: "這是初始內容。" },
+	  "ru": { titulo: "Добро пожаловать на сайт", descricao: "Это исходное содержание." }
 	};
 	    function changeLanguage(lang) {
 	    // Salva a escolha no navegador
@@ -1146,4 +1150,3 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
-
