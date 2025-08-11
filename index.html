@@ -221,13 +221,13 @@ body.theme-rainbow-bg {
             #ee7752,
             #e73c7e,
             #23a6d5,
-	    	#FF0000,
-	    	#FFA500,
-	    	#FFFF00,
-	    	#00FF00,
-	    	#0000FF,
-	    	#4B0082,
-	    	#EE82EE,
+			#FF0000,
+			#FFA500,
+			#FFFF00,
+			#00FF00,
+			#0000FF,
+			#4B0082,
+			#EE82EE,
             #23d5ab
         ),
         url('images/background3.png');
@@ -246,11 +246,11 @@ body.theme-light-bg .github img {
 <body>
     <nav class="navbar">
     <div class="theme-selector">
-        <select id="theme_switcher" title="Mudar Tema Do Site" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;/* -webkit-box-align: center; */">
-            <option value="dark">🌙 Escuro</option>
-            <option value="light">☀️ Claro</option>
-            <option value="rainbow">🌈 Arco-Íris</option>
-        </select>
+	<select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;/* -webkit-box-align: center; */" title="Mudar Tema Do Site">
+	<option value="dark">🌙 Escuro</option>
+	<option value="light">☀️ Claro</option>
+	<option value="rainbow">🌈 Arco-Íris</option>
+	</select>
     </div>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&amp;display=swap" rel="stylesheet">
     <a href="https://24082004.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;">
@@ -1088,6 +1088,61 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const langSelector = `
+    <select id="idiomaSelect" onchange="changeLanguage(this.value)" 
+      style="padding:5px;border-radius:5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right: 20px;position:relative;top:8px;background:#121212;">
+      <option value="pt-BR">Português 🇧🇷</option>
+      <option value="es">Español 🇪🇸</option>
+      <option value="en">English 🇺🇸</option>
+      <option value="fr">Français 🇫🇷</option>
+      <option value="ja">日本語 🇯🇵</option>
+      <option value="ko">한국어 🇰🇷</option>
+      <option value="zh-CN">中文-简体 🇨🇳</option>
+      <option value="zh-TW">中文-繁體 🇨🇳</option>
+    </select>
+  `;
+  // Coloca logo após o seletor de temas
+  const themeElement = document.querySelector("#theme_switcher"); 
+  if (themeElement) {
+    themeElement.insertAdjacentHTML("beforebegin", langSelector);
+  }
+
+  // Carrega idioma salvo
+  const savedLang = localStorage.getItem("siteLang") || "pt-BR";
+  document.getElementById("idiomaSelect").value = savedLang;
+});
+</script>
+<script>
+	const translations = {
+	  "pt-BR": { titulo: "Bem-vindo ao site", descricao: "Este é o conteúdo inicial." },
+	  "en": { titulo: "Welcome to the website", descricao: "This is the initial content." },
+	  "es": { titulo: "Bienvenido al sitio web", descricao: "Este es el contenido inicial." },
+	  "fr": { titulo: "Bienvenue sur le site", descricao: "Ceci est le contenu initial." },
+	  "ja": { titulo: "ウェブサイトへようこそ", descricao: "これは初期コンテンツです。" },
+	  "ko": { titulo: "웹사이트에 오신 것을 환영합니다", descricao: "이것은 초기 콘텐츠입니다." },
+	  "zh-CN": { titulo: "欢迎来到网站", descricao: "这是初始内容。" },
+	  "zh-TW": { titulo: "歡迎來到網站", descricao: "這是初始內容。" }
+	};
+	    function changeLanguage(lang) {
+	    // Salva a escolha no navegador
+	    localStorage.setItem("siteLang", lang);
+	    // Aplica a tradução
+	    const elements = document.querySelectorAll("[data-i18n]");
+	    elements.forEach(el => {
+		const key = el.getAttribute("data-i18n");
+		if (translations[lang] && translations[lang][key]) {
+		  el.textContent = translations[lang][key];
+		 }
+	   });
+	  }
+		// Quando a página carregar, aplica o idioma salvo
+		document.addEventListener("DOMContentLoaded", () => {
+	    const savedLang = localStorage.getItem("siteLang") || "pt-BR";
+	    document.querySelector("#idiomaSelect").value = savedLang; // define no seletor
+	    changeLanguage(savedLang);
+	});
+</script>
 </body>
 </html>
-
