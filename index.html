@@ -24,15 +24,15 @@
     width: 12px;
     height: 12px;
     box-shadow:0 2px 18px #8b1616;
-    border-radius: 50%; /* Deixa o elemento redondo */
-    background-color: #1e1e1e; /* Cor de fundo quando não está clicado */
+    border-radius: 50%;
+    background-color: #1e1e1e;
     cursor: pointer;
     display: inline-block;
     position: relative;
-    vertical-align: middle; /* Alinha com o texto */
+    vertical-align: middle;
 	}
 	input[type="radio"]:checked {
-    background-color: #E8B901; /* O meio fica amarelo */
+    background-color: #E8B901;
 	}
 	input[type="radio"], input[type="radio"]:checked {
     transition: all 0.2s ease-in-out;
@@ -231,8 +231,8 @@ body.theme-rainbow-bg {
     animation: rainbow-animation 15s ease infinite;
 }
 body.theme-light-bg .github img {
-    filter: invert(0);  /* Remove a inversão, fazendo o ícone voltar a ser preto */
-    opacity: 0.6;       /* Aumenta a opacidade para que ele fique bem visível */
+    filter: invert(0);
+    opacity: 0.6;
 }
     </style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -240,7 +240,7 @@ body.theme-light-bg .github img {
 <body>
 <nav class="navbar">
 <div class="theme-selector">
-<select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;/* -webkit-box-align: center; */" title="Mudar Tema Do Site">
+<select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;" title="Mudar Tema Do Site">
 <option value="dark" data-i18n="tituloEscuro">🌙 Escuro</option>
 <option value="light" data-i18n="tituloClaro" >☀️ Claro</option>
 <option value="rainbow" data-i18n="tituloArcoIris">🌈 Arco-Íris</option>
@@ -248,7 +248,7 @@ body.theme-light-bg .github img {
 </div>
 <link href="https://fonts.googleapis.com/css2?family=Righteous&amp;display=swap" rel="stylesheet"/>
 <a href="https://24082004.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;">
-<img alt="Favicon Logo" src="images/favicon.png" style="width: 3.2rem;height: 3.2rem;border-radius: 8px;/* box-shadow: 0 2px 10px #0004; */"/>
+<img alt="Favicon Logo" src="images/favicon.png" style="width: 3.2rem;height: 3.2rem;border-radius: 8px;"/>
 <span data-i18n="tituloInicio" style="font-family: 'Righteous', cursive; font-weight: 700; font-size: 1.9rem; color: #e8b901; margin-left: 0.6rem; user-select: none;">Início</span>
 </a>
 <a href="./index2.html" data-i18n="tituloMinecraftVerificarNicks" style="color: #8B1616;font-family: 'Righteous', cursive;font-size: 1.2rem;font-weight: 600;padding: 0.5rem 1.5rem;border-radius: 12px;text-decoration: none;transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Minecraft Verificar Nicks</a>
@@ -259,7 +259,7 @@ body.theme-light-bg .github img {
 <div class="content">
 <a class="github" href="https://github.com/girltrans" rel="nofollow" target="_blank" title="GitHub Repositório"><img alt="GitHub Icon" src="./icons/github.png" title="GitHub"/></a>
 <h1 class="" data-i18n="tituloTestarSkin" style="text-align:center; color:#e8b901; margin-top:2rem; font-family: 'Righteous', cursive; font-size:2.4rem;">Testar Skin e Capa</h1>
-<div class="studio-container" style="max-width: 1100px;/* background: rgb(0, 0, 0); */border-radius: 22px;box-shadow: rgba(0, 0, 0, 0.333) 0px 8px 32px;padding: 2.5rem 2rem 0rem;display: flex;flex-wrap: wrap;gap: 2.5rem;align-items: flex-start;justify-content: center;">
+<div class="studio-container" style="max-width: 1100px;border-radius: 22px;box-shadow: rgba(0, 0, 0, 0.333) 0px 8px 32px;padding: 2.5rem 2rem 0rem;display: flex;flex-wrap: wrap;gap: 2.5rem;align-items: flex-start;justify-content: center;">
 <div class="viewer-panel" style="flex:1 1 360px; min-width:340px; max-width:420px; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
 <canvas data-engine="three.js r156" height="480" id="skin_container" style="border-radius: 18px; background: rgb(18, 18, 18); box-shadow: rgb(139, 22, 22) 0px 2px 18px; cursor: move; touch-action: none; width: 360px; height: 480px;" width="360"></canvas>
 <form class="search-box" id="skin-loader-form" style="display:flex; gap:0.5rem; width:100%; justify-content:center;">
@@ -405,18 +405,14 @@ body.theme-light-bg .github img {
 </style>
 <script src="js/skinview3d.bundle.js"></script>
 <script>
-// SCRIPTS ORIGINAIS (COM FUNÇÃO setCape MELHORADA)
 let skinViewer = null;
 let currentCape = null;
 let currentSkin = null;
 let currentBackEquipment = "cape";
 let availableAnimations = {}; 
-
-// A LINHA QUE FALTAVA FOI ADICIONADA AQUI
 let currentPlayerIGN = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ===== INÍCIO DA ADIÇÃO DA LÓGICA DO TEMA =====
     const themeSwitcher = document.getElementById('theme_switcher');
     
     function applyTheme(theme) {
@@ -436,7 +432,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('site_theme') || 'dark';
     themeSwitcher.value = savedTheme;
     applyTheme(savedTheme);
-    // ===== FIM DA ADIÇÃO DA LÓGICA DO TEMA =====
 
 
     availableAnimations = {
@@ -454,9 +449,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadSkinInput = document.getElementById('upload_skin');
     if (uploadSkinInput) {
         uploadSkinInput.addEventListener('change', function () {
-            // ALTERAÇÃO: Pega a div de status para podermos exibir a mensagem.
             const statusDiv = document.getElementById('ign_status');
-            statusDiv.textContent = ''; // Limpa qualquer mensagem antiga
+            statusDiv.textContent = '';
 
             const file = this.files[0];
             if (!file) return;
@@ -480,7 +474,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (isValidSize) {
                         setSkin(dataUrl);
                         
-                        // ALTERAÇÃO: Exibe a mensagem de sucesso e a faz desaparecer.
                         const lang = localStorage.getItem("siteLang") || "pt-BR";
 						statusDiv.textContent = translations[lang]["skinEnviada"] || "Skin Enviada Com Sucesso!";
 						setTimeout(() => { statusDiv.textContent = ''; }, 3000);
@@ -517,9 +510,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const uploadCapeInput = document.getElementById('uploadCape');
 	if (uploadCapeInput) {
 	uploadCapeInput.addEventListener('change', function () {
-    // Pega a div de status do NICK para exibir a mensagem.
     const statusDiv = document.getElementById('ign_status');
-    statusDiv.textContent = ''; // Limpa qualquer mensagem antiga
+    statusDiv.textContent = '';
 
     const file = this.files[0];
     if (!file) return;
@@ -528,15 +520,12 @@ document.addEventListener('DOMContentLoaded', () => {
     reader.onload = async (e) => {
       const lang = localStorage.getItem("siteLang") || "pt-BR";
       try {
-        // Aguarda carregar a capa
         await setCape(e.target.result);
 
-        // Se deu certo
         statusDiv.textContent = translations[lang]["capaEnviada"] || "Capa Enviada Com Sucesso!";
         setTimeout(() => { statusDiv.textContent = ''; }, 3000);
 
       } catch (error) {
-        // Se falhou, mostra apenas alerta
         alert(
           translations[lang]["capaInvalida"] ||
           "Certifique-se Que É Uma Capa Compatível. / Certifique-se Que o Usuário Está Correto! Números, Maiúsculas e Minúsculas."
@@ -546,7 +535,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     reader.readAsDataURL(file);
 
-    // Limpa o input para permitir o reenvio do mesmo arquivo.
     this.value = null;
   });
 }
@@ -567,7 +555,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				return;
 			}
 			
-            // Pega a div onde a mensagem será exibida
             const statusDiv = document.getElementById('ign_status');
             const filename = currentPlayerIGN ? `${currentPlayerIGN}.png` : 'skin.png';
 
@@ -598,7 +585,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.body.removeChild(link);
                     URL.revokeObjectURL(url);
 
-                    // ALTERAÇÃO: Mostra a mensagem de sucesso aqui também
                     statusDiv.textContent = 'Baixando...';
                     setTimeout(() => { statusDiv.textContent = ''; }, 3000);
                 })
@@ -652,11 +638,9 @@ async function setCape(url) {
 
   try {
     console.log("Tentando carregar capa de:", url);
-    // 👇 retorna a Promise de loadCape
     return await skinViewer.loadCape(url, { backEquipment: currentBackEquipment });
   } catch (error) {
     console.error("Falha ao carregar a capa:", error);
-    // 👇 repassa o erro para quem chamou tratar
     throw error;
   }
 }
@@ -680,7 +664,6 @@ function setAnimation(animName) {
 }
 
 async function getOfficialSkinUrl(playerName) {
-  // --- ETAPA 1: Converter Nome de Usuário para UUID ---
   const uuidResponse = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`, { cache: 'reload' });
   if (!uuidResponse.ok) {
     throw new Error('Tente Novamente, Atualizando Skin!');
@@ -692,14 +675,12 @@ async function getOfficialSkinUrl(playerName) {
     throw new Error('UUID não foi encontrado na resposta da API');
   }
 
-  // --- ETAPA 2: Usar o UUID para buscar o perfil completo ---
   const profileResponse = await fetch(`https://api.gapple.pw/cors/sessionserver/${uuid}`, { cache: 'reload' });
   if (!profileResponse.ok) {
     throw new Error('Não foi possível obter o perfil da sessão do jogador');
   }
   const profileData = await profileResponse.json();
 
-  // --- ETAPA 3: Decodificar a textura para encontrar a URL final da skin ---
   const texturesProperty = profileData.properties.find(prop => prop.name === 'textures');
   if (!texturesProperty) {
     throw new Error('Propriedade de texturas não encontrada no perfil');
@@ -708,17 +689,13 @@ async function getOfficialSkinUrl(playerName) {
   const decodedValue = atob(texturesProperty.value);
   const textureData = JSON.parse(decodedValue);
 
-  // Extrai a URL final da skin (insegura)
-  let skinUrl = textureData.textures?.SKIN?.url; // Mudamos para 'let' para poder modificar
+  let skinUrl = textureData.textures?.SKIN?.url;
   if (!skinUrl) {
     throw new Error('URL da skin não encontrada nos dados da textura');
   }
-  // Verifica se a URL começa com "http://"
   if (skinUrl.startsWith("http://")) {
-    // Se começar, substitui "http://" por "https://"
     skinUrl = skinUrl.replace("http://", "https://");
   }
-  // Retorna a URL final da textura
   return skinUrl;
 }
 
@@ -751,7 +728,6 @@ async function getSkinByIGN() {
         const localUrl = URL.createObjectURL(imageBlob);
         setSkin(localUrl);
         
-        // SALVA O NOME DO JOGADOR PARA USAR NO DOWNLOAD
         currentPlayerIGN = ign; 
 
         const lang = localStorage.getItem("siteLang") || "pt-BR";
@@ -793,7 +769,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const corsProxy1 = "https://cors.faav.top/optifine/";
     const corsProxy2 = "https://api.mcuserna.me/cors/optifinenet/";
 
-    // As suas funções de criar os inputs e etc. continuam aqui, sem alterações...
     function updateOfCapeUrl() {
         const top = document.getElementById('of_top_color_hex').value.replace('#', '');
         const bottom = document.getElementById('of_bottom_color_hex').value.replace('#', '');
@@ -811,7 +786,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.createElement('div');
         container.className = 'optifine-input-group';
         const labelEl = document.createElement('label');
-		labelEl.setAttribute("data-i18n", label); // chave de tradução
+		labelEl.setAttribute("data-i18n", label);
 		labelEl.textContent = translations[localStorage.getItem("siteLang") || "pt-BR"][label] || label;
 		container.appendChild(labelEl);
         const colorInput = document.createElement('input');
@@ -922,40 +897,25 @@ document.addEventListener('DOMContentLoaded', () => {
 		changeLanguage(savedLang);
     }
 
-// CÓDIGO NOVO E CORRIGIDO PARA A LABEL INTEIRA
 	optifineRadios.forEach(radio => {
-    // Encontra a <label> que é "mãe" do rádio
     const label = radio.closest('label');
     if (!label) {
-        // Se, por algum motivo, não houver label, pula para o próximo
         return;
     }
 
-    // Adiciona o listener de 'mousedown' na LABEL
     label.addEventListener('mousedown', function() {
-        // Guarda o estado do RÁDIO (não da label)
         radio.wasChecked = radio.checked;
     });
 
-    // Adiciona o listener de 'click' na LABEL
     label.addEventListener('click', function(event) {
-        // 1. Previne a ação padrão do navegador.
-        // Isso nos dá controle total sobre marcar e desmarcar.
         event.preventDefault();
 
-        // 2. LÓGICA ESPECIAL PARA DESMARCAR
-        // Se clicamos na label do "Remover Capa" e ele já estava marcado...
         if (radio.value === 'none' && radio.wasChecked) {
-            // ...nós o desmarcamos.
             radio.checked = false;
         } else {
-            // 3. LÓGICA PADRÃO PARA MARCAR
-            // Para qualquer outro clique, nós marcamos o rádio correspondente.
             radio.checked = true;
         }
 
-        // 4. ATUALIZA A INTERFACE (código que já tínhamos)
-        // Roda a lógica de atualização com base no estado final dos rádios.
         const finalCheckedRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
         const finalValue = finalCheckedRadio ? finalCheckedRadio.value : 'none';
 
@@ -965,10 +925,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-    // 2. LÓGICA CORRIGIDA PARA O BOTÃO "APLICAR" (à prova de falhas)
     applyBtn.addEventListener('click', () => {
         const selectedRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
-        // Se NADA estiver selecionado, age como se "none" fosse escolhido.
         const selectedType = selectedRadio ? selectedRadio.value : 'none';
 
         if (selectedType === 'none') {
@@ -983,7 +941,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. LÓGICA CORRIGIDA PARA A INICIALIZAÇÃO DA PÁGINA (à prova de falhas)
     const initialRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
     const initialValue = initialRadio ? initialRadio.value : 'none';
     renderOptions(initialValue);
@@ -1054,22 +1011,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script>
-// Espera o documento HTML ser completamente carregado antes de executar o código.
-// Isso garante que o elemento com id="ign" já exista e que outros scripts
-// que possam modificá-lo já tenham terminado.
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Seleciona a caixa de texto para carregar o nick do jogador
     const nickLoadInput = document.getElementById('ign');
 
-    // Adiciona um "ouvinte" que reage a qualquer alteração no texto
-    // A verificação 'if (nickLoadInput)' previne erros caso o elemento não seja encontrado.
     if (nickLoadInput) {
         nickLoadInput.addEventListener('input', function(event) {
-            // Regex que permite apenas letras, números e underscore.
             const invalidCharsRegex = /[^a-zA-Z0-9_]/g;
         
-            // Pega o valor atual, remove os caracteres inválidos e atualiza a caixa de texto.
             this.value = this.value.replace(invalidCharsRegex, '');
         });
     }
@@ -1077,21 +1026,15 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script>
-    // Seleciona o container onde as opções da OptiFine irão aparecer
     const optifineContainer = document.getElementById('optifine_options_container');
 
-    // Adiciona um "ouvinte" ao container que observa alterações nos seus filhos
     optifineContainer.addEventListener('input', function(event) {
         
-        // Verifica se a alteração foi no campo de texto para pegar a capa do usuário
-        // Usamos o 'placeholder' para identificar o campo, pois ele não tem um ID fixo
         if (event.target.placeholder === 'Usuário Com Capa Optifne') {
             const userInput = event.target;
             
-            // A mesma "lista negra" de caracteres
             const invalidCharsRegex = /[^a-zA-Z0-9_]/g;
             
-            // Pega o valor atual, remove os caracteres inválidos e atualiza o campo
             userInput.value = userInput.value.replace(invalidCharsRegex, '');
         }
     });
@@ -1114,12 +1057,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	  <option value="de">Deutsch 🇩🇪</option>
     </select>
   `;
-  // Coloca logo após o seletor de temas
   const themeElement = document.querySelector("#theme_switcher"); 
   if (themeElement) {
     themeElement.insertAdjacentHTML("beforebegin", langSelector);
   }
-  // Carrega idioma salvo
   const savedLang = localStorage.getItem("siteLang") || "pt-BR";
   document.getElementById("idiomaSelect").value = savedLang;
 });
@@ -1127,10 +1068,8 @@ document.addEventListener("DOMContentLoaded", () => {
 <script src="idioma/translationsindex.js"></script>
 <script>
 function changeLanguage(lang) {
-  // Salva a escolha no navegador
   localStorage.setItem("siteLang", lang);
 
-  // Aplica a tradução normal (elementos com data-i18n)
   const elements = document.querySelectorAll("[data-i18n]");
   elements.forEach(el => {
     const key = el.getAttribute("data-i18n");
@@ -1144,13 +1083,10 @@ function changeLanguage(lang) {
     }
   });
 
-
-  // ✅ Atualizar título da página
   if (translations[lang]["pageTitle"]) {
     document.title = translations[lang]["pageTitle"];
   }
 
-  // 👇 Atualizar meta description do OpenGraph
   if (translations[lang]["pageDescription"]) {
     const metaDesc = document.querySelector('meta[property="og:description"]');
     if (metaDesc) {
@@ -1158,10 +1094,8 @@ function changeLanguage(lang) {
     }
   }
   
-  // 👇 Ajustes extras para elementos criados via JS
   applyDynamicTranslations(lang);
 
-  // ⬇️ Aqui você coloca o seu trecho DOMContentLoaded
   document.addEventListener("DOMContentLoaded", () => {
   let savedLang = localStorage.getItem("siteLang");
   if (!savedLang) {
@@ -1178,26 +1112,22 @@ function changeLanguage(lang) {
   changeLanguage(savedLang);
 });
 
-  // 👇 Se o painel OptiFine estiver aberto, refaz ele no idioma novo
   const currentType = document.querySelector('input[name="optifine_cape_type"]:checked');
   if (currentType) {
-    renderOptions(currentType.value); // recria já traduzido
+    renderOptions(currentType.value);
   }
 }
 
-  // Quando a página carregar, aplica o idioma salvo
   document.addEventListener("DOMContentLoaded", () => {
   const savedLang = localStorage.getItem("siteLang") || "pt-BR";
   document.querySelector("#idiomaSelect").value = savedLang;
   changeLanguage(savedLang);
 });
 
-// Função extra só para os textos criados via JS
 function applyDynamicTranslations(lang) {
-  // Label e input do tipo "steal"
   const stealInput = document.querySelector(".optifine-input-group input[type='text']:not(#of_banner_pattern)");
   if (stealInput) {
-    const stealLabel = stealInput.previousElementSibling; // o <label> que veio antes
+    const stealLabel = stealInput.previousElementSibling;
     if (stealLabel && translations[lang] && translations[lang]["nickLabel"]) {
       stealLabel.textContent = translations[lang]["nickLabel"];
     }
@@ -1207,7 +1137,6 @@ function applyDynamicTranslations(lang) {
     }
   }
 
-  // Label e input do tipo "banner"
   const bannerInput = document.querySelector("#of_banner_pattern");
   if (bannerInput) {
     const bannerLabel = bannerInput.previousElementSibling;
@@ -1219,7 +1148,6 @@ function applyDynamicTranslations(lang) {
     }
   }
 
-  // Alerts
   const oldAlert = window.alert;
   window.alert = function(msg) {
     if (translations[lang]) {
@@ -1235,7 +1163,6 @@ function applyDynamicTranslations(lang) {
     oldAlert(msg);
   };
 }
-// Função principal que cria os elementos de opções do Optifine
 function renderOptions(type) {
   optionsContainer.innerHTML = '';
   currentOptifineCapeUrl = null;
@@ -1249,12 +1176,12 @@ function renderOptions(type) {
     inputGroup.className = 'optifine-input-group';
 
     const label = document.createElement('label');
-    label.textContent = 'Nick:'; // será traduzido depois
+    label.textContent = 'Nick:';
     inputGroup.appendChild(label);
 
     const input = document.createElement('input');
     input.type = 'text';
-    input.placeholder = 'Usuário Com Capa Optifne'; // será traduzido depois
+    input.placeholder = 'Usuário Com Capa Optifne';
     input.addEventListener('input', () => {
       const username = input.value;
       if (username) {
@@ -1289,12 +1216,12 @@ function renderOptions(type) {
     patternGroup.className = 'optifine-input-group';
 
     const patternLabel = document.createElement('label');
-    patternLabel.textContent = 'Banner:'; // será traduzido depois
+    patternLabel.textContent = 'Banner:';
 
     const patternInput = document.createElement('input');
     patternInput.type = 'text';
     patternInput.id = 'of_banner_pattern';
-    patternInput.placeholder = 'Tipo: aapspfasayafaCaF&var=s'; // será traduzido depois
+    patternInput.placeholder = 'Tipo: aapspfasayafaCaF&var=s';
     patternInput.addEventListener('input', updateBannerCapeUrl);
     patternInput.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
@@ -1325,7 +1252,6 @@ function renderOptions(type) {
     updateBannerCapeUrl();
   }
 
-  // 👇 aplica traduções também nos elementos criados agora
   const savedLang = localStorage.getItem("siteLang") || "pt-BR";
   applyDynamicTranslations(savedLang);
 }
