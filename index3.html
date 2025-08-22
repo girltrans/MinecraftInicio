@@ -10,22 +10,18 @@
         <meta http-equiv="x-rim-auto-match" content="none">
                         <title>Minecraft Início</title>
     <script>
-    // APLICA O TEMA MAIS CEDO POSSÍVEL, ANTES DO CSS
     (function() {
       try {
         var tema = localStorage.getItem('site_theme') || 'dark';
         if (tema === 'light') document.documentElement.className = 'theme-light-bg';
         else if (tema === 'rainbow') document.documentElement.className = 'theme-rainbow-bg';
-        // Se for dark, deixa sem classe
       } catch(e){}
     })();
     </script>
-        <!-- Prefetch DNS for external assets -->
         <link rel="dns-prefetch" href="//fonts.googleapis.com">
                 <link rel="dns-prefetch" href="//www.statcounter.com">
         <link rel="dns-prefetch" href="//cdn.domain.com">
 
-        <!-- Preconnect for external assets -->
         <link rel="preconnect" href="//fonts.googleapis.com" crossorigin="">
                 <link rel="preconnect" href="//www.statcounter.com" crossorigin="">
         <link rel="preconnect" href="//cdn.domain.com" crossorigin="">
@@ -33,9 +29,7 @@
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
         <link rel="stylesheet" type="text/css" href="css2/jgrowl.css">
             <link href="css2/styles.css" rel="stylesheet" type="text/css">
-    <!-- remove it after create templates -->
     <link href="css2/styles_mike.css" rel="stylesheet" type="text/css">
-    <!-- end -->
     <link href="css2/bootstrap_modal.css" rel="stylesheet" type="text/css">
 
     <link href="css2/select2.css" rel="stylesheet" type="text/css">
@@ -60,36 +54,29 @@
         .content { max-width: 1200px; margin: 0 auto; }
     </style>
 <style>
-  /* Remove a aparência padrão do rádio button */
   input[type="radio"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 
-    /* Tamanho do nosso rádio button customizado */
     width: 12px;
     height: 12px;
 
-    /* Estilo do círculo externo (azul) */
     box-shadow:0 2px 18px #8b1616;
-    border-radius: 50%; /* Deixa o elemento redondo */
-    background-color: #1e1e1e; /* Cor de fundo quando não está clicado */
+    border-radius: 50%;
+    background-color: #1e1e1e;
 
-    /* Garante que o clique seja preciso */
     cursor: pointer;
 
-    /* Posicionamento do ponto interno */
     display: inline-block;
     position: relative;
-    vertical-align: middle; /* Alinha com o texto */
+    vertical-align: middle;
   }
 
-  /* Estilo do rádio button quando está selecionado (clicado) */
   input[type="radio"]:checked {
-    background-color: #E8B901; /* O meio fica amarelo */
+    background-color: #E8B901;
   }
 
-  /* Para um efeito visual mais suave */
   input[type="radio"], input[type="radio"]:checked {
     transition: all 0.2s ease-in-out;
   }
@@ -136,15 +123,15 @@ body.theme-rainbow-bg {
     animation: rainbow-animation 15s ease infinite;
 }
 body.theme-light-bg .github img {
-    filter: invert(0);  /* Remove a inversão, fazendo o ícone voltar a ser preto */
-    opacity: 0.6;       /* Aumenta a opacidade para que ele fique bem visível */
+    filter: invert(0);
+    opacity: 0.6;
 }
 </style>
 </head>
 <body>
     <nav class="navbar">
     <div class="theme-selector">
-	<select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;box-shadow: 0 2px 18px #8b1616;font-size: 1.1rem;min-width:44px;min-height:44px;box-sizing:border-box;margin-bottom:14px;/* -webkit-box-align: center; */" title="Mudar Tema Do Site">
+	<select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;box-shadow: 0 2px 18px #8b1616;font-size: 1.1rem;min-width:44px;min-height:44px;box-sizing:border-box;margin-bottom:14px;" title="Mudar Tema Do Site">
 	<option value="dark">🌙 Escuro</option>
 	<option value="light">☀️ Claro</option>
 	<option value="rainbow">🌈 Arco-Íris</option>
@@ -325,7 +312,6 @@ body.theme-light-bg .github img {
         </div>
 
 
-        <!-- Editor Canvas Here -->
         <div class="canvas-wrapper">
 		<div class="skin-canvas mobile">
                 <div id="editor"></div>
@@ -430,18 +416,8 @@ body.theme-light-bg .github img {
                     </div>
     </div>
 
-    <!-- Bottom banner -->
                                     <div class="bottom-ads">
                 <div class="ads">
-                    <!--  [Desktop/Tablet] Desktop Leaderboard - Below the Fold (BTF) -->
-<!-- <div data-pw-desk="leaderboard_btf" id="pwDeskLbBtf1"></div> -->
-<!--
-<script type="text/javascript">
-  window.ramp.que.push(function () {
-      window.ramp.addTag("pwDeskLbBtf1");
-  })
-</script>
--->
                 </div>
             </div>
             
@@ -450,7 +426,6 @@ body.theme-light-bg .github img {
 
     </div>
 
-    <!-- Global information modal -->
     <div class="modal fade" id="global_information_modal" tabindex="-1" role="dialog" aria-labelledby="global_information_modal">
         <div class="modal-dialog info-modal" role="document">
             <div class="modal-content">
@@ -471,11 +446,9 @@ body.theme-light-bg .github img {
             <div class="cmp_ads">
                     
                 </div>
-        <!-- End Global information modal -->
             <script>
         var skindex_url = window.location.protocol + '//' + window.location.hostname + './index3.html';
         var md = new MobileDetect(window.navigator.userAgent);
-        // Safari private window check
         if (typeof localStorage === 'object') {
             try {
                 localStorage.setItem('localStorage', 1);
@@ -485,7 +458,6 @@ body.theme-light-bg .github img {
                 Storage.prototype.setItem = function () {
                 };
                 alert('o nosso browser não suporta o armazenamento de definições localmente. No Safari, a causa mais comum desta situação é a utilização do "Modo de navegação privada". Algumas definições poderão não ser guardadas ou algumas funcionalidades poderão não funcionar corretamente para si. Tente utilizar o modo não privado.');
-                // window.location.href = skindex_url;
             }
         }
     </script>
@@ -498,7 +470,6 @@ body.theme-light-bg .github img {
 <script src="js2/util.js"></script>
 <script src="js2/resolution-change.js"></script>
 <script>
-    // Set global variables for external scripts
     window.currentTheme = "light";
     window.serverDevice = "0";
     window.getUsernameUrl = "/get-username";
@@ -510,11 +481,9 @@ body.theme-light-bg .github img {
 <script src="js2/textarea-helper.js"></script>
 <script src="js2/bootstrap_tooltip.js"></script>
 <script>
-    // ===== INÍCIO DA ADIÇÃO DA LÓGICA DO TEMA =====
     const themeSwitcher = document.getElementById('theme_switcher');
     
     function applyTheme(theme) {
-        // Remove as classes de tema antigas para evitar conflitos
         document.body.classList.remove('theme-light-bg', 'theme-rainbow-bg');
 
         if (theme === 'light') {
@@ -522,22 +491,17 @@ body.theme-light-bg .github img {
         } else if (theme === 'rainbow') {
             document.body.classList.add('theme-rainbow-bg');
         }
-        // Nenhuma classe é adicionada para o tema 'dark', pois ele usa o estilo padrão do body.
         
-        // Salva a escolha do usuário no navegador
         localStorage.setItem('site_theme', theme);
     }
 
-    // Adiciona o evento de mudança ao seletor
     themeSwitcher.addEventListener('change', function() {
         applyTheme(this.value);
     });
 
-    // Ao carregar a página, verifica se há um tema salvo e o aplica
     const savedTheme = localStorage.getItem('site_theme') || 'dark';
     themeSwitcher.value = savedTheme;
     applyTheme(savedTheme);
-    // ===== FIM DA ADIÇÃO DA LÓGICA DO TEMA =====
 </script>
 <script src="js2/user-info-check.js"></script>
 
@@ -785,7 +749,6 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
             }, 3000);
             $('.uploadError').hide();
             setTimeout(function () {
-                // // window.location.href = '/login/'
             }, 1500);
         } else {
             $('.downloadError').hide();
@@ -807,26 +770,26 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
 
             $('body').on('keydown', function (e) {
                 var keyCode = (window.event) ? e.keyCode : e.which;
-                if (keyCode === 80) {          // 'p' keycode / pencil tool
+                if (keyCode === 80) {
                     $('#colorholder_chose').trigger('click');
-                } else if (keyCode === 65) {   // 'a' keycode / autotone tool
+                } else if (keyCode === 65) {
                     $('#autotone').trigger('click');
-                } else if (keyCode === 67) {   // 'c' keycode / color picker tool
+                } else if (keyCode === 67) {
                     $('#pickcolor').trigger('click');
-                } else if (keyCode === 69) {   // 'e' keycode / eraser tool
+                } else if (keyCode === 69) {
                     $('#erasepixel').trigger('click');
-                } else if (e.keyCode === 81) { // 'q' keycode / zoom in tool
+                } else if (e.keyCode === 81) {
                     $('.zoom-in').trigger('click');
-                } else if (e.keyCode === 87) { // 'w' keycode / zoom out tool
+                } else if (e.keyCode === 87) {
                     $('.zoom-out').trigger('click');
-                } else if (e.keyCode === 66) { // 'b' keycode / bucket tool
+                } else if (e.keyCode === 66) {
                     $('.avatar-creator #bucket').trigger('click');
-                } else if (e.keyCode === 77) { // 'm' keycode / mirror tool
+                } else if (e.keyCode === 77) {
                     $('.avatar-creator #mirrorTool').trigger('click');
-                } else if (keyCode === 90) {   // 'z' keycode / darken color tool
+                } else if (keyCode === 90) {
                     ColorLuminance($('#color').val(), -0.05, 'darker');
                     setBorderToColor();
-                } else if (keyCode === 88) {   // 'x' keycode / lighten color tool
+                } else if (keyCode === 88) {
                     ColorLuminance($('#color').val(), 0.05, 'lighter');
                     setBorderToColor();
                 }
@@ -878,7 +841,6 @@ $('.avatar-creator .icon-upload-site').on('click', function (e) {
     </script>
 <script>
 $(document).ready(function() {
-    // Função para verificar se o canvas está em branco
     function isCanvasBlank(canvas) {
         const blank = document.createElement('canvas');
         blank.width = canvas.width;
@@ -886,33 +848,27 @@ $(document).ready(function() {
         return canvas.toDataURL() === blank.toDataURL();
     }
 
-    // Seleciona o elemento de erro e o esconde por padrão
     const erroDownload = $('.downloadError');
     erroDownload.hide();
 
-    // Adiciona o evento de clique diretamente no ID do nosso botão
     $('#botaoBaixarSkin').on('click', function(event) {
-        // Impede a ação padrão e a propagação para outros scripts
         event.preventDefault(); 
         event.stopPropagation(); 
 
         const editorCanvas = $('#uploadCanvas')[0];
 
         if (isCanvasBlank(editorCanvas)) {
-            // Se o canvas estiver em branco, mostra a mensagem de erro no div
             erroDownload.text('Nenhuma Skin Criada.').show();
             
-            // Esconde a mensagem automaticamente após 3 segundos
             setTimeout(function() {
                 erroDownload.hide();
             }, 3000);
 
         } else {
-            // Se não estiver em branco, esconde qualquer erro antigo e inicia o download
             erroDownload.hide();
             try {
                 const link = document.createElement('a');
-                link.download = 'minha_skin.png'; // Nome do arquivo
+                link.download = 'minha_skin.png';
                 link.href = editorCanvas.toDataURL('image/png');
                 
                 document.body.appendChild(link);
@@ -920,11 +876,9 @@ $(document).ready(function() {
                 document.body.removeChild(link);
                 
             } catch (err) {
-                // Em caso de erro no download, mostra a mensagem no div
                 console.error("Erro ao tentar baixar a skin:", err);
                 erroDownload.text('Ocorreu um erro ao tentar baixar a skin.').show();
                 
-                // Esconde a mensagem automaticamente após 3 segundos
                 setTimeout(function() {
                     erroDownload.hide();
                 }, 3000);
@@ -932,7 +886,6 @@ $(document).ready(function() {
         }
     });
 
-    // Este código impede que o formulário de download seja enviado, agora sem alerta.
     $('#downloadForm').on('submit', function(event) {
         event.preventDefault();
     });
@@ -955,71 +908,49 @@ $(document).ready(function() {
   }
 </script>
 <script>
-    /**
-     * Script de Adaptação Automática para Dispositivos Móveis
-     *
-     * Este script detecta o tamanho da tela e aplica mudanças estruturais e de estilo
-     * para otimizar a visualização em dispositivos móveis.
-     */
     const MobileLayoutManager = {
-        // Ponto de quebra: abaixo deste valor, o layout mobile é ativado.
         breakpoint: 768, 
         
-        // Flag para saber se o modo mobile já está ativo.
         isMobile: false,
 
-        // Função principal que orquestra as mudanças.
         init: function() {
-            // Adiciona "ouvintes" para o carregamento da página e redimensionamento da janela.
             window.addEventListener('DOMContentLoaded', () => this.checkAndApplyLayout());
             window.addEventListener('resize', () => this.checkAndApplyLayout());
         },
 
-        // Verifica o tamanho da tela e decide se aplica ou remove o layout mobile.
         checkAndApplyLayout: function() {
             const screenWidth = window.innerWidth;
 
             if (screenWidth <= this.breakpoint && !this.isMobile) {
-                // Se a tela é pequena e o modo mobile não está ativo, ativa.
                 console.log("Ativando layout mobile...");
                 this.activateMobileLayout();
                 this.isMobile = true;
             } else if (screenWidth > this.breakpoint && this.isMobile) {
-                // Se a tela ficou grande e o modo mobile estava ativo, desativa.
                 console.log("Desativando layout mobile...");
                 this.deactivateMobileLayout();
                 this.isMobile = false;
             }
         },
 
-        // Aplica todas as otimizações para o modo mobile.
         activateMobileLayout: function() {
-            // Adiciona uma classe ao body para CSS targeting.
             document.body.classList.add('mobile-view');
             
-            // Injeta os estilos CSS necessários para o mobile.
             this.injectMobileCSS();
 
-            // Executa manipulações complexas no DOM.
             this.rearrangeElements();
         },
 
-        // Reverte as otimizações e volta ao layout de desktop.
         deactivateMobileLayout: function() {
             document.body.classList.remove('mobile-view');
             this.removeMobileCSS();
-            // Aqui você poderia adicionar uma função para reverter rearrangeElements, se necessário.
         },
 
-        // Cria e injeta uma tag <style> com todas as regras para mobile.
         injectMobileCSS: function() {
-            // Evita injetar o mesmo CSS várias vezes.
             if (document.getElementById('mobile-styles')) {
                 return;
             }
 
             const styles = `
-                /* Os estilos injetados têm alta prioridade */
                 .mobile-view .wrapper,
                 .mobile-view .header-wrapper,
                 .mobile-view .content-wrapper,
@@ -1058,10 +989,9 @@ $(document).ready(function() {
                 }
 
                 .mobile-view .left-toolbar {
-                    display: none; /* Esconde a barra de desktop original */
+                    display: none;
                 }
 
-                /* Garante que a barra mobile, que já existe no HTML, apareça */
                 .mobile-view .left-toolbar-mobile {
                     display: block;
 		    position: relative;
@@ -1076,7 +1006,6 @@ $(document).ready(function() {
             document.head.appendChild(styleSheet);
         },
         
-        // Remove a folha de estilos mobile.
         removeMobileCSS: function() {
             const styleSheet = document.getElementById('mobile-styles');
             if (styleSheet) {
@@ -1084,17 +1013,13 @@ $(document).ready(function() {
             }
         },
 
-        // Exemplo de manipulação do DOM: mover elementos.
         rearrangeElements: function() {
-            // Exemplo: Mover a barra de busca para dentro de um menu mobile.
-            // Esta é uma simulação. Você precisaria ter um #mobile-menu-container no seu HTML.
             const searchBar = document.querySelector('.search');
             const mobileMenuContainer = document.getElementById('mobile-menu-container');
 
             if (searchBar && mobileMenuContainer) {
-                // Guarda a posição original da busca para poder restaurá-la depois.
                 if (!searchBar.dataset.originalParent) {
-                    searchBar.dataset.originalParent = '.header-wrapper'; // Supondo que estava aqui
+                    searchBar.dataset.originalParent = '.header-wrapper';
                     searchBar.dataset.originalNextSibling = searchBar.nextElementSibling ? 'true' : 'false';
                 }
                 console.log("Movendo barra de busca para o contêiner mobile.");
@@ -1103,27 +1028,20 @@ $(document).ready(function() {
         }
     };
 
-    // Inicia o gerenciador de layout.
     MobileLayoutManager.init();
 
 </script>
 <script>
-// Espera o documento HTML ser completamente carregado antes de rodar o script
 document.addEventListener('DOMContentLoaded', function() {
 
-  // 1. Encontra o seu input pelo ID, que é "color"
   const inputColor = document.getElementById('color');
 
-  // 2. Adiciona um "ouvinte" para o evento de pressionar uma tecla ('keydown')
   inputColor.addEventListener('keydown', function(event) {
     
-    // 3. Verifica se a tecla pressionada foi o "Enter"
     if (event.key === 'Enter') {
       
-      // 4. Se foi o Enter, previne a ação padrão (como enviar o formulário)
       event.preventDefault();
       
-      // (Opcional) Mostra uma mensagem no console para confirmar que funcionou
       console.log('A tecla Enter foi bloqueada neste campo.');
     }
   });
@@ -1146,13 +1064,11 @@ document.addEventListener("DOMContentLoaded", () => {
 	  <option value="ru">Русский 🇷🇺</option>
     </select>
   `;
-  // Coloca logo após o seletor de temas
   const themeElement = document.querySelector("#theme_switcher"); 
   if (themeElement) {
     themeElement.insertAdjacentHTML("beforebegin", langSelector);
   }
 
-  // Carrega idioma salvo
   const savedLang = localStorage.getItem("siteLang") || "pt-BR";
   document.getElementById("idiomaSelect").value = savedLang;
 });
@@ -1171,9 +1087,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	  "ru": { titulo: "Добро пожаловать на сайт", descricao: "Это исходное содержание." }
 	};
 	    function changeLanguage(lang) {
-	    // Salva a escolha no navegador
 	    localStorage.setItem("siteLang", lang);
-	    // Aplica a tradução
 	    const elements = document.querySelectorAll("[data-i18n]");
 	    elements.forEach(el => {
 		const key = el.getAttribute("data-i18n");
@@ -1182,10 +1096,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		 }
 	   });
 	  }
-		// Quando a página carregar, aplica o idioma salvo
 		document.addEventListener("DOMContentLoaded", () => {
 	    const savedLang = localStorage.getItem("siteLang") || "pt-BR";
-	    document.querySelector("#idiomaSelect").value = savedLang; // define no seletor
+	    document.querySelector("#idiomaSelect").value = savedLang;
 	    changeLanguage(savedLang);
 	});
 </script>
