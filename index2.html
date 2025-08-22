@@ -7,8 +7,8 @@
     <style>
 	html, body {
 	width: 100%;
-	overflow-x: hidden; /* Proíbe a rolagem NO CORPO da página */
-	overscroll-behavior-x: contain; /* Mantém a correção de gesto */
+	overflow-x: hidden;
+	overscroll-behavior-x: contain;
 	}
     body {
     background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
@@ -60,8 +60,8 @@
     animation: rainbow-animation 15s ease infinite;
 	}
 	body.theme-light-bg .github img {
-    filter: invert(0);  /* Remove a inversão, fazendo o ícone voltar a ser preto */
-    opacity: 0.6;       /* Aumenta a opacidade para que ele fique bem visível */
+    filter: invert(0);
+    opacity: 0.6;
 	}
 	body::-webkit-scrollbar {
 	display: none;
@@ -73,36 +73,29 @@
         .content { max-width: 1200px; margin: 0 auto; }
     </style>
 	<style>
-	/* Remove a aparência padrão do rádio button */
 	input[type="radio"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 
-    /* Tamanho do nosso rádio button customizado */
     width: 12px;
     height: 12px;
 
-    /* Estilo do círculo externo (azul) */
     box-shadow:0 2px 18px #8b1616;
-    border-radius: 50%; /* Deixa o elemento redondo */
-    background-color: #1e1e1e; /* Cor de fundo quando não está clicado */
+    border-radius: 50%;
+    background-color: #1e1e1e;
 
-    /* Garante que o clique seja preciso */
     cursor: pointer;
 
-    /* Posicionamento do ponto interno */
     display: inline-block;
     position: relative;
-    vertical-align: middle; /* Alinha com o texto */
+    vertical-align: middle;
 	}
 
-	/* Estilo do rádio button quando está selecionado (clicado) */
 	input[type="radio"]:checked {
-    background-color: #E8B901; /* O meio fica amarelo */
+    background-color: #E8B901;
 	}
 
-	/* Para um efeito visual mais suave */
 	input[type="radio"], input[type="radio"]:checked {
     transition: all 0.2s ease-in-out;
 	}
@@ -112,23 +105,22 @@
     font-family: sans-serif;
 	}
 	.nick-item {
-    /* Usar flexbox é a maneira mais fácil de alinhar itens lado a lado */
     display: flex;
-    align-items: center; /* Alinha verticalmente todos os itens ao centro */
-    flex-wrap: wrap; /* Permite que os ícones quebrem a linha se não houver espaço */
-    gap: 5px; /* Adiciona um pequeno espaço entre todos os itens */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
 	}
 	.reload-button {
     text-decoration: none;
-    font-size: 1.5rem; /* Tamanho do ícone de recarregar */
+    font-size: 1.5rem;
 	margin-left: -47px;
-    margin-right: 8px; /* Espaço entre o botão e a cabeça */
+    margin-right: 8px;
     opacity: 0.7;
     transition: opacity 0.2s, transform 0.2s;
 	}
 	.reload-button:hover {
     opacity: 1;
-    transform: rotate(90deg); /* Gira o ícone ao passar o mouse */
+    transform: rotate(90deg);
 	}
 	</style>
 </head>
@@ -138,7 +130,7 @@
 <body>
     <nav class="navbar">
     <div class="theme-selector">
-	<select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;width: auto;box-shadow: 0 2px 18px #8b1616;font-size:1.1rem;min-width: 44px;min-height: 44px;box-sizing: border-box;margin-bottom:14px;/* -webkit-box-align: center; */" title="Mudar Tema Do Site">
+	<select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;width: auto;box-shadow: 0 2px 18px #8b1616;font-size:1.1rem;min-width: 44px;min-height: 44px;box-sizing: border-box;margin-bottom:14px;" title="Mudar Tema Do Site">
 	<option value="dark">🌙 Escuro</option>
 	<option value="light">☀️ Claro</option>
 	<option value="rainbow">🌈 Arco-Íris</option>
@@ -205,11 +197,9 @@
     <div class="result" id="resultado">
     </div>
 <script>
-    // ===== INÍCIO DA ADIÇÃO DA LÓGICA DO TEMA =====
     const themeSwitcher = document.getElementById('theme_switcher');
     
     function applyTheme(theme) {
-        // Remove as classes de tema antigas para evitar conflitos
         document.body.classList.remove('theme-light-bg', 'theme-rainbow-bg');
 
         if (theme === 'light') {
@@ -217,22 +207,17 @@
         } else if (theme === 'rainbow') {
             document.body.classList.add('theme-rainbow-bg');
         }
-        // Nenhuma classe é adicionada para o tema 'dark', pois ele usa o estilo padrão do body.
         
-        // Salva a escolha do usuário no navegador
         localStorage.setItem('site_theme', theme);
     }
 
-    // Adiciona o evento de mudança ao seletor
     themeSwitcher.addEventListener('change', function() {
         applyTheme(this.value);
     });
 
-    // Ao carregar a página, verifica se há um tema salvo e o aplica
     const savedTheme = localStorage.getItem('site_theme') || 'dark';
     themeSwitcher.value = savedTheme;
     applyTheme(savedTheme);
-    // ===== FIM DA ADIÇÃO DA LÓGICA DO TEMA =====
     document.getElementById("nickListInput").addEventListener("input", function () {
         const linhas = this.value.split("\n");
         const ajustadas = linhas.map(linha => linha.slice(0, 16));
@@ -258,7 +243,6 @@
         });
     });
 	function ajustarLayoutMobile() {
-    // Só executa em dispositivos móveis
     if (!/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
         return;
     }
@@ -268,24 +252,20 @@
     const reloadButton = resultadoDiv.querySelector('.reload-button');
 
     if (!resultadoDiv || !nickItem || !reloadButton) {
-        return; // Sai se algum elemento não for encontrado
+        return;
     }
 
-    // 1. Força o contêiner a ser rolável e o conteúdo a ficar em linha única
     resultadoDiv.style.overflowX = 'auto';
     resultadoDiv.style.webkitOverflowScrolling = 'touch';
     nickItem.style.whiteSpace = 'nowrap';
     nickItem.style.display = 'inline-flex';
     nickItem.style.alignItems = 'center';
 
-    // 2. Mede a margem negativa exata do botão de recarregar
     const margemNegativa = parseFloat(window.getComputedStyle(reloadButton).marginLeft);
-    const offset = Math.abs(margemNegativa); // Converte -47px para 47
+    const offset = Math.abs(margemNegativa);
 
-    // 3. Cria um "espaço seguro" à esquerda do contêiner rolável
     resultadoDiv.style.paddingLeft = `${offset}px`;
 
-    // 4. Rola a área de resultados para a posição exata que faz o botão aparecer
     resultadoDiv.scrollLeft = offset;
 	}
 	async function buscarDadosJogador(nomeJogador) {
@@ -305,19 +285,15 @@
 		}
 	}
 	function recarregarAvatar(uuid) {
-    // --- INÍCIO DO MODO DE DIAGNÓSTICO ---
     console.log("--- Função recarregarAvatar iniciada ---");
     
-    // 1. Vamos verificar se o UUID chegou corretamente.
     console.log("UUID recebido pela função:", uuid);
 
-    // 2. Vamos ver quais IDs estamos procurando na página.
     const idCabeca = 'head-' + uuid;
     const idMini = 'mini-' + uuid;
     console.log("Procurando pelo ID da cabeça:", idCabeca);
     console.log("Procurando pelo ID do mini:", idMini);
 
-    // 3. O JavaScript está encontrando os elementos da imagem?
     const imgCabeca = document.getElementById(idCabeca);
     const imgMini = document.getElementById(idMini);
     console.log("Elemento <img> da cabeça encontrado:", imgCabeca);
@@ -328,23 +304,17 @@
         return; 
     }
 
-    // 4. Se encontrou, vamos ver as URLs atuais.
     console.log("URL atual da cabeça (antes da mudança):", imgCabeca.src);
     console.log("URL atual do mini (antes da mudança):", imgMini.src);
     
-    // 5. CORREÇÃO: Lógica aprimorada para criar as novas URLs sem perder parâmetros.
     console.log("--- Iniciando construção da nova URL ---");
     
-    // Limpa QUALQUER carimbo de data/hora antigo (&t=... ou ?t=...) da URL.
     const urlLimpaCabeca = imgCabeca.src.replace(/&?t=\d+/, '');
     const urlLimpaMini = imgMini.src.replace(/&?t=\d+/, '');
     console.log("URL da cabeça após limpar timestamp antigo:", urlLimpaCabeca);
 
-    // Cria o novo carimbo de data/hora.
     const timestamp = Date.now();
 
-    // Decide se usa '?' ou '&' para adicionar o novo carimbo de data/hora.
-    // Isso preserva os parâmetros originais como o '&overlay'.
     const novaUrlCabeca = urlLimpaCabeca.includes('?') 
         ? `${urlLimpaCabeca}&t=${timestamp}` 
         : `${urlLimpaCabeca}?t=${timestamp}`;
@@ -356,7 +326,6 @@
     console.log("URL NOVA para a cabeça (com overlay preservado):", novaUrlCabeca);
     console.log("URL NOVA para o mini:", novaUrlMini);
 
-    // 6. Finalmente, vamos tentar mudar o 'src'.
     console.log("...Atualizando 'src' das imagens agora...");
     imgCabeca.src = novaUrlCabeca;
     imgMini.src = novaUrlMini;
@@ -583,7 +552,6 @@
   });
 </script>
 <script>
-// Impede scroll lateral, permitindo apenas scroll para baixo
 document.documentElement.style.overflowX = 'hidden';
 document.body.style.overflowX = 'hidden';
 
@@ -594,37 +562,20 @@ window.addEventListener('scroll', function() {
 });
 </script>
 <script>
-    // Seleciona a caixa de texto do nick específico
     const nickInput = document.getElementById('nick');
 
-    // Adiciona um "ouvinte" que reage a qualquer alteração no texto
     nickInput.addEventListener('input', function(event) {
-        // Esta é a "lista negra" de caracteres.
-        // O regex /[^a-zA-Z0-9_]/g significa:
-        // [^...]    -> Encontre qualquer caractere que NÃO esteja neste conjunto
-        // a-zA-Z0-9_ -> As letras, números e o underscore
-        // g         -> Flag "global", para remover todas as ocorrências.
         const invalidCharsRegex = /[^a-zA-Z0-9_]/g;
         
-        // Pega o valor atual, remove os caracteres inválidos e atualiza a caixa de texto.
         this.value = this.value.replace(invalidCharsRegex, '');
     });
 </script>
 <script>
-    // Seleciona a caixa de texto da lista de nicks
     const nickListInput = document.getElementById('nickListInput');
 
-    // Adiciona um "ouvinte" que reage a qualquer alteração no texto
     nickListInput.addEventListener('input', function(event) {
-        // Esta é a "lista negra" de caracteres.
-        // O regex /[^a-zA-Z0-9_\n]/g significa:
-        // [^...]  -> Encontre qualquer caractere que NÃO esteja neste conjunto
-        // a-zA-Z0-9_ -> As letras, números e o underscore
-        // \n       -> A quebra de linha (tecla Enter). Precisamos permitir isso!
-        // g        -> Flag "global", para remover todas as ocorrências.
         const invalidCharsRegex = /[^a-zA-Z0-9_\n]/g;
         
-        // Pega o valor atual, remove os caracteres inválidos e atualiza a caixa de texto.
         this.value = this.value.replace(invalidCharsRegex, '');
     });
 </script>
@@ -646,13 +597,11 @@ document.addEventListener("DOMContentLoaded", () => {
       </select>
     </div>
   `;
-  // Coloca logo após o seletor de temas
   const themeElement = document.querySelector("#theme_switcher"); 
   if (themeElement) {
     themeElement.insertAdjacentHTML("beforebegin", langSelector);
   }
 
-  // Carrega idioma salvo
   const savedLang = localStorage.getItem("siteLang") || "pt-BR";
   document.getElementById("idiomaSelect").value = savedLang;
 });
@@ -671,9 +620,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	  "ru": { titulo: "Добро пожаловать на сайт", descricao: "Это исходное содержание." }
 	};
 	    function changeLanguage(lang) {
-	    // Salva a escolha no navegador
 	    localStorage.setItem("siteLang", lang);
-	    // Aplica a tradução
 	    const elements = document.querySelectorAll("[data-i18n]");
 	    elements.forEach(el => {
 		const key = el.getAttribute("data-i18n");
@@ -682,10 +629,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		 }
 	   });
 	  }
-		// Quando a página carregar, aplica o idioma salvo
 		document.addEventListener("DOMContentLoaded", () => {
 	    const savedLang = localStorage.getItem("siteLang") || "pt-BR";
-	    document.querySelector("#idiomaSelect").value = savedLang; // define no seletor
+	    document.querySelector("#idiomaSelect").value = savedLang;
 	    changeLanguage(savedLang);
 	});
 </script>
