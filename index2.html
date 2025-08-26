@@ -545,11 +545,12 @@
 });
 </script>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    if (navigator.userAgent.toLowerCase().includes("firefox")) {
-      document.body.style.zoom = "85%";
-    }
-  });
+  document.addEventListener("DOMContentLoaded", function () {
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.includes("firefox") && !userAgent.includes("librewolf")) {
+      document.body.style.zoom = "85%";
+    }
+  });
 </script>
 <script>
 document.documentElement.style.overflowX = 'hidden';
