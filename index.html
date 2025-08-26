@@ -743,12 +743,12 @@ async function getSkinByIGN() {
 }
 </script>
 <script>
-(function () {
-  const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
-  if (isFirefox) {
-    document.body.style.zoom = "85%";
-  }
-})();
+  document.addEventListener("DOMContentLoaded", function () {
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.includes("firefox") && !userAgent.includes("librewolf")) {
+      document.body.style.zoom = "85%";
+    }
+  });
 </script>
 <script>
   function isMobileDevice() {
@@ -1257,3 +1257,4 @@ function renderOptions(type) {
 </script>
 </body>
 </html>
+
