@@ -4011,7 +4011,6 @@ footer:not(:root) {
 }
 @-moz-document url-prefix() {
   select {
-    color: transparent !important;
     text-shadow: 0 0 0 #fff !important;
   }
   .footer {
