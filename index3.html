@@ -893,7 +893,8 @@ $(document).ready(function() {
 </script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    if (navigator.userAgent.toLowerCase().includes("firefox")) {
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.includes("firefox") && !userAgent.includes("librewolf")) {
       document.body.style.zoom = "85%";
     }
   });
