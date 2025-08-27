@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class=""><head>
-    <meta charset="UTF-8">
-	<meta property="og:description" content="Minecraft Verificar Nicks.">
-	<link rel="icon" href="images2/favicon.png"/>
-    <title>Minecraft Início</title>
-    <style>
+<link href="images/favicon.png" rel="icon" type="image/x-icon"/>
+<meta charset="UTF-8">
+<meta content="website" property="og:type"/>
+<meta property="og:description" content="Minecraft Verificar Nicks.">
+<meta content="website" property="og:type"/>
+<meta content="Minecraft Início" property="og:site_name"/>
+<meta content="Minecraft Início" property="og:title"/>
+<meta content="Minecraft Testar Skin e Capa, Verificar Nicks e Criar as suas Próprias Skins de Minecraft, A Partir do zero. ou Editar Skins existentes no seu Navegador." property="og:description"/>
+<meta content="http://24082004.vercel.app/" property="og:url"/>
+<meta content="" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="" name="twitter:site"/>
+<meta content="egirltrans" name="twitter:title"/>
+<meta content="Minecraft Início" name="twitter:description"/>
+<meta content="" name="twitter:image"/>
+<title>Minecraft Início</title>
+<style>
 	html, body {
 	width: 100%;
 	overflow-x: hidden;
@@ -20,10 +32,10 @@
     min-height: 100vh;
     }
     body.theme-light-bg {
-        background-image: linear-gradient(rgba(247, 255, 250, 1), rgba(247, 255, 250, 1)), url('images/background2.png');
+    background-image: linear-gradient(rgba(247, 255, 250, 1), rgba(247, 255, 250, 1)), url('images/background2.png');
     }
     body.theme-rainbow-bg {
-        background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/background3.png');
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/background3.png');
     }
     body.theme-light-bg {
     background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('images/background2.png');
@@ -66,12 +78,12 @@
 	body::-webkit-scrollbar {
 	display: none;
 	}
-    </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
     .content { max-width: 1200px; margin: 0 auto; }
-    </style>
-	<style>
+</style>
+<style>
 	input[type="radio"] {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -151,7 +163,6 @@
 </nav>
     <div class="content-wrapper">
     <div class="content">
-        
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Verificar Nicks</title>
     <link rel="stylesheet" href="style.css"/>
@@ -160,30 +171,30 @@
     <a rel="nofollow" href="https://github.com/girltrans" target="_blank" title="GitHub Repositório" class="github"><img src="./icons/github.png" alt="GitHub Icon" title="GitHub"></a>
     <h1 style=":; font-family: 'Righteous', cursive; font-size:2.4rem;">Minecraft Verificar Nicks</h1>
     <div class="menu">
-        <label><input checked="" name="modo" type="radio" value="1"> Verificar nick específico</label><br/>
-        <label><input name="modo" type="radio" value="2"/> Verificação em massa</label><br/>
-        <label><input name="modo" type="radio" value="3"/> Verificar lista colada</label>
+    <label><input checked="" name="modo" type="radio" value="1"> Verificar nick específico</label><br/>
+    <label><input name="modo" type="radio" value="2"/> Verificação em massa</label><br/>
+    <label><input name="modo" type="radio" value="3"/> Verificar lista colada</label>
     </div>
     <div class="form-container" id="form-nick">
-        <input id="nick" maxlength="16" placeholder="Digite um nick (até 16 caracteres)" type="text"/>
-        <button onclick="verificarNick()">Verificar</button>
+    <input id="nick" maxlength="16" placeholder="Digite um nick (até 16 caracteres)" type="text"/>
+    <button onclick="verificarNick()">Verificar</button>
     </div>
     <div class="form-container hidden" id="form-massa">
-            <label>Quantos caracteres? (1-16)</label>
-            <input id="chars_count" max="16" min="1" required="" type="number"/>
-            <label>Tipo de caracteres:</label>
-            <select id="char_type" required="">
-                <option value="1">Apenas números (0-9)</option>
-                <option value="2">Apenas letras (a-z)</option>
-                <option value="3">Letras + underscore (a-z, _)</option>
-                <option value="4">Letras + números (a-z, 0-9)</option>
-                <option value="5">Letras + números + underscore (a-z, 0-9, _)</option>
-            </select>
-            <label>Quantas threads? (1-1000, recomendado 300)</label>
-            <input id="threads" max="1000" min="1" required="" type="number" value="300"/>
-            <button onclick="verificacaoMassa()">Iniciar verificação</button>
-    </div>
-    <div class="form-container hidden" id="form-lista">
+        <label>Quantos caracteres? (1-16)</label>
+        <input id="chars_count" max="16" min="1" required="" type="number"/>
+        <label>Tipo de caracteres:</label>
+        <select id="char_type" required="">
+        <option value="1">Apenas números (0-9)</option>
+        <option value="2">Apenas letras (a-z)</option>
+        <option value="3">Letras + underscore (a-z, _)</option>
+        <option value="4">Letras + números (a-z, 0-9)</option>
+        <option value="5">Letras + números + underscore (a-z, 0-9, _)</option>
+        </select>
+        <label>Quantas threads? (1-1000, recomendado 300)</label>
+        <input id="threads" max="1000" min="1" required="" type="number" value="300"/>
+        <button onclick="verificacaoMassa()">Iniciar verificação</button>
+		</div>
+		<div class="form-container hidden" id="form-lista">
         <label>Cole os nicks abaixo (até 16 caracteres) (1 por linha shift + enter)</label>
         <textarea id="nickListInput" rows="6" style="width:100%; background-color:#1e1e1e; color:#E8B901; border:1px solid #8B1616;"></textarea>
         <button onclick="verificarLista()">Verificar Lista</button>
@@ -193,30 +204,25 @@
     </div>
 <script>
     const themeSwitcher = document.getElementById('theme_switcher');
-    
     function applyTheme(theme) {
         document.body.classList.remove('theme-light-bg', 'theme-rainbow-bg');
-
         if (theme === 'light') {
             document.body.classList.add('theme-light-bg');
         } else if (theme === 'rainbow') {
             document.body.classList.add('theme-rainbow-bg');
         }
-        
         localStorage.setItem('site_theme', theme);
     }
-
     themeSwitcher.addEventListener('change', function() {
         applyTheme(this.value);
     });
-
     const savedTheme = localStorage.getItem('site_theme') || 'dark';
     themeSwitcher.value = savedTheme;
     applyTheme(savedTheme);
     document.getElementById("nickListInput").addEventListener("input", function () {
-        const linhas = this.value.split("\n");
-        const ajustadas = linhas.map(linha => linha.slice(0, 16));
-        this.value = ajustadas.join("\n");
+    const linhas = this.value.split("\n");
+    const ajustadas = linhas.map(linha => linha.slice(0, 16));
+    this.value = ajustadas.join("\n");
     });
     const modoRadios = document.querySelectorAll('input[name="modo"]');
     const formNick = document.getElementById('form-nick');
@@ -224,14 +230,12 @@
     const formLista = document.getElementById('form-lista');
     const resultado = document.getElementById('resultado');
     let disponiveisGlobal = [];
-
     modoRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             resultado.textContent = "";
             formNick.classList.add('hidden');
             formMassa.classList.add('hidden');
             formLista.classList.add('hidden');
-
             if (radio.value === '1') formNick.classList.remove('hidden');
             else if (radio.value === '2') formMassa.classList.remove('hidden');
             else if (radio.value === '3') formLista.classList.remove('hidden');
@@ -241,26 +245,20 @@
     if (!/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
         return;
     }
-
     const resultadoDiv = document.getElementById('resultado');
     const nickItem = resultadoDiv.querySelector('.nick-item');
     const reloadButton = resultadoDiv.querySelector('.reload-button');
-
     if (!resultadoDiv || !nickItem || !reloadButton) {
         return;
     }
-
     resultadoDiv.style.overflowX = 'auto';
     resultadoDiv.style.webkitOverflowScrolling = 'touch';
     nickItem.style.whiteSpace = 'nowrap';
     nickItem.style.display = 'inline-flex';
     nickItem.style.alignItems = 'center';
-
     const margemNegativa = parseFloat(window.getComputedStyle(reloadButton).marginLeft);
     const offset = Math.abs(margemNegativa);
-
     resultadoDiv.style.paddingLeft = `${offset}px`;
-
     resultadoDiv.scrollLeft = offset;
 	}
 	async function buscarDadosJogador(nomeJogador) {
@@ -281,59 +279,44 @@
 	}
 	function recarregarAvatar(uuid) {
     console.log("--- Função recarregarAvatar iniciada ---");
-    
     console.log("UUID recebido pela função:", uuid);
-
     const idCabeca = 'head-' + uuid;
     const idMini = 'mini-' + uuid;
     console.log("Procurando pelo ID da cabeça:", idCabeca);
     console.log("Procurando pelo ID do mini:", idMini);
-
     const imgCabeca = document.getElementById(idCabeca);
     const imgMini = document.getElementById(idMini);
     console.log("Elemento <img> da cabeça encontrado:", imgCabeca);
     console.log("Elemento <img> do mini encontrado:", imgMini);
-
     if (!imgCabeca || !imgMini) {
         console.error("ERRO CRÍTICO: Não foi possível encontrar um ou ambos os elementos <img>.");
         return; 
     }
-
     console.log("URL atual da cabeça (antes da mudança):", imgCabeca.src);
     console.log("URL atual do mini (antes da mudança):", imgMini.src);
-    
     console.log("--- Iniciando construção da nova URL ---");
-    
     const urlLimpaCabeca = imgCabeca.src.replace(/&?t=\d+/, '');
     const urlLimpaMini = imgMini.src.replace(/&?t=\d+/, '');
     console.log("URL da cabeça após limpar timestamp antigo:", urlLimpaCabeca);
-
     const timestamp = Date.now();
-
     const novaUrlCabeca = urlLimpaCabeca.includes('?') 
         ? `${urlLimpaCabeca}&t=${timestamp}` 
         : `${urlLimpaCabeca}?t=${timestamp}`;
-
     const novaUrlMini = urlLimpaMini.includes('?')
         ? `${urlLimpaMini}&t=${timestamp}`
         : `${urlLimpaMini}?t=${timestamp}`;
-
     console.log("URL NOVA para a cabeça (com overlay preservado):", novaUrlCabeca);
     console.log("URL NOVA para o mini:", novaUrlMini);
-
     console.log("...Atualizando 'src' das imagens agora...");
     imgCabeca.src = novaUrlCabeca;
     imgMini.src = novaUrlMini;
-    
     console.log("--- Função recarregarAvatar concluída ---");
 	}
 	function exibirNickOcupado(player) {
     const nomeJogador = player.name;
     const uuid = player.uuid;
-
     const crafatarHeadUrl = `https://crafatar.com/avatars/${uuid}?size=256&overlay`;
     const starlightBodyUrl = `https://starlightskins.lunareclipse.studio/render/mojavatar/${uuid}/full`;
-
     return `
         <div class="nick-item">
             <a href="#" onclick="event.preventDefault(); recarregarAvatar('${uuid}')" class="reload-button" title="Recarregar Cabeça / Mini">🔄️</a>
@@ -363,7 +346,6 @@
             <a href="https://laby.net/@${nomeJogador}" target="_blank"><img src="./icons/labymod.png" alt="LabyMod" title="LabyMod"></a>
         </div>`;
 	}
-
 	function exibirNickDisponivel(nomeJogador) {
 		return `
 			<div class="nick-item">
@@ -386,7 +368,6 @@
 				<a href="https://laby.net/@${nomeJogador}" target="_blank"><img src="./icons/labymod.png" alt="LabyMod" title="LabyMod"></a>
 			</div>`;
 	}
-
 	async function verificarNick() {
 		const nick = document.getElementById('nick').value.trim();
 		resultado.innerHTML = "⏳ Verificando...";
@@ -403,7 +384,6 @@
 		}
 		    ajustarLayoutMobile();
 	}
-	
 	async function verificarLista() {
 		const raw = document.getElementById("nickListInput").value;
 		const nicks = raw.split("\n").map(n => n.trim()).filter(Boolean);
@@ -442,7 +422,6 @@
 		}
 		ajustarLayoutMobile();
 	}
-	
 	function baixarDisponiveis() {
 		if (disponiveisGlobal.length === 0) return;
 		const blob = new Blob([disponiveisGlobal.join("\n")], {
@@ -457,7 +436,6 @@
 		document.body.removeChild(a);
 		URL.revokeObjectURL(url);
 	}
-
 	async function verificacaoMassa() {
 		const count = parseInt(document.getElementById('chars_count').value);
 		const tipo = parseInt(document.getElementById('char_type').value);
@@ -493,7 +471,6 @@
 			resultado.innerHTML = `❌ Nenhum nick disponível encontrado.`;
 		}
 	}
-
 	function gerarCombinacoes(charset, length) {
 		let results = [];
 		function helper(prefix, depth) {
@@ -509,7 +486,6 @@
 		return results;
 	}
 </script>
-
 <script>
     document.getElementById("nick").addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
@@ -520,7 +496,6 @@
     document.getElementById("chars_count").addEventListener("keydown", handleEnterMassa);
     document.getElementById("char_type").addEventListener("keydown", handleEnterMassa);
     document.getElementById("threads").addEventListener("keydown", handleEnterMassa);
-
     function handleEnterMassa(event) {
         if (event.key === "Enter") {
             event.preventDefault();
@@ -550,86 +525,95 @@
 <script>
 document.documentElement.style.overflowX = 'hidden';
 document.body.style.overflowX = 'hidden';
-
 window.addEventListener('scroll', function() {
   if (window.scrollX !== 0) {
-    window.scrollTo(0, window.scrollY);
+      window.scrollTo(0, window.scrollY);
   }
 });
 </script>
 <script>
     const nickInput = document.getElementById('nick');
-
     nickInput.addEventListener('input', function(event) {
-        const invalidCharsRegex = /[^a-zA-Z0-9_]/g;
-        
-        this.value = this.value.replace(invalidCharsRegex, '');
+    const invalidCharsRegex = /[^a-zA-Z0-9_]/g;
+    this.value = this.value.replace(invalidCharsRegex, '');
     });
 </script>
 <script>
     const nickListInput = document.getElementById('nickListInput');
-
     nickListInput.addEventListener('input', function(event) {
-        const invalidCharsRegex = /[^a-zA-Z0-9_\n]/g;
-        
-        this.value = this.value.replace(invalidCharsRegex, '');
+    const invalidCharsRegex = /[^a-zA-Z0-9_\n]/g;
+    this.value = this.value.replace(invalidCharsRegex, '');
     });
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-	const langSelector = `
+  const langSelector = `
       <select id="idiomaSelect" onchange="changeLanguage(this.value)"
-      style="padding:5px;border-radius:5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right: 20px;position:relative;top:8.3px;width:auto;background:#121212;box-shadow: 0 2px 18px #8b1616;font-size:1.1rem;min-width:44px;min-height: 44px;box-sizing: border-box;cursor:pointer;">
-        <option value="pt-BR">Português 🇧🇷</option>
-		<option value="pt-PT">Português 🇵🇹</option>
-        <option value="es">Español 🇪🇸</option>
-        <option value="en">English 🇺🇸</option>
-        <option value="fr">Français 🇫🇷</option>
-        <option value="ja">日本語 🇯🇵</option>
-        <option value="ko">한국어 🇰🇷</option>
-        <option value="zh-CN">中文-简体 🇨🇳</option>
-        <option value="zh-TW">中文-繁體 🇨🇳</option>
-		<option value="ru">Русский 🇷🇺</option>
+      style="padding:5px;border-radius:5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right: 20px;position:relative;top:8.2px;width:auto;background:#121212;box-shadow: 0 2px 18px #8b1616;font-size:1.1rem;min-width:44px;min-height: 44px;box-sizing: border-box;cursor:pointer;">
+      <option value="pt-BR">Português 🇧🇷</option>
+	  <option value="pt-PT">Português 🇵🇹</option>
+      <option value="es">Español 🇪🇸</option>
+      <option value="us">English 🇺🇸</option>
+      <option value="fr">Français 🇫🇷</option>
+      <option value="jp">日本語 🇯🇵</option>
+      <option value="kr">한국어 🇰🇷</option>
+      <option value="zh-CN">中文-简体 🇨🇳</option>
+      <option value="zh-TW">中文-繁體 🇨🇳</option>
+	  <option value="ru">Русский 🇷🇺</option>
+	  <option value="de">Deutsch 🇩🇪</option>
       </select>
-    </div>
   `;
   const themeElement = document.querySelector("#theme_switcher"); 
   if (themeElement) {
     themeElement.insertAdjacentHTML("beforebegin", langSelector);
   }
-
   const savedLang = localStorage.getItem("siteLang") || "pt-BR";
   document.getElementById("idiomaSelect").value = savedLang;
 });
 </script>
+<script src="idioma/translationsindex2.js"></script>
 <script>
-	const translations = {
-	  "pt-BR": { titulo: "Bem-vindo ao site", descricao: "Este é o conteúdo inicial." },
-	  "pt-PT": { titulo: "Bem-vindo ao site", descricao: "Este é o conteúdo inicial." },
-	  "en": { titulo: "Welcome to the website", descricao: "This is the initial content." },
-	  "es": { titulo: "Bienvenido al sitio web", descricao: "Este es el contenido inicial." },
-	  "fr": { titulo: "Bienvenue sur le site", descricao: "Ceci est le contenu initial." },
-	  "ja": { titulo: "ウェブサイトへようこそ", descricao: "これは初期コンテンツです。" },
-	  "ko": { titulo: "웹사이트에 오신 것을 환영합니다", descricao: "이것은 초기 콘텐츠입니다." },
-	  "zh-CN": { titulo: "欢迎来到网站", descricao: "这是初始内容。" },
-	  "zh-TW": { titulo: "歡迎來到網站", descricao: "這是初始內容。" },
-	  "ru": { titulo: "Добро пожаловать на сайт", descricao: "Это исходное содержание." }
-	};
-	    function changeLanguage(lang) {
-	    localStorage.setItem("siteLang", lang);
-	    const elements = document.querySelectorAll("[data-i18n]");
-	    elements.forEach(el => {
-		const key = el.getAttribute("data-i18n");
-		if (translations[lang] && translations[lang][key]) {
-		  el.textContent = translations[lang][key];
-		 }
-	   });
-	  }
-		document.addEventListener("DOMContentLoaded", () => {
-	    const savedLang = localStorage.getItem("siteLang") || "pt-BR";
-	    document.querySelector("#idiomaSelect").value = savedLang;
-	    changeLanguage(savedLang);
-	});
+function changeLanguage(lang) {
+  localStorage.setItem("siteLang", lang);
+  const elements = document.querySelectorAll("[data-i18n]");
+  elements.forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (translations[lang] && translations[lang][key]) {
+      if (el.hasAttribute("placeholder")) {
+        el.placeholder = translations[lang][key];
+        el.setAttribute("title", translations[lang][key]);
+      } else {
+        el.textContent = translations[lang][key];
+      }
+    }
+  });
+  if (translations[lang]["pageTitle"]) {
+    document.title = translations[lang]["pageTitle"];
+  }
+  if (translations[lang]["pageDescription"]) {
+    const metaDesc = document.querySelector('meta[property="og:description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", translations[lang]["pageDescription"]);
+    }
+  }
+  applyDynamicTranslations(lang);
+  document.addEventListener("DOMContentLoaded", () => {
+  let savedLang = localStorage.getItem("siteLang");
+  if (!savedLang) {
+    const browserLang = navigator.language || navigator.userLanguage;
+    if (translations[browserLang]) {
+      savedLang = browserLang;
+    } else {
+      savedLang = "pt-BR";
+    }
+    localStorage.setItem("siteLang", savedLang);
+  }
+  document.querySelector("#idiomaSelect").value = savedLang;
+  changeLanguage(savedLang);
+});
+  const savedLang = localStorage.getItem("siteLang") || "pt-BR";
+  applyDynamicTranslations(savedLang);
+}
 </script>
 </body>
 </html>
