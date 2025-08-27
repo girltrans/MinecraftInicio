@@ -41,198 +41,189 @@
     font-family: sans-serif;
 	}
 	body {
-        background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
-                    url('images/background.png') no-repeat center center fixed;
-        background-size: cover;
-        color: #e8b901;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        min-height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+    url('images/background.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #e8b901;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    min-height: 100vh;
     }
     .content { max-width: 1200px; margin: 0 auto; }
-
     input[type="file"] { display: none; }
-
     .custom-file-upload-btn {
-        display: inline-block;
-        background: #121212;
-        color: #e8b901;
-        border: none;
-		text-indent: -13px;
-        border-radius: 8px;
-        padding: 0.5rem 1.2rem;
-        font-size: 1rem;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background 0.2s;
-        box-shadow: 0 2px 18px #8b1616;
-        text-align: left;
-        box-sizing: border-box;
-        position: relative;
-        top: -6.7px;
+    display: inline-block;
+    background: #121212;
+    color: #e8b901;
+    border: none;
+	text-indent: -13px;
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 18px #8b1616;
+    text-align: left;
+    box-sizing: border-box;
+    position: relative;
+    top: -6.7px;
     }
-    
     .custom-file-upload-btn:hover { background: ; }
-    
     .selector-panels-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2.5rem;
-        align-items: flex-start;
-        justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: flex-start;
+    justify-content: center;
     }
-
     .left-selector-panel {
-        flex: 2 1 480px;
-        min-width: 340px;
-        max-width: 650px;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
+    flex: 2 1 480px;
+    min-width: 340px;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     }
-    
-	 .optifine-selector-panel {
-		flex: 1 1 280px;
-		min-width: 280px;
-		max-width: 320px;
-		border-radius: 16px;
-		padding: 1.2rem 1rem 1.5rem 1rem;
-		box-shadow: 0 2px 18px rgba(0, 0, 0, 0.333);
-		margin-top: -680px;
-		margin-left: 1510px;
+	.optifine-selector-panel {
+	flex: 1 1 280px;
+	min-width: 280px;
+	max-width: 320px;
+	border-radius: 16px;
+	padding: 1.2rem 1rem 1.5rem 1rem;
+	box-shadow: 0 2px 18px rgba(0, 0, 0, 0.333);
+	margin-top: -680px;
+	margin-left: 1510px;
     }
-    
     .optifine-options label {
-      display: flex; 
-      align-items: center;
-      gap: 0.5rem; 
-      margin-bottom: 0.4rem;
-      cursor: pointer;
+    display: flex; 
+    align-items: center;
+    gap: 0.5rem; 
+    margin-bottom: 0.4rem;
+    cursor: pointer;
     }
     .optifine-options label span { font-size: 0.9rem; }
     .optifine-options input[type="radio"] {
-        cursor: pointer;
-        accent-color: #e8b901;
-        transform: scale(0.3);
+    cursor: pointer;
+    accent-color: #e8b901;
+    transform: scale(0.3);
     }
-
     .optifine-options-container {
-        padding-left: 1rem;
-        border-left: 1.5px solid #8b1616;
-        margin-top: 0.5rem;
-        min-height: 30px;
+    padding-left: 1rem;
+    border-left: 1.5px solid #8b1616;
+    margin-top: 0.5rem;
+    min-height: 30px;
     }
     .optifine-input-group {
-        margin-bottom: 0.75rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     }
     .optifine-input-group label {
-        flex-basis: 60px;
-        flex-shrink: 0;
-        color: #e8b901;
-        font-weight: bold;
-        font-size: 0.85rem;
+    flex-basis: 60px;
+    flex-shrink: 0;
+    color: #e8b901;
+    font-weight: bold;
+    font-size: 0.85rem;
     }
     .optifine-input-group input[type="text"] {
-        flex-grow: 1;
-        padding: 0.3rem 0.6rem;
-        border-radius: 8px;
-        border: none;
-        font-size: 0.85rem;
-        background: #121212;
-        color: #e8b901;
-        outline: none;
-        box-shadow: 0 2px 10px rgba(139, 22, 22, 0.5);
+    flex-grow: 1;
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.85rem;
+    background: #121212;
+    color: #e8b901;
+    outline: none;
+    box-shadow: 0 2px 10px rgba(139, 22, 22, 0.5);
     }
     .optifine-input-group input[type="text"]::placeholder {
-        font-size: 0.75rem;
-        font-style: italic;
+    font-size: 0.75rem;
+    font-style: italic;
     }
     .optifine-input-group input[type="color"] {
-        padding: 0;
-        border: none;
-        width: 30px;
-        height: 30px;
-        border-radius: 6px;
-        cursor: pointer;
-        background: #121212;
-        box-shadow: 0 2px 10px rgba(139, 22, 22, 0.5);
+    padding: 0;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #121212;
+    box-shadow: 0 2px 10px rgba(139, 22, 22, 0.5);
     }
     input[type="color"]::-webkit-color-swatch-wrapper { padding: 2px; }
     input[type="color"]::-webkit-color-swatch { border: none; border-radius: 4px; }
-
     .optifine-apply-btn {
-        background: #121212;
-        color: #e8b901;
-        border: none;
-        border-radius: 8px;
-        padding: 0.4rem 1rem;
-        font-size: 0.9rem;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background 0.2s, box-shadow 0.2s;
-        box-shadow: 0 2px 18px #8b1616;
-        display: block;
-        margin: 1rem auto 0 auto;
-        width: 80%;
+    background: #121212;
+    color: #e8b901;
+    border: none;
+    border-radius: 8px;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 18px #8b1616;
+    display: block;
+    margin: 1rem auto 0 auto;
+    width: 80%;
     }
     .optifine-apply-btn:hover {
-        background: #;
-        box-shadow: 0 4px 22px #8b1616;
+    background: #;
+    box-shadow: 0 4px 22px #8b1616;
     }
     #optifine_status {
-        font-size: 0.8rem;
-        color: #ffd700;
-        text-align: center;
-        margin-top: 0.5rem;
-        height: 1em;
+    font-size: 0.8rem;
+    color: #ffd700;
+    text-align: center;
+    margin-top: 0.5rem;
+    height: 1em;
     }
     body.theme-light-bg {
-        background-image: linear-gradient(rgba(247, 255, 250, 1), rgba(247, 255, 250, 1)), url('images/background2.png');
+    background-image: linear-gradient(rgba(247, 255, 250, 1), rgba(247, 255, 250, 1)), url('images/background2.png');
     }
     body.theme-rainbow-bg {
-        background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/background3.png');
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/background3.png');
     }
-body.theme-light-bg {
+	body.theme-light-bg {
     background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('images/background2.png');
-}
-@keyframes rainbow-animation {
-  0% {
+	}
+	@keyframes rainbow-animation {
+    0% {
     background-position: 0% 50%;
-  }
-  50% {
+    }
+    50% {
     background-position: 100% 50%;
-  }
-  100% {
+    }
+    100% {
     background-position: 0% 50%;
-  }
-}
-body.theme-rainbow-bg {
+    }
+    }
+	body.theme-rainbow-bg {
     background-image: 
-        linear-gradient(
-            -45deg,
-            #ee7752,
-            #e73c7e,
-            #23a6d5,
-			#FF0000,
-			#FFA500,
-			#FFFF00,
-			#00FF00,
-			#0000FF,
-			#4B0082,
-			#EE82EE,
-            #23d5ab
-        ),
-        url('images/background3.png');
+    linear-gradient(
+    -45deg,
+    #ee7752,
+    #e73c7e,
+    #23a6d5,
+	#FF0000,
+	#FFA500,
+	#FFFF00,
+	#00FF00,
+	#0000FF,
+	#4B0082,
+	#EE82EE,
+    #23d5ab
+    ),
+    url('images/background3.png');
     background-size: 400% 400%, cover;
     animation: rainbow-animation 15s ease infinite;
-}
-body.theme-light-bg .github img {
+	}
+	body.theme-light-bg .github img {
     filter: invert(0);
     opacity: 0.6;
-}
+	}
     </style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 </head>
@@ -410,10 +401,8 @@ let currentSkin = null;
 let currentBackEquipment = "cape";
 let availableAnimations = {}; 
 let currentPlayerIGN = null;
-
 document.addEventListener('DOMContentLoaded', () => {
     const themeSwitcher = document.getElementById('theme_switcher');
-    
     function applyTheme(theme) {
         document.body.classList.remove('theme-light-bg', 'theme-rainbow-bg');
         if (theme === 'light') {
@@ -423,16 +412,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         localStorage.setItem('site_theme', theme);
     }
-
     themeSwitcher.addEventListener('change', function() {
         applyTheme(this.value);
     });
-
     const savedTheme = localStorage.getItem('site_theme') || 'dark';
     themeSwitcher.value = savedTheme;
     applyTheme(savedTheme);
-
-
     availableAnimations = {
       idle: new skinview3d.IdleAnimation(),
       walk: new skinview3d.WalkingAnimation(),
@@ -442,15 +427,12 @@ document.addEventListener('DOMContentLoaded', () => {
       crouch: new skinview3d.CrouchAnimation(),
       hit: new skinview3d.HitAnimation(),
     };
-
     initViewer();
-
     const uploadSkinInput = document.getElementById('upload_skin');
     if (uploadSkinInput) {
         uploadSkinInput.addEventListener('change', function () {
             const statusDiv = document.getElementById('ign_status');
             statusDiv.textContent = '';
-
             const file = this.files[0];
             if (!file) return;
             const allowedExtensions = ['png', 'jpg', 'jpeg'];
@@ -459,9 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Tipo De Arquivo Inválido. Por favor, use .png, .jpg ou .jpeg.');
                 return; 
             }
-            
             const originalFilename = file.name.replace(/\.[^/.]+$/, "");
-
             const reader = new FileReader();
             reader.onload = function(event) {
                 const dataUrl = event.target.result;
@@ -472,11 +452,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                         (this.width === 128 && this.height === 128);
                     if (isValidSize) {
                         setSkin(dataUrl);
-                        
                         const lang = localStorage.getItem("siteLang") || "pt-BR";
 						statusDiv.textContent = translations[lang]["skinEnviada"] || "Skin Enviada Com Sucesso!";
 						setTimeout(() => { statusDiv.textContent = ''; }, 3000);
-
                         currentPlayerIGN = originalFilename; 
                     } else {
                     const lang = localStorage.getItem("siteLang") || "pt-BR";
@@ -486,11 +464,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 img.src = dataUrl;
             };
             reader.readAsDataURL(file);
-
             this.value = null;
         });
     }
-
     const capeSelector = document.getElementById('capeSelector');
     if (capeSelector) {
         capeSelector.addEventListener('change', () => {
@@ -505,25 +481,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
 	const uploadCapeInput = document.getElementById('uploadCape');
 	if (uploadCapeInput) {
 	uploadCapeInput.addEventListener('change', function () {
     const statusDiv = document.getElementById('ign_status');
     statusDiv.textContent = '';
-
     const file = this.files[0];
     if (!file) return;
-
     const reader = new FileReader();
     reader.onload = async (e) => {
       const lang = localStorage.getItem("siteLang") || "pt-BR";
       try {
         await setCape(e.target.result);
-
         statusDiv.textContent = translations[lang]["capaEnviada"] || "Capa Enviada Com Sucesso!";
         setTimeout(() => { statusDiv.textContent = ''; }, 3000);
-
       } catch (error) {
         alert(
           translations[lang]["capaInvalida"] ||
@@ -533,18 +504,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
     reader.readAsDataURL(file);
-
     this.value = null;
   });
 }
-    
     const animationSelector = document.getElementById('animation_selector');
     if (animationSelector) {
         animationSelector.addEventListener('change', () => {
             setAnimation(animationSelector.value);
         });
     }
-
     const downloadBtn = document.getElementById('downloadSkinBtn');
     if(downloadBtn) {
         downloadBtn.addEventListener('click', () => {
@@ -553,20 +521,16 @@ document.addEventListener('DOMContentLoaded', () => {
 				alert(translations[lang]["nenhumaSkin"] || "Nenhuma Skin Disponível.");
 				return;
 			}
-			
             const statusDiv = document.getElementById('ign_status');
             const filename = currentPlayerIGN ? `${currentPlayerIGN}.png` : 'skin.png';
-
             if (currentSkin.startsWith('data:image/') || currentSkin.startsWith('blob:')) {
                 const link = document.createElement('a');
                 link.href = currentSkin;
                 link.download = filename;
                 link.click();
-
                 const lang = localStorage.getItem("siteLang") || "pt-BR";
 				statusDiv.textContent = translations[lang]["baixando"] || "Baixando...";
 				setTimeout(() => { statusDiv.textContent = ''; }, 3000);
-
             } else {
                 const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(currentSkin.split('?')[0])}`;
                 fetch(proxyUrl)
@@ -583,7 +547,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     link.click();
                     document.body.removeChild(link);
                     URL.revokeObjectURL(url);
-
                     statusDiv.textContent = 'Baixando...';
                     setTimeout(() => { statusDiv.textContent = ''; }, 3000);
                 })
@@ -594,7 +557,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
     const skinForm = document.getElementById('skin-loader-form');
     if (skinForm) {
         skinForm.addEventListener('submit', function(event) {
@@ -603,8 +565,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-
 function initViewer() {
   let initialSkin = "https://textures.minecraft.net/texture/3b60a1f6d562f52aaebbf1434f1de147933a3affe0e764fa49ea057536623cd3";
   skinViewer = new skinview3d.SkinViewer({
@@ -613,28 +573,23 @@ function initViewer() {
     height: 480,
     skin: initialSkin
   });
-  
   skinViewer.background = 0x121212;
   setAnimation('idle'); 
 }
-
 async function setSkin(url) {
   skinViewer.loadSkin(url); 
   currentSkin = url;
   document.getElementById('ign_status').textContent = '';
 }
-
 async function setCape(url) {
   currentCape = url;
   const optifineStatus = document.getElementById('optifine_status');
   if (optifineStatus) optifineStatus.textContent = '';
   if (!skinViewer) return;
-  
   if (url === null) {
     skinViewer.loadCape(null);
     return;
   }
-
   try {
     console.log("Tentando carregar capa de:", url);
     return await skinViewer.loadCape(url, { backEquipment: currentBackEquipment });
@@ -643,7 +598,6 @@ async function setCape(url) {
     throw error;
   }
 }
-
 function toggleElytra() {
   const checked = document.getElementById('elytra_checkbox').checked;
   currentBackEquipment = checked ? "elytra" : "cape";
@@ -651,7 +605,6 @@ function toggleElytra() {
     skinViewer.loadCape(currentCape, { backEquipment: currentBackEquipment });
   }
 }
-
 function setAnimation(animName) {
   if (!skinViewer) return;
   if (!animName || animName === 'none') {
@@ -661,7 +614,6 @@ function setAnimation(animName) {
     if (skinViewer.animation) skinViewer.animation.speed = 1;
   }
 }
-
 async function getOfficialSkinUrl(playerName) {
   const uuidResponse = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`, { cache: 'reload' });
   if (!uuidResponse.ok) {
@@ -669,25 +621,20 @@ async function getOfficialSkinUrl(playerName) {
   }
   const playerData = await uuidResponse.json();
   const uuid = playerData.id;
-
   if (!uuid) {
     throw new Error('UUID não foi encontrado na resposta da API');
   }
-
   const profileResponse = await fetch(`https://api.gapple.pw/cors/sessionserver/${uuid}`, { cache: 'reload' });
   if (!profileResponse.ok) {
     throw new Error('Não foi possível obter o perfil da sessão do jogador');
   }
   const profileData = await profileResponse.json();
-
   const texturesProperty = profileData.properties.find(prop => prop.name === 'textures');
   if (!texturesProperty) {
     throw new Error('Propriedade de texturas não encontrada no perfil');
   }
-
   const decodedValue = atob(texturesProperty.value);
   const textureData = JSON.parse(decodedValue);
-
   let skinUrl = textureData.textures?.SKIN?.url;
   if (!skinUrl) {
     throw new Error('URL da skin não encontrada nos dados da textura');
@@ -697,26 +644,20 @@ async function getOfficialSkinUrl(playerName) {
   }
   return skinUrl;
 }
-
 async function getSkinByIGN() {
     const ign = document.getElementById('ign').value;
     const statusDiv = document.getElementById('ign_status');
     const loadButton = document.querySelector('#skin-loader-form button');
-    
-	
     currentPlayerIGN = null; 
-
     if (!ign) {
     const lang = localStorage.getItem("siteLang") || "pt-BR";
     statusDiv.textContent = translations[lang]["digiteNick"] || "Por favor, digite um nick.";
     return;
 	}
-
     const lang = localStorage.getItem("siteLang") || "pt-BR";
 	loadButton.disabled = true;
 	loadButton.textContent = translations[lang]["carregando"] || "Carregando...";
 	statusDiv.textContent = '';
-
     try {
         const skinUrl = await getOfficialSkinUrl(ign);
         const response = await fetch(skinUrl, { cache: 'reload' });
@@ -726,9 +667,7 @@ async function getSkinByIGN() {
         const imageBlob = await response.blob();
         const localUrl = URL.createObjectURL(imageBlob);
         setSkin(localUrl);
-        
         currentPlayerIGN = ign; 
-
         const lang = localStorage.getItem("siteLang") || "pt-BR";
 	    statusDiv.textContent = translations[lang]["skinSucesso"] || "Skin Carregada Com Sucesso!";
 	    setTimeout(() => { statusDiv.textContent = ''; }, 3000);
@@ -754,7 +693,6 @@ async function getSkinByIGN() {
   function isMobileDevice() {
     return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   }
-
   if (isMobileDevice()) {
     document.body.classList.add('allow-scroll');
   }
@@ -767,7 +705,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const applyBtn = document.getElementById('applyOptifineCapeBtn');
     const corsProxy1 = "https://cors.faav.top/optifine/";
     const corsProxy2 = "https://api.mcuserna.me/cors/optifinenet/";
-
     function updateOfCapeUrl() {
         const top = document.getElementById('of_top_color_hex').value.replace('#', '');
         const bottom = document.getElementById('of_bottom_color_hex').value.replace('#', '');
@@ -895,51 +832,40 @@ document.addEventListener('DOMContentLoaded', () => {
 		const savedLang = localStorage.getItem("siteLang") || "pt-BR";
 		changeLanguage(savedLang);
     }
-
 	optifineRadios.forEach(radio => {
     const label = radio.closest('label');
     if (!label) {
         return;
     }
-
     label.addEventListener('mousedown', function() {
         radio.wasChecked = radio.checked;
     });
-
     label.addEventListener('click', function(event) {
         event.preventDefault();
-
         if (radio.value === 'none' && radio.wasChecked) {
             radio.checked = false;
         } else {
             radio.checked = true;
         }
-
         const finalCheckedRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
         const finalValue = finalCheckedRadio ? finalCheckedRadio.value : 'none';
-
         renderOptions(finalValue);
         document.getElementById('capeSelector').value = '1';
-
     });
 });
-
     applyBtn.addEventListener('click', () => {
         const selectedRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
         const selectedType = selectedRadio ? selectedRadio.value : 'none';
-
         if (selectedType === 'none') {
             setCape(null);
             return;
         }
-
         if (currentOptifineCapeUrl) {
             setCape(currentOptifineCapeUrl);
         } else {
             alert('Por favor, preencha os detalhes da capa OptiFine.');
         }
     });
-
     const initialRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
     const initialValue = initialRadio ? initialRadio.value : 'none';
     renderOptions(initialValue);
@@ -956,27 +882,20 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-
   const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   const isFirefox = /Firefox/i.test(navigator.userAgent);
-
   if (isMobile || isFirefox) {
-    
     document.body.style.overflowX = 'auto';
-
     const styleElement = document.createElement('style');
-
     const cssRules = `
       body {
-        scrollbar-width: none;  
-        -ms-overflow-style: none;
+      scrollbar-width: none;  
+      -ms-overflow-style: none;
       }
-
       body::-webkit-scrollbar {
         display: none;
       }
-    `;
-
+	  `;
     styleElement.textContent = cssRules;
     document.head.appendChild(styleElement);
   }
@@ -984,56 +903,41 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-
     const camposDeTexto = document.querySelectorAll(
         'input[type="text"], input[type="password"], input[type="email"], input[type="search"], input[type="url"], input[type="tel"], textarea'
     );
-
     camposDeTexto.forEach(campoOriginal => {
         try {
             const cloneLimpo = campoOriginal.cloneNode(true);
-
             cloneLimpo.onpaste = null;
             cloneLimpo.oncopy = null;
             cloneLimpo.oncut = null;
             cloneLimpo.oncontextmenu = null;
-
             campoOriginal.parentNode.replaceChild(cloneLimpo, campoOriginal);
-
         } catch (e) {
             console.error('Falha ao limpar o campo:', campoOriginal, e);
         }
     });
-
     console.log(`Funções de Copiar/Colar foram reativadas em ${camposDeTexto.length} campos.`);
-
 });
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-
     const nickLoadInput = document.getElementById('ign');
-
     if (nickLoadInput) {
         nickLoadInput.addEventListener('input', function(event) {
             const invalidCharsRegex = /[^a-zA-Z0-9_]/g;
-        
             this.value = this.value.replace(invalidCharsRegex, '');
         });
     }
-
 });
 </script>
 <script>
     const optifineContainer = document.getElementById('optifine_options_container');
-
     optifineContainer.addEventListener('input', function(event) {
-        
         if (event.target.placeholder === 'Usuário Com Capa Optifne') {
             const userInput = event.target;
-            
             const invalidCharsRegex = /[^a-zA-Z0-9_]/g;
-            
             userInput.value = userInput.value.replace(invalidCharsRegex, '');
         }
     });
@@ -1068,7 +972,6 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
 function changeLanguage(lang) {
   localStorage.setItem("siteLang", lang);
-
   const elements = document.querySelectorAll("[data-i18n]");
   elements.forEach(el => {
     const key = el.getAttribute("data-i18n");
@@ -1081,20 +984,16 @@ function changeLanguage(lang) {
       }
     }
   });
-
   if (translations[lang]["pageTitle"]) {
     document.title = translations[lang]["pageTitle"];
   }
-
   if (translations[lang]["pageDescription"]) {
     const metaDesc = document.querySelector('meta[property="og:description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", translations[lang]["pageDescription"]);
     }
   }
-  
   applyDynamicTranslations(lang);
-
   document.addEventListener("DOMContentLoaded", () => {
   let savedLang = localStorage.getItem("siteLang");
   if (!savedLang) {
@@ -1106,23 +1005,19 @@ function changeLanguage(lang) {
     }
     localStorage.setItem("siteLang", savedLang);
   }
-
   document.querySelector("#idiomaSelect").value = savedLang;
   changeLanguage(savedLang);
 });
-
   const currentType = document.querySelector('input[name="optifine_cape_type"]:checked');
   if (currentType) {
     renderOptions(currentType.value);
   }
 }
-
   document.addEventListener("DOMContentLoaded", () => {
   const savedLang = localStorage.getItem("siteLang") || "pt-BR";
   document.querySelector("#idiomaSelect").value = savedLang;
   changeLanguage(savedLang);
 });
-
 function applyDynamicTranslations(lang) {
   const stealInput = document.querySelector(".optifine-input-group input[type='text']:not(#of_banner_pattern)");
   if (stealInput) {
@@ -1135,7 +1030,6 @@ function applyDynamicTranslations(lang) {
       stealInput.setAttribute("title", translations[lang]["optifinePlaceholder"]);
     }
   }
-
   const bannerInput = document.querySelector("#of_banner_pattern");
   if (bannerInput) {
     const bannerLabel = bannerInput.previousElementSibling;
@@ -1146,7 +1040,6 @@ function applyDynamicTranslations(lang) {
       bannerInput.placeholder = translations[lang]["bannerPlaceholder"];
     }
   }
-
   const oldAlert = window.alert;
   window.alert = function(msg) {
     if (translations[lang]) {
@@ -1166,18 +1059,14 @@ function renderOptions(type) {
   optionsContainer.innerHTML = '';
   currentOptifineCapeUrl = null;
   if (!type || type === 'none') return;
-
   const subContainer = document.createElement('div');
   subContainer.className = 'optifine-options-container';
-
   if (type === 'steal') {
     const inputGroup = document.createElement('div');
     inputGroup.className = 'optifine-input-group';
-
     const label = document.createElement('label');
     label.textContent = 'Nick:';
     inputGroup.appendChild(label);
-
     const input = document.createElement('input');
     input.type = 'text';
     input.placeholder = 'Usuário Com Capa Optifne';
@@ -1189,10 +1078,8 @@ function renderOptions(type) {
         currentOptifineCapeUrl = null;
       }
     });
-
     inputGroup.appendChild(input);
     subContainer.appendChild(inputGroup);
-
     input.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
         event.preventDefault();
@@ -1203,20 +1090,16 @@ function renderOptions(type) {
         }
       }
     });
-
   } else if (type === 'of_design') {
     subContainer.appendChild(createColorInput('of_top_color', 'designTopo', '#FFFFFF'));
     subContainer.appendChild(createColorInput('of_bottom_color', 'designFundo', '#FFFFFF'));
     subContainer.appendChild(createColorInput('of_text_color', 'designTexto', '#FFFFFF'));
     subContainer.appendChild(createColorInput('of_shadow_color', 'designSombra', '#FFFFFF'));
-
   } else if (type === 'banner') {
     const patternGroup = document.createElement('div');
     patternGroup.className = 'optifine-input-group';
-
     const patternLabel = document.createElement('label');
     patternLabel.textContent = 'Banner:';
-
     const patternInput = document.createElement('input');
     patternInput.type = 'text';
     patternInput.id = 'of_banner_pattern';
@@ -1232,29 +1115,23 @@ function renderOptions(type) {
         }
       }
     });
-
     patternGroup.appendChild(patternLabel);
     patternGroup.appendChild(patternInput);
     subContainer.appendChild(patternGroup);
-
     subContainer.appendChild(createColorInput('of_banner_top', 'designTopo', '#FFFFFF'));
     subContainer.appendChild(createColorInput('of_banner_bottom', 'designFundo', '#FFFFFF'));
   }
-
   if (subContainer.hasChildNodes()) {
     optionsContainer.appendChild(subContainer);
   }
-
   if (type === 'of_design') {
     updateOfCapeUrl();
   } else if (type === 'banner') {
     updateBannerCapeUrl();
   }
-
   const savedLang = localStorage.getItem("siteLang") || "pt-BR";
   applyDynamicTranslations(savedLang);
 }
 </script>
 </body>
 </html>
-
