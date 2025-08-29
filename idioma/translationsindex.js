@@ -124,7 +124,7 @@ const translations = {
 		tituloEnviarSkin: "📤 Enviar Skin",
 		tituloCarregarNick: "Cargar Nick",
 		tituloDigiteumnick: "Escriba un nick (16 caracteres)",
-		tituloEnviarCapa: "📤 Subir Capa",
+		tituloEnviarCapa: "📤 Enviar Capa",
 		tituloBaixarSkin: "💾 Descargar Skin",
 		tituloÉlitro: "💎 Élitro",
 		tituloAnimacao: "🎬 Animación",
@@ -615,4 +615,5 @@ const translations = {
 		pageTitle: "Minecraft Startseite",
 		pageDescription: "Minecraft Skins und Umhänge testen, Nicknames überprüfen und eigene Skins von Grund auf erstellen oder bestehende Skins im Browser bearbeiten."
 	  }
+
 	};
