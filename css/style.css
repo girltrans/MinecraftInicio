@@ -252,7 +252,7 @@ footer.footer {
   top: 3px;
 
   /* Cor e espessura do "visto" */
-  border: solid #8b1616;
+  border: solid #000;
   border-width: 0 4px 4px 0;
 }
 /* --- MOBILE FRIENDLY PATCH --- */
@@ -376,4 +376,5 @@ body.allow-scroll {
 body.allow-scroll::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
 }
+
 
