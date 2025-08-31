@@ -266,6 +266,8 @@
     modoRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             resultado.textContent = "";
+			document.getElementById("btnDownloadLista").classList.add("hidden");
+			document.getElementById("btnDownloadMassa").classList.add("hidden");
             formNick.classList.add('hidden');
             formMassa.classList.add('hidden');
             formLista.classList.add('hidden');
