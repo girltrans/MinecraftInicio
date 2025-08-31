@@ -184,7 +184,8 @@ img, video {
 }
 select#pxs {
     position: relative;
-    left: -14px;
+    left: -22px;
+	text-align: start;
 }
 .left-ads {
   width: 200px;
