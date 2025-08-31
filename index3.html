@@ -115,6 +115,63 @@ else if (tema === 'rainbow') document.documentElement.className = 'theme-rainbow
     filter: invert(0);
     opacity: 0.6;
 	}
+	@media (pointer: fine) {
+	.left-toolbar .tools,
+	#reset
+	#showObject,
+	.right-tools {
+    box-shadow: inset 0 0 0 1px #565657 !important;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	}
+	.left-toolbar .tools.active {
+    box-shadow: inset 0 0 0 2px #8B1616 !important;
+	}
+	.left-toolbar .tools:hover,
+	#reset .btn:hover,
+	#showObject:hover,
+	#showOverlay:hover,
+	.model-body a:hover,
+	.right-btns > a:hover {
+    background-color: #e8b901 !important;
+    color: #121212 !important;
+    box-shadow: inset 0 0 0 1px #e8b901 !important;
+	}
+	.left-toolbar .tools:hover i,
+	.right-btns > a:hover i {
+    color: #121212 !important;
+	}
+	#pxs,
+	#pxs_mobile {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #121212;
+    color: #e8b901;
+    border: 1px solid #8B1616;
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    padding-right: 2.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath fill='%23e8b901' d='M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1.5em;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+	}
+	#pxs:hover,
+	#pxs_mobile:hover {
+    background-color: #e8b901;
+    color: #121212;
+    border-color: #e8b901;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath fill='%23121212' d='M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z'/%3E%3C/svg%3E");
+	}
+	#pxs option,
+	#pxs_mobile option {
+    background-color: #121212;
+    color: #e8b901;
+	}
+	}
 </style>
 </head>
 <body>
