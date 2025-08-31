@@ -2817,7 +2817,8 @@ textarea.profile-about-text {
   padding: 5px 12px;
 }
 #toggles .controls .unchecked .btn {
-  background: #565657;
+  background: #e8b901;
+  color: #121212;
 }
 #toggles .model-body {
   position: relative;
