@@ -130,7 +130,39 @@
 	color: #E8B901;
 	opacity: 1;
 	}
-	</style>
+	button {
+	background-color: #8B1616;
+    color: #E8B901;
+	font-size: 1rem;
+	font-weight: 600;
+	padding: 0.6rem 1.2rem;
+	border: 1px solid #8B1616;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background 0.2s, transform 0.2s;
+	}
+	button:hover {
+	background-color: #E8B901;
+	color: #121212;
+	transform: scale(1.05);
+	}
+	button.hidden {
+	display: none;
+	}
+	#chars_count,
+	#threads,
+	#char_type {
+	width: 100%;
+	max-width: 1500px;
+	padding: 0.4rem;
+	border: 1px solid #8B1616;
+	border-radius: 6px;
+	background-color: #1e1e1e;
+	color: #E8B901;
+	font-size: 1rem;
+	box-shadow: 0 2px 8px #8b1616;
+	}
+</style>
 </head>
 <body>
 </head>
@@ -156,7 +188,7 @@
       ">
         Início
       </span>
- </a>
+</a>
     <a href="./index2.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Minecraft Verificar Nicks</a>
     <b><a href="./index.html" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Testar Skin e Capa</a>
 	<a href="./index3.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Editar Skin</a></b>
@@ -190,18 +222,19 @@
         <option value="4">Letras + números (a-z, 0-9)</option>
         <option value="5">Letras + números + underscore (a-z, 0-9, _)</option>
         </select>
-        <label>Quantas threads? (1-1000, recomendado 300)</label>
-        <input id="threads" max="1000" min="1" required="" type="number" value="300"/>
-        <button onclick="verificacaoMassa()">Iniciar verificação</button>
+		<label>Quantas Threads? (1-1000, recomendado 300)</label>
+		<input id="threads" max="1000" min="1" required="" type="number" value="300"/>
+		<button onclick="verificacaoMassa()">Iniciar Verificação</button>
+		<button class="hidden" id="btnDownloadMassa" onclick="baixarDisponiveisMassa()">📥 Baixar Disponíveis (.txt)</button>
 		</div>
 		<div class="form-container hidden" id="form-lista">
         <label>Cole os nicks abaixo (até 16 caracteres) (1 por linha shift + enter)</label>
         <textarea id="nickListInput" rows="6" style="width:100%; background-color:#1e1e1e; color:#E8B901; border:1px solid #8B1616;"></textarea>
         <button onclick="verificarLista()">Verificar Lista</button>
-        <button class="hidden" id="btnDownload" onclick="baixarDisponiveis()">📥 Baixar disponíveis (.txt)</button>
-    </div>
-    <div class="result" id="resultado">
-    </div>
+        <button class="hidden" id="btnDownloadLista" onclick="baixarDisponiveis()">📥 Baixar Disponíveis (.txt)</button>
+		</div>
+		<div class="result" id="resultado">
+		</div>
 <script>
     const themeSwitcher = document.getElementById('theme_switcher');
     function applyTheme(theme) {
@@ -310,7 +343,7 @@
     console.log("...Atualizando 'src' das imagens agora...");
     imgCabeca.src = novaUrlCabeca;
     imgMini.src = novaUrlMini;
-    console.log("--- Função recarregarAvatar concluída ---");
+    console.log("--- Função Recarregar Avatar concluída ---");
 	}
 	function exibirNickOcupado(player) {
     const nomeJogador = player.name;
@@ -407,9 +440,9 @@
 		if (disponiveisGlobal.length > 0) {
 			const disponiveisHTML = disponiveisGlobal.map(nick => exibirNickDisponivel(nick)).join("");
 			finalHTML += `<h4>✅ Nicks disponíveis (${disponiveisGlobal.length}):</h4><div class="nick-list">${disponiveisHTML}</div>`;
-			document.getElementById("btnDownload").classList.remove("hidden");
+			document.getElementById("btnDownloadLista").classList.remove("hidden");
 		} else {
-			document.getElementById("btnDownload").classList.add("hidden");
+			document.getElementById("btnDownloadLista").classList.add("hidden");
 		}
 		if (ocupadosGlobal.length > 0) {
 			const ocupadosHTML = ocupadosGlobal.map(player => exibirNickOcupado(player)).join("");
@@ -430,61 +463,106 @@
 		const url = URL.createObjectURL(blob);
 		const a = document.createElement("a");
 		a.href = url;
-		a.download = "nicks_disponiveis.txt";
+		a.download = "Disponiveis Lista Colada.txt";
 		document.body.appendChild(a);
 		a.click();
 		document.body.removeChild(a);
 		URL.revokeObjectURL(url);
 	}
+	async function fetchWithLimit(urls, limit = 100) {
+    let results = new Array(urls.length);
+    let i = 0;
+    async function worker() {
+        while (i < urls.length) {
+            const current = i++;
+            const url = urls[current];
+            try {
+                const res = await fetch(url);
+                results[current] = res;
+            } catch {
+                results[current] = null;
+            }
+        }
+    }
+    const workers = Array.from({ length: limit }, worker);
+    await Promise.all(workers);
+    return results;
+}
+	let disponiveisMassa = [];
 	async function verificacaoMassa() {
-		const count = parseInt(document.getElementById('chars_count').value);
-		const tipo = parseInt(document.getElementById('char_type').value);
-		if (count < 1 || count > 16) {
-			resultado.innerHTML = "❌ Quantidade de caracteres inválida!";
-			return;
-		}
-		let charset = "";
-		if (tipo === 1) charset = "0123456789";
-		else if (tipo === 2) charset = "abcdefghijklmnopqrstuvwxyz";
-		else if (tipo === 3) charset = "abcdefghijklmnopqrstuvwxyz_";
-		else if (tipo === 4) charset = "abcdefghijklmnopqrstuvwxyz0123456789";
-		else if (tipo === 5) charset = "abcdefghijklmnopqrstuvwxyz0123456789_";
-		const combos = gerarCombinacoes(charset, count);
-		resultado.innerHTML = `⏳ Verificando ${combos.length} combinações...`;
-		let disponiveis = [];
-		for (let nick of combos) {
-			try {
-				const res = await fetch(`https://playerdb.co/api/player/minecraft/${nick}`);
-				if (res.status === 400 || res.status === 500) {
-					disponiveis.push(nick);
-				} else if (res.ok) {
-					const data = await res.json();
-					if (data.code !== "player.found") {
-						disponiveis.push(nick);
-					}
-				}
-			} catch {}
-		}
-		if (disponiveis.length > 0) {
-			resultado.innerHTML = `✅ Nicks disponíveis (${disponiveis.length}): <br><pre>${disponiveis.join("\n")}</pre>`;
-		} else {
-			resultado.innerHTML = `❌ Nenhum nick disponível encontrado.`;
-		}
+    const count = parseInt(document.getElementById('chars_count').value);
+    const tipo = parseInt(document.getElementById('char_type').value);
+    if (count < 1 || count > 16) {
+        resultado.innerHTML = "❌ Quantidade de caracteres inválida!";
+        return;
+    }
+    let charset = "";
+    if (tipo === 1) charset = "0123456789";
+    else if (tipo === 2) charset = "abcdefghijklmnopqrstuvwxyz";
+    else if (tipo === 3) charset = "abcdefghijklmnopqrstuvwxyz_";
+    else if (tipo === 4) charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+    else if (tipo === 5) charset = "abcdefghijklmnopqrstuvwxyz0123456789_";
+    const combos = gerarCombinacoes(charset, count);
+    resultado.innerHTML = `⏳ Verificando ${combos.length} combinações...`;
+    const urls = combos.map(nick => `https://playerdb.co/api/player/minecraft/${nick}`);
+    const responses = await fetchWithLimit(urls, 1000);
+    let disponiveis = [];
+	disponiveisMassa = [];
+    for (let i = 0; i < responses.length; i++) {
+        const res = responses[i];
+        const nick = combos[i];
+        if (!res) continue;
+        if (res.status === 400 || res.status === 500) {
+            disponiveis.push(nick);
+        } else if (res.ok) {
+            try {
+                const data = await res.json();
+                if (data.code !== "player.found") {
+                    disponiveis.push(nick);
+                }
+            } catch {}
+        }
+    }
+	if (disponiveis.length > 0) {
+    const resultado = document.getElementById("resultado");
+    resultado.innerHTML =
+        `✅ Nicks disponíveis (${disponiveis.length}):<br>` +
+        disponiveis.join("<br>");
+		disponiveisMassa = disponiveis;
+		document.getElementById("btnDownloadMassa").classList.remove("hidden");
+} else {
+    document.getElementById("resultadoMassa").textContent =
+        "❌ Nenhum nick disponível encontrado.";
 	}
+}
+	function baixarDisponiveisMassa() {
+    if (disponiveisMassa.length === 0) return;
+    const blob = new Blob([disponiveisMassa.join("\n")], {
+        type: "text/plain"
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Disponiveis Em Massa.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
 	function gerarCombinacoes(charset, length) {
-		let results = [];
-		function helper(prefix, depth) {
-			if (depth === 0) {
-				results.push(prefix);
-				return;
-			}
-			for (let char of charset) {
-				helper(prefix + char, depth - 1);
-			}
-		}
-		helper("", length);
-		return results;
-	}
+    let results = [];
+    function helper(prefix, depth) {
+        if (depth === 0) {
+            results.push(prefix);
+            return;
+        }
+        for (let char of charset) {
+            helper(prefix + char, depth - 1);
+        }
+    }
+    helper("", length);
+    return results;
+}
 </script>
 <script>
     document.getElementById("nick").addEventListener("keydown", function (event) {
