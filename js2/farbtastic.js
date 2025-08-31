@@ -130,7 +130,10 @@ jQuery._farbtastic = function(container, callback) {
 
         if (typeof event.offsetX != 'undefined') {
             // Use offset coordinates and find common offsetParent
-            var pos = { x: event.offsetX, y: event.offsetY };
+            var pos = {
+                x: event.offsetX,
+                y: event.offsetY
+            };
 
             // Send the coordinates upwards through the offsetParent chain.
             var e = el;
@@ -144,7 +147,10 @@ jQuery._farbtastic = function(container, callback) {
 
             // Look for the coordinates starting from the wheel widget.
             var e = reference;
-            var offset = { x: 0, y: 0 }
+            var offset = {
+                x: 0,
+                y: 0
+            }
             while (e) {
                 if (typeof e.mouseX != 'undefined') {
                     x = e.mouseX - offset.x;
@@ -170,7 +176,10 @@ jQuery._farbtastic = function(container, callback) {
             y = (event.pageY || 0 * (event.clientY + $('html').get(0).scrollTop)) - pos.y;
         }
         // Subtract distance to middle
-        return { x: x - fb.width / 2, y: y - fb.width / 2 };
+        return {
+            x: x - fb.width / 2,
+            y: y - fb.width / 2
+        };
     }
 
     /**
@@ -264,7 +273,10 @@ jQuery._farbtastic = function(container, callback) {
      * Get absolute position of element
      */
     fb.absolutePosition = function(el) {
-        var r = { x: el.offsetLeft, y: el.offsetTop };
+        var r = {
+            x: el.offsetLeft,
+            y: el.offsetTop
+        };
         // Resolve relative to offsetParent
         if (el.offsetParent) {
             var tmp = fb.absolutePosition(el.offsetParent);
@@ -342,46 +354,41 @@ jQuery._farbtastic = function(container, callback) {
         return [h, s, l];
     }
 
+    // START: Added code for Touch support
     /**
-     * TouchConvert: Converts touch co-ordinates to mouse co-ordinates
+     * Touchmove handler
      */
-    fb.touchconvert = function(e) {
-        var e = e.originalEvent.touches.item(0);
-        return e;
-    }
-
-    /**
-     * Touchmove handler for iPad, iPhone etc
-     */
-    fb.touchmove = function(e) {
-        fb.mousemove(fb.touchconvert(e));
-        e.preventDefault();
-        return false;
-    }
-
-    /**
-     * Touchend handler for iPad, iPhone etc
-     */
-    fb.touchend = function(event) {
-        $(document).unbind('touchmove', fb.touchmove);
-        $(document).unbind('touchend', fb.touchend);
-        document.dragging = false;
+    fb.touchmove = function(event) {
+        // Pass event to mousemove handler
+        fb.mousemove(event.originalEvent.touches[0]);
+        // Prevent scrolling
         event.preventDefault();
         return false;
     }
 
-    // TouchStart bound, calls conversion of touchpoints to mousepoints
-    $('*', e).bind("touchstart", function(e) {
-        // Capture mouse
+    /**
+     * Touchend handler
+     */
+    fb.touchend = function() {
+        // Uncapture touch
+        $(document).unbind('touchmove', fb.touchmove);
+        $(document).unbind('touchend', fb.touchend);
+        document.dragging = false;
+    }
+
+    $('*', e).bind('touchstart', function(event) {
+        // Capture touch
         if (!document.dragging) {
             $(document).bind('touchmove', fb.touchmove).bind('touchend', fb.touchend);
             document.dragging = true;
         }
-        fb.mousedown(fb.touchconvert(e));
-        e.preventDefault();
+        // Pass event to mousedown handler
+        fb.mousedown(event.originalEvent.touches[0]);
+        // Prevent scrolling
+        event.preventDefault();
         return false;
     });
-
+    // END: Added code for Touch support
 
     // Install mousedown handler (the others are set on the document on-demand)
     $('*', e).mousedown(fb.mousedown);
