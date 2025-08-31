@@ -119,7 +119,9 @@ else if (tema === 'rainbow') document.documentElement.className = 'theme-rainbow
 	.left-toolbar .tools,
 	#reset
 	#showObject,
-	.right-tools {
+	.right-tools > a,
+	.zoom-in,
+	.zoom-out {
     box-shadow: inset 0 0 0 1px #565657 !important;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 	}
@@ -131,13 +133,17 @@ else if (tema === 'rainbow') document.documentElement.className = 'theme-rainbow
 	#showObject:hover,
 	#showOverlay:hover,
 	.model-body a:hover,
-	.right-btns > a:hover {
+	.right-btns > a:hover,
+	.zoom-in:hover,
+	.zoom-out:hover {
     background-color: #e8b901 !important;
     color: #121212 !important;
     box-shadow: inset 0 0 0 1px #e8b901 !important;
 	}
 	.left-toolbar .tools:hover i,
-	.right-btns > a:hover i {
+	.right-btns > a:hover i,
+	.zoom-in:hover i,
+	.zoom-out:hover i {
     color: #121212 !important;
 	}
 	#pxs,
