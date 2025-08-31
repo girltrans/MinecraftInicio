@@ -327,6 +327,29 @@
 	#capeSelector:hover {
 	background-color: #e8b901;
 	}
+	#animation_selector option,
+	#capeSelector option {
+	background-color: #121212;
+	color: #e8b901;
+	}
+	* {
+	scrollbar-color: #8B1616 #121212;
+	scrollbar-width: thin;
+	}
+	::-webkit-scrollbar {
+	width: 10px;
+	}
+	::-webkit-scrollbar-track {
+	background: #121212; /* Cor do fundo (trilho) */
+	}
+	::-webkit-scrollbar-thumb {
+	background-color: #8B1616;
+	border-radius: 6px;
+	border: 2px solid #121212;
+	}
+	::-webkit-scrollbar-thumb:hover {
+	background-color: #e8b901;
+	}
     </style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 </head>
@@ -1238,6 +1261,7 @@ function renderOptions(type) {
 </script>
 </body>
 </html>
+
 
 
 
