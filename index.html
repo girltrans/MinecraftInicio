@@ -966,18 +966,18 @@ document.addEventListener('DOMContentLoaded', () => {
     label.addEventListener('mousedown', function() {
         radio.wasChecked = radio.checked;
     });
-    label.addEventListener('click', function(event) {
+	label.addEventListener('click', function(event) {
+    if (radio.value === 'none' && radio.wasChecked) {
         event.preventDefault();
-        if (radio.value === 'none' && radio.wasChecked) {
-            radio.checked = false;
-        } else {
-            radio.checked = true;
-        }
-        const finalCheckedRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
+        radio.checked = false;
+    }
+    setTimeout(() => {
+		const finalCheckedRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
         const finalValue = finalCheckedRadio ? finalCheckedRadio.value : 'none';
         renderOptions(finalValue);
         document.getElementById('capeSelector').value = '1';
-    });
+    }, 0);
+  });
 });
     applyBtn.addEventListener('click', () => {
         const selectedRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
@@ -1261,6 +1261,7 @@ function renderOptions(type) {
 </script>
 </body>
 </html>
+
 
 
 
