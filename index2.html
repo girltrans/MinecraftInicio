@@ -140,6 +140,10 @@
 	border-radius: 8px;
 	cursor: pointer;
 	transition: background 0.2s, transform 0.2s;
+	display: inline-flex;
+	align-items: center;
+	box-sizing: border-box;
+	line-height: 1;
 	}
 	button:hover {
 	background-color: #E8B901;
@@ -202,6 +206,12 @@
     accent-color: #e8b901;
     transform: scale(0.3);
 	}
+	.button-group {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 10px;
+	}
 </style>
 </head>
 <body>
@@ -262,18 +272,20 @@
         <option value="4">Letras + números (a-z, 0-9)</option>
         <option value="5">Letras + números + underscore (a-z, 0-9, _)</option>
         </select>
-		<label>Quantas Threads? (1-1000, recomendado 300)</label>
-		<input id="threads" max="1000" min="1" required="" type="number" value="300"/>
-		<button onclick="verificacaoMassa()">Iniciar Verificação</button>
-		<button class="hidden" id="btnDownloadMassa" onclick="baixarDisponiveisMassa()">📥 Baixar Disponíveis (.txt)</button>
-		</div>
-		<div class="form-container hidden" id="form-lista">
+        <label>Quantas Threads? (1-1000, recomendado 300)</label>
+        <input id="threads" max="1000" min="1" required="" type="number" value="300"/>
+        <div class="button-group">
+        <button onclick="verificacaoMassa()">Iniciar Verificação</button>
+        <button class="hidden" id="btnDownloadMassa" onclick="baixarDisponiveisMassa()">📥 Baixar Disponíveis (.txt)</button>
+        </div>
+        </div> <div class="form-container hidden" id="form-lista">
         <label>Cole os nicks abaixo (até 16 caracteres) (1 por linha shift + enter)</label>
         <textarea id="nickListInput" rows="6" style="width:100%; background-color:#1e1e1e; color:#E8B901; border:1px solid #8B1616;"></textarea>
+        <div class="button-group">
         <button onclick="verificarLista()">Verificar Lista</button>
         <button class="hidden" id="btnDownloadLista" onclick="baixarDisponiveis()">📥 Baixar Disponíveis (.txt)</button>
-		</div>
-		<div class="result" id="resultado">
+        </div>
+		</div> <div class="result" id="resultado">
 		</div>
 <script>
     const themeSwitcher = document.getElementById('theme_switcher');
@@ -663,6 +675,12 @@ window.addEventListener('scroll', function() {
     nickListInput.addEventListener('input', function(event) {
     const invalidCharsRegex = /[^a-zA-Z0-9_\n]/g;
     this.value = this.value.replace(invalidCharsRegex, '');
+    });
+</script>
+<script>
+    const charsCountInput = document.getElementById('chars_count');
+    charsCountInput.addEventListener('input', function() {
+    this.value = this.value.replace(/[^0-9]/g, '');
     });
 </script>
 <script>
