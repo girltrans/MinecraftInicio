@@ -59,6 +59,7 @@ button {
     cursor: pointer;
     margin-top: 0.4rem;
 	box-shadow: 0 2px 8px #8b1616;
+	font-family: 'Righteous', cursive;
 }
 .result {
     margin-top: 2rem;
@@ -192,4 +193,5 @@ body::-webkit-scrollbar {
 *::-webkit-scrollbar {
   display: none;
 }
+
 
