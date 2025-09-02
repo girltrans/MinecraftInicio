@@ -105,7 +105,6 @@
     transition: all 0.2s ease-in-out;
 	}
 	label {
-    cursor: pointer;
     font-family: sans-serif;
 	}
 	.nick-item {
@@ -210,7 +209,17 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	margin-top: 10px;
+	margin-top: 1px;
+	}
+	hr {
+    border: none;
+    height: 1px;
+    background-color: #8B1616;
+	box-shadow: 0 2px 8px 3px #8B1616;
+    margin: 1.5rem 0;
+	}
+	select#char_type {
+    cursor: pointer;
 	}
 </style>
 </head>
@@ -253,9 +262,9 @@
     <a rel="nofollow" href="https://github.com/girltrans" target="_blank" title="GitHub Repositório" class="github"><img src="./icons/github.png" alt="GitHub Icon" title="GitHub"></a>
     <h1 style=":; font-family: 'Righteous', cursive; font-size:2.4rem;">Minecraft Verificar Nicks</h1>
     <div class="menu">
-    <label><input checked="" name="modo" type="radio" value="1"> Verificar nick específico</label><br/>
-    <label><input name="modo" type="radio" value="2"/> Verificação em massa</label><br/>
-    <label><input name="modo" type="radio" value="3"/> Verificar lista colada</label>
+    <label><input checked="" name="modo" type="radio" value="1"> Verificar Nick Específico</label><br/>
+    <label><input name="modo" type="radio" value="2"/> Verificação Em Massa</label><br/>
+    <label><input name="modo" type="radio" value="3"/> Verificar Lista Colada</label>
     </div>
     <div class="form-container" id="form-nick">
     <input id="nick" maxlength="16" placeholder="Digite um nick (até 16 caracteres)" type="text"/>
@@ -275,14 +284,20 @@
         <label>Quantas Threads? (1-1000, recomendado 300)</label>
         <input id="threads" max="1000" min="1" required="" type="number" value="300"/>
         <div class="button-group">
+		<input type="file" id="fileInputMassa" accept=".txt" style="display:none;">
+		<div class="button-group">
         <button onclick="verificacaoMassa()">Iniciar Verificação</button>
+        <button onclick="document.getElementById('fileInputMassa').click()">📤 Enviar Verificação</button>
         <button class="hidden" id="btnDownloadMassa" onclick="baixarDisponiveisMassa()">📥 Baixar Disponíveis (.txt)</button>
-        </div>
+		</div>
+		</div>
         </div> <div class="form-container hidden" id="form-lista">
         <label>Cole os nicks abaixo (até 16 caracteres) (1 por linha shift + enter)</label>
-        <textarea id="nickListInput" rows="6" style="width:100%; background-color:#1e1e1e; color:#E8B901; border:1px solid #8B1616;"></textarea>
+		<textarea id="nickListInput" rows="6" style="width:100%; background-color:#1e1e1e; color:#E8B901; border:1px solid #8B1616;"	></textarea>
+		<input type="file" id="fileInput" accept=".txt" style="display:none;">
         <div class="button-group">
         <button onclick="verificarLista()">Verificar Lista</button>
+		<button onclick="document.getElementById('fileInput').click()">📤 Enviar Lista</button>
         <button class="hidden" id="btnDownloadLista" onclick="baixarDisponiveis()">📥 Baixar Disponíveis (.txt)</button>
         </div>
 		</div> <div class="result" id="resultado">
@@ -415,7 +430,7 @@
                 <img id="mini-${uuid}" src="${starlightBodyUrl}" class="img-fluid" alt="${nomeJogador} Mini" title="${nomeJogador} Mini">
             </a>
 
-            ❌ O nick <strong>${nomeJogador}</strong> está <strong>OCUPADO!</strong>
+            ❌ O Nick <strong>${nomeJogador}</strong> Está <strong>OCUPADO!</strong>
             
             <a href="https://namemc.com/${nomeJogador}" target="_blank"><img src="./icons/favicon-30.png" alt="NameMC" title="NameMC"></a>
             <a href="https://capes.me/capes?user=${nomeJogador}" target="_blank"><img src="./icons/capesme.png" alt="CapesME" title="CapesME"></a>
@@ -438,7 +453,7 @@
 			<div class="nick-item">
 				<a href="https://minotar.net/helm/${nomeJogador}/600.png" target="_blank"><img src="./icons/cabeca.png" class="img-fluid" alt="${nomeJogador} Cabeça" title="${nomeJogador} Cabeça"></a>
 				<a href="https://starlightskins.lunareclipse.studio/render/mojavatar/steve/full" target="_blank"><img src="./icons/steve.png" class="img-fluid" alt="${nomeJogador} Mini" title="${nomeJogador} Mini"></a>
-				✅ O nick <strong>${nomeJogador}</strong> está <strong>DISPONÍVEL!</strong>
+				✅ O Nick <strong>${nomeJogador}</strong> Está <strong>DISPONÍVEL!</strong>
 				<a href="https://namemc.com/${nomeJogador}" target="_blank"><img src="./icons/favicon-30.png" alt="NameMC" title="NameMC"></a>
 				<a href="https://capes.me/capes?user=${nomeJogador}" target="_blank"><img src="./icons/capesme.png" alt="CapesME" title="CapesME"></a>
 				<a href="https://skinmc.net/s/profiles?search=${nomeJogador}" target="_blank"><img src="./icons/skinmc.png" alt="SkinMC" title="SkinMC"></a>
@@ -493,17 +508,17 @@
 		let finalHTML = "";
 		if (disponiveisGlobal.length > 0) {
 			const disponiveisHTML = disponiveisGlobal.map(nick => exibirNickDisponivel(nick)).join("");
-			finalHTML += `<h4>✅ Nicks disponíveis (${disponiveisGlobal.length}):</h4><div class="nick-list">${disponiveisHTML}</div>`;
+			finalHTML += `<h4>✅ Nicks Disponíveis (${disponiveisGlobal.length}):</h4><div class="nick-list">${disponiveisHTML}`;
 			document.getElementById("btnDownloadLista").classList.remove("hidden");
 		} else {
 			document.getElementById("btnDownloadLista").classList.add("hidden");
 		}
 		if (ocupadosGlobal.length > 0) {
 			const ocupadosHTML = ocupadosGlobal.map(player => exibirNickOcupado(player)).join("");
-			finalHTML += `<h4>❌ Nicks ocupados (${ocupadosGlobal.length}):</h4><div class="nick-list">${ocupadosHTML}</div>`;
+			finalHTML += `<h4>❌ Nicks Ocupados (${ocupadosGlobal.length}):</h4><div class="nick-list">${ocupadosHTML}`;
 		}
 		if (finalHTML === "") {
-			resultado.innerHTML = "Nenhum resultado para os nicks informados.";
+			resultado.innerHTML = "Nenhum Resultado Para os Nicks Informados.";
 		} else {
 			resultado.innerHTML = finalHTML;
 		}
@@ -547,7 +562,7 @@
     const count = parseInt(document.getElementById('chars_count').value);
     const tipo = parseInt(document.getElementById('char_type').value);
     if (count < 1 || count > 16) {
-        resultado.innerHTML = "❌ Quantidade de caracteres inválida!";
+        resultado.innerHTML = "</div><hr>❌ Quantidade De Caracteres Inválida!</div><hr>";
         return;
     }
     let charset = "";
@@ -580,13 +595,13 @@
 	if (disponiveis.length > 0) {
     const resultado = document.getElementById("resultado");
     resultado.innerHTML =
-        `✅ Nicks disponíveis (${disponiveis.length}):<br>` +
+        `✅ Nicks Disponíveis (${disponiveis.length}):<br>` +
         disponiveis.join("<br>");
 		disponiveisMassa = disponiveis;
 		document.getElementById("btnDownloadMassa").classList.remove("hidden");
 } else {
     document.getElementById("resultadoMassa").textContent =
-        "❌ Nenhum nick disponível encontrado.";
+        "</div><hr>❌ Nenhum Nick Disponível Encontrado.</div><hr>";
 	}
 }
 	function baixarDisponiveisMassa() {
@@ -752,6 +767,161 @@ function changeLanguage(lang) {
   const savedLang = localStorage.getItem("siteLang") || "pt-BR";
   applyDynamicTranslations(savedLang);
 }
+</script>
+<script>
+	const fileInput = document.getElementById('fileInput');
+	const nickListTextArea = document.getElementById('nickListInput'); 
+	async function verificarNicksDeArquivoListaColada(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    if (file.type !== "text/plain") {
+    alert("Por favor, Selecione Apenas Arquivos .txt!");
+    event.target.value = '';
+    return;
+   }
+    const reader = new FileReader();
+    reader.onload = async function(e) {
+    const resultado = document.getElementById('resultado');
+    const fileContent = e.target.result;
+    const nicksDoArquivo = fileContent.split('\n').map(n => n.trim()).filter(Boolean);
+    const nicksValidos = [];
+    const nicksInvalidos = [];
+    const nickRegexValido = /^[a-zA-Z0-9_]{1,16}$/; 
+      for (const nick of nicksDoArquivo) {
+            if (nickRegexValido.test(nick)) {
+                nicksValidos.push(nick);
+             } else {
+                nicksInvalidos.push(nick);
+             }
+          }
+           let relatorioHTML = "";
+            if (nicksInvalidos.length > 0) {
+                relatorioHTML += `</div><hr><h4>⚠️ Nicks Inválidos Desconsiderados (${nicksInvalidos.length}):</h4><div style="font-family: monospace; white-space: pre; color: #ff8a8a;">${nicksInvalidos.join('\n')}`;
+            }
+            if (nicksValidos.length > 0) {
+                relatorioHTML += `</div><hr><h4>✅ Nicks Válidos Prontos Para Lista (${nicksValidos.length}):</h4>
+                                <div style="font-family: monospace; white-space: pre; color: #8aff8a;">${nicksValidos.join('\n')}`;
+            }
+            if (nicksValidos.length === 0) {
+                resultado.innerHTML = relatorioHTML + "</div><hr>❌ Nenhum Nick Válido Para Verificar No Arquivo.</div><hr>";
+                return;
+            }
+            resultado.innerHTML = relatorioHTML + `⏳ Verificando ${nicksValidos.length} Nicks Válidos Do Arquivo...`;
+            disponiveisGlobal = []; 
+            const ocupadosGlobal = [];
+            const chunkSize = 1000;
+            for (let i = 0; i < nicksValidos.length; i += chunkSize) {
+                const chunk = nicksValidos.slice(i, i + chunkSize);
+                resultado.innerHTML = relatorioHTML + `⏳ Verificando Nicks ${i + 1} a ${Math.min(i + chunkSize, nicksValidos.length)} De ${nicksValidos.length}...`;
+                const promises = chunk.map(nick => buscarDadosJogador(nick));
+                const results = await Promise.allSettled(promises);
+                results.forEach((result, index) => {
+                    if (result.status === 'fulfilled' && result.value) {
+                        ocupadosGlobal.push(result.value);
+                    } else {
+                        disponiveisGlobal.push(chunk[index]);
+                    }
+                });
+            }
+            let finalHTML = "";
+            if (disponiveisGlobal.length > 0) {
+                const disponiveisHTML = disponiveisGlobal.map(nick => exibirNickDisponivel(nick)).join("");
+                finalHTML += `</div><hr><h4>✅ Nicks Disponíveis (${disponiveisGlobal.length}):</h4><div class="nick-list">${disponiveisHTML}</div>`;
+                document.getElementById("btnDownloadLista").classList.remove("hidden");
+            } else {
+                document.getElementById("btnDownloadLista").classList.add("hidden");
+            }
+
+            if (ocupadosGlobal.length > 0) {
+                const ocupadosHTML = ocupadosGlobal.map(player => exibirNickOcupado(player)).join("");
+                finalHTML += `</div><hr><h4>❌ Nicks Ocupados (${ocupadosGlobal.length}):</h4><div class="nick-list">${ocupadosHTML}</div><hr>`;
+            }
+            resultado.innerHTML = relatorioHTML + (finalHTML || "Nenhum Resultado Para Os Nicks Informados No Arquivo.");
+            ajustarLayoutMobile();
+        };
+        reader.onerror = function() {
+        resultado.innerHTML = "❌ Ocorreu Um Erro Ao Ler o Arquivo.";
+        };
+        reader.readAsText(file);
+        event.target.value = '';
+    }
+    fileInput.addEventListener('change', verificarNicksDeArquivoListaColada);
+</script>
+<script>
+    const fileInputMassa = document.getElementById('fileInputMassa');
+    async function verificarNicksDeArquivo(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        if (file.type !== "text/plain") {
+            alert("Por favor, Selecione Apenas Arquivos .txt!");
+            event.target.value = '';
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+            const resultado = document.getElementById('resultado');
+            const fileContent = e.target.result;
+            const nicksDoArquivo = fileContent.split('\n').map(n => n.trim()).filter(Boolean);
+            const nicksValidos = [];
+            const nicksInvalidos = [];
+            const nickRegexValido = /^[a-zA-Z0-9_]{1,16}$/; 
+            for (const nick of nicksDoArquivo) {
+                if (nickRegexValido.test(nick)) {
+                    nicksValidos.push(nick);
+                } else {
+                    nicksInvalidos.push(nick);
+                }
+            }
+            let relatorioHTML = "";
+            if (nicksInvalidos.length > 0) {
+                relatorioHTML += `</div><hr><h4>⚠️ Nicks Inválidos Desconsiderados (${nicksInvalidos.length}):</h4><div style="font-family: monospace; white-space: pre; color: #ff8a8a;">${nicksInvalidos.join('\n')}`;
+            }
+            if (nicksValidos.length > 0) {
+                relatorioHTML += `</div><hr><h4>✅ Nicks Válidos Prontos Para Verificação (${nicksValidos.length}):</h4>
+                                <div style="font-family: monospace; white-space: pre; color: #8aff8a;">${nicksValidos.join('\n')}`;
+            }
+            if (nicksValidos.length === 0) {
+                resultado.innerHTML = relatorioHTML + "</div><hr>❌ Nenhum Nick Válido Para Verificar No Arquivo.</div><hr>";
+                return;
+            }
+            resultado.innerHTML = relatorioHTML + `⏳ Verificando ${nicksValidos.length} Nicks Válidos...`;
+            disponiveisMassa = []; 
+            const ocupadosGlobal = [];
+            const chunkSize = 1000;
+            for (let i = 0; i < nicksValidos.length; i += chunkSize) {
+                const chunk = nicksValidos.slice(i, i + chunkSize);
+                resultado.innerHTML = relatorioHTML + `⏳ Verificando Nicks ${i + 1} a ${Math.min(i + chunkSize, nicksValidos.length)} De ${nicksValidos.length}...`;
+                const promises = chunk.map(nick => buscarDadosJogador(nick));
+                const results = await Promise.allSettled(promises);
+                results.forEach((result, index) => {
+                    if (result.status === 'fulfilled' && result.value) {
+                        ocupadosGlobal.push(result.value);
+                    } else {
+                        disponiveisMassa.push(chunk[index]);
+                    }
+                });
+            }
+            let finalHTML = "";
+            if (disponiveisMassa.length > 0) {
+                const disponiveisHTML = disponiveisMassa.map(nick => exibirNickDisponivel(nick)).join("");
+                finalHTML += `</div><hr><h4>✅ Nicks Disponíveis (${disponiveisMassa.length}):</h4><div class="nick-list">${disponiveisHTML}`;
+                document.getElementById("btnDownloadMassa").classList.remove("hidden");
+            } else {
+                document.getElementById("btnDownloadMassa").classList.add("hidden");
+            }
+            if (ocupadosGlobal.length > 0) {
+                const ocupadosHTML = ocupadosGlobal.map(player => exibirNickOcupado(player)).join("");
+                finalHTML += `</div><hr><h4>❌ Nicks Ocupados (${ocupadosGlobal.length}):</h4><div class="nick-list">${ocupadosHTML}</div><hr>`;
+            }
+            resultado.innerHTML = relatorioHTML + (finalHTML || "Nenhum Resultado Para os Nicks Informados No Arquivo.");
+        };
+        reader.onerror = function() {
+            resultado.innerHTML = "</div><hr>❌ Ocorreu Um Erro Ao Ler o Arquivo.</div><hr>";
+        };
+        reader.readAsText(file);
+        event.target.value = '';
+    }
+    fileInputMassa.addEventListener('change', verificarNicksDeArquivo);
 </script>
 </body>
 </html>
