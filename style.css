@@ -40,6 +40,7 @@ h1 {
 }
 input[type="text"], input[type="number"], select {
     padding: 0.5rem;
+	font-family: 'Righteous', cursive;
     font-size: 1rem;
     background-color: #1e1e1e;
     color: #E8B901;
@@ -191,3 +192,4 @@ body::-webkit-scrollbar {
 *::-webkit-scrollbar {
   display: none;
 }
+
