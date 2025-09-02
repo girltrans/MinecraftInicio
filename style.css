@@ -28,10 +28,11 @@ h1 {
     margin-bottom: 2rem;
 }
 .menu, .form-container {
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 }
 .menu label {
   cursor: pointer;
+  font-family: 'Righteous', cursive;
   user-select: show; /* Opcional: evita que o texto seja selecionado ao clicar */
 }
 .menu input[type="radio"] {
@@ -55,8 +56,8 @@ button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     cursor: pointer;
-    margin-top: 1rem;
-    box-shadow: 0 2px 8px #8b1616;
+    margin-top: 0.4rem;
+	box-shadow: 0 2px 8px #8b1616;
 }
 .result {
     margin-top: 2rem;
@@ -190,4 +191,3 @@ body::-webkit-scrollbar {
 *::-webkit-scrollbar {
   display: none;
 }
-
