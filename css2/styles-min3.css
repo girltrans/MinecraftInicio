@@ -3008,7 +3008,6 @@ html.footer-editor .skin-tools select {
   width: 100%;
   height: 100%;
   cursor: pointer;
-  border: 2px solid #8B1616;
 }
 .avatar-creator .right-toolbar .right-btns .icon-upload-comp {
   background: url(../images3/icon-uploads.png) no-repeat;
@@ -3018,7 +3017,6 @@ html.footer-editor .skin-tools select {
   background-size: 95%;
   background-position: center center;
   box-shadow: 0 2px 18px #8b1616;
-  border: 2px solid #8B1616;
 }
 .right-btns a i.icon-upload-site {
   background-image: url(../images3/editorUploadtoSkindex.svg);
