@@ -227,6 +227,7 @@ footer.footer {
   /* Borda da caixa (desmarcada) aumentada para 3px */
   border: 3px shadow red; 
   border-radius: 5px;
+  border: 1px solid #8B1616 !important;
   background-color: transparent;
   cursor: pointer;
   
@@ -376,5 +377,6 @@ body.allow-scroll {
 body.allow-scroll::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
 }
+
 
 
