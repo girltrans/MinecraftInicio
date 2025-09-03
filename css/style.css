@@ -377,6 +377,3 @@ body.allow-scroll {
 body.allow-scroll::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
 }
-
-
-
