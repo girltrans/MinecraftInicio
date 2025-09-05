@@ -578,7 +578,7 @@ const translations = {
 		tituloClaro: "☀️ Hell",
 		tituloArcoIris: "🌈 Regenbogen",
 		tituloTestarSkin: "Testen Skin und Cape",
-		tituloInicio: "Startseite",
+		tituloInicio: "Start",
 		tituloMinecraftVerificarNicks: "Minecraft Überprüfen Nicks",
 		tituloEditarSkin: "Bearbeiten Skin",
 		tituloEnviarSkin: "📤 Senden Skin",
@@ -623,7 +623,7 @@ const translations = {
 		capaInvalida: "Stellen Sie sicher, dass es sich um ein kompatibles Cape handelt. / Stellen Sie sicher, dass der Benutzername korrekt ist! Zahlen, Groß- und Kleinbuchstaben.",
 		bannerLabel: "Banner:",
 		nenhumaSkin: "Keine Skin verfügbar.",
-		pageTitle: "Minecraft Startseite",
+		pageTitle: "Minecraft Start",
 		pageDescription: "Minecraft Skins und Umhänge testen, Nicknames überprüfen und eigene Skins von Grund auf erstellen oder bestehende Skins im Browser bearbeiten."
 	  }
 	};
