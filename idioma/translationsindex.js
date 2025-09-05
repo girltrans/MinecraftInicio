@@ -2,6 +2,7 @@ const translations = {
 	  "pt-BR": { 
 		titulo: "Bem-vindo ao site",
 		titulocopiado: "Título Copiado!",
+		copiartitulo: "Copiar!",
 		descricao: "...",
 		tituloEscuro: "🌙 Escuro",
 		tituloClaro: "☀️ Claro",
@@ -58,6 +59,7 @@ const translations = {
 	  "pt-PT": { 
 		titulo: "Bem-vindo ao site",
 		titulocopiado: "Título Copiado!",
+		copiartitulo: "Copiar!",
 		descricao: "...",
 		tituloEscuro: "🌙 Escuro",
 		tituloClaro: "☀️ Claro",
@@ -114,6 +116,7 @@ const translations = {
 	  "es": { 
 		titulo: "Bienvenido al sitio",
 		titulocopiado: "¡Título Copiado!",
+		copiartitulo: "¡Copiar!",
 		descricao: "...",
 		tituloEscuro: "🌙 Oscuro",
 		tituloClaro: "☀️ Claro",
@@ -170,6 +173,7 @@ const translations = {
 	  "us": { 
 		titulo: "Welcome to the site",
 		titulocopiado: "Title Copied!",
+		copiartitulo: "Copy!",
 		descricao: "...",
 		tituloEscuro: "🌙 Dark",
 		tituloClaro: "☀️ Light",
@@ -226,6 +230,7 @@ const translations = {
 	  "fr": { 
 		titulo: "Bienvenue sur le site",
 		titulocopiado: "Titre Copié!",
+		copiartitulo: "Copier!",
 		descricao: "...",
 		tituloEscuro: "🌙 Sombre",
 		tituloClaro: "☀️ Clair",
@@ -282,6 +287,7 @@ const translations = {
 	  "jp": { 
 		titulo: "サイトへようこそ",
 		titulocopiado: "タイトルをコピーしました！",
+		copiartitulo: "コピー！",
 		descricao: "...",
 		tituloEscuro: "🌙 ダーク",
 		tituloClaro: "☀️ ライト",
@@ -338,6 +344,7 @@ const translations = {
 	  "kr": { 
 		titulo: "사이트에 오신 것을 환영합니다",
 		titulocopiado: "제목이 복사되었습니다!",
+		copiartitulo: "복사!",
 		descricao: "...",
 		tituloEscuro: "🌙 어두움",
 		tituloClaro: "☀️ 밝음",
@@ -394,6 +401,7 @@ const translations = {
 	  "zh-CN": { 
 		titulo: "欢迎来到网站",
 		titulocopiado: "标题已复制！",
+		copiartitulo: "复制！",
 		descricao: "...",
 		tituloEscuro: "🌙 深色",
 		tituloClaro: "☀️ 浅色",
@@ -450,6 +458,7 @@ const translations = {
 	  "zh-TW": { 
 		titulo: "歡迎來到網站",
 		titulocopiado: "標題已複製！",
+		copiartitulo: "複製！",
 		descricao: "...",
 		tituloEscuro: "🌙 深色",
 		tituloClaro: "☀️ 淺色",
@@ -506,6 +515,7 @@ const translations = {
 	  "ru": { 
 		titulo: "Добро пожаловать на сайт",
 		titulocopiado: "Заголовок скопирован!",
+		copiartitulo: "Копировать!",
 		descricao: "...",
 		tituloEscuro: "🌙 Тёмный",
 		tituloClaro: "☀️ Светлый",
@@ -562,6 +572,7 @@ const translations = {
 	  "de": { 
 		titulo: "Willkommen auf der Website",
 		titulocopiado: "Titel Kopiert!",
+		copiartitulo: "Kopieren!",
 		descricao: "...",
 		tituloEscuro: "🌙 Dunkel",
 		tituloClaro: "☀️ Hell",
