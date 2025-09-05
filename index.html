@@ -89,10 +89,10 @@
 	flex: 1 1 280px;
 	min-width: 280px;
 	max-width: 320px;
-	border-radius: 16px;
+	border-radius: 22px;
 	padding: 1.2rem 1rem 1.5rem 1rem;
 	box-shadow: 0 2px 18px rgba(0, 0, 0, 0.333);
-	margin-top: -682px;
+	margin-top: -680.22px;
 	margin-left: 1510px;
     }
     .optifine-options label {
@@ -406,6 +406,19 @@
 	input#elytra_checkbox:checked {
     background-color: #E8B901;
 	}
+	h1[data-i18n="tituloTestarSkin"],
+	.selector-block h1,
+	.selector-block h2 {
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	}
+	h1[data-i18n="tituloTestarSkin"] {
+	cursor: pointer;
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+	}
 </style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 </head>
@@ -444,7 +457,7 @@
 <div class="selector-block" style="background:rgba(18, 18, 18, 1);border-radius:16px;padding:1.2rem 1rem 1rem 1rem;box-shadow:0 2px 12px #0004;box-shadow:0 2px 18px #8b1616;margin-top: -0rem;">
 <div style="display:flex; flex-wrap:wrap; gap:1.2rem; align-items:center; justify-content:space-between;">
 <label style="display:flex; align-items:center; gap:0.7em; font-size:1.18rem; color:#ffd700; font-weight:600;">
-<span data-i18n="tituloÉlitro" style="user-select:none;">💎 Élitro</span>
+<span data-i18n="tituloÉlitro">💎 Élitro</span>
 <input id="elytra_checkbox" onchange="toggleElytra()" style="cursor:pointer; accent-color: #e8b901; transform: scale(0.6); width: 1em; height: 1em; box-shadow:0 2px 18px #8b1616;" type="checkbox"/>
 </label>
 </div>
@@ -610,6 +623,24 @@ document.addEventListener('DOMContentLoaded', () => {
       hit: new skinview3d.HitAnimation(),
     };
     initViewer();
+	const tituloPrincipal = document.querySelector('h1[data-i18n="tituloTestarSkin"]');
+	const statusDiv = document.getElementById('ign_status');
+	if (tituloPrincipal) {
+		tituloPrincipal.addEventListener('click', () => {
+		 const textoParaCopiar = tituloPrincipal.textContent; 
+		  navigator.clipboard.writeText(textoParaCopiar).then(() => {
+           const lang = localStorage.getItem("siteLang") || "pt-BR";
+            const mensagemTraduzida = translations[lang]["titulocopiado"] || "Título Copiado!";
+             statusDiv.textContent = mensagemTraduzida;
+              setTimeout(() => {
+               statusDiv.textContent = '';
+              }, 3000);
+			 }).catch(err => {
+            console.error('Falha Ao Copiar o Texto: ', err);
+            alert('Não Foi Possível Copiar o Título.');
+         });
+	   });
+	 }
     const uploadSkinInput = document.getElementById('upload_skin');
     if (uploadSkinInput) {
         uploadSkinInput.addEventListener('change', function () {
@@ -620,7 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const allowedExtensions = ['png', 'jpg', 'jpeg'];
             const fileExtension = file.name.split('.').pop().toLowerCase();
             if (!allowedExtensions.includes(fileExtension)) {
-                alert('Tipo De Arquivo Inválido. Por favor, use .png, .jpg ou .jpeg.');
+                alert('Tipo De Arquivo Inválido. Por Favor, Use .png, .jpg ou .jpeg.');
                 return; 
             }
             const originalFilename = file.name.replace(/\.[^/.]+$/, "");
@@ -747,6 +778,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+let isHitting = false;
+let isCrouching = false;
 function initViewer() {
   let initialSkin = "https://textures.minecraft.net/texture/3b60a1f6d562f52aaebbf1434f1de147933a3affe0e764fa49ea057536623cd3";
   skinViewer = new skinview3d.SkinViewer({
@@ -756,7 +789,43 @@ function initViewer() {
     skin: initialSkin
   });
   skinViewer.background = 0x121212;
-  setAnimation('idle'); 
+  setAnimation('idle');
+  skinViewer.canvas.addEventListener('click', () => {
+    if (isHitting) {
+      return; 
+    }
+    isHitting = true;
+    let animationToRestore;
+    if (isCrouching) {
+      animationToRestore = 'crouch';
+    } else {
+      const animationSelector = document.getElementById('animation_selector');
+      animationToRestore = animationSelector.value;
+    }
+    setAnimation('hit');
+    setTimeout(() => {
+      setAnimation(animationToRestore);
+      isHitting = false;
+    }, 300);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Shift') {
+      const activeElement = document.activeElement;
+      if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+        return;
+      }
+      event.preventDefault();
+      if (!isHitting) {
+        isCrouching = !isCrouching;
+        if (isCrouching) {
+          setAnimation('crouch');
+        } else {
+          const animationSelector = document.getElementById('animation_selector');
+          setAnimation(animationSelector.value);
+        }
+      }
+    }
+  });
 }
 async function setSkin(url) {
   skinViewer.loadSkin(url); 
@@ -788,13 +857,29 @@ function toggleElytra() {
   }
 }
 function setAnimation(animName) {
-  if (!skinViewer) return;
-  if (!animName || animName === 'none') {
-    skinViewer.animation = null;
-  } else {
-    skinViewer.animation = availableAnimations[animName];
-    if (skinViewer.animation) skinViewer.animation.speed = 1;
-  }
+    if (!skinViewer) return;
+
+    if (!animName || animName === 'none') {
+        skinViewer.animation = null;
+        return;
+    }
+    if (animName === 'crouch2') {
+        const freezeCrouchAnimation = new skinview3d.CrouchAnimation();
+        skinViewer.animation = freezeCrouchAnimation;
+        setTimeout(() => {
+            if (skinViewer.animation === freezeCrouchAnimation) {
+                skinViewer.animation.paused = true;
+            }
+        }, 150);
+
+    } else {
+        skinViewer.animation = availableAnimations[animName];
+        if (skinViewer.animation) {
+            skinViewer.animation.paused = false;
+            skinViewer.animation.progress = 0;
+            skinViewer.animation.speed = 1;
+        }
+    }
 }
 async function getOfficialSkinUrl(playerName) {
   const uuidResponse = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`, { cache: 'reload' });
@@ -1312,7 +1397,7 @@ function renderOptions(type) {
   }
   const savedLang = localStorage.getItem("siteLang") || "pt-BR";
   applyDynamicTranslations(savedLang);
-}
+  }
 </script>
 </body>
 </html>
