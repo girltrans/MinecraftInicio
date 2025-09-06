@@ -780,6 +780,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 let isHitting = false;
 let isCrouching = false;
+let isDragging = false;
+let mouseDown = false;
 function initViewer() {
   let initialSkin = "https://textures.minecraft.net/texture/3b60a1f6d562f52aaebbf1434f1de147933a3affe0e764fa49ea057536623cd3";
   skinViewer = new skinview3d.SkinViewer({
@@ -790,23 +792,38 @@ function initViewer() {
   });
   skinViewer.background = 0x121212;
   setAnimation('idle');
-  skinViewer.canvas.addEventListener('click', () => {
-    if (isHitting) {
-      return; 
+  skinViewer.canvas.addEventListener('mousedown', () => {
+    isDragging = false;
+    mouseDown = true;
+  });
+  skinViewer.canvas.addEventListener('mousemove', () => {
+    if (mouseDown) {
+      isDragging = true;
     }
-    isHitting = true;
-    let animationToRestore;
-    if (isCrouching) {
-      animationToRestore = 'crouch';
-    } else {
-      const animationSelector = document.getElementById('animation_selector');
-      animationToRestore = animationSelector.value;
+  });
+  skinViewer.canvas.addEventListener('mouseup', () => {
+    if (!isDragging) {
+      if (isHitting) {
+        return;
+      }
+      isHitting = true;
+      let animationToRestore;
+      if (isCrouching) {
+        animationToRestore = 'crouch';
+      } else {
+        const animationSelector = document.getElementById('animation_selector');
+        animationToRestore = animationSelector.value;
+      }
+      setAnimation('hit');
+      setTimeout(() => {
+        setAnimation(animationToRestore);
+        isHitting = false;
+      }, 300);
     }
-    setAnimation('hit');
-    setTimeout(() => {
-      setAnimation(animationToRestore);
-      isHitting = false;
-    }, 300);
+    mouseDown = false;
+  });
+   skinViewer.canvas.addEventListener('mouseleave', () => {
+    mouseDown = false;
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Shift') {
@@ -1420,3 +1437,4 @@ function renderOptions(type) {
 </script>
 </body>
 </html>
+
