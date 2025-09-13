@@ -401,7 +401,7 @@ button.btn.btn-danger.unfollow {
     align-items: center;
     z-index: 997;
     gap: 2.5rem;
-    padding: 1.2rem 0;
+    padding: 1.2rem 0 1.2rem 109px;
     backdrop-filter: blur(12px);
     border-radius: 0 0 20px 20px;
     width: 99vw;
