@@ -961,7 +961,7 @@ async function getSkinByIGN() {
 		setTimeout(() => { statusDiv.textContent = ''; }, 3000);
     } finally {
         loadButton.disabled = false;
-        loadButton.textContent = 'Carregar Nick';
+        loadButton.textContent = translations[lang]["tituloCarregarNick"] || 'Carregar Nick';
     }
 }
 </script>
@@ -1437,4 +1437,5 @@ function renderOptions(type) {
 </script>
 </body>
 </html>
+
 
