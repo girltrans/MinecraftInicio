@@ -70,7 +70,7 @@ const translations = {
 		tituloEditarSkin: "Editar Skin",
 		tituloEnviarSkin: "📤 Enviar Skin",
 		tituloCarregarNick: "Carregar Nick",
-		tituloDigiteumnick: "Digite um nick (16 caracteres)",
+		tituloDigiteumnick: "Digita um nick (16 caracteres)",
 		tituloEnviarCapa: "📤 Enviar Capa",
 		tituloBaixarSkin: "💾 Baixar Skin",
 		tituloÉlitro: "💎 Élitro",
@@ -99,7 +99,7 @@ const translations = {
 		designSombra: "Sombra",
 		bannerPlaceholder: "Tipo: aapspfasayafaCaF&var=s",
 		alertPreencherBanner: "Por Favor, Preencha Os Campos Do Banner.",
-		digiteNick: "Por favor, digite um nick.",
+		digiteNick: "Por favor, digita um nick.",
 		carregando: "Carregando...",
 		skinSucesso: "Skin Carregada Com Sucesso!",
 		skinErro: "Jogador não Encontrado ou Atualizando Skin.",
@@ -627,3 +627,4 @@ const translations = {
 		pageDescription: "Minecraft Skins und Umhänge testen, Nicknames überprüfen und eigene Skins von Grund auf erstellen oder bestehende Skins im Browser bearbeiten."
 	  }
 	};
+
