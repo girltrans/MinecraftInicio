@@ -627,6 +627,3 @@ const translations = {
 		pageDescription: "Minecraft Skins und Umhänge testen, Nicknames überprüfen und eigene Skins von Grund auf erstellen oder bestehende Skins im Browser bearbeiten."
 	  }
 	};
-
-
-
