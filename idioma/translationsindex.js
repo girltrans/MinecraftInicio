@@ -87,7 +87,7 @@ const translations = {
 		tituloEscolherCapa: "🔍 Escolher Capa",
 		tituloRemoverCapa: "❌ Remover Capa",
 		tituloAplicar: "Aplicar",
-		titulopegaracapadousuario: "✅ Pesquisar Capa De Um Utilizador",
+		titulopegaracapadousuario: "✅ Pesquisar Capa De Utilizador",
 		tituloeditardesignof: "✅ Editar Design (OF)",
 		tituloeditarbanner: "✅ Editar Banner",
 		nickLabel: "Nick:",
@@ -627,5 +627,6 @@ const translations = {
 		pageDescription: "Minecraft Skins und Umhänge testen, Nicknames überprüfen und eigene Skins von Grund auf erstellen oder bestehende Skins im Browser bearbeiten."
 	  }
 	};
+
 
 
