@@ -84,6 +84,9 @@ a.github {
     filter: invert(1);
     opacity: .2;
 }
+a[href^="https://stats.hylex.gg"] {
+  margin-left: -4px; 
+}
 .nick-item {
   display: flex;
   align-items: center;
@@ -193,5 +196,6 @@ body::-webkit-scrollbar {
 *::-webkit-scrollbar {
   display: none;
 }
+
 
 
