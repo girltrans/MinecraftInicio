@@ -7,6 +7,7 @@ const translations = {
 		tituloEscuro: "🌙 Escuro",
 		tituloClaro: "☀️ Claro",
 		tituloArcoIris: "🌈 Arco-Íris",
+		tituloTestarSkin: "Testar Skin e Capa",
 		tituloInicio: "Início",
 		tituloMinecraftVerificarNicks: "Minecraft Verificar Nicks",
 		tituloEditarSkin: "Editar Skin",
@@ -999,3 +1000,4 @@ const translations = {
         titleRecarregar: "Kopf / Baby neu laden"
 	  }
 	};
+
