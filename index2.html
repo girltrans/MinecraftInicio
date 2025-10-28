@@ -238,15 +238,15 @@
     <nav class="navbar">
     <div class="theme-selector">
 	<select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;width: auto;box-shadow: 0 2px 18px #8b1616;font-size:1.1rem;min-width: 44px;min-height: 44px;box-sizing: border-box;margin-bottom:14px;" title="Mudar Tema Do Site">
-	<option value="dark">🌙 Escuro</option>
-	<option value="light">☀️ Claro</option>
-	<option value="rainbow">🌈 Arco-Íris</option>
+	<option value="dark" data-i18n="tituloEscuro">🌙 Escuro</option>
+	<option value="light" data-i18n="tituloClaro">☀️ Claro</option>
+	<option value="rainbow" data-i18n="tituloArcoIris">🌈 Arco-Íris</option>
 	</select>
     </div>
 	<link href="https://fonts.googleapis.com/css2?family=Righteous&amp;display=swap" rel="stylesheet">
     <a href="http://areaprotegida.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;">
-   <img src="images2/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px;">
-        <span style="
+    <img src="images2/favicon.png" alt="Favicon Logo" style="width: 3.2rem; height: 3.2rem; border-radius: 8px;">
+        <span data-i18n="tituloInicio" style="
 		font-family: 'Righteous', cursive;
         font-weight: 700;
         font-size: 1.9rem;
@@ -257,9 +257,9 @@
         Início
       </span>
 </a>
-    <a href="./index2.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Minecraft Verificar Nicks</a>
-    <b><a href="./index.html" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Testar Skin e Capa</a>
-	<a href="./index3.html" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Editar Skin</a></b>
+    <a href="./index2.html" data-i18n="tituloMinecraftVerificarNicks" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Minecraft Verificar Nicks</a>
+    <b><a href="./index.html" data-i18n="tituloTestarSkin" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Testar Skin e Capa</a>
+	<a href="./index3.html" data-i18n="tituloEditarSkin" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Editar Skin</a></b>
 </nav>
     <div class="content-wrapper">
     <div class="content">
@@ -269,48 +269,49 @@
 </head>
 <body>
     <a rel="nofollow" href="https://github.com/girltrans" target="_blank" title="GitHub Repositório" class="github"><img src="./icons/github.png" alt="GitHub Icon" title="GitHub"></a>
-    <h1 style=":; font-family: 'Righteous', cursive; font-size:2.4rem;">Minecraft Verificar Nicks</h1>
+    <h1 data-i18n="tituloMinecraftVerificarNicks" style=":; font-family: 'Righteous', cursive; font-size:2.4rem;">Minecraft Verificar Nicks</h1>
     <div class="menu">
-    <label><input checked="" name="modo" type="radio" value="1"> Verificar Nick Específico</label><br/>
-    <label><input name="modo" type="radio" value="2"/> Verificação Em Massa</label><br/>
-    <label><input name="modo" type="radio" value="3"/> Verificar Lista Colada</label>
+    <label><input checked="" name="modo" type="radio" value="1"> <span data-i18n="tituloMinecraftVerificarNickEspecifico">Verificar Nick Específico</span></label><br/>
+    <label><input data-i18n="tituloMinecraftVerificacaoEmMassa" name="modo" type="radio" value="2"/> <span data-i18n="tituloMinecraftVerificacaoEmMassa">Verificação Em Massa</span></label><br/>
+    <label><input data-i18n="tituloMinecraftVerificarListaColada" name="modo" type="radio" value="3"/> <span data-i18n="tituloMinecraftVerificarListaColada">Verificar Lista Colada</span></label>
     </div>
     <div class="form-container" id="form-nick">
-    <input id="nick" maxlength="16" placeholder="Digite um nick (até 16 caracteres)" type="text"/>
-    <button onclick="verificarNick()">Verificar</button>
+	<input id="nick" maxlength="16" placeholder="Digite um nick (até 16 caracteres)" type="text" data-i18n="placeholderNick"/>
+    <button onclick="verificarNick()" data-i18n="botaoVerificar">Verificar</button>
     </div>
     <div class="form-container hidden" id="form-massa">
-        <label>Quantos caracteres? (1-16)</label>
+        <label data-i18n="labelQuantosCaracteres">Quantos caracteres? (1-16)</label>
         <input id="chars_count" max="16" min="1" required="" type="number"/>
-        <label>Tipo de caracteres:</label>
+        <label data-i18n="labelTipoCaracteres">Tipo de caracteres:</label>
         <select id="char_type" required="">
-        <option value="1">Apenas números (0-9)</option>
-        <option value="2">Apenas letras (a-z)</option>
-        <option value="3">Letras + underscore (a-z, _)</option>
-        <option value="4">Letras + números (a-z, 0-9)</option>
-        <option value="5">Letras + números + underscore (a-z, 0-9, _)</option>
+        <option value="1" data-i18n="optionNumeros">Apenas números (0-9)</option>
+        <option value="2" data-i18n="optionLetras">Apenas letras (a-z)</option>
+        <option value="3" data-i18n="optionLetrasUnderscore">Letras + underscore (a-z, _)</option>
+        <option value="4" data-i18n="optionLetrasNumeros">Letras + números (a-z, 0-9)</option>
+        <option value="5" data-i18n="optionLetrasNumerosUnderscore">Letras + números + underscore (a-z, 0-9, _)</option>
         </select>
-        <label>Quantas Threads? (1-1000, recomendado 300)</label>
+        <label data-i18n="labelQuantasRequisicoes">Quantas Requisições? (1-1000, recomendado 300)</label>
         <input id="threads" max="1000" min="1" required="" type="number" value="300"/>
         <div class="button-group">
 		<input type="file" id="fileInputMassa" accept=".txt" style="display:none;">
 		<div class="button-group">
-        <button onclick="verificacaoMassa()">Iniciar Verificação</button>
-        <button onclick="document.getElementById('fileInputMassa').click()">📤 Enviar Verificação</button>
-        <button class="hidden" id="btnDownloadMassa" onclick="baixarDisponiveisMassa()">📥 Baixar Disponíveis (.txt)</button>
+        <button onclick="verificacaoMassa()" data-i18n="btnIniciarVerificacao">Iniciar Verificação</button>
+        <button onclick="document.getElementById('fileInputMassa').click()" data-i18n="btnEnviarVerificacao">📤 Enviar Verificação</button>
+        <button class="hidden" id="btnDownloadMassa" onclick="baixarDisponiveisMassa()" data-i18n="btnBaixarDisponiveisMassa">📥 Baixar Disponíveis (.txt)</button>
 		</div>
 		</div>
         </div> <div class="form-container hidden" id="form-lista">
-        <label>Cole os nicks abaixo (até 16 caracteres) (1 por linha shift + enter)</label>
-		<textarea id="nickListInput" rows="6" style="width:100%; background-color:#1e1e1e; color:#E8B901; border:1px solid #8B1616;"	></textarea>
+        <label data-i18n="labelColeNicks">Cole os nicks abaixo (até 16 caracteres) (1 por linha shift + enter)</label>
+		<textarea id="nickListInput" rows="6" style="width:100%; background-color:#1e1e1e; color:#E8B901; border:1px solid #8B1616;"></textarea>
 		<input type="file" id="fileInput" accept=".txt" style="display:none;">
         <div class="button-group">
-        <button onclick="verificarLista()">Verificar Lista</button>
-		<button onclick="document.getElementById('fileInput').click()">📤 Enviar Lista</button>
-        <button class="hidden" id="btnDownloadLista" onclick="baixarDisponiveis()">📥 Baixar Disponíveis (.txt)</button>
+        <button onclick="verificarLista()" data-i18n="btnVerificarLista">Verificar Lista</button>
+		<button onclick="document.getElementById('fileInput').click()" data-i18n="btnEnviarLista">📤 Enviar Lista</button>
+        <button class="hidden" id="btnDownloadLista" onclick="baixarDisponiveis()" data-i18n="btnBaixarDisponiveisLista">📥 Baixar Disponíveis (.txt)</button>
         </div>
 		</div> <div class="result" id="resultado">
 		</div>
+<script src="idioma/translationsindex2.js"></script>
 <script>
     const themeSwitcher = document.getElementById('theme_switcher');
     function applyTheme(theme) {
@@ -424,87 +425,174 @@
     console.log("--- Função Recarregar Avatar concluída ---");
 	}
 	function exibirNickOcupado(player) {
-    const nomeJogador = player.name;
-    const uuid = player.uuid;
-    const crafatarHeadUrl = `https://crafatar.com/avatars/${uuid}?size=256&overlay`;
-    const starlightBodyUrl = `https://starlightskins.lunareclipse.studio/render/mojavatar/${uuid}/full`;
-    return `
-        <div class="nick-item">
-            <a href="#" onclick="event.preventDefault(); recarregarAvatar('${uuid}')" class="reload-button" title="Recarregar Cabeça / Bebê">🔄️</a>
-            
-            <a href="${crafatarHeadUrl}" target="_blank">
-                <img id="head-${uuid}" src="${crafatarHeadUrl}" class="img-fluid" alt="Cabeça: ${nomeJogador}" title="Cabeça: ${nomeJogador}">
-            </a>
-            <a href="${starlightBodyUrl}" target="_blank">
-                <img id="mini-${uuid}" src="${starlightBodyUrl}" class="img-fluid" alt="Bebê: ${nomeJogador}" title="Bebê: ${nomeJogador}">
-            </a>
+		const lang = localStorage.getItem("siteLang") || "pt-BR";
+		const nomeJogador = player.name;
+		const uuid = player.uuid;
+		const crafatarHeadUrl = `https://crafatar.com/avatars/${uuid}?size=256&overlay`;
+		const starlightBodyUrl = `https://starlightskins.lunareclipse.studio/render/mojavatar/${uuid}/full`;
 
-            ❌ O Nick <strong>${nomeJogador}</strong> Está <strong>OCUPADO!</strong>
-            
-            <a href="https://namemc.com/${nomeJogador}" target="_blank"><img src="./icons/favicon-30.png" alt="Perfil NameMC" title="Perfil NameMC"></a>
-            <a href="https://capes.me/capes?user=${nomeJogador}" target="_blank"><img src="./icons/capesme.png" alt="Perfil CapesME" title="Perfil CapesME"></a>
-            <a href="https://skinmc.net/s/profiles?search=${nomeJogador}" target="_blank"><img src="./icons/skinmc.png" alt="Perfil SkinMC" title="Perfil SkinMC"></a>
-            <a href="https://crafty.gg/@${nomeJogador}" target="_blank"><img src="./icons/craftygg.png" alt="Perfil CraftyGG" title="Perfil CraftyGG"></a>
-            <a href="https://livzmc.net/user/${nomeJogador}" target="_blank"><img src="./icons/livzmc.png" alt="Perfil LivzMC" title="Perfil LivzMC"></a>
-            <a href="https://bedrock.lol/players/${nomeJogador}" target="_blank"><img src="./icons/bedrocklol.jpg" alt="Perfil BedrockLOL" title="Perfil BedrockLOL"></a>
-            <a href="https://sky.shiiyu.moe/stats/${nomeJogador}" target="_blank"><img src="./icons/skycrypt.png" alt="Perfil SkyCrypt" title="Perfil SkyCrypt"></a>
-            <a href="https://plancke.io/hypixel/player/stats/${nomeJogador}" target="_blank"><img src="./icons/planckeio.png" alt="Perfil PlanckeIO" title="Perfil PlanckeIO"></a>
-            <a href="https://25karma.xyz/player/${nomeJogador}" target="_blank"><img src="./icons/25karma.png" alt="Perfil 25Karma" title="Perfil 25Karma"></a>
-            <a href="https://mush.com.br/player/${nomeJogador}" target="_blank"><img src="./icons/mushmcperfil.png" alt="Perfil MushMC" title="Perfil MushMC"></a>
-            <a href="https://forum.mush.com.br/user/${nomeJogador}" target="_blank"><img src="./icons/mushmcforum.png" alt="Fórum MushMC" title="Fórum MushMC"></a>
-            <a href="https://flamemc.com.br/player/${nomeJogador}" target="_blank"><img src="./icons/flamemc.png" alt="Perfil FlameMC" title="Perfil FlameMC"></a>
-			<a href="https://stats.hylex.gg/perfil/${nomeJogador}" target="_blank"><img src="./icons/hylexperfil.png" alt="Perfil Hylex" title="Perfil Hylex"></a>
-            <a href="https://www.badlion.net/profile/minecraft/${nomeJogador}" target="_blank"><img src="./icons/badlion.png" alt="Perfil BadLion" title="Perfil BadLion"></a>
-            <a href="https://laby.net/@${nomeJogador}" target="_blank"><img src="./icons/labymod.png" alt="Perfil LabyMod" title="Perfil LabyMod"></a>
-        </div>`;
-	}
-	function exibirNickDisponivel(nomeJogador) {
+		const ocupadoMsg = (translations[lang]["jsNickOcupado"] || "❌ O Nick <strong>{{nick}}</strong> Está <strong>OCUPADO!</strong>")
+							.replace("{{nick}}", nomeJogador);
+
+		const altTitleCabeca = (translations[lang]["altTitleCabeca"] || "Cabeça: {{nick}}")
+		                        .replace("{{nick}}", nomeJogador);
+		const altTitleBebe = (translations[lang]["altTitleBebe"] || "Bebê: {{nick}}")
+		                      .replace("{{nick}}", nomeJogador);
+		const altNameMC = translations[lang]["altPerfilNameMC"] || "Perfil NameMC";
+		const titleNameMC = translations[lang]["titlePerfilNameMC"] || "Perfil NameMC";
+		const altCapesME = translations[lang]["altPerfilCapesME"] || "Perfil CapesME";
+		const titleCapesME = translations[lang]["titlePerfilCapesME"] || "Perfil CapesME";
+		const altSkinMC = translations[lang]["altPerfilSkinMC"] || "Perfil SkinMC";
+		const titleSkinMC = translations[lang]["titlePerfilSkinMC"] || "Perfil SkinMC";
+		const altCraftyGG = translations[lang]["altPerfilCraftyGG"] || "Perfil CraftyGG";
+		const titleCraftyGG = translations[lang]["titlePerfilCraftyGG"] || "Perfil CraftyGG";
+		const altLivzMC = translations[lang]["altPerfilLivzMC"] || "Perfil LivzMC";
+		const titleLivzMC = translations[lang]["titlePerfilLivzMC"] || "Perfil LivzMC";
+		const altBedrockLOL = translations[lang]["altPerfilBedrockLOL"] || "Perfil BedrockLOL";
+		const titleBedrockLOL = translations[lang]["titlePerfilBedrockLOL"] || "Perfil BedrockLOL";
+		const altSkyCrypt = translations[lang]["altPerfilSkyCrypt"] || "Perfil SkyCrypt";
+		const titleSkyCrypt = translations[lang]["titlePerfilSkyCrypt"] || "Perfil SkyCrypt";
+		const altPlanckeIO = translations[lang]["altPerfilPlanckeIO"] || "Perfil PlanckeIO";
+		const titlePlanckeIO = translations[lang]["titlePerfilPlanckeIO"] || "Perfil PlanckeIO";
+		const alt25Karma = translations[lang]["altPerfil25Karma"] || "Perfil 25Karma";
+		const title25Karma = translations[lang]["titlePerfil25Karma"] || "Perfil 25Karma";
+		const altMushMC = translations[lang]["altPerfilMushMC"] || "Perfil MushMC";
+		const titleMushMC = translations[lang]["titlePerfilMushMC"] || "Perfil MushMC";
+		const altForumMushMC = translations[lang]["altForumMushMC"] || "Fórum MushMC";
+		const titleForumMushMC = translations[lang]["titleForumMushMC"] || "Fórum MushMC";
+		const altFlameMC = translations[lang]["altPerfilFlameMC"] || "Perfil FlameMC";
+		const titleFlameMC = translations[lang]["titlePerfilFlameMC"] || "Perfil FlameMC";
+		const altHylex = translations[lang]["altPerfilHylex"] || "Perfil Hylex";
+		const titleHylex = translations[lang]["titlePerfilHylex"] || "Perfil Hylex";
+		const altBadLion = translations[lang]["altPerfilBadLion"] || "Perfil BadLion";
+		const titleBadLion = translations[lang]["titlePerfilBadLion"] || "Perfil BadLion";
+		const altLabyMod = translations[lang]["altPerfilLabyMod"] || "Perfil LabyMod";
+		const titleLabyMod = translations[lang]["titlePerfilLabyMod"] || "Perfil LabyMod";
+		const titleRecarregar = translations[lang]["titleRecarregar"] || "Recarregar Cabeça / Bebê";
+
+
 		return `
 			<div class="nick-item">
-				<a href="https://minotar.net/helm/${nomeJogador}/600.png" target="_blank"><img src="./icons/cabeca.png" class="img-fluid" alt="Cabeça: ${nomeJogador}" title="Cabeça: ${nomeJogador}"></a>
-				<a href="https://starlightskins.lunareclipse.studio/render/mojavatar/steve/full" target="_blank"><img src="./icons/steve.png" class="img-fluid" alt="Bebê: ${nomeJogador}" title="Bebê: ${nomeJogador}"></a>
-				✅ O Nick <strong>${nomeJogador}</strong> Está <strong>DISPONÍVEL!</strong>
-				<a href="https://namemc.com/${nomeJogador}" target="_blank"><img src="./icons/favicon-30.png" alt="Perfil NameMC" title="Perfil NameMC"></a>
-				<a href="https://capes.me/capes?user=${nomeJogador}" target="_blank"><img src="./icons/capesme.png" alt="Perfil CapesME" title="Perfil CapesME"></a>
-				<a href="https://skinmc.net/s/profiles?search=${nomeJogador}" target="_blank"><img src="./icons/skinmc.png" alt="Perfil SkinMC" title="Perfil SkinMC"></a>
-				<a href="https://crafty.gg/@${nomeJogador}" target="_blank"><img src="./icons/craftygg.png" alt="Perfil CraftyGG" title="Perfil CraftyGG"></a>
-				<a href="https://livzmc.net/user/${nomeJogador}" target="_blank"><img src="./icons/livzmc.png" alt="Perfil LivzMC" title="Perfil LivzMC"></a>
-				<a href="https://bedrock.lol/players/${nomeJogador}" target="_blank"><img src="./icons/bedrocklol.jpg" alt="Perfil BedrockLOL" title="Perfil BedrockLOL"></a>
-				<a href="https://sky.shiiyu.moe/stats/${nomeJogador}" target="_blank"><img src="./icons/skycrypt.png" alt="Perfil SkyCrypt" title="Perfil SkyCrypt"></a>
-				<a href="https://plancke.io/hypixel/player/stats/${nomeJogador}" target="_blank"><img src="./icons/planckeio.png" alt="Perfil PlanckeIO" title="Perfil PlanckeIO"></a>
-				<a href="https://25karma.xyz/player/${nomeJogador}" target="_blank"><img src="./icons/25karma.png" alt="Perfil 25Karma" title="Perfil 25Karma"></a>
-				<a href="https://mush.com.br/player/${nomeJogador}" target="_blank"><img src="./icons/mushmcperfil.png" alt="Perfil MushMC" title="Perfil MushMC"></a>
-				<a href="https://forum.mush.com.br/user/${nomeJogador}" target="_blank"><img src="./icons/mushmcforum.png" alt="Fórum MushMC" title="Fórum MushMC"></a>
-				<a href="https://flamemc.com.br/player/${nomeJogador}" target="_blank"><img src="./icons/flamemc.png" alt="Perfil FlameMC" title="Perfil FlameMC"></a>
-				<a href="https://stats.hylex.gg/perfil/${nomeJogador}" target="_blank"><img src="./icons/hylexperfil.png" alt="Perfil Hylex" title="Perfil Hylex"></a>
-				<a href="https://www.badlion.net/profile/minecraft/${nomeJogador}" target="_blank"><img src="./icons/badlion.png" alt="Perfil BadLion" title="Perfil BadLion"></a>
-				<a href="https://laby.net/@${nomeJogador}" target="_blank"><img src="./icons/labymod.png" alt="Perfil LabyMod" title="Perfil LabyMod"></a>
+				<a href="#" onclick="event.preventDefault(); recarregarAvatar('${uuid}')" class="reload-button" title="${titleRecarregar}">🔄️</a>
+				<a href="${crafatarHeadUrl}" target="_blank">
+					<img id="head-${uuid}" src="${crafatarHeadUrl}" class="img-fluid" alt="${altTitleCabeca}" title="${altTitleCabeca}">
+				</a>
+				<a href="${starlightBodyUrl}" target="_blank">
+					<img id="mini-${uuid}" src="${starlightBodyUrl}" class="img-fluid" alt="${altTitleBebe}" title="${altTitleBebe}">
+				</a>
+				${ocupadoMsg}
+
+				<a href="https://namemc.com/${nomeJogador}" target="_blank"><img src="./icons/favicon-30.png" alt="${altNameMC}" title="${titleNameMC}"></a>
+				<a href="https://capes.me/capes?user=${nomeJogador}" target="_blank"><img src="./icons/capesme.png" alt="${altCapesME}" title="${titleCapesME}"></a>
+				<a href="https://skinmc.net/s/profiles?search=${nomeJogador}" target="_blank"><img src="./icons/skinmc.png" alt="${altSkinMC}" title="${titleSkinMC}"></a>
+				<a href="https://crafty.gg/@${nomeJogador}" target="_blank"><img src="./icons/craftygg.png" alt="${altCraftyGG}" title="${titleCraftyGG}"></a>
+				<a href="https://livzmc.net/user/${nomeJogador}" target="_blank"><img src="./icons/livzmc.png" alt="${altLivzMC}" title="${titleLivzMC}"></a>
+				<a href="https://bedrock.lol/players/${nomeJogador}" target="_blank"><img src="./icons/bedrocklol.jpg" alt="${altBedrockLOL}" title="${titleBedrockLOL}"></a>
+				<a href="https://sky.shiiyu.moe/stats/${nomeJogador}" target="_blank"><img src="./icons/skycrypt.png" alt="${altSkyCrypt}" title="${titleSkyCrypt}"></a>
+				<a href="https://plancke.io/hypixel/player/stats/${nomeJogador}" target="_blank"><img src="./icons/planckeio.png" alt="${altPlanckeIO}" title="${titlePlanckeIO}"></a>
+				<a href="https://25karma.xyz/player/${nomeJogador}" target="_blank"><img src="./icons/25karma.png" alt="${alt25Karma}" title="${title25Karma}"></a>
+				<a href="https://mush.com.br/player/${nomeJogador}" target="_blank"><img src="./icons/mushmcperfil.png" alt="${altMushMC}" title="${titleMushMC}"></a>
+				<a href="https://forum.mush.com.br/user/${nomeJogador}" target="_blank"><img src="./icons/mushmcforum.png" alt="${altForumMushMC}" title="${titleForumMushMC}"></a>
+				<a href="https://flamemc.com.br/player/${nomeJogador}" target="_blank"><img src="./icons/flamemc.png" alt="${altFlameMC}" title="${titleFlameMC}"></a>
+				<a href="https://stats.hylex.gg/perfil/${nomeJogador}" target="_blank"><img src="./icons/hylexperfil.png" alt="${altHylex}" title="${titleHylex}"></a>
+				<a href="https://www.badlion.net/profile/minecraft/${nomeJogador}" target="_blank"><img src="./icons/badlion.png" alt="${altBadLion}" title="${titleBadLion}"></a>
+				<a href="https://laby.net/@${nomeJogador}" target="_blank"><img src="./icons/labymod.png" alt="${altLabyMod}" title="${titleLabyMod}"></a>
+			</div>`;
+	}
+
+	function exibirNickDisponivel(nomeJogador) {
+		const lang = localStorage.getItem("siteLang") || "pt-BR";
+
+		const disponivelMsg = (translations[lang]["jsNickDisponivelMsg"] || "✅ O Nick <strong>{{nick}}</strong> Está <strong>DISPONÍVEL!</strong>")
+								.replace("{{nick}}", nomeJogador);
+
+		const altTitleCabeca = (translations[lang]["altTitleCabeca"] || "Cabeça: {{nick}}")
+		                        .replace("{{nick}}", nomeJogador);
+		const altTitleBebe = (translations[lang]["altTitleBebe"] || "Bebê: {{nick}}")
+		                      .replace("{{nick}}", nomeJogador);
+		const altNameMC = translations[lang]["altPerfilNameMC"] || "Perfil NameMC";
+		const titleNameMC = translations[lang]["titlePerfilNameMC"] || "Perfil NameMC";
+		const altCapesME = translations[lang]["altPerfilCapesME"] || "Perfil CapesME";
+		const titleCapesME = translations[lang]["titlePerfilCapesME"] || "Perfil CapesME";
+		const altSkinMC = translations[lang]["altPerfilSkinMC"] || "Perfil SkinMC";
+		const titleSkinMC = translations[lang]["titlePerfilSkinMC"] || "Perfil SkinMC";
+		const altCraftyGG = translations[lang]["altPerfilCraftyGG"] || "Perfil CraftyGG";
+		const titleCraftyGG = translations[lang]["titlePerfilCraftyGG"] || "Perfil CraftyGG";
+		const altLivzMC = translations[lang]["altPerfilLivzMC"] || "Perfil LivzMC";
+		const titleLivzMC = translations[lang]["titlePerfilLivzMC"] || "Perfil LivzMC";
+		const altBedrockLOL = translations[lang]["altPerfilBedrockLOL"] || "Perfil BedrockLOL";
+		const titleBedrockLOL = translations[lang]["titlePerfilBedrockLOL"] || "Perfil BedrockLOL";
+		const altSkyCrypt = translations[lang]["altPerfilSkyCrypt"] || "Perfil SkyCrypt";
+		const titleSkyCrypt = translations[lang]["titlePerfilSkyCrypt"] || "Perfil SkyCrypt";
+		const altPlanckeIO = translations[lang]["altPerfilPlanckeIO"] || "Perfil PlanckeIO";
+		const titlePlanckeIO = translations[lang]["titlePerfilPlanckeIO"] || "Perfil PlanckeIO";
+		const alt25Karma = translations[lang]["altPerfil25Karma"] || "Perfil 25Karma";
+		const title25Karma = translations[lang]["titlePerfil25Karma"] || "Perfil 25Karma";
+		const altMushMC = translations[lang]["altPerfilMushMC"] || "Perfil MushMC";
+		const titleMushMC = translations[lang]["titlePerfilMushMC"] || "Perfil MushMC";
+		const altForumMushMC = translations[lang]["altForumMushMC"] || "Fórum MushMC";
+		const titleForumMushMC = translations[lang]["titleForumMushMC"] || "Fórum MushMC";
+		const altFlameMC = translations[lang]["altPerfilFlameMC"] || "Perfil FlameMC";
+		const titleFlameMC = translations[lang]["titlePerfilFlameMC"] || "Perfil FlameMC";
+		const altHylex = translations[lang]["altPerfilHylex"] || "Perfil Hylex";
+		const titleHylex = translations[lang]["titlePerfilHylex"] || "Perfil Hylex";
+		const altBadLion = translations[lang]["altPerfilBadLion"] || "Perfil BadLion";
+		const titleBadLion = translations[lang]["titlePerfilBadLion"] || "Perfil BadLion";
+		const altLabyMod = translations[lang]["altPerfilLabyMod"] || "Perfil LabyMod";
+		const titleLabyMod = translations[lang]["titlePerfilLabyMod"] || "Perfil LabyMod";
+
+		return `
+			<div class="nick-item">
+				<a href="https://minotar.net/helm/${nomeJogador}/600.png" target="_blank"><img src="./icons/cabeca.png" class="img-fluid" alt="${altTitleCabeca}" title="${altTitleCabeca}"></a>
+				<a href="https://starlightskins.lunareclipse.studio/render/mojavatar/steve/full" target="_blank"><img src="./icons/steve.png" class="img-fluid" alt="${altTitleBebe}" title="${altTitleBebe}"></a>
+
+				${disponivelMsg}
+
+				<a href="https://namemc.com/${nomeJogador}" target="_blank"><img src="./icons/favicon-30.png" alt="${altNameMC}" title="${titleNameMC}"></a>
+				<a href="https://capes.me/capes?user=${nomeJogador}" target="_blank"><img src="./icons/capesme.png" alt="${altCapesME}" title="${titleCapesME}"></a>
+				<a href="https://skinmc.net/s/profiles?search=${nomeJogador}" target="_blank"><img src="./icons/skinmc.png" alt="${altSkinMC}" title="${titleSkinMC}"></a>
+				<a href="https://crafty.gg/@${nomeJogador}" target="_blank"><img src="./icons/craftygg.png" alt="${altCraftyGG}" title="${titleCraftyGG}"></a>
+				<a href="https://livzmc.net/user/${nomeJogador}" target="_blank"><img src="./icons/livzmc.png" alt="${altLivzMC}" title="${titleLivzMC}"></a>
+				<a href="https://bedrock.lol/players/${nomeJogador}" target="_blank"><img src="./icons/bedrocklol.jpg" alt="${altBedrockLOL}" title="${titleBedrockLOL}"></a>
+				<a href="https://sky.shiiyu.moe/stats/${nomeJogador}" target="_blank"><img src="./icons/skycrypt.png" alt="${altSkyCrypt}" title="${titleSkyCrypt}"></a>
+				<a href="https://plancke.io/hypixel/player/stats/${nomeJogador}" target="_blank"><img src="./icons/planckeio.png" alt="${altPlanckeIO}" title="${titlePlanckeIO}"></a>
+				<a href="https://25karma.xyz/player/${nomeJogador}" target="_blank"><img src="./icons/25karma.png" alt="${alt25Karma}" title="${title25Karma}"></a>
+				<a href="https://mush.com.br/player/${nomeJogador}" target="_blank"><img src="./icons/mushmcperfil.png" alt="${altMushMC}" title="${titleMushMC}"></a>
+				<a href="https://forum.mush.com.br/user/${nomeJogador}" target="_blank"><img src="./icons/mushmcforum.png" alt="${altForumMushMC}" title="${titleForumMushMC}"></a>
+				<a href="https://flamemc.com.br/player/${nomeJogador}" target="_blank"><img src="./icons/flamemc.png" alt="${altFlameMC}" title="${titleFlameMC}"></a>
+				<a href="https://stats.hylex.gg/perfil/${nomeJogador}" target="_blank"><img src="./icons/hylexperfil.png" alt="${altHylex}" title="${titleHylex}"></a>
+				<a href="https://www.badlion.net/profile/minecraft/${nomeJogador}" target="_blank"><img src="./icons/badlion.png" alt="${altBadLion}" title="${titleBadLion}"></a>
+				<a href="https://laby.net/@${nomeJogador}" target="_blank"><img src="./icons/labymod.png" alt="${altLabyMod}" title="${titleLabyMod}"></a>
 			</div>`;
 	}
 	async function verificarNick() {
+		const lang = localStorage.getItem("siteLang") || "pt-BR";
 		const nick = document.getElementById('nick').value.trim();
-		resultado.innerHTML = "⏳ Verificando...";
+		resultado.innerHTML = translations[lang]["jsVerificando"] || "⏳ Verificando...";
 		const nickRegex = /^[a-zA-Z0-9_]{1,16}$/i;
 		if (!nickRegex.test(nick)) {
-			resultado.innerHTML = "❌ O nick deve ter 1 a 16 caracteres, apenas letras, números ou _";
-			return;
+        resultado.innerHTML = translations[lang]["jsNickInvalido"] || "❌ O nick deve ter 1 a 16 caracteres, apenas letras, números ou _";
+        return;
 		}
-		const player = await buscarDadosJogador(nick);
-		if (player) {
-			resultado.innerHTML = exibirNickOcupado(player);
+    const player = await buscarDadosJogador(nick);
+    if (player) {
+        ultimoResultadoVerificado = { tipo: 'ocupado', dados: player };
+        resultado.innerHTML = exibirNickOcupado(player);
 		} else {
-			resultado.innerHTML = exibirNickDisponivel(nick);
+        ultimoResultadoVerificado = { tipo: 'disponivel', dados: nick };
+        resultado.innerHTML = exibirNickDisponivel(nick);
 		}
-		    ajustarLayoutMobile();
+		ajustarLayoutMobile();
 	}
 	async function verificarLista() {
+		const lang = localStorage.getItem("siteLang") || "pt-BR";
 		const raw = document.getElementById("nickListInput").value;
 		const nicks = raw.split("\n").map(n => n.trim()).filter(Boolean);
 		if (nicks.length === 0) {
-			resultado.innerHTML = "❌ Nenhum nick válido inserido.";
+			resultado.innerHTML = translations[lang]["jsNenhumNickInserido"] || "❌ Nenhum nick válido inserido.";
 			return;
 		}
-		resultado.innerHTML = `⏳ Verificando ${nicks.length} nicks...`;
+		resultado.innerHTML = (translations[lang]["jsVerificandoNicks"] || "⏳ Verificando {{count}} nicks...").replace("{{count}}", nicks.length);
 		const promises = nicks.map(nick => buscarDadosJogador(nick));
 		const results = await Promise.allSettled(promises);
 		disponiveisGlobal = [];
@@ -519,35 +607,23 @@
 		let finalHTML = "";
 		if (disponiveisGlobal.length > 0) {
 			const disponiveisHTML = disponiveisGlobal.map(nick => exibirNickDisponivel(nick)).join("");
-			finalHTML += `<h4>✅ Nicks Disponíveis (${disponiveisGlobal.length}):</h4><div class="nick-list">${disponiveisHTML}`;
+			const disponiveisTxt = (translations[lang]["jsNicksDisponiveis"] || "✅ Nicks Disponíveis ({{count}}):").replace("{{count}}", disponiveisGlobal.length);
+			finalHTML += `<h4>${disponiveisTxt}</h4><div class="nick-list">${disponiveisHTML}`;
 			document.getElementById("btnDownloadLista").classList.remove("hidden");
 		} else {
 			document.getElementById("btnDownloadLista").classList.add("hidden");
 		}
 		if (ocupadosGlobal.length > 0) {
 			const ocupadosHTML = ocupadosGlobal.map(player => exibirNickOcupado(player)).join("");
-			finalHTML += `<h4>❌ Nicks Ocupados (${ocupadosGlobal.length}):</h4><div class="nick-list">${ocupadosHTML}`;
+			const ocupadosTxt = (translations[lang]["jsNicksOcupados"] || "❌ Nicks Ocupados ({{count}}):").replace("{{count}}", ocupadosGlobal.length);
+			finalHTML += `<h4>${ocupadosTxt}</h4><div class="nick-list">${ocupadosHTML}`;
 		}
 		if (finalHTML === "") {
-			resultado.innerHTML = "Nenhum Resultado Para os Nicks Informados.";
+			resultado.innerHTML = translations[lang]["jsNenhumResultado"] || "Nenhum Resultado Para os Nicks Informados.";
 		} else {
 			resultado.innerHTML = finalHTML;
 		}
 		ajustarLayoutMobile();
-	}
-	function baixarDisponiveis() {
-		if (disponiveisGlobal.length === 0) return;
-		const blob = new Blob([disponiveisGlobal.join("\n")], {
-			type: "text/plain"
-		});
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement("a");
-		a.href = url;
-		a.download = "Disponiveis Lista Colada.txt";
-		document.body.appendChild(a);
-		a.click();
-		document.body.removeChild(a);
-		URL.revokeObjectURL(url);
 	}
 	async function fetchWithLimit(urls, limit = 100) {
     let results = new Array(urls.length);
@@ -559,7 +635,8 @@
             try {
                 const res = await fetch(url);
                 results[current] = res;
-            } catch {
+            } catch (fetchError) {
+                console.error(`Erro no fetch para ${url}:`, fetchError);
                 results[current] = null;
             }
         }
@@ -568,67 +645,85 @@
     await Promise.all(workers);
     return results;
 }
-	let disponiveisMassa = [];
 	async function verificacaoMassa() {
-    const count = parseInt(document.getElementById('chars_count').value);
-    const tipo = parseInt(document.getElementById('char_type').value);
-    if (count < 1 || count > 16) {
-        resultado.innerHTML = "</div><hr>❌ Quantidade De Caracteres Inválida!</div><hr>";
-        return;
-    }
-    let charset = "";
-    if (tipo === 1) charset = "0123456789";
-    else if (tipo === 2) charset = "abcdefghijklmnopqrstuvwxyz";
-    else if (tipo === 3) charset = "abcdefghijklmnopqrstuvwxyz_";
-    else if (tipo === 4) charset = "abcdefghijklmnopqrstuvwxyz0123456789";
-    else if (tipo === 5) charset = "abcdefghijklmnopqrstuvwxyz0123456789_";
-    const combos = gerarCombinacoes(charset, count);
-    resultado.innerHTML = `⏳ Verificando ${combos.length} combinações...`;
-    const urls = combos.map(nick => `https://playerdb.co/api/player/minecraft/${nick}`);
-    const responses = await fetchWithLimit(urls, 1000);
-    let disponiveis = [];
-	disponiveisMassa = [];
-    for (let i = 0; i < responses.length; i++) {
-        const res = responses[i];
-        const nick = combos[i];
-        if (!res) continue;
-        if (res.status === 400 || res.status === 500) {
-            disponiveis.push(nick);
-        } else if (res.ok) {
-            try {
-                const data = await res.json();
-                if (data.code !== "player.found") {
-                    disponiveis.push(nick);
-                }
-            } catch {}
-        }
-    }
-	if (disponiveis.length > 0) {
-    const resultado = document.getElementById("resultado");
-    resultado.innerHTML =
-        `✅ Nicks Disponíveis (${disponiveis.length}):<br>` +
-        disponiveis.join("<br>");
-		disponiveisMassa = disponiveis;
-		document.getElementById("btnDownloadMassa").classList.remove("hidden");
-} else {
-    document.getElementById("resultadoMassa").textContent =
-        "</div><hr>❌ Nenhum Nick Disponível Encontrado.</div><hr>";
+		const lang = localStorage.getItem("siteLang") || "pt-BR";
+	    const count = parseInt(document.getElementById('chars_count').value);
+	    const tipo = parseInt(document.getElementById('char_type').value);
+	    if (count < 1 || count > 16) {
+			const erroTxt = translations[lang]["jsCaracteresInvalidos"] || "❌ Quantidade De Caracteres Inválida!";
+	        resultado.innerHTML = `</div><hr>${erroTxt}</div><hr>`;
+	        return;
+	    }
+	    let charset = "";
+	    if (tipo === 1) charset = "0123456789";
+	    else if (tipo === 2) charset = "abcdefghijklmnopqrstuvwxyz";
+	    else if (tipo === 3) charset = "abcdefghijklmnopqrstuvwxyz_";
+	    else if (tipo === 4) charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+	    else if (tipo === 5) charset = "abcdefghijklmnopqrstuvwxyz0123456789_";
+	    const combos = gerarCombinacoes(charset, count);
+	    resultado.innerHTML = (translations[lang]["jsVerificandoCombinacoes"] || "⏳ Verificando {{count}} combinações...").replace("{{count}}", combos.length);
+	    const urls = combos.map(nick => `https://corsproxy.io/?${encodeURIComponent(`https://playerdb.co/api/player/minecraft/${nick}`)}`);
+	    const responses = await fetchWithLimit(urls, 1000);
+	    let disponiveis = [];
+		disponiveisMassa = [];
+	    for (let i = 0; i < responses.length; i++) {
+	        const res = responses[i];
+	        const nick = combos[i];
+	        if (!res) continue;
+	        if (res.status === 400 || res.status === 500) {
+	            disponiveis.push(nick);
+	        } else if (res.ok) {
+	            try {
+	                const data = await res.json();
+	                if (data.code !== "player.found") {
+	                    disponiveis.push(nick);
+	                }
+	            } catch {}
+	        }
+	    }
+		if (disponiveis.length > 0) {
+	    const resultado = document.getElementById("resultado");
+		const disponiveisTxt = (translations[lang]["jsNicksDisponiveis"] || "✅ Nicks Disponíveis ({{count}}):").replace("{{count}}", disponiveis.length);
+	    resultado.innerHTML =
+	        `${disponiveisTxt}<br>` +
+	        disponiveis.join("<br>");
+			disponiveisMassa = disponiveis;
+			document.getElementById("btnDownloadMassa").classList.remove("hidden");
+	} else {
+		const erroTxt = translations[lang]["jsNenhumNickDisponivel"] || "❌ Nenhum Nick Disponível Encontrado.";
+	    document.getElementById("resultado").innerHTML = `</div><hr>${erroTxt}</div><hr>`;
+		}
 	}
-}
 	function baixarDisponiveisMassa() {
-    if (disponiveisMassa.length === 0) return;
-    const blob = new Blob([disponiveisMassa.join("\n")], {
-        type: "text/plain"
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "Disponiveis Em Massa.txt";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
+	    if (disponiveisMassa.length === 0) return;
+	    const blob = new Blob([disponiveisMassa.join("\n")], {
+	        type: "text/plain"
+	    });
+	    const url = URL.createObjectURL(blob);
+	    const a = document.createElement("a");
+	    a.href = url;
+		const lang = localStorage.getItem("siteLang") || "pt-BR";
+		a.download = translations[lang]["downloadEmMassa"] || "Disponiveis Em Massa.txt";
+	    document.body.appendChild(a);
+	    a.click();
+	    document.body.removeChild(a);
+	    URL.revokeObjectURL(url);
+	}
+	function baixarDisponiveis() {
+        if (disponiveisGlobal.length === 0) return;
+        const blob = new Blob([disponiveisGlobal.join("\n")], {
+            type: "text/plain"
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        const lang = localStorage.getItem("siteLang") || "pt-BR";
+        a.download = translations[lang]["downloadListaColada"] || "Disponiveis Lista Colada.txt";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
 	function gerarCombinacoes(charset, length) {
     let results = [];
     function helper(prefix, depth) {
@@ -642,6 +737,22 @@
     }
     helper("", length);
     return results;
+}
+function redesenharUltimoResultado() {
+    if (!ultimoResultadoVerificado) {
+        return;
+    }
+    const modoNickEspecificoAtivo = document.querySelector('input[name="modo"][value="1"]').checked;
+    if (!modoNickEspecificoAtivo) {
+         ultimoResultadoVerificado = null;
+        return;
+    }
+    if (ultimoResultadoVerificado.tipo === 'ocupado') {
+        resultado.innerHTML = exibirNickOcupado(ultimoResultadoVerificado.dados);
+    } else if (ultimoResultadoVerificado.tipo === 'disponivel') {
+        resultado.innerHTML = exibirNickDisponivel(ultimoResultadoVerificado.dados);
+    }
+     ajustarLayoutMobile();
 }
 </script>
 <script>
@@ -712,7 +823,7 @@ window.addEventListener('scroll', function() {
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const langSelector = `
-      <select id="idiomaSelect" onchange="changeLanguage(this.value)"
+      <select id="idiomaSelect" onchange="onLanguageChange(this.value)"
       style="padding:5px;border-radius:5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right: 20px;position:relative;top:8.2px;width:auto;background:#121212;box-shadow: 0 2px 18px #8b1616;font-size:1.1rem;min-width:44px;min-height: 44px;box-sizing: border-box;cursor:pointer;">
       <option value="pt-BR">Português 🇧🇷</option>
 	  <option value="pt-PT">Português 🇵🇹</option>
@@ -734,9 +845,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedLang = localStorage.getItem("siteLang") || "pt-BR";
   document.getElementById("idiomaSelect").value = savedLang;
 });
-</script>
-<script src="idioma/translationsindex2.js"></script>
-<script>
 function changeLanguage(lang) {
   localStorage.setItem("siteLang", lang);
   const elements = document.querySelectorAll("[data-i18n]");
@@ -751,17 +859,18 @@ function changeLanguage(lang) {
       }
     }
   });
-  if (translations[lang]["pageTitle"]) {
+  if (translations[lang] && translations[lang]["pageTitle"]) {
     document.title = translations[lang]["pageTitle"];
   }
-  if (translations[lang]["pageDescription"]) {
+  if (translations[lang] && translations[lang]["pageDescription"]) {
     const metaDesc = document.querySelector('meta[property="og:description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", translations[lang]["pageDescription"]);
     }
   }
   applyDynamicTranslations(lang);
-  document.addEventListener("DOMContentLoaded", () => {
+}
+document.addEventListener("DOMContentLoaded", () => {
   let savedLang = localStorage.getItem("siteLang");
   if (!savedLang) {
     const browserLang = navigator.language || navigator.userLanguage;
@@ -772,167 +881,232 @@ function changeLanguage(lang) {
     }
     localStorage.setItem("siteLang", savedLang);
   }
-  document.querySelector("#idiomaSelect").value = savedLang;
+  if (document.querySelector("#idiomaSelect")) {
+    document.querySelector("#idiomaSelect").value = savedLang;
+  }
   changeLanguage(savedLang);
 });
-  const savedLang = localStorage.getItem("siteLang") || "pt-BR";
-  applyDynamicTranslations(savedLang);
+function applyDynamicTranslations(lang) {
 }
 </script>
 <script>
 	const fileInput = document.getElementById('fileInput');
 	const nickListTextArea = document.getElementById('nickListInput'); 
 	async function verificarNicksDeArquivoListaColada(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    if (file.type !== "text/plain") {
-    alert("Por favor, Selecione Apenas Arquivos .txt!");
-    event.target.value = '';
-    return;
-   }
-    const reader = new FileReader();
-    reader.onload = async function(e) {
-    const resultado = document.getElementById('resultado');
-    const fileContent = e.target.result;
-    const nicksDoArquivo = fileContent.split('\n').map(n => n.trim()).filter(Boolean);
-    const nicksValidos = [];
-    const nicksInvalidos = [];
-    const nickRegexValido = /^[a-zA-Z0-9_]{1,16}$/; 
-      for (const nick of nicksDoArquivo) {
-            if (nickRegexValido.test(nick)) {
-                nicksValidos.push(nick);
-             } else {
-                nicksInvalidos.push(nick);
-             }
-          }
-           let relatorioHTML = "";
-            if (nicksInvalidos.length > 0) {
-                relatorioHTML += `</div><hr><h4>⚠️ Nicks Inválidos Desconsiderados (${nicksInvalidos.length}):</h4><div style="font-family: monospace; white-space: pre; color: #ff8a8a;">${nicksInvalidos.join('\n')}`;
-            }
-            if (nicksValidos.length > 0) {
-                relatorioHTML += `</div><hr><h4>✅ Nicks Válidos Prontos Para Lista (${nicksValidos.length}):</h4>
-                                <div style="font-family: monospace; white-space: pre; color: #8aff8a;">${nicksValidos.join('\n')}`;
-            }
-            if (nicksValidos.length === 0) {
-                resultado.innerHTML = relatorioHTML + "</div><hr>❌ Nenhum Nick Válido Para Verificar No Arquivo.</div><hr>";
-                return;
-            }
-            resultado.innerHTML = relatorioHTML + `⏳ Verificando ${nicksValidos.length} Nicks Válidos Do Arquivo...`;
-            disponiveisGlobal = []; 
-            const ocupadosGlobal = [];
-            const chunkSize = 1000;
-            for (let i = 0; i < nicksValidos.length; i += chunkSize) {
-                const chunk = nicksValidos.slice(i, i + chunkSize);
-                resultado.innerHTML = relatorioHTML + `⏳ Verificando Nicks ${i + 1} a ${Math.min(i + chunkSize, nicksValidos.length)} De ${nicksValidos.length}...`;
-                const promises = chunk.map(nick => buscarDadosJogador(nick));
-                const results = await Promise.allSettled(promises);
-                results.forEach((result, index) => {
-                    if (result.status === 'fulfilled' && result.value) {
-                        ocupadosGlobal.push(result.value);
-                    } else {
-                        disponiveisGlobal.push(chunk[index]);
-                    }
-                });
-            }
-            let finalHTML = "";
-            if (disponiveisGlobal.length > 0) {
-                const disponiveisHTML = disponiveisGlobal.map(nick => exibirNickDisponivel(nick)).join("");
-                finalHTML += `</div><hr><h4>✅ Nicks Disponíveis (${disponiveisGlobal.length}):</h4><div class="nick-list">${disponiveisHTML}</div>`;
-                document.getElementById("btnDownloadLista").classList.remove("hidden");
-            } else {
-                document.getElementById("btnDownloadLista").classList.add("hidden");
-            }
+		const lang = localStorage.getItem("siteLang") || "pt-BR";
+		const file = event.target.files[0];
+		if (!file) return;
+		if (file.type !== "text/plain") {
+			alert(translations[lang]["jsAlertTxt"] || "Por favor, Selecione Apenas Arquivos .txt!");
+			event.target.value = '';
+			return;
+		}
+		const reader = new FileReader();
+		reader.onload = async function(e) {
+			const resultado = document.getElementById('resultado');
+			const fileContent = e.target.result;
+			const nicksDoArquivo = fileContent.split('\n').map(n => n.trim()).filter(Boolean);
+			const nicksValidos = [];
+			const nicksInvalidos = [];
+			const nickRegexValido = /^[a-zA-Z0-9_]{1,16}$/; 
+			for (const nick of nicksDoArquivo) {
+				if (nickRegexValido.test(nick)) {
+					nicksValidos.push(nick);
+				} else {
+					nicksInvalidos.push(nick);
+				}
+			}
+			let relatorioHTML = "";
+			if (nicksInvalidos.length > 0) {
+				const invalidosTxt = (translations[lang]["jsNicksInvalidosArquivo"] || "⚠️ Nicks Inválidos Desconsiderados ({{count}}):").replace("{{count}}", nicksInvalidos.length);
+				relatorioHTML += `</div><hr><h4>${invalidosTxt}</h4><div style="font-family: monospace; white-space: pre; color: #ff8a8a;">${nicksInvalidos.join('\n')}`;
+			}
+			if (nicksValidos.length > 0) {
+				const validosTxt = (translations[lang]["jsNicksValidosLista"] || "✅ Nicks Válidos Prontos Para Lista ({{count}}):").replace("{{count}}", nicksValidos.length);
+				relatorioHTML += `</div><hr><h4>${validosTxt}</h4>
+								<div style="font-family: monospace; white-space: pre; color: #8aff8a;">${nicksValidos.join('\n')}`;
+			}
+			if (nicksValidos.length === 0) {
+				const erroTxt = translations[lang]["jsNenhumNickValidoArquivo"] || "❌ Nenhum Nick Válido Para Verificar No Arquivo.";
+				resultado.innerHTML = relatorioHTML + `</div><hr>${erroTxt}</div><hr>`;
+				return;
+			}
+			const verificandoTxt = (translations[lang]["jsVerificandoNicksArquivo"] || "⏳ Verificando {{count}} Nicks Válidos Do Arquivo...").replace("{{count}}", nicksValidos.length);
+			resultado.innerHTML = relatorioHTML + verificandoTxt;
+			
+			disponiveisGlobal = []; 
+			const ocupadosGlobal = [];
+			const chunkSize = 1000;
+			for (let i = 0; i < nicksValidos.length; i += chunkSize) {
+				const chunk = nicksValidos.slice(i, i + chunkSize);
+				
+				const intervaloTxt = (translations[lang]["jsVerificandoNicksIntervalo"] || "⏳ Verificando Nicks {{start}} a {{end}} De {{total}}...")
+					.replace("{{start}}", i + 1)
+					.replace("{{end}}", Math.min(i + chunkSize, nicksValidos.length))
+					.replace("{{total}}", nicksValidos.length);
+				resultado.innerHTML = relatorioHTML + intervaloTxt;
 
-            if (ocupadosGlobal.length > 0) {
-                const ocupadosHTML = ocupadosGlobal.map(player => exibirNickOcupado(player)).join("");
-                finalHTML += `</div><hr><h4>❌ Nicks Ocupados (${ocupadosGlobal.length}):</h4><div class="nick-list">${ocupadosHTML}</div><hr>`;
-            }
-            resultado.innerHTML = relatorioHTML + (finalHTML || "Nenhum Resultado Para Os Nicks Informados No Arquivo.");
-            ajustarLayoutMobile();
-        };
-        reader.onerror = function() {
-        resultado.innerHTML = "❌ Ocorreu Um Erro Ao Ler o Arquivo.";
-        };
-        reader.readAsText(file);
-        event.target.value = '';
-    }
-    fileInput.addEventListener('change', verificarNicksDeArquivoListaColada);
+				const promises = chunk.map(nick => buscarDadosJogador(nick));
+				const results = await Promise.allSettled(promises);
+				results.forEach((result, index) => {
+					if (result.status === 'fulfilled' && result.value) {
+						ocupadosGlobal.push(result.value);
+					} else {
+						disponiveisGlobal.push(chunk[index]);
+					}
+				});
+			}
+			let finalHTML = "";
+			if (disponiveisGlobal.length > 0) {
+				const disponiveisHTML = disponiveisGlobal.map(nick => exibirNickDisponivel(nick)).join("");
+				const disponiveisTxt = (translations[lang]["jsNicksDisponiveis"] || "✅ Nicks Disponíveis ({{count}}):").replace("{{count}}", disponiveisGlobal.length);
+				finalHTML += `</div><hr><h4>${disponiveisTxt}</h4><div class="nick-list">${disponiveisHTML}</div>`;
+				document.getElementById("btnDownloadLista").classList.remove("hidden");
+			} else {
+				document.getElementById("btnDownloadLista").classList.add("hidden");
+			}
+
+			if (ocupadosGlobal.length > 0) {
+				const ocupadosHTML = ocupadosGlobal.map(player => exibirNickOcupado(player)).join("");
+				const ocupadosTxt = (translations[lang]["jsNicksOcupados"] || "❌ Nicks Ocupados ({{count}}):").replace("{{count}}", ocupadosGlobal.length);
+				finalHTML += `</div><hr><h4>${ocupadosTxt}</h4><div class="nick-list">${ocupadosHTML}</div><hr>`;
+			}
+			const nenhumResultadoTxt = translations[lang]["jsNenhumResultadoArquivo"] || "Nenhum Resultado Para Os Nicks Informados No Arquivo.";
+			resultado.innerHTML = relatorioHTML + (finalHTML || nenhumResultadoTxt);
+			ajustarLayoutMobile();
+		};
+		reader.onerror = function() {
+			resultado.innerHTML = translations[lang]["jsErroLerArquivo"] || "❌ Ocorreu Um Erro Ao Ler o Arquivo.";
+		};
+		reader.readAsText(file);
+		event.target.value = '';
+	}
+	fileInput.addEventListener('change', verificarNicksDeArquivoListaColada);
 </script>
 <script>
-    const fileInputMassa = document.getElementById('fileInputMassa');
-    async function verificarNicksDeArquivo(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        if (file.type !== "text/plain") {
-            alert("Por favor, Selecione Apenas Arquivos .txt!");
-            event.target.value = '';
-            return;
-        }
-        const reader = new FileReader();
-        reader.onload = async function(e) {
-            const resultado = document.getElementById('resultado');
-            const fileContent = e.target.result;
-            const nicksDoArquivo = fileContent.split('\n').map(n => n.trim()).filter(Boolean);
-            const nicksValidos = [];
-            const nicksInvalidos = [];
-            const nickRegexValido = /^[a-zA-Z0-9_]{1,16}$/; 
-            for (const nick of nicksDoArquivo) {
-                if (nickRegexValido.test(nick)) {
-                    nicksValidos.push(nick);
-                } else {
-                    nicksInvalidos.push(nick);
-                }
-            }
-            let relatorioHTML = "";
-            if (nicksInvalidos.length > 0) {
-                relatorioHTML += `</div><hr><h4>⚠️ Nicks Inválidos Desconsiderados (${nicksInvalidos.length}):</h4><div style="font-family: monospace; white-space: pre; color: #ff8a8a;">${nicksInvalidos.join('\n')}`;
-            }
-            if (nicksValidos.length > 0) {
-                relatorioHTML += `</div><hr><h4>✅ Nicks Válidos Prontos Para Verificação (${nicksValidos.length}):</h4>
-                                <div style="font-family: monospace; white-space: pre; color: #8aff8a;">${nicksValidos.join('\n')}`;
-            }
-            if (nicksValidos.length === 0) {
-                resultado.innerHTML = relatorioHTML + "</div><hr>❌ Nenhum Nick Válido Para Verificar No Arquivo.</div><hr>";
-                return;
-            }
-            resultado.innerHTML = relatorioHTML + `⏳ Verificando ${nicksValidos.length} Nicks Válidos...`;
-            disponiveisMassa = []; 
-            const ocupadosGlobal = [];
-            const chunkSize = 1000;
-            for (let i = 0; i < nicksValidos.length; i += chunkSize) {
-                const chunk = nicksValidos.slice(i, i + chunkSize);
-                resultado.innerHTML = relatorioHTML + `⏳ Verificando Nicks ${i + 1} a ${Math.min(i + chunkSize, nicksValidos.length)} De ${nicksValidos.length}...`;
-                const promises = chunk.map(nick => buscarDadosJogador(nick));
-                const results = await Promise.allSettled(promises);
-                results.forEach((result, index) => {
-                    if (result.status === 'fulfilled' && result.value) {
-                        ocupadosGlobal.push(result.value);
-                    } else {
-                        disponiveisMassa.push(chunk[index]);
-                    }
-                });
-            }
-            let finalHTML = "";
-            if (disponiveisMassa.length > 0) {
-                const disponiveisHTML = disponiveisMassa.map(nick => exibirNickDisponivel(nick)).join("");
-                finalHTML += `</div><hr><h4>✅ Nicks Disponíveis (${disponiveisMassa.length}):</h4><div class="nick-list">${disponiveisHTML}`;
-                document.getElementById("btnDownloadMassa").classList.remove("hidden");
-            } else {
-                document.getElementById("btnDownloadMassa").classList.add("hidden");
-            }
-            if (ocupadosGlobal.length > 0) {
-                const ocupadosHTML = ocupadosGlobal.map(player => exibirNickOcupado(player)).join("");
-                finalHTML += `</div><hr><h4>❌ Nicks Ocupados (${ocupadosGlobal.length}):</h4><div class="nick-list">${ocupadosHTML}</div><hr>`;
-            }
-            resultado.innerHTML = relatorioHTML + (finalHTML || "Nenhum Resultado Para os Nicks Informados No Arquivo.");
-        };
-        reader.onerror = function() {
-            resultado.innerHTML = "</div><hr>❌ Ocorreu Um Erro Ao Ler o Arquivo.</div><hr>";
-        };
-        reader.readAsText(file);
-        event.target.value = '';
+	const fileInputMassa = document.getElementById('fileInputMassa');
+	async function verificarNicksDeArquivo(event) {
+		const lang = localStorage.getItem("siteLang") || "pt-BR";
+		const file = event.target.files[0];
+		if (!file) return;
+		if (file.type !== "text/plain") {
+			alert(translations[lang]["jsAlertTxt"] || "Por favor, Selecione Apenas Arquivos .txt!");
+			event.target.value = '';
+			return;
+		}
+		const reader = new FileReader();
+		reader.onload = async function(e) {
+			const resultado = document.getElementById('resultado');
+			const fileContent = e.target.result;
+			const nicksDoArquivo = fileContent.split('\n').map(n => n.trim()).filter(Boolean);
+			const nicksValidos = [];
+			const nicksInvalidos = [];
+			const nickRegexValido = /^[a-zA-Z0-9_]{1,16}$/; 
+			for (const nick of nicksDoArquivo) {
+				if (nickRegexValido.test(nick)) {
+					nicksValidos.push(nick);
+				} else {
+					nicksInvalidos.push(nick);
+				}
+			}
+			let relatorioHTML = "";
+			if (nicksInvalidos.length > 0) {
+				const invalidosTxt = (translations[lang]["jsNicksInvalidosArquivo"] || "⚠️ Nicks Inválidos Desconsiderados ({{count}}):").replace("{{count}}", nicksInvalidos.length);
+				relatorioHTML += `</div><hr><h4>${invalidosTxt}</h4><div style="font-family: monospace; white-space: pre; color: #ff8a8a;">${nicksInvalidos.join('\n')}`;
+			}
+			if (nicksValidos.length > 0) {
+				const validosTxt = (translations[lang]["jsNicksValidosVerificacao"] || "✅ Nicks Válidos Prontos Para Verificação ({{count}}):").replace("{{count}}", nicksValidos.length);
+				relatorioHTML += `</div><hr><h4>${validosTxt}</h4>
+								<div style="font-family: monospace; white-space: pre; color: #8aff8a;">${nicksValidos.join('\n')}`;
+			}
+			if (nicksValidos.length === 0) {
+				const erroTxt = translations[lang]["jsNenhumNickValidoArquivo"] || "❌ Nenhum Nick Válido Para Verificar No Arquivo.";
+				resultado.innerHTML = relatorioHTML + `</div><hr>${erroTxt}</div><hr>`;
+				return;
+			}
+			const verificandoTxt = (translations[lang]["jsVerificandoNicksArquivo"] || "⏳ Verificando {{count}} Nicks Válidos Do Arquivo...").replace("{{count}}", nicksValidos.length);
+			resultado.innerHTML = relatorioHTML + verificandoTxt;
+			
+			disponiveisMassa = []; 
+			const ocupadosGlobal = [];
+			const chunkSize = 1000;
+			for (let i = 0; i < nicksValidos.length; i += chunkSize) {
+				const chunk = nicksValidos.slice(i, i + chunkSize);
+				
+				const intervaloTxt = (translations[lang]["jsVerificandoNicksIntervalo"] || "⏳ Verificando Nicks {{start}} a {{end}} De {{total}}...")
+					.replace("{{start}}", i + 1)
+					.replace("{{end}}", Math.min(i + chunkSize, nicksValidos.length))
+					.replace("{{total}}", nicksValidos.length);
+				resultado.innerHTML = relatorioHTML + intervaloTxt;
+
+				const promises = chunk.map(nick => buscarDadosJogador(nick));
+				const results = await Promise.allSettled(promises);
+				results.forEach((result, index) => {
+					if (result.status === 'fulfilled' && result.value) {
+						ocupadosGlobal.push(result.value);
+					} else {
+						disponiveisMassa.push(chunk[index]);
+					}
+				});
+			}
+			let finalHTML = "";
+			if (disponiveisMassa.length > 0) {
+				const disponiveisHTML = disponiveisMassa.map(nick => exibirNickDisponivel(nick)).join("");
+				const disponiveisTxt = (translations[lang]["jsNicksDisponiveis"] || "✅ Nicks Disponíveis ({{count}}):").replace("{{count}}", disponiveisMassa.length);
+				finalHTML += `</div><hr><h4>${disponiveisTxt}</h4><div class="nick-list">${disponiveisHTML}`;
+				document.getElementById("btnDownloadMassa").classList.remove("hidden");
+			} else {
+				document.getElementById("btnDownloadMassa").classList.add("hidden");
+			}
+			if (ocupadosGlobal.length > 0) {
+				const ocupadosHTML = ocupadosGlobal.map(player => exibirNickOcupado(player)).join("");
+				const ocupadosTxt = (translations[lang]["jsNicksOcupados"] || "❌ Nicks Ocupados ({{count}}):").replace("{{count}}", ocupadosGlobal.length);
+				finalHTML += `</div><hr><h4>${ocupadosTxt}</h4><div class="nick-list">${ocupadosHTML}</div><hr>`;
+			}
+			const nenhumResultadoTxt = translations[lang]["jsNenhumResultadoArquivo"] || "Nenhum Resultado Para Os Nicks Informados No Arquivo.";
+			resultado.innerHTML = relatorioHTML + (finalHTML || nenhumResultadoTxt);
+		};
+		reader.onerror = function() {
+			resultado.innerHTML = (translations[lang]["jsErroLerArquivo"] || "❌ Ocorreu Um Erro Ao Ler o Arquivo.");
+		};
+		reader.readAsText(file);
+		event.target.value = '';
+	}
+	fileInputMassa.addEventListener('change', verificarNicksDeArquivo);
+</script>
+<script>
+  function updateTitleLanguage(lang) {
+    const elementsWithTitle = document.querySelectorAll("[data-i18n-title]");
+    elementsWithTitle.forEach(el => {
+      const key = el.getAttribute("data-i18n-title");
+      if (translations[lang] && translations[lang][key]) {
+        el.setAttribute("title", translations[lang][key]);
+      }
+    });
+  }
+function onLanguageChange(lang) {
+    changeLanguage(lang); 
+    updateTitleLanguage(lang);
+    const resultadoDiv = document.getElementById('resultado');
+    if (resultadoDiv) {
+        resultadoDiv.innerHTML = "";
     }
-    fileInputMassa.addEventListener('change', verificarNicksDeArquivo);
+    ultimoResultadoVerificado = null;
+    ultimoResultadoLista = null;
+    ultimoResultadoMassa = null;
+    const btnLista = document.getElementById('btnDownloadLista');
+    const btnMassa = document.getElementById('btnDownloadMassa');
+    if (btnLista) {
+        btnLista.classList.add('hidden');
+    }
+    if (btnMassa) {
+        btnMassa.classList.add('hidden');
+    }
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedLang = localStorage.getItem("siteLang") || "pt-BR";
+    updateTitleLanguage(savedLang);
+  });
 </script>
 </body>
 </html>
