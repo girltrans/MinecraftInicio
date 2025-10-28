@@ -7,6 +7,7 @@ const translations = {
 		tituloEscuro: "🌙 Escuro",
 		tituloClaro: "☀️ Claro",
 		tituloArcoIris: "🌈 Arco-Íris",
+		tituloTestarSkin: "Testar Skin e Capa",
 		tituloInicio: "Início",
 		tituloMinecraftVerificarNicks: "Minecraft Verificar Nicks",
 		tituloEditarSkin: "Editar Skin",
@@ -163,3 +164,4 @@ const translations = {
 		pageDescription: "Minecraft Skins und Umhänge testen, Nicknames überprüfen und eigene Skins von Grund auf erstellen oder bestehende Skins im Browser bearbeiten."
 	  }
 	};
+
