@@ -419,6 +419,18 @@
 	margin-left: auto;
 	margin-right: auto;
 	}
+	:focus {
+    outline: none !important;
+    box-shadow: none !important;
+	}
+	* {
+    caret-color: transparent !important;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+	}
+	.menu label, .menu span {
+    caret-color: transparent !important;
+	}
 </style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 </head>
@@ -1438,3 +1450,4 @@ function renderOptions(type) {
 </script>
 </body>
 </html>
+
