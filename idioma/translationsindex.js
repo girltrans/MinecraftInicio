@@ -178,7 +178,7 @@ const translations = {
 		pageTitle: "Minecraft Inicio",
 		pageDescription: "Minecraft Probar Skins y Capas, Verificar Nicks y Crear tus Propias Skins desde Cero o Editar Skins Existentes en tu Navegador.",
 		novacapa: "📢 Nueva Capa!",
-		naoidentificada: "🔍 Nombre de la Capa",
+		naoidentificada: "🔍 Nombre De La Capa",
 		naoidentificada2: "🚨 No Identificada",
 		naoidentificada3: "✨ Capa Única 1/1"
 	  },
@@ -285,7 +285,7 @@ const translations = {
 		designTexto: "Texte",
 		designSombra: "Ombre",
 		bannerPlaceholder: "Type : aapspfasayafaCaF&var=s",
-		alertPreencherBanner: "Veuillez Remplir Les Champs De La Bannière.",
+		alertPreencherBanner: "Veuillez Remplir Les Champs de la Bannière.",
 		digiteNick: "Veuillez entrer un pseudo.",
 		carregando: "Chargement...",
 		skinSucesso: "Skin chargée avec succès !",
@@ -671,4 +671,5 @@ const translations = {
 		naoidentificada3: "✨ Einzigartiger Umhang 1/1"
 	  }
 	};
+
 
