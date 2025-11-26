@@ -485,6 +485,7 @@
 <select class="form-select" id="capeSelector">
 <option selected="" value="1" data-i18n="tituloEscolherCapa">🔍 Escolher Capa</option>
 <option value="" data-i18n="tituloRemoverCapa">❌ Remover Capa</option>
+<option value="http://textures.minecraft.net/texture/fdcf48f01ec480d1d7cbec27f7ddce48c9da2be6724641109444dae58d4cd013" data-i18n="novacapa" data-i18n-title="naoidentificada" title="🔍 Nome Da Capa" data-i18n-title2="naoidentificada2" data-i18n-title3="naoidentificada3">📢 Nova Capa!</option>
 <option value="http://textures.minecraft.net/texture/2340c0e03dd24a11b15a8b33c2a7e9e32abb2051b2481d0ba7defd635ca7a933">🎁 Migrator</option>
 <option value="http://textures.minecraft.net/texture/cd9d82ab17fd92022dbd4a86cde4c382a7540e117fae7b9a2853658505a80625">🎁 15th Anniversary</option>
 <option value="http://textures.minecraft.net/texture/f9a76537647989f9a0b6d001e320dac591c359e9e61a31f4ce11c88f207f0ad4">🎁 Vanilla</option>
@@ -1419,14 +1420,29 @@ function renderOptions(type) {
 </script>
 <script>
   function updateTitleLanguage(lang) {
-    const elementsWithTitle = document.querySelectorAll("[data-i18n-title]");
-    elementsWithTitle.forEach(el => {
-      const key = el.getAttribute("data-i18n-title");
+  const elementsWithTitle = document.querySelectorAll("[data-i18n-title]");
+  elementsWithTitle.forEach(el => {
+    const key1 = el.getAttribute("data-i18n-title");
+    const key2 = el.getAttribute("data-i18n-title2"); 
+    const key3 = el.getAttribute("data-i18n-title3"); 
+    let fullTitle = "";
+    const keysToCombine = [key1, key2, key3].filter(key => key !== null);
+    keysToCombine.forEach(key => {
       if (translations[lang] && translations[lang][key]) {
-        el.setAttribute("title", translations[lang][key]);
+        if (fullTitle.length > 0) {
+          fullTitle += "\n"; 
+        }
+        fullTitle += translations[lang][key];
       }
     });
-  }
+    if (fullTitle.length > 0) {
+      el.setAttribute("title", fullTitle);
+    }
+    else {
+        el.removeAttribute("title");
+    }
+  });
+}
   function onLanguageChange(lang) {
     changeLanguage(lang); 
     updateTitleLanguage(lang);
@@ -1438,5 +1454,3 @@ function renderOptions(type) {
 </script>
 </body>
 </html>
-
-
