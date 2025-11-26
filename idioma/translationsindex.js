@@ -300,7 +300,7 @@ const translations = {
 		pageTitle: "Minecraft Accueil",
 		pageDescription: "Minecraft Tester Skins et Capes, Vérifier les Pseudos et Créer vos Propres Skins à Partir de Zéro ou Modifier des Skins Existants dans votre Navigateur.",
 		novacapa: "📢 Nouvelle Cape!",
-		naoidentificada: "🔍 Nom de la Cape",
+		naoidentificada: "🔍 Nom De La Cape",
 		naoidentificada2: "🚨 Non Identifiée",
 		naoidentificada3: "✨ Cape Unique 1/1"
 	  },
@@ -666,8 +666,9 @@ const translations = {
 		pageTitle: "Minecraft Start",
 		pageDescription: "Minecraft Skins und Umhänge testen, Nicknames überprüfen und eigene Skins von Grund auf erstellen oder bestehende Skins im Browser bearbeiten.",
 		novacapa: "📢 Neuer Umhang!",
-		naoidentificada: "🔍 Umhang-Name",
+		naoidentificada: "🔍 Umhang Name",
 		naoidentificada2: "🚨 Unidentifiziert",
 		naoidentificada3: "✨ Einzigartiger Umhang 1/1"
 	  }
 	};
+
