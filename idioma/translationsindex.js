@@ -54,7 +54,11 @@ const translations = {
 		bannerLabel: "Banner:",
 		nenhumaSkin: "Nenhuma Skin Disponível.",
 		pageTitle: "Minecraft Inicio",
-		pageDescription: "Minecraft Testar Skin e Capa, Verificar Nicks e Criar as suas Próprias Skins de Minecraft, A Partir do zero. ou Editar Skins existentes no seu Navegador."
+		pageDescription: "Minecraft Testar Skin e Capa, Verificar Nicks e Criar as suas Próprias Skins de Minecraft, A Partir do zero. ou Editar Skins existentes no seu Navegador.",
+		novacapa: "📢 Nova Capa!",
+		naoidentificada: "🔍 Nome Da Capa",
+		naoidentificada2: "🚨 Não Identificada",
+		naoidentificada3: "✨ Capa Única 1/1"
 	  },
 	  "pt-PT": { 
 		titulo: "Bem-vindo ao site",
@@ -111,7 +115,11 @@ const translations = {
 		bannerLabel: "Banner:",
 		nenhumaSkin: "Nenhuma Skin Disponível.",
 		pageTitle: "Minecraft Inicio",
-		pageDescription: "Minecraft Testar Skin e Capa, Verificar Nicks e Criar as suas Próprias Skins de Minecraft, a partir do zero ou Editar Skins existentes no seu Navegador."
+		pageDescription: "Minecraft Testar Skin e Capa, Verificar Nicks e Criar as suas Próprias Skins de Minecraft, a partir do zero ou Editar Skins existentes no seu Navegador.",
+		novacapa: "📢 Nova Capa!",
+		naoidentificada: "🔍 Nome Da Capa",
+		naoidentificada2: "🚨 Não Identificada",
+		naoidentificada3: "✨ Capa Única 1/1"
 	  },
 	  "es": { 
 		titulo: "Bienvenido al sitio",
@@ -168,7 +176,11 @@ const translations = {
 		bannerLabel: "Estandarte:",
 		nenhumaSkin: "Ninguna Skin Disponible.",
 		pageTitle: "Minecraft Inicio",
-		pageDescription: "Minecraft Probar Skins y Capas, Verificar Nicks y Crear tus Propias Skins desde Cero o Editar Skins Existentes en tu Navegador."
+		pageDescription: "Minecraft Probar Skins y Capas, Verificar Nicks y Crear tus Propias Skins desde Cero o Editar Skins Existentes en tu Navegador.",
+		novacapa: "📢 Nueva Capa!",
+		naoidentificada: "🔍 Nombre de la Capa",
+		naoidentificada2: "🚨 No Identificada",
+		naoidentificada3: "✨ Capa Única 1/1"
 	  },
 	  "us": { 
 		titulo: "Welcome to the site",
@@ -225,7 +237,11 @@ const translations = {
 		bannerLabel: "Banner:",
 		nenhumaSkin: "No Skin Available.",
 		pageTitle: "Minecraft Home",
-		pageDescription: "Minecraft Test Skins and Capes, Check Nicknames, and Create Your Own Skins from Scratch or Edit Existing Ones in Your Browser."
+		pageDescription: "Minecraft Test Skins and Capes, Check Nicknames, and Create Your Own Skins from Scratch or Edit Existing Ones in Your Browser.",
+		novacapa: "📢 New Cape!",
+		naoidentificada: "🔍 Cape Name",
+		naoidentificada2: "🚨 Unidentified",
+		naoidentificada3: "✨ Unique Cape 1/1"
 	  },
 	  "fr": { 
 		titulo: "Bienvenue sur le site",
@@ -282,7 +298,11 @@ const translations = {
 		bannerLabel: "Bannière:",
 		nenhumaSkin: "Aucune skin disponible.",
 		pageTitle: "Minecraft Accueil",
-		pageDescription: "Minecraft Tester Skins et Capes, Vérifier les Pseudos et Créer vos Propres Skins à Partir de Zéro ou Modifier des Skins Existants dans votre Navigateur."
+		pageDescription: "Minecraft Tester Skins et Capes, Vérifier les Pseudos et Créer vos Propres Skins à Partir de Zéro ou Modifier des Skins Existants dans votre Navigateur.",
+		novacapa: "📢 Nouvelle Cape!",
+		naoidentificada: "🔍 Nom de la Cape",
+		naoidentificada2: "🚨 Non Identifiée",
+		naoidentificada3: "✨ Cape Unique 1/1"
 	  },
 	  "jp": { 
 		titulo: "サイトへようこそ",
@@ -339,7 +359,11 @@ const translations = {
 		bannerLabel: "バナー:",
 		nenhumaSkin: "スキンがありません。",
 		pageTitle: "マインクラフト ホーム",
-		pageDescription: "Minecraft スキンとマントをテストし、ニックネームを確認し、ゼロから独自のスキンを作成するか、ブラウザで既存のスキンを編集できます。"
+		pageDescription: "Minecraft スキンとマントをテストし、ニックネームを確認し、ゼロから独自のスキンを作成するか、ブラウザで既存のスキンを編集できます。",
+		novacapa: "📢 新しいマント！",
+		naoidentificada: "🔍 マント名",
+		naoidentificada2: "🚨 未識別",
+		naoidentificada3: "✨ ユニークマント 1/1"
 	  },
 	  "kr": { 
 		titulo: "사이트에 오신 것을 환영합니다",
@@ -396,7 +420,11 @@ const translations = {
 		bannerLabel: "배너:",
 		nenhumaSkin: "사용 가능한 스킨이 없습니다.",
 		pageTitle: "마인크래프트 시작",
-		pageDescription: "Minecraft 스킨과 망토를 테스트하고 닉네임을 확인하며, 직접 새로운 스킨을 만들거나 브라우저에서 기존 스킨을 편집하세요."
+		pageDescription: "Minecraft 스킨과 망토를 테스트하고 닉네임을 확인하며, 직접 새로운 스킨을 만들거나 브라우저에서 기존 스킨을 편집하세요.",
+		novacapa: "📢 새로운 망토!",
+		naoidentificada: "🔍 망토 이름",
+		naoidentificada2: "🚨 미확인됨",
+		naoidentificada3: "✨ 유니크 망토 1/1"
 	  },
 	  "zh-CN": { 
 		titulo: "欢迎来到网站",
@@ -453,7 +481,11 @@ const translations = {
 		bannerLabel: "旗帜:",
 		nenhumaSkin: "没有可用皮肤。",
 		pageTitle: "我的世界首页",
-		pageDescription: "Minecraft 测试皮肤和披风，检查昵称，并从零开始创建您自己的皮肤，或在浏览器中编辑现有皮肤。"
+		pageDescription: "Minecraft 测试皮肤和披风，检查昵称，并从零开始创建您自己的皮肤，或在浏览器中编辑现有皮肤。",
+		novacapa: "📢 新披风!",
+		naoidentificada: "🔍 披风名称",
+		naoidentificada2: "🚨 未识别",
+		naoidentificada3: "✨ 独一无二的披风 1/1"
 	  },
 	  "zh-TW": { 
 		titulo: "歡迎來到網站",
@@ -510,7 +542,11 @@ const translations = {
 		bannerLabel: "旗幟:",
 		nenhumaSkin: "沒有可用皮膚。",
 		pageTitle: "我的世界首頁",
-		pageDescription: "Minecraft 測試皮膚和披風，檢查暱稱，並從零開始創建您自己的皮膚，或在瀏覽器中編輯現有皮膚。"
+		pageDescription: "Minecraft 測試皮膚和披風，檢查暱稱，並從零開始創建您自己的皮膚，或在瀏覽器中編輯現有皮膚。",
+		novacapa: "📢 新披風!",
+		naoidentificada: "🔍 披風名稱",
+		naoidentificada2: "🚨 未識別",
+		naoidentificada3: "✨ 獨一無二的披風 1/1"
 	  },
 	  "ru": { 
 		titulo: "Добро пожаловать на сайт",
@@ -567,7 +603,11 @@ const translations = {
 		bannerLabel: "Баннер:",
 		nenhumaSkin: "Скин недоступен.",
 		pageTitle: "Minecraft Главная",
-		pageDescription: "Minecraft Тестируйте скины и плащи, проверяйте ники и создавайте собственные скины с нуля или редактируйте существующие прямо в браузере."
+		pageDescription: "Minecraft Тестируйте скины и плащи, проверяйте ники и создавайте собственные скины с нуля или редактируйте существующие прямо в браузере.",
+		novacapa: "📢 Новый Плащ!",
+		naoidentificada: "🔍 Название Плаща",
+		naoidentificada2: "🚨 Неопознанный",
+		naoidentificada3: "✨ Уникальный Плащ 1/1"
 	  },
 	  "de": { 
 		titulo: "Willkommen auf der Website",
@@ -624,6 +664,10 @@ const translations = {
 		bannerLabel: "Banner:",
 		nenhumaSkin: "Keine Skin verfügbar.",
 		pageTitle: "Minecraft Start",
-		pageDescription: "Minecraft Skins und Umhänge testen, Nicknames überprüfen und eigene Skins von Grund auf erstellen oder bestehende Skins im Browser bearbeiten."
+		pageDescription: "Minecraft Skins und Umhänge testen, Nicknames überprüfen und eigene Skins von Grund auf erstellen oder bestehende Skins im Browser bearbeiten.",
+		novacapa: "📢 Neuer Umhang!",
+		naoidentificada: "🔍 Umhang-Name",
+		naoidentificada2: "🚨 Unidentifiziert",
+		naoidentificada3: "✨ Einzigartiger Umhang 1/1"
 	  }
 	};
