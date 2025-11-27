@@ -365,7 +365,7 @@ const translations = {
 		nenhumaSkin: "スキンがありません。",
 		pageTitle: "マインクラフト ホーム",
 		pageDescription: "Minecraft スキンとマントをテストし、ニックネームを確認し、ゼロから独自のスキンを作成するか、ブラウザで既存のスキンを編集できます。",
-		alertoptifinepreencher: "マントの詳細を入力してください。 OptiFine"
+		alertoptifinepreencher: "マントの詳細を入力してください。 OptiFine",
 		novacapa: "📢 新しいマント！",
 		naoidentificada: "🔍 マント名",
 		naoidentificada2: "🚨 未識別",
