@@ -1148,9 +1148,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentOptifineCapeUrl) {
             setCape(currentOptifineCapeUrl);
         } else {
-            alert('Por favor, preencha os detalhes da capa OptiFine.');
-        }
-    });
+            const lang = localStorage.getItem("siteLang") || "pt-BR";
+            const msg = translations[lang]["alertoptifinepreencher"] || 'Por Favor, Preencha Os Detalhes Da Capa OptiFine.';
+            alert(msg);
+        }
+    });
     const initialRadio = document.querySelector('input[name="optifine_cape_type"]:checked');
     const initialValue = initialRadio ? initialRadio.value : 'none';
     renderOptions(initialValue);
@@ -1454,4 +1456,3 @@ function renderOptions(type) {
 </script>
 </body>
 </html>
-
