@@ -82,7 +82,10 @@ a.github {
     width: 100%;
     height: 100%;
     filter: invert(1);
-    opacity: .2;
+    opacity: .15;
+}
+a.github:hover img {
+    opacity: 1;
 }
 a[href^="https://stats.hylex.gg"] {
   margin-left: -4px; 
@@ -196,6 +199,7 @@ body::-webkit-scrollbar {
 *::-webkit-scrollbar {
   display: none;
 }
+
 
 
 
