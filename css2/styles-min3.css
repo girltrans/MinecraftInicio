@@ -36,7 +36,10 @@ a.github {
     height: 100%;
     z-index: 998;
     filter: invert(1);
-    opacity: .2;
+    opacity: .15;
+}
+a.github:hover img {
+    opacity: 1;
 }
 .content {
   margin-bottom: 20px;
