@@ -44,7 +44,10 @@ a.github {
     width: 100%;
     height: 100%;
     filter: invert(1);
-    opacity: .2;
+    opacity: .15;
+}
+a.github:hover img {
+    opacity: 1;
 }
 .navbar a {
     color: #121212;
@@ -377,3 +380,4 @@ body.allow-scroll {
 body.allow-scroll::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
 }
+
