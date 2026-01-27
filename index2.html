@@ -2,6 +2,15 @@
 <html lang="pt-BR" class=""><head>
 <link href="images/favicon.png" rel="icon" type="image/x-icon"/>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" 
+content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval';
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  img-src 'self' data: blob: https://minecraftinicio.vercel.app https://minotar.net https://starlightskins.lunareclipse.studio;
+  connect-src 'self' https://corsjangapi.b-cdn.net https://corsproxy.io;
+  font-src 'self' https://fonts.gstatic.com;
+">
 <meta content="website" property="og:type"/>
 <meta property="og:description" content="Minecraft Verificar Nicks.">
 <meta content="website" property="og:type"/>
