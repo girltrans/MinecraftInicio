@@ -13,7 +13,16 @@
 <meta content="Minecraft Início" name="twitter:description"/>
 <meta content="https://minecraftinicio.vercel.app/images/minecraftinicio.png" name="twitter:image"/>
 <link href="css/style.css" rel="stylesheet"/>
-<meta charset="utf-8"/>
+<meta charset="UTF-8"/>
+<meta http-equiv="Content-Security-Policy"
+content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval';
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  img-src 'self' data: blob: https://textures.minecraft.net https://minecraftinicio.vercel.app http://s.optifine.net https://optifine.net https://cors.faav.top https://api.mcuserna.me;
+  connect-src 'self' https://cors.faav.top https://api.mcuserna.me https://corsjangapi.b-cdn.net https://api.gapple.pw https://textures.minecraft.net https://corsproxy.io;
+  font-src 'self' https://fonts.gstatic.com;
+">
 <title>Minecraft Início</title>
 <style>
 	input[type="radio"] {
@@ -1458,5 +1467,6 @@ function renderOptions(type) {
 </script>
 </body>
 </html>
+
 
 
