@@ -1119,5 +1119,183 @@ function onLanguageChange(lang) {
     updateTitleLanguage(savedLang);
   });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let sequenciaDigitada = '';
+    const palavrasSecretas = ['traum', 'wtraum', 'trauma', 'wtrauma', 'traumwest', 'wtraumwest'];
+    const tamanhoMaximo = Math.max(...palavrasSecretas.map(p => p.length));
+    const urlDaImagem = './icons/traum.png';
+    let timerOpacidade;
+    let timerRemocao;
+    document.addEventListener('keydown', function(event) {
+        if (event.key.length === 1) {
+            sequenciaDigitada += event.key.toLowerCase();
+        }
+        if (sequenciaDigitada.length > tamanhoMaximo) {
+            sequenciaDigitada = sequenciaDigitada.slice(-tamanhoMaximo);
+        }
+        const palavraEncontrada = palavrasSecretas.find(palavra => sequenciaDigitada.endsWith(palavra));
+        if (palavraEncontrada) {
+            mostrarImagemSecreta();
+            sequenciaDigitada = '';
+        }
+    });
+    function mostrarImagemSecreta() {
+        let overlayExistente = document.getElementById('traum-easter-egg');
+        if (overlayExistente) {
+            overlayExistente.remove();
+            clearTimeout(timerOpacidade);
+            clearTimeout(timerRemocao);
+        }
+        const overlay = document.createElement('div');
+        overlay.id = 'traum-easter-egg';
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100vw';
+        overlay.style.height = '100vh';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        overlay.style.display = 'flex';
+        overlay.style.justifyContent = 'center';
+        overlay.style.alignItems = 'center';
+        overlay.style.zIndex = '999999';
+        overlay.style.opacity = '0';
+        overlay.style.transition = 'opacity 0.5s ease';
+        const img = document.createElement('img');
+        img.src = urlDaImagem;
+        img.style.maxWidth = '80%';
+        img.style.maxHeight = '80%';
+        img.style.borderRadius = '16px';
+        img.style.boxShadow = '0 8px 32px rgba(139, 22, 22)';
+        img.style.border = '1px solid #8B1616';
+        overlay.appendChild(img);
+        document.body.appendChild(overlay);
+        setTimeout(() => {
+            overlay.style.opacity = '1';
+        }, 50);
+        timerOpacidade = setTimeout(() => {
+            overlay.style.opacity = '0';
+            timerRemocao = setTimeout(() => {
+                if (overlay.parentNode) {
+                    overlay.parentNode.removeChild(overlay);
+                }
+            }, 500);
+        }, 5800);
+    }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let sequenciaEfeitos = '';
+    const palavrasSecretas = ['traum', 'wtraum', 'trauma', 'wtrauma', 'traumwest', 'wtraumwest'];
+	const tamanhoMaximo = Math.max(...palavrasSecretas.map(p => p.length));
+    const estiloAnimacoes = document.createElement('style');
+    estiloAnimacoes.innerHTML = `
+        @keyframes cairFoguinho {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(20deg); opacity: 0; }
+        }
+        @keyframes subirAura {
+            0% { transform: translateY(10vh) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+        }
+        @keyframes corArcoIris {
+            0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+            20% { color: #ffff00; text-shadow: 0 0 10px #ffff00; }
+            40% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
+            60% { color: #00ffff; text-shadow: 0 0 10px #00ffff; }
+            80% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
+            100% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
+        }
+        .traum-foguinho {
+            position: fixed;
+            font-size: 2.5rem;
+            z-index: 999998;
+            pointer-events: none;
+            animation: cairFoguinho linear forwards;
+        }
+        .traum-aura {
+            position: fixed;
+            font-size: 2rem;
+            font-weight: 900;
+            font-family: 'Righteous', cursive;
+            z-index: 999998;
+            pointer-events: none;
+            animation: subirAura linear forwards, corArcoIris 1.5s linear infinite;
+        }
+    `;
+    document.head.appendChild(estiloAnimacoes);
+    document.addEventListener('keydown', function(event) {
+        if (event.key.length === 1) {
+            sequenciaEfeitos += event.key.toLowerCase();
+        }
+		if (sequenciaEfeitos.length > tamanhoMaximo) {
+            sequenciaEfeitos = sequenciaEfeitos.slice(-tamanhoMaximo);
+        }
+        const palavraEncontrada = palavrasSecretas.find(palavra => sequenciaEfeitos.endsWith(palavra));
+        if (palavraEncontrada) {
+            iniciarEfeitos();
+            sequenciaEfeitos = '';
+        }
+    });
+    function iniciarEfeitos() {
+        if (window.efeitosTraumAtivos) return;
+        window.efeitosTraumAtivos = true;
+        const duracaoTotal = 6000;
+        const tempoFinal = Date.now() + duracaoTotal;
+        window.geradorDeEfeitos = setInterval(() => {
+            if (Date.now() > tempoFinal) {
+                clearInterval(geradorDeEfeitos);
+                window.efeitosTraumAtivos = false;
+                return;
+            }
+            criarFoguinho();
+            criarAura();
+        }, 200);
+    }
+    function criarFoguinho() {
+        const foguinho = document.createElement('div');
+        foguinho.className = 'traum-foguinho';
+        foguinho.textContent = '🔥';
+        foguinho.style.left = Math.random() * 100 + 'vw';
+        foguinho.style.top = '-50px';
+        const duracaoQueda = 1.5 + Math.random() * 2;
+        foguinho.style.animationDuration = duracaoQueda + 's';
+        document.body.appendChild(foguinho);
+        setTimeout(() => foguinho.remove(), duracaoQueda * 1000);
+    }
+    function criarAura() {
+        const aura = document.createElement('div');
+        aura.className = 'traum-aura';
+        aura.textContent = 'W Traum';
+        aura.style.left = Math.random() * 100 + 'vw';
+        aura.style.bottom = '-50px';
+        const duracaoSubida = 2 + Math.random() * 3;
+        aura.style.animationDuration = duracaoSubida + 's, 1.5s';
+        document.body.appendChild(aura);
+        setTimeout(() => aura.remove(), duracaoSubida * 1000);
+    }
+});
+</script>
+<script>
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const imagemCentral = document.getElementById('traum-easter-egg');
+        if (imagemCentral) {
+            imagemCentral.remove();
+        }
+        const efeitos = document.querySelectorAll('.traum-foguinho, .traum-aura');
+        efeitos.forEach(elemento => {
+            elemento.remove();
+        });
+        if (window.geradorDeEfeitos) {
+            clearInterval(window.geradorDeEfeitos);
+        }
+        window.efeitosTraumAtivos = false;
+        window.sequenciaDigitada = ''; 
+    }
+});
+</script>
 </body>
 </html>
