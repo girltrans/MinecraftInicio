@@ -1127,7 +1127,69 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlDaImagem = './icons/traum.png';
     let timerOpacidade;
     let timerRemocao;
+    let timerQuebra;
+    const estiloEfeitos = document.createElement('style');
+    estiloEfeitos.innerHTML = `
+        #traum-easter-egg {
+            cursor: url('./mouse/pointer.png'), auto !important;
+        }
+        .easter-egg-physics {
+            cursor: url('./mouse/link.png'), pointer !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .easter-egg-physics img {
+            -webkit-user-drag: none;
+            pointer-events: none;
+        }
+        @keyframes subirInterno {
+            0% { top: 100%; opacity: 0; transform: scale(0.8); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: -20%; opacity: 0; transform: scale(1.2); }
+        }
+        @keyframes corArcoIrisInterno {
+            0% { color: #ff0000; text-shadow: 0 0 5px #ff0000; }
+            20% { color: #ffff00; text-shadow: 0 0 5px #ffff00; }
+            40% { color: #00ff00; text-shadow: 0 0 5px #00ff00; }
+            60% { color: #00ffff; text-shadow: 0 0 5px #00ffff; }
+            80% { color: #0000ff; text-shadow: 0 0 5px #0000ff; }
+            100% { color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
+        }
+        .efeito-interno-aura {
+            position: absolute;
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Righteous', cursive;
+            pointer-events: none;
+            animation: subirInterno 2.5s linear forwards, corArcoIrisInterno 1.5s linear infinite;
+            z-index: 10;
+        }
+        @keyframes bubbly-physics-img {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 8px 32px rgba(139, 22, 22, 1);
+                border-color: rgba(139, 22, 22, 1);
+            }
+            50% {
+                transform: translateY(-15px) scale(1.02);
+                box-shadow: 0 15px 45px rgba(139, 22, 22, 1) 
+                border-color: #E8B901;
+            }
+        }
+        .easter-egg-physics:hover {
+            animation: bubbly-physics-img 2s ease-in-out infinite;
+        }
+    `;
+    document.head.appendChild(estiloEfeitos);
     document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            cancelarTudo();
+            return;
+        }
         if (event.key.length === 1) {
             sequenciaDigitada += event.key.toLowerCase();
         }
@@ -1136,17 +1198,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         const palavraEncontrada = palavrasSecretas.find(palavra => sequenciaDigitada.endsWith(palavra));
         if (palavraEncontrada) {
+            cancelarTudo(); 
             mostrarImagemSecreta();
             sequenciaDigitada = '';
         }
     });
-    function mostrarImagemSecreta() {
+    function cancelarTudo() {
         let overlayExistente = document.getElementById('traum-easter-egg');
-        if (overlayExistente) {
-            overlayExistente.remove();
-            clearTimeout(timerOpacidade);
-            clearTimeout(timerRemocao);
-        }
+        if (overlayExistente) overlayExistente.remove();
+        clearTimeout(timerOpacidade);
+        clearTimeout(timerRemocao);
+        clearTimeout(timerQuebra);
+        if(window.intervaloEfeitosInternos) clearInterval(window.intervaloEfeitosInternos);
+    }
+    function mostrarImagemSecreta() {
         const overlay = document.createElement('div');
         overlay.id = 'traum-easter-egg';
         overlay.style.position = 'fixed';
@@ -1161,26 +1226,105 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.style.zIndex = '999999';
         overlay.style.opacity = '0';
         overlay.style.transition = 'opacity 0.5s ease';
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'easter-egg-physics'; 
+        imgContainer.style.position = 'relative';
+        imgContainer.style.maxWidth = '80vw'; 
+        imgContainer.style.maxHeight = '80vh';
+        imgContainer.style.borderRadius = '16px';
+        imgContainer.style.boxShadow = '0 8px 32px rgba(139, 22, 22, 1)';
+        imgContainer.style.border = '1px solid #8B1616';
+        imgContainer.style.overflow = 'hidden'; 
+        imgContainer.style.display = 'flex';
+        imgContainer.style.backgroundColor = '#121212'; 
+        imgContainer.addEventListener('contextmenu', e => e.preventDefault());
         const img = document.createElement('img');
         img.src = urlDaImagem;
-        img.style.maxWidth = '80%';
-        img.style.maxHeight = '80%';
-        img.style.borderRadius = '16px';
-        img.style.boxShadow = '0 8px 32px rgba(139, 22, 22)';
-        img.style.border = '1px solid #8B1616';
-        overlay.appendChild(img);
+        img.style.maxWidth = '100%';
+        img.style.maxHeight = '100%';
+        img.style.objectFit = 'contain';
+        img.draggable = false;
+        imgContainer.appendChild(img);
+        overlay.appendChild(imgContainer);
         document.body.appendChild(overlay);
         setTimeout(() => {
-            overlay.style.opacity = '1';
+            if(document.getElementById('traum-easter-egg')) overlay.style.opacity = '1';
         }, 50);
+        iniciarEfeitosInternos(imgContainer);
+        timerQuebra = setTimeout(() => {
+            if (document.body.contains(img)) {
+                if(window.intervaloEfeitosInternos) clearInterval(window.intervaloEfeitosInternos);
+                imgContainer.className = ''; 
+                imgContainer.style.border = 'none';
+                imgContainer.style.boxShadow = 'none';
+                imgContainer.style.backgroundColor = 'transparent';
+                imgContainer.querySelectorAll('.efeito-interno-aura').forEach(el => el.style.visibility = 'hidden');
+                quebrarImagem(img, overlay);
+            }
+        }, 11000); 
         timerOpacidade = setTimeout(() => {
-            overlay.style.opacity = '0';
-            timerRemocao = setTimeout(() => {
-                if (overlay.parentNode) {
-                    overlay.parentNode.removeChild(overlay);
-                }
-            }, 500);
-        }, 5800);
+            if(document.getElementById('traum-easter-egg')) {
+                overlay.style.opacity = '0';
+                timerRemocao = setTimeout(() => {
+                    if (overlay.parentNode) {
+                        overlay.parentNode.removeChild(overlay);
+                    }
+                }, 500);
+            }
+        }, 11600);
+    }
+    function iniciarEfeitosInternos(container) {
+        if(window.intervaloEfeitosInternos) clearInterval(window.intervaloEfeitosInternos);
+        window.intervaloEfeitosInternos = setInterval(() => {
+            if (container.querySelectorAll('.efeito-interno-aura').length >= 3) {
+                return; 
+            }
+            const aura = document.createElement('div');
+            aura.className = 'efeito-interno-aura';
+            aura.textContent = 'W Traum';
+            aura.style.left = (Math.random() * 70) + '%'; 
+            const duracao = 2 + Math.random(); 
+            aura.style.animationDuration = duracao + 's, 1.5s'; 
+            container.appendChild(aura);
+            setTimeout(() => { 
+                if(aura.parentNode) aura.remove(); 
+            }, duracao * 1000);
+            
+        }, 400); 
+    }
+    function quebrarImagem(img, wrapperOverlay) {
+        const rect = img.getBoundingClientRect();
+        img.style.visibility = 'hidden'; 
+        const cols = 6;
+        const rows = 6;
+        const pieceWidth = rect.width / cols;
+        const pieceHeight = rect.height / rows;
+        for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+                const piece = document.createElement('div');
+                piece.style.position = 'absolute';
+                piece.style.width = pieceWidth + 'px';
+                piece.style.height = pieceHeight + 'px';
+                piece.style.left = (rect.left + (i * pieceWidth)) + 'px'; 
+                piece.style.top = (rect.top + (j * pieceHeight)) + 'px';
+                piece.style.backgroundImage = `url(${img.src})`;
+                piece.style.backgroundSize = `${rect.width}px ${rect.height}px`;
+                piece.style.backgroundPosition = `-${i * pieceWidth}px -${j * pieceHeight}px`;
+                piece.style.transition = 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)'; 
+                wrapperOverlay.appendChild(piece);
+                const centroX = cols / 2;
+                const dirX = (i - centroX) / centroX; 
+                const randomX = dirX * (Math.random() * 200 + 50); 
+                const randomY = Math.random() * 200 + 100; 
+                const randomRot = (Math.random() - 0.5) * 500; 
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        piece.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRot}deg) scale(0)`;
+                        piece.style.opacity = '0';
+                    });
+                });
+            }
+        }
     }
 });
 </script>
@@ -1242,7 +1386,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function iniciarEfeitos() {
         if (window.efeitosTraumAtivos) return;
         window.efeitosTraumAtivos = true;
-        const duracaoTotal = 6000;
+        const duracaoTotal = 12250;
         const tempoFinal = Date.now() + duracaoTotal;
         window.geradorDeEfeitos = setInterval(() => {
             if (Date.now() > tempoFinal) {
@@ -1295,6 +1439,35 @@ document.addEventListener('keydown', function(event) {
         window.efeitosTraumAtivos = false;
         window.sequenciaDigitada = ''; 
     }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let sequenciaAudio = '';
+    const palavrasAudio = ['traum', 'wtraum', 'trauma', 'wtrauma', 'traumwest', 'wtraumwest'];
+    const tamanhoMaxAudio = Math.max(...palavrasAudio.map(p => p.length));
+    const meuAudioSecreto = new Audio('./audio/aura.mp3'); 
+    meuAudioSecreto.volume = 0.8; 
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            meuAudioSecreto.pause();
+            meuAudioSecreto.currentTime = 0;
+            sequenciaAudio = '';
+            return;
+        }
+        if (event.key.length === 1) {
+            sequenciaAudio += event.key.toLowerCase();
+        }
+        if (sequenciaAudio.length > tamanhoMaxAudio) {
+            sequenciaAudio = sequenciaAudio.slice(-tamanhoMaxAudio);
+        }
+        const palavraEncontrada = palavrasAudio.find(palavra => sequenciaAudio.endsWith(palavra));
+        if (palavraEncontrada) {
+            meuAudioSecreto.currentTime = 0; 
+            meuAudioSecreto.play();
+            sequenciaAudio = '';
+        }
+    });
 });
 </script>
 </body>
