@@ -1823,8 +1823,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const isMobileDevice = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
-    if (isMobileDevice) {
+    const isTouchDevice = (navigator.maxTouchPoints > 0 || 'ontouchstart' in window);
+    const isSmallPhysicalScreen = window.screen.width <= 1024 || window.innerWidth <= 1024;
+    if (isTouchDevice && isSmallPhysicalScreen) {
         const optifinePanel = document.querySelector('.optifine-selector-panel');
         if (optifinePanel) {
             optifinePanel.style.marginTop = '0';
