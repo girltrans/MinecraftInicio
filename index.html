@@ -1821,5 +1821,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const isMobileDevice = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    if (isMobileDevice) {
+        const optifinePanel = document.querySelector('.optifine-selector-panel');
+        if (optifinePanel) {
+            optifinePanel.style.marginTop = '0';
+            optifinePanel.style.marginLeft = '0';
+            optifinePanel.style.margin = '0 auto'; 
+        }
+    }
+});
+</script>
 </body>
 </html>
