@@ -386,7 +386,7 @@ content="
 	}
 	async function buscarDadosJogador(nomeJogador) {
 		try {
-			const response = await fetch(`https://api.mojang.com/users/profiles/minecraft/${nomeJogador}`);
+			const response = await fetch(`https://api.gapple.pw/cors/username/${nomeJogador}`);
 			if (!response.ok) {
 				return null;
 			}
