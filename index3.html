@@ -1437,23 +1437,32 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
   nav.navbar {
       display: flex !important;
-      justify-content: center !important;
+      justify-content: flex-start !important;
       align-items: center !important;
-      gap: 7.5px !important;
-      flex-wrap: wrap !important;
-      margin-left: 20px !important;
+      width: 100% !important;
   }
-  nav.navbar a, 
-  nav.navbar strong,
-  nav.navbar b {
-      margin: 0 !important;
+  nav.navbar > a:first-child {
       display: inline-flex !important;
       align-items: center !important;
-      text-decoration: none !important;
+      margin: 0 !important;
+      margin-left: -5px !important;
+      padding: 0 !important;
+  }
+  nav.navbar > div.collapsible,
+  nav.navbar > div:not(.collapsible) {
+      display: flex !important;
+      margin-left: 20px !important;
+      gap: 7.5px !important;
+      align-items: center !important;
   }
   nav.navbar a img {
       margin-right: 6px !important;
       vertical-align: middle !important;
+  }
+  nav.navbar a,
+  nav.navbar strong {
+      white-space: nowrap !important;
+      text-decoration: none !important;
   }
 </style>
 </body>
