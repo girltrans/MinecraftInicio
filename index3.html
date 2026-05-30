@@ -1435,34 +1435,56 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <style>
-  body, html {
-    margin-top: 0 !important;
+  body, html { margin-top: 0 !important; }
+  .menu-organizado {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 7.5px !important;
+      margin: 15px 0 !important;
+      flex-wrap: nowrap !important;
   }
-  body > br:nth-of-type(-n+15) {
-    display: none !important;
-  }
-  nav.navbar {
-      display: block !important;
-      text-align: center !important;
-  }
-  nav.navbar > a, 
-  nav.navbar > strong,
-  nav.navbar > b {
-      display: inline-block !important;
-      vertical-align: middle !important;
-      margin: 8px 10px !important;
-      text-decoration: none !important;
-  }
-  nav.navbar strong a,
-  nav.navbar b a {
+  .menu-organizado a,
+  .menu-organizado strong,
+  .menu-organizado b {
       margin: 0 !important;
-      display: inline-block !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      text-decoration: none !important;
+      white-space: nowrap !important;
   }
-  nav.navbar a img {
-      vertical-align: middle !important;
+  .menu-organizado a img {
       margin-right: 6px !important;
-      margin-bottom: 2px !important;
+      vertical-align: middle !important;
   }
 </style>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      let count = 0;
+      document.body.childNodes.forEach(node => {
+          if (count > 15) return;
+          if (node.nodeName === 'BR') { 
+              node.style.display = 'none'; 
+              count++; 
+          }
+      });
+      const inicio = document.querySelector('a[href*="areaprotegida"]');
+      const links = Array.from(document.querySelectorAll('a'));
+      const verificar = links.find(a => a.textContent.includes('Verificar Nicks'));
+      const testar = links.find(a => a.textContent.includes('Testar Skin'));
+      const editar = links.find(a => a.textContent.includes('Editar Skin'));
+      const linksParaAgrupar = [inicio, verificar, testar, editar];
+      const elementosParaMover = linksParaAgrupar.map(link => {
+          if (!link) return null;
+          return link.closest('strong, b') || link;
+      }).filter(el => el !== null);
+      if (elementosParaMover.length > 0) {
+          const caixaMenu = document.createElement('div');
+          caixaMenu.className = 'menu-organizado';
+          elementosParaMover[0].parentNode.insertBefore(caixaMenu, elementosParaMover[0]);
+          elementosParaMover.forEach(el => caixaMenu.appendChild(el));
+      }
+  });
+</script>
 </body>
 </html>
