@@ -918,7 +918,7 @@ function setAnimation(animName) {
     }
 }
 async function getOfficialSkinUrl(playerName) {
-  const uuidResponse = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`, { cache: 'reload' });
+  const uuidResponse = await fetch(`https://api.gapple.pw/cors/username/${playerName}`, { cache: 'reload' });
   if (!uuidResponse.ok) {
     throw new Error('Tente Novamente, Atualizando Skin!');
   }
