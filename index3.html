@@ -1434,57 +1434,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-<style>
-  body, html { margin-top: 0 !important; }
-  .menu-organizado {
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      gap: 7.5px !important;
-      margin: 15px 0 !important;
-      flex-wrap: nowrap !important;
-  }
-  .menu-organizado a,
-  .menu-organizado strong,
-  .menu-organizado b {
-      margin: 0 !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      text-decoration: none !important;
-      white-space: nowrap !important;
-  }
-  .menu-organizado a img {
-      margin-right: 6px !important;
-      vertical-align: middle !important;
-  }
-</style>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-      let count = 0;
-      document.body.childNodes.forEach(node => {
-          if (count > 15) return;
-          if (node.nodeName === 'BR') { 
-              node.style.display = 'none'; 
-              count++; 
-          }
-      });
-      const inicio = document.querySelector('a[href*="areaprotegida"]');
-      const links = Array.from(document.querySelectorAll('a'));
-      const verificar = links.find(a => a.textContent.includes('Verificar Nicks'));
-      const testar = links.find(a => a.textContent.includes('Testar Skin'));
-      const editar = links.find(a => a.textContent.includes('Editar Skin'));
-      const linksParaAgrupar = [inicio, verificar, testar, editar];
-      const elementosParaMover = linksParaAgrupar.map(link => {
-          if (!link) return null;
-          return link.closest('strong, b') || link;
-      }).filter(el => el !== null);
-      if (elementosParaMover.length > 0) {
-          const caixaMenu = document.createElement('div');
-          caixaMenu.className = 'menu-organizado';
-          elementosParaMover[0].parentNode.insertBefore(caixaMenu, elementosParaMover[0]);
-          elementosParaMover.forEach(el => caixaMenu.appendChild(el));
-      }
-  });
-</script>
 </body>
 </html>
