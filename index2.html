@@ -1471,46 +1471,34 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <style>
-  body {
+  /* 1. Remove o espaço gigante do topo da página */
+  body, html {
     margin-top: 0 !important;
-    padding-top: 5px !important;
   }
-  body > a, 
-  nav a, 
-  .menu a {
-    display: inline-block !important;
-    margin: 2px 6px !important;
-    padding: 4px 8px !important;
-    vertical-align: middle !important;
-  }
-  br {
-    content: "";
-    margin: 0 !important;
+
+  /* 2. Oculta apenas as primeiras quebras de linha (BR) soltas no topo que causam o buraco */
+  body > br:nth-of-type(-n+15) {
     display: none !important;
   }
-  main br, .conteudo br, form br {
-    display: inline !important;
+
+  /* 3. Alinha perfeitamente os links do menu na mesma linha */
+  a[href*="areaprotegida"],
+  a[href*="index2.html"],
+  a[href*="index.html"],
+  a[href*="index3.html"],
+  strong {
+    display: inline-flex !important;
+    align-items: center !important;
+    vertical-align: middle !important;
+    margin: 5px 8px !important;
+    text-decoration: none;
+  }
+
+  /* 4. Impede que a imagem do "Início" empurre o texto para baixo */
+  a[href*="areaprotegida"] img {
+    margin-right: 6px !important;
+    vertical-align: middle !important;
   }
 </style>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const bodyChildren = document.body.childNodes;
-    let count = 0;
-    for (let i = 0; i < bodyChildren.length; i++) {
-      const node = bodyChildren[i];
-      if (count > 25) break; 
-      if (node.nodeType === Node.ELEMENT_NODE) {
-        count++;
-        if (node.tagName === 'BR') {
-          node.style.display = 'none';
-        }
-      } else if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) {
-        if (count < 15) {
-          node.textContent = '';
-        }
-      }
-    }
-  });
-</script>
 </body>
 </html>
