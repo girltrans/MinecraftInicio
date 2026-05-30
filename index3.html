@@ -1435,34 +1435,33 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <style>
+  body, html {
+    margin-top: 0 !important;
+  }
+  body > br:nth-of-type(-n+15) {
+    display: none !important;
+  }
   nav.navbar {
-      display: flex !important;
-      justify-content: flex-start !important;
-      align-items: center !important;
-      width: 100% !important;
+      display: block !important;
+      text-align: center !important;
   }
-  nav.navbar > a:first-child {
-      display: inline-flex !important;
-      align-items: center !important;
+  nav.navbar > a, 
+  nav.navbar > strong,
+  nav.navbar > b {
+      display: inline-block !important;
+      vertical-align: middle !important;
+      margin: 8px 7.5px !important;
+      text-decoration: none !important;
+  }
+  nav.navbar strong a,
+  nav.navbar b a {
       margin: 0 !important;
-      margin-left: -5px !important;
-      padding: 0 !important;
-  }
-  nav.navbar > div.collapsible,
-  nav.navbar > div:not(.collapsible) {
-      display: flex !important;
-      margin-left: 20px !important;
-      gap: 7.5px !important;
-      align-items: center !important;
+      display: inline-block !important;
   }
   nav.navbar a img {
-      margin-right: 6px !important;
       vertical-align: middle !important;
-  }
-  nav.navbar a,
-  nav.navbar strong {
-      white-space: nowrap !important;
-      text-decoration: none !important;
+      margin-right: 6px !important;
+      margin-bottom: 2px !important;
   }
 </style>
 </body>
