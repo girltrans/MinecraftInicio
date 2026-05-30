@@ -673,7 +673,7 @@ content="
 	    else if (tipo === 5) charset = "abcdefghijklmnopqrstuvwxyz0123456789_";
 	    const combos = gerarCombinacoes(charset, count);
 	    resultado.innerHTML = (translations[lang]["jsVerificandoCombinacoes"] || "⏳ Verificando {{count}} combinações...").replace("{{count}}", combos.length);
-	    const urls = combos.map(nick => `https://corsproxy.io/?${encodeURIComponent(`https://playerdb.co/api/player/minecraft/${nick}`)}`);
+	    const urls = combos.map(nick => `https://api.gapple.pw/cors/username/${nick}`);
 	    const responses = await fetchWithLimit(urls, 1000);
 	    let disponiveis = [];
 		disponiveisMassa = [];
