@@ -33,7 +33,7 @@ h1 {
 .menu label {
   cursor: pointer;
   font-family: 'Righteous', cursive;
-  user-select: show; /* Opcional: evita que o texto seja selecionado ao clicar */
+  user-select: show;
 }
 .menu input[type="radio"] {
   cursor: pointer;
@@ -44,7 +44,7 @@ input[type="text"], input[type="number"], select {
     font-size: 1rem;
     background-color: #1e1e1e;
     color: #E8B901;
-    border: 1px solid #8B1616;
+    border: 2px solid #8B1616;
     margin: 0.5rem 0;
     width: 100%;
 }
