@@ -1471,17 +1471,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <style>
-  /* 1. Remove o espaço gigante do topo da página */
   body, html {
     margin-top: 0 !important;
   }
-
-  /* 2. Oculta apenas as primeiras quebras de linha (BR) soltas no topo que causam o buraco */
   body > br:nth-of-type(-n+15) {
     display: none !important;
   }
-
-  /* 3. Alinha perfeitamente os links do menu na mesma linha */
   a[href*="areaprotegida"],
   a[href*="index2.html"],
   a[href*="index.html"],
@@ -1493,8 +1488,6 @@ document.addEventListener('DOMContentLoaded', function() {
     margin: 5px 8px !important;
     text-decoration: none;
   }
-
-  /* 4. Impede que a imagem do "Início" empurre o texto para baixo */
   a[href*="areaprotegida"] img {
     margin-right: 6px !important;
     vertical-align: middle !important;
