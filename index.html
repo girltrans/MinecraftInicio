@@ -1865,5 +1865,14 @@ document.addEventListener('DOMContentLoaded', function() {
       vertical-align: middle !important;
   }
 </style>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').then(() => {
+        console.log('Service Worker Registrado com sucesso.');
+      });
+    });
+  }
+</script>
 </body>
 </html>
