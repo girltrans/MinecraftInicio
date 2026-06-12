@@ -2,6 +2,7 @@
 <html lang="pt-BR" class=""><head>
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="./images/favicon.png">
 <meta http-equiv="Content-Security-Policy" 
 content="
   default-src 'self';
@@ -1462,5 +1463,14 @@ document.addEventListener('DOMContentLoaded', function() {
       vertical-align: middle !important;
   }
 </style>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').then(() => {
+        console.log('Service Worker Registrado com sucesso.');
+      });
+    });
+  }
+</script>
 </body>
 </html>
