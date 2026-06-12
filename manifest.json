@@ -1,20 +1,14 @@
 {
   "name": "Minecraft Início",
-  "short_name": "MC Início",
+  "short_name": "Minecraft Início",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#121212",
   "theme_color": "#121212",
   "icons": [
     {
-      "src": "icone-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icone-512x512.png",
-      "sizes": "512x512",
+      "src": "/images/favicon.png",
+      "sizes": "any",
       "type": "image/png"
     }
   ]
-}
