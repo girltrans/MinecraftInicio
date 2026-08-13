@@ -164,6 +164,41 @@
         html.allow-scroll {
             overflow-y: auto !important;
         }
+				.navbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .navbar b {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .navbar a {
+            white-space: nowrap;
+        }
+        @media (max-width: 768px) {
+            html, body {
+                overflow-y: auto !important;
+                height: auto !important;
+                -webkit-overflow-scrolling: touch;
+            }
+            .studio-container {
+                margin: 20px 15px 40px 15px !important;
+                padding: 1.5rem 1rem !important;
+                width: auto;
+            }
+            .navbar a {
+                font-size: 1rem !important;
+                padding: 0.4rem 1rem !important;
+			}
     </style>
 </head>
 <body>
