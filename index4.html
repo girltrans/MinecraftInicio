@@ -16,23 +16,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet"/>
     <script src="https://unpkg.com/skinview3d@3.0.0-alpha.1/bundles/skinview3d.bundle.js"></script>
     <link href="css/style.css" rel="stylesheet"/>
-    <style>
+	<style>
         * {
             box-sizing: border-box;
             font-family: 'Righteous', cursive !important;
         }
         html, body {
             width: 100%;
-            overflow-x: hidden;
-            overscroll-behavior-x: contain;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; 
         }
         body {
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/background.png') no-repeat center center fixed;
             background-size: cover;
             color: #e8b901;
-            min-height: 100vh;
+            min-height: 100%; 
+            display: flex;
+            flex-direction: column;
         }
         body.theme-light-bg {
             background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('images/background2.png');
@@ -51,8 +52,41 @@
             background-size: 400% 400%, cover;
             animation: rainbow-animation 15s ease infinite;
         }
-        .content { max-width: 1200px; margin: 0 auto; padding-top: 2rem; }
-        .github { position: absolute; right: 20px; top: 80px; }
+        .navbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            z-index: 10;
+        }
+        .navbar b {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .navbar a {
+            white-space: nowrap;
+        }
+        .content-wrapper {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha ao topo em vez do centro para não travar scroll */
+            padding-bottom: 50px;
+        }
+        .content { 
+            width: 100%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding-top: 2rem; 
+            position: relative;
+        }
+        .github { position: absolute; right: 20px; top: 0px; }
         * { scrollbar-color: #8B1616 #121212; scrollbar-width: thin; }
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #121212; }
@@ -63,10 +97,10 @@
             border-radius: 22px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 2px 18px #8b1616;
             padding: 2.5rem 2rem;
-            width: 100%;
+            width: 90%;
             max-width: 450px;
             text-align: center;
-            margin: 2rem auto; /* Centraliza no container principal */
+            margin: 2rem auto; 
         }
         .studio-container h1 {
             font-size: 2rem;
@@ -113,6 +147,19 @@
             color: #121212;
             transform: scale(1.05);
         }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            width: 100%;
+        }
+        .button-group button {
+            flex: 1;
+            width: auto;
+            margin-top: 0 !important;
+            font-size: 0.9rem !important;
+            padding: 0.6rem 0.5rem !important;
+        }
         #ign_status {
             font-size: 0.98rem;
             color: #ffd700;
@@ -144,61 +191,32 @@
         canvas:active {
             cursor: grabbing;
         }
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            width: 100%;
-        }
-        .button-group button {
-            flex: 1;
-            width: auto;
-            margin-top: 0 !important;
-            font-size: 0.9rem !important;
-            padding: 0.6rem 0.5rem !important;
-        }
-		body.allow-scroll {
-            overflow-y: auto !important;
-            height: auto !important;
-        }
-        html.allow-scroll {
-            overflow-y: auto !important;
-        }
-				.navbar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .navbar b {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-        .navbar a {
-            white-space: nowrap;
-        }
         @media (max-width: 768px) {
             html, body {
-                overflow-y: auto !important;
                 height: auto !important;
+                overflow-y: visible !important;
                 -webkit-overflow-scrolling: touch;
             }
-            .studio-container {
-                margin: 20px 15px 40px 15px !important;
-                padding: 1.5rem 1rem !important;
-                width: auto;
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
             }
             .navbar a {
                 font-size: 1rem !important;
-                padding: 0.4rem 1rem !important;
-			}
+                padding: 0.4rem 0.8rem !important;
+            }
+            .github {
+                position: relative;
+                top: 0; right: 0;
+                display: block;
+                margin: 10px auto;
+                text-align: center;
+            }
+            .studio-container {
+                margin: 10px auto 40px auto; 
+                padding: 1.5rem 1rem;
+            }
+        }
     </style>
 </head>
 <body>
