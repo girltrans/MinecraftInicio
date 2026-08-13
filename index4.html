@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Início</title>
+    
     <meta http-equiv="Content-Security-Policy" content="
       default-src 'self';
       script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com;
@@ -13,23 +14,30 @@
       connect-src 'self' https://corsjangapi.b-cdn.net https://corsproxy.io https://api.gapple.pw https://sessionserver.mojang.com https://api.mojang.com;
       font-src 'self' https://fonts.gstatic.com;
     ">
+    
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
     <script src="https://unpkg.com/skinview3d@3.0.0-alpha.1/bundles/skinview3d.bundle.js"></script>
+    
     <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Righteous', cursive !important;
+        }
         html, body {
             width: 100%;
             overflow-x: hidden;
             overscroll-behavior-x: contain;
+            margin: 0;
+            padding: 0;
         }
         body {
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/background.png') no-repeat center center fixed;
             background-size: cover;
             color: #e8b901;
-            font-family: 'Righteous', cursive !important;
-            margin: 0;
             min-height: 100vh;
         }
+        
         .content { max-width: 1200px; margin: 0 auto; }
         .github { position: absolute; right: 20px; top: 80px; }
         
@@ -51,7 +59,7 @@
             animation: rainbow-animation 15s ease infinite;
         }
         
-        * { scrollbar-color: #8B1616 #121212; scrollbar-width: thin; font-family: 'Righteous', cursive !important; }
+        * { scrollbar-color: #8B1616 #121212; scrollbar-width: thin; }
         ::-webkit-scrollbar { display: none; }
 
         .studio-container {
@@ -59,7 +67,7 @@
             border-radius: 22px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 2px 18px #8b1616;
             padding: 2.5rem 2rem;
-            width: 100%;
+            width: 90%;
             max-width: 450px;
             text-align: center;
             margin: 2rem auto; 
@@ -91,6 +99,7 @@
         .search-box input[type="text"]::placeholder {
             color: #e8b901;
             font-weight: bold;
+            opacity: 0.7;
         }
         .studio-container button {
             background: #121212;
@@ -127,6 +136,7 @@
             color: #ffd700;
             height: 1.8em;
             margin-bottom: 10px;
+            text-shadow: 0 1px 4px #0005;
         }
         .render-viewer {
             background: #121212;
@@ -266,34 +276,42 @@
             }
         }
     </script>
-    
     <script>
         let skinViewer;
+
         async function getPlayerTextures(playerName) {
             const uuidResponse = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`, { cache: 'reload' });
             if (!uuidResponse.ok) throw new Error('Jogador não encontrado!');
+            
             const playerData = await uuidResponse.json();
             const uuid = playerData.id;
+            
             const profileResponse = await fetch(`https://api.gapple.pw/cors/sessionserver/${uuid}`, { cache: 'reload' });
             if (!profileResponse.ok) throw new Error('Não foi possível obter o perfil');
+            
             const profileData = await profileResponse.json();
             const texturesProperty = profileData.properties.find(prop => prop.name === 'textures');
             if (!texturesProperty) throw new Error('Propriedades de textura não encontradas');
+            
             const decodedValue = atob(texturesProperty.value);
             const textureData = JSON.parse(decodedValue);
+            
             let skinUrl = textureData.textures?.SKIN?.url;
             if (!skinUrl) throw new Error('URL da skin não encontrada');
             skinUrl = skinUrl.replace("http://", "https://");
+            
             let capeUrl = null;
             if (textureData.textures?.CAPE?.url) {
                 capeUrl = textureData.textures.CAPE.url.replace("http://", "https://");
             }
+            
             return { skinUrl, capeUrl };
         }
 
         async function renderBabySkin(textures) {
             const container = document.getElementById("canvas-container");
             container.innerHTML = ""; 
+            
             const canvasElement = document.createElement("canvas");
             canvasElement.style.opacity = "0"; 
             canvasElement.style.transition = "opacity 0.3s ease-in-out"; 
@@ -304,11 +322,13 @@
                 height: 300,
                 alpha: true 
             });
+            
             container.appendChild(skinViewer.canvas);
             
             const promessasCarregamento = [];
             if (textures.skinUrl) promessasCarregamento.push(skinViewer.loadSkin(textures.skinUrl));
             if (textures.capeUrl) promessasCarregamento.push(skinViewer.loadCape(textures.capeUrl));
+            
             await Promise.all(promessasCarregamento);
             
             skinViewer.zoom = 0.96;
@@ -322,6 +342,7 @@
             player.position.y = -6.0; 
             player.rotation.y = Math.PI / 8;
             skinViewer.animation = null;
+            
             skinViewer.render();
             
             requestAnimationFrame(() => {
@@ -329,9 +350,11 @@
             });
             
             const renderPerfeitoBase64 = skinViewer.canvas.toDataURL("image/png");
+            
             skinViewer.controls.enableRotate = true;
             skinViewer.controls.enableZoom = true;
             skinViewer.controls.enablePan = true;
+            
             document.getElementById("actionButtons").style.display = 'flex';
             
             function abrirEmNovaGuia() {
@@ -362,6 +385,7 @@
                 e.preventDefault(); 
                 abrirEmNovaGuia();
             };
+            
             document.getElementById('downloadBtn').onclick = () => {
                 const link = document.createElement('a');
                 link.href = renderPerfeitoBase64;
@@ -375,6 +399,7 @@
             const ign = document.getElementById('ign').value.trim();
             const statusDiv = document.getElementById('ign_status');
             const btn = document.getElementById('gerarBtn');
+            
             if (!ign) return;
             
             btn.disabled = true;
@@ -407,6 +432,7 @@
                     skinUrl: "https://minotar.net/skin/ata",
                     capeUrl: null
                 };
+                
                 await renderBabySkin(texturasPadrao);
                 document.getElementById("actionButtons").style.display = 'none';
                 statusDiv.textContent = "Coloque Seu Nick...";
@@ -415,7 +441,6 @@
             }
         });
     </script>
-    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let sequenciaEfeitos = '';
@@ -519,15 +544,6 @@
                 }
             });
         });
-    </script>
-    
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const userAgent = navigator.userAgent.toLowerCase();
-        if (userAgent.includes("firefox") && !userAgent.includes("librewolf")) {
-          document.body.style.zoom = "85%";
-        }
-      });
     </script>
     <script>
       function isMobileDevice() {
