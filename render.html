@@ -3,275 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerar Bebê Com Capa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet"/>
+    <title>Gerar Bebê Com Capa API</title>
     <script src="https://unpkg.com/skinview3d@3.0.0-alpha.1/bundles/skinview3d.bundle.js"></script>
     <style>
-        * {
-            box-sizing: border-box;
+        body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Righteous', cursive !important;
-        }
-        body {
-            background: #000;
-            color: #e8b901;
+            width: 100%;
+            height: 100vh;
+            background: transparent;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-        }
-        .studio-container {
-            background: rgba(18, 18, 18, 0.9);
-            border-radius: 22px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 2px 18px #8b1616;
-            padding: 2.5rem 2rem;
-            width: 100%;
-            max-width: 450px;
-            text-align: center;
-        }
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 5px;
-            color: #e8b901;
-        }
-        .search-box {
-            display: flex;
-            gap: 0.5rem;
-            width: 100%;
-            justify-content: center;
-            margin-bottom: 15px;
-            margin-top: 15px;
-        }
-        input[type="text"] {
-            flex: 1;
-            padding: 0.6rem 1rem;
-            border-radius: 8px;
-            border: 1px solid #8B1616;
-            font-size: 1rem;
-            background: #121212;
-            color: #e8b901;
-            outline: none;
-        }
-        button {
-            background: #121212;
-            color: #E8B901;
-            border: 1px solid #8B1616;
-            border-radius: 8px;
-            padding: 0.6rem 1.2rem;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
-        }
-        button:hover {
-            background-color: #E8B901;
-            color: #121212;
-            transform: scale(1.05);
-        }
-        #ign_status {
-            font-size: 0.98rem;
-            color: #ffd700;
-            height: 1.8em;
-            margin-bottom: 10px;
-        }
-        .render-viewer {
-            background: #121212;
-            border-radius: 18px;
-            box-shadow: 0 2px 18px #8b1616;
-            width: 300px;
-            height: 300px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #8B1616;
-            position: relative;
             overflow: hidden;
-            background-image: 
-                linear-gradient(45deg, #1a1a1a 25%, transparent 25%), 
-                linear-gradient(-45deg, #1a1a1a 25%, transparent 25%), 
-                linear-gradient(45deg, transparent 75%, #1a1a1a 75%), 
-                linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
         }
-        canvas {
+        canvas, img {
             display: block;
-            outline: none;
-            cursor: grab;
-        }
-        canvas:active {
-            cursor: grabbing;
-        }
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
             width: 100%;
-        }
-        .button-group button {
-            flex: 1;
-            width: auto;
-            margin-top: 0 !important;
-            font-size: 0.9rem !important;
-            padding: 0.6rem 0.5rem !important;
+            height: 100%;
+            object-fit: contain;
         }
     </style>
 </head>
 <body>
-    <div class="studio-container" id="mainContainer">
-        <h1>Gerar Bebê Com Capa</h1>
-        <form class="search-box" id="render-form">
-            <input autocomplete="off" id="ign" maxlength="16" placeholder="Nick do jogador" type="text" />
-            <button type="submit" id="gerarBtn">Gerar</button>
-        </form>
-        <div id="ign_status"></div>
-        <div class="render-viewer" id="canvas-container">
-        </div>
-        <div class="button-group" id="actionButtons" style="display: none;">
-            <button id="openTabBtn">🔍 Ver Bebê</button>
-            <button id="downloadBtn">💾 Baixar Bebê</button>
-        </div>
-    </div>
     <script>
-        let skinViewer;
-
-        async function getPlayerTexturesByName(playerName) {
-            const uuidResponse = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`, { cache: 'reload' });
-            if (!uuidResponse.ok) throw new Error('Jogador não encontrado!');
-            const playerData = await uuidResponse.json();
-            return await getPlayerTexturesByUuid(playerData.id);
-        }
-        async function getPlayerTexturesByUuid(uuid) {
-            const profileResponse = await fetch(`https://api.gapple.pw/cors/sessionserver/${uuid}`, { cache: 'reload' });
-            if (!profileResponse.ok) throw new Error('Não foi possível obter o perfil');
-            const profileData = await profileResponse.json();
-            const texturesProperty = profileData.properties.find(prop => prop.name === 'textures');
-            if (!texturesProperty) throw new Error('Propriedades de textura não encontradas');
-            const decodedValue = atob(texturesProperty.value);
-            const textureData = JSON.parse(decodedValue);
-            let skinUrl = textureData.textures?.SKIN?.url;
-            if (!skinUrl) throw new Error('URL da skin não encontrada');
-            skinUrl = skinUrl.replace("http://", "https://");
-            let capeUrl = null;
-            if (textureData.textures?.CAPE?.url) {
-                capeUrl = textureData.textures.CAPE.url.replace("http://", "https://");
-            }
-            return { skinUrl, capeUrl };
-        }
-        async function renderBabySkin(textures, identifier = 'avatar') {
-            const container = document.getElementById("canvas-container");
-            container.innerHTML = ""; 
-            skinViewer = new skinview3d.SkinViewer({
-                canvas: document.createElement("canvas"),
-                width: 300,
-                height: 300,
-                skin: textures.skinUrl,
-                alpha: true 
-            });
-            if (textures.capeUrl) {
-                await skinViewer.loadCape(textures.capeUrl);
-            }
-            container.appendChild(skinViewer.canvas);
-            await skinViewer.loadSkin(textures.skinUrl);
-            skinViewer.zoom = 0.96;
-            const player = skinViewer.playerObject;
-            player.scale.set(0.9, 0.65, 0.9);
-            player.skin.head.scale.set(1.83, 2.54, 1.83);
-            player.skin.rightLeg.rotation.x = -0.15;
-            player.skin.leftLeg.rotation.x = 0.15;
-            player.skin.rightArm.rotation.x = 0.15;
-            player.skin.leftArm.rotation.x = -0.15;
-            player.position.y = -6.0; 
-            player.rotation.y = Math.PI / 8;
-            skinViewer.animation = null;
-            skinViewer.render();
-            const renderPerfeitoBase64 = skinViewer.canvas.toDataURL("image/png");
-            skinViewer.controls.enableRotate = true;
-            skinViewer.controls.enableZoom = true;
-            skinViewer.controls.enablePan = true;
-            const actionButtons = document.getElementById("actionButtons");
-            if(actionButtons) actionButtons.style.display = 'flex';
-            function abrirEmNovaGuia() {
-                const novaAba = window.open();
-                if (novaAba) {
-                    novaAba.document.write(`
-                        <!DOCTYPE html>
-                        <html lang="pt-BR">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, minimum-scale=0.1">
-                            <title>${identifier}.png</title>
-                        </head>
-                        <body style="margin: 0px; height: 100vh; display: flex; justify-content: center; align-items: center; background-color: transparent;">
-                            <img style="display: block; margin: auto;" src="${renderPerfeitoBase64}" alt="Avatar PNG">
-                        </body>
-                        </html>
-                    `);
-                    novaAba.document.close();
-                } else {
-                    alert("O navegador bloqueou a nova aba. Por favor, permita pop-ups.");
-                }
-            }
-            const openTabBtn = document.getElementById('openTabBtn');
-            if(openTabBtn) openTabBtn.onclick = abrirEmNovaGuia;
-
-            skinViewer.canvas.oncontextmenu = function(e) {
-                e.preventDefault(); 
-                abrirEmNovaGuia();
-            };
-            const downloadBtn = document.getElementById('downloadBtn');
-            if(downloadBtn) {
-                downloadBtn.onclick = () => {
-                    const link = document.createElement('a');
-                    link.href = renderPerfeitoBase64;
-                    link.download = `${identifier}-avatar.png`;
-                    link.click();
-                };
-            }
-        }
-        window.addEventListener('DOMContentLoaded', async () => {
+        async function renderizarAutomatico() {
             const urlParams = new URLSearchParams(window.location.search);
-            const uuidParam = urlParams.get('uuid');
-            if (uuidParam) {
-                try {
-                    document.body.style.background = "transparent";
-                    const container = document.getElementById('mainContainer');
-                    container.innerHTML = '<div class="render-viewer" id="canvas-container" style="border:none; box-shadow:none; background:transparent;"></div>';
-                    
-                    const textures = await getPlayerTexturesByUuid(uuidParam);
-                    await renderBabySkin(textures, uuidParam);
-                } catch (e) {
-                    document.body.innerHTML = `<h3 style="color:red; text-align:center;">Erro ao carregar render</h3>`;
-                }
+            const uuid = urlParams.get('uuid');
+            if (!uuid) {
+                document.body.style.color = "red";
+                document.body.innerText = "Erro: UUID não fornecido na URL!";
+                return;
             }
-        });
-        document.getElementById('render-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const ign = document.getElementById('ign').value.trim();
-            const statusDiv = document.getElementById('ign_status');
-            const btn = document.getElementById('gerarBtn');
-            if (!ign) return;
-            btn.disabled = true;
-            btn.textContent = "Buscando...";
-            statusDiv.textContent = "Buscando Skin e Capa...";
-            document.getElementById("actionButtons").style.display = 'none';
             try {
-                const textures = await getPlayerTexturesByName(ign);
-                statusDiv.textContent = "Renderizando Bebê Com Capa...";
-                await renderBabySkin(textures, ign);
-                statusDiv.textContent = "Bebê Gerado Com Sucesso!";
-                setTimeout(() => statusDiv.textContent = "", 4000);
-            } catch (error) {
-                statusDiv.textContent = error.message;
-            } finally {
-                btn.disabled = false;
-                btn.textContent = "Gerar";
+                const profileRes = await fetch(`https://api.gapple.pw/cors/sessionserver/${uuid}`);
+                if (!profileRes.ok) throw new Error('Erro ao buscar sessão');
+                const profileData = await profileRes.json();
+                const texturesProperty = profileData.properties.find(p => p.name === 'textures');
+                let skinUrl = `https://minotar.net/skin/${uuid}`;
+                let capeUrl = null;
+                if (texturesProperty) {
+                    const decoded = JSON.parse(atob(texturesProperty.value));
+                    if (decoded.textures?.SKIN?.url) skinUrl = decoded.textures.SKIN.url.replace("http://", "https://");
+                    if (decoded.textures?.CAPE?.url) capeUrl = decoded.textures.CAPE.url.replace("http://", "https://");
+                }
+                const canvas = document.createElement('canvas');
+                canvas.width = 300;
+                canvas.height = 300;
+                document.body.appendChild(canvas);
+                const skinViewer = new skinview3d.SkinViewer({
+                    canvas: canvas,
+                    width: 300,
+                    height: 300,
+                    skin: skinUrl,
+                    alpha: true
+                });
+                if (capeUrl) await skinViewer.loadCape(capeUrl);
+                await skinViewer.loadSkin(skinUrl);
+                skinViewer.zoom = 0.96;
+                const player = skinViewer.playerObject;
+                player.scale.set(0.9, 0.65, 0.9);
+                player.skin.head.scale.set(1.83, 2.54, 1.83);
+                player.skin.rightLeg.rotation.x = -0.15;
+                player.skin.leftLeg.rotation.x = 0.15;
+                player.skin.rightArm.rotation.x = 0.15;
+                player.skin.leftArm.rotation.x = -0.15;
+                player.position.y = -6.0; 
+                player.rotation.y = Math.PI / 8;
+                skinViewer.animation = null;
+                skinViewer.render();
+                setTimeout(() => {
+                    skinViewer.render();
+                    const dataUrl = canvas.toDataURL("image/png");
+                    document.body.innerHTML = `<img src="${dataUrl}" alt="Bebê 3D Render">`;
+                    skinViewer.dispose();
+                }, 250);
+            } catch (err) {
+                document.body.style.color = "white";
+                document.body.innerText = "Erro Ao Renderizar Bebê Com Capa.";
+                console.error(err);
             }
-        });
-        document.getElementById('ign').addEventListener('input', function() {
-            this.value = this.value.replace(/[^a-zA-Z0-9_]/g, '');
-        });
+        }
+        window.onload = renderizarAutomatico;
     </script>
 </body>
 </html>
