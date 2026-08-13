@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Início - Skin Bebê</title>
-    
     <meta http-equiv="Content-Security-Policy" content="
       default-src 'self';
       script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com;
@@ -14,32 +13,26 @@
       connect-src 'self' https://corsjangapi.b-cdn.net https://corsproxy.io https://api.gapple.pw https://sessionserver.mojang.com https://api.mojang.com;
       font-src 'self' https://fonts.gstatic.com;
     ">
-    
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet"/>
-    <script src="https://unpkg.com/skinview3d@3.0.0-alpha.1/bundles/skinview3d.bundle.js"></script>
     <link href="css/style.css" rel="stylesheet"/>
-
+    <script src="https://unpkg.com/skinview3d@3.0.0-alpha.1/bundles/skinview3d.bundle.js"></script>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Righteous', cursive !important;
-        }
-        
-        html {
-            min-height: 100%;
+        html, body {
+            width: 100%;
             overflow-x: hidden;
+            overscroll-behavior-x: contain;
         }
-        
         body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/background.png') no-repeat center center fixed;
             background-size: cover;
             color: #e8b901;
-            overflow-x: hidden;
+            font-family: 'Righteous', cursive !important;
+            margin: 0;
+            min-height: 100vh;
         }
-
+        .content { max-width: 1200px; margin: 0 auto; }
+        .github { position: absolute; right: 20px; top: 80px; }
+        
         body.theme-light-bg {
             background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('images/background2.png');
         }
@@ -57,58 +50,19 @@
             background-size: 400% 400%, cover;
             animation: rainbow-animation 15s ease infinite;
         }
-
-        .navbar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            text-align: center;
-            width: 100%;
-            z-index: 10;
-        }
-        .navbar b {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-        .navbar a {
-            white-space: nowrap;
-        }
-
-        .content-wrapper {
-            display: block;
-            width: 100%;
-            padding-bottom: 80px;
-        }
-        .content { 
-            width: 100%; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding-top: 2rem; 
-            position: relative;
-        }
         
-        .github { position: absolute; right: 20px; top: 0px; }
-
-        * { scrollbar-color: #8B1616 #121212; scrollbar-width: thin; }
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #121212; }
-        ::-webkit-scrollbar-thumb { background-color: #8B1616; border-radius: 6px; border: 2px solid #121212; }
-        ::-webkit-scrollbar-thumb:hover { background-color: #e8b901; }
+        * { scrollbar-color: #8B1616 #121212; scrollbar-width: thin; font-family: 'Righteous', cursive !important; }
+        ::-webkit-scrollbar { display: none; }
 
         .studio-container {
             background: rgba(18, 18, 18, 0.9);
             border-radius: 22px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 2px 18px #8b1616;
             padding: 2.5rem 2rem;
-            width: 90%;
+            width: 100%;
             max-width: 450px;
-            margin: 2rem auto; 
             text-align: center;
+            margin: 2rem auto; 
         }
         .studio-container h1 {
             font-size: 2rem;
@@ -127,7 +81,7 @@
             flex: 1;
             padding: 0.6rem 1rem;
             border-radius: 8px;
-            border: 1px solid #8B1616;
+            border: 1px solid #8B1616 !important;
             font-size: 1rem;
             background: #121212;
             color: #e8b901;
@@ -136,7 +90,7 @@
         }
         .search-box input[type="text"]::placeholder {
             color: #e8b901;
-            opacity: 0.7;
+            font-weight: bold;
         }
         .studio-container button {
             background: #121212;
@@ -155,12 +109,24 @@
             color: #121212;
             transform: scale(1.05);
         }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            width: 100%;
+        }
+        .button-group button {
+            flex: 1;
+            width: auto;
+            margin-top: 0 !important;
+            font-size: 0.9rem !important;
+            padding: 0.6rem 0.5rem !important;
+        }
         #ign_status {
             font-size: 0.98rem;
             color: #ffd700;
             height: 1.8em;
             margin-bottom: 10px;
-            text-shadow: 0 1px 4px #0005;
         }
         .render-viewer {
             background: #121212;
@@ -186,44 +152,10 @@
         canvas:active {
             cursor: grabbing;
         }
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            width: 100%;
-        }
-        .button-group button {
-            flex: 1;
-            width: auto;
-            margin-top: 0 !important;
-            font-size: 0.9rem !important;
-            padding: 0.6rem 0.5rem !important;
-        }
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .navbar a {
-                font-size: 1rem !important;
-                padding: 0.4rem 0.8rem !important;
-            }
-            .github {
-                position: relative;
-                top: 0; right: 0;
-                display: block;
-                margin: 10px auto;
-                text-align: center;
-            }
-            .studio-container {
-                margin: 20px auto 60px auto;
-                padding: 1.5rem 1rem;
-            }
-        }
     </style>
 </head>
 <body>
-
+    
     <nav class="navbar">
         <div class="theme-selector">
             <select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;" title="Mudar Tema Do Site">
@@ -238,12 +170,12 @@
         </a>
         <a href="./index2.html" data-i18n="tituloMinecraftVerificarNicks" style="color: #8B1616;font-family: 'Righteous', cursive;font-size: 1.2rem;font-weight: 600;padding: 0.5rem 1.5rem;border-radius: 12px;text-decoration: none;transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Minecraft Verificar Nicks</a>
         <b>
-            <a href="./index.html" data-i18n="tituloTestarSkin" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Testar Skin e Capa</a>
+            <a href="./index.html" data-i18n="tituloTestarSkin" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Testar Skin e Capa</a>
             <a href="./index3.html" data-i18n="tituloEditarSkin" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Editar Skin</a>
             <a href="./index4.html" data-i18n="tituloSkinBebe" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Skin Bebê</a>
         </b>
     </nav>
-	
+
     <div class="content-wrapper">
         <div class="content">
             <a class="github" href="https://github.com/girltrans" rel="nofollow" target="_blank" title="GitHub Repositório">
@@ -264,9 +196,9 @@
                     <button id="downloadBtn" data-i18n="btnBaixarBebe">💾 Baixar Bebê</button>
                 </div>
             </div>
-            
         </div>
     </div>
+
     <script src="idioma/translationsindex.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -317,11 +249,26 @@
 
         function onLanguageChange(lang) {
             localStorage.setItem("siteLang", lang);
+            const elements = document.querySelectorAll("[data-i18n]");
+            elements.forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (typeof translations !== "undefined" && translations[lang] && translations[lang][key]) {
+                    if (el.hasAttribute("placeholder")) {
+                        el.placeholder = translations[lang][key];
+                        el.setAttribute("title", translations[lang][key]);
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+            if (typeof translations !== "undefined" && translations[lang] && translations[lang]["pageTitle"]) {
+                document.title = translations[lang]["pageTitle"];
+            }
         }
     </script>
+    
     <script>
         let skinViewer;
-
         async function getPlayerTextures(playerName) {
             const uuidResponse = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`, { cache: 'reload' });
             if (!uuidResponse.ok) throw new Error('Jogador não encontrado!');
@@ -415,7 +362,6 @@
                 e.preventDefault(); 
                 abrirEmNovaGuia();
             };
-            
             document.getElementById('downloadBtn').onclick = () => {
                 const link = document.createElement('a');
                 link.href = renderPerfeitoBase64;
@@ -470,249 +416,6 @@
         });
     </script>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let sequenciaDigitada = '';
-            const palavrasSecretas = ['traum', 'wtraum', 'trauma', 'wtrauma', 'traumwest', 'wtraumwest'];
-            const tamanhoMaximo = Math.max(...palavrasSecretas.map(p => p.length));
-            const urlDaImagem = './icons/traum.png';
-            let timerOpacidade;
-            let timerRemocao;
-            let timerQuebra;
-            
-            const estiloEfeitos = document.createElement('style');
-            estiloEfeitos.innerHTML = `
-                #traum-easter-egg {
-                    cursor: url('./mouse/pointer.png'), auto !important;
-                }
-                .easter-egg-physics {
-                    cursor: url('./mouse/link.png'), pointer !important;
-                    user-select: none !important;
-                    -webkit-user-select: none !important;
-                    -moz-user-select: none !important;
-                    -ms-user-select: none !important;
-                    transition: transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
-                }
-                .easter-egg-physics img {
-                    -webkit-user-drag: none;
-                    pointer-events: none;
-                }
-                @keyframes subirInterno {
-                    0% { top: 100%; opacity: 0; transform: scale(0.8); }
-                    10% { opacity: 1; }
-                    90% { opacity: 1; }
-                    100% { top: -20%; opacity: 0; transform: scale(1.2); }
-                }
-                @keyframes corArcoIrisInterno {
-                    0% { color: #ff0000; text-shadow: 0 0 5px #ff0000; }
-                    20% { color: #ffff00; text-shadow: 0 0 5px #ffff00; }
-                    40% { color: #00ff00; text-shadow: 0 0 5px #00ff00; }
-                    60% { color: #00ffff; text-shadow: 0 0 5px #00ffff; }
-                    80% { color: #0000ff; text-shadow: 0 0 5px #0000ff; }
-                    100% { color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
-                }
-                .efeito-interno-aura {
-                    position: absolute;
-                    font-size: 1.8rem;
-                    font-weight: 900;
-                    font-family: 'Righteous', cursive;
-                    pointer-events: none;
-                    animation: subirInterno 2.5s linear forwards, corArcoIrisInterno 1.5s linear infinite;
-                    z-index: 10;
-                }
-                @keyframes bubbly-physics-img {
-                    0%, 100% { transform: scale(1); box-shadow: 0 8px 32px rgba(139, 22, 22, 1); border-color: rgba(139, 22, 22, 1); }
-                    50% { transform: translateY(-15px) scale(1.02); box-shadow: 0 15px 45px rgba(139, 22, 22, 1); border-color: #E8B901; }
-                }
-                .easter-egg-physics:hover {
-                    animation: bubbly-physics-img 2s ease-in-out infinite;
-                }
-            `;
-            document.head.appendChild(estiloEfeitos);
-            
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape') {
-                    cancelarTudo();
-                    return;
-                }
-                if (event.key.length === 1) {
-                    sequenciaDigitada += event.key.toLowerCase();
-                }
-                if (sequenciaDigitada.length > tamanhoMaximo) {
-                    sequenciaDigitada = sequenciaDigitada.slice(-tamanhoMaximo);
-                }
-                const palavraEncontrada = palavrasSecretas.find(palavra => sequenciaDigitada.endsWith(palavra));
-                if (palavraEncontrada) {
-                    cancelarTudo(); 
-                    mostrarImagemSecreta();
-                    sequenciaDigitada = '';
-                }
-            });
-            
-            function cancelarTudo() {
-                let overlayExistente = document.getElementById('traum-easter-egg');
-                if (overlayExistente) overlayExistente.remove();
-                clearTimeout(timerOpacidade);
-                clearTimeout(timerRemocao);
-                clearTimeout(timerQuebra);
-                if(window.intervaloEfeitosInternos) clearInterval(window.intervaloEfeitosInternos);
-            }
-            
-            function mostrarImagemSecreta() {
-                const overlay = document.createElement('div');
-                overlay.id = 'traum-easter-egg';
-                overlay.style.position = 'fixed';
-                overlay.style.top = '0';
-                overlay.style.left = '0';
-                overlay.style.width = '100vw';
-                overlay.style.height = '100vh';
-                overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-                overlay.style.display = 'flex';
-                overlay.style.justifyContent = 'center';
-                overlay.style.alignItems = 'center';
-                overlay.style.zIndex = '999999';
-                overlay.style.opacity = '0';
-                overlay.style.transition = 'opacity 0.5s ease';
-                
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'easter-egg-physics'; 
-                imgContainer.style.position = 'relative';
-                imgContainer.style.maxWidth = '80vw'; 
-                imgContainer.style.maxHeight = '80vh';
-                imgContainer.style.borderRadius = '16px';
-                imgContainer.style.boxShadow = '0 8px 32px rgba(139, 22, 22, 1)';
-                imgContainer.style.border = '1px solid #8B1616';
-                imgContainer.style.overflow = 'hidden'; 
-                imgContainer.style.display = 'flex';
-                imgContainer.style.backgroundColor = '#121212'; 
-                imgContainer.addEventListener('contextmenu', e => e.preventDefault());
-                
-                const img = document.createElement('img');
-                img.src = urlDaImagem;
-                img.style.maxWidth = '100%';
-                img.style.maxHeight = '100%';
-                img.style.objectFit = 'contain';
-                img.draggable = false;
-                
-                imgContainer.appendChild(img);
-                overlay.appendChild(imgContainer);
-                document.body.appendChild(overlay);
-                
-                setTimeout(() => {
-                    if(document.getElementById('traum-easter-egg')) overlay.style.opacity = '1';
-                }, 50);
-                
-                iniciarEfeitosInternos(imgContainer);
-                
-                timerQuebra = setTimeout(() => {
-                    if (document.body.contains(img)) {
-                        if(window.intervaloEfeitosInternos) clearInterval(window.intervaloEfeitosInternos);
-                        imgContainer.className = ''; 
-                        imgContainer.style.border = 'none';
-                        imgContainer.style.boxShadow = 'none';
-                        imgContainer.style.backgroundColor = 'transparent';
-                        imgContainer.querySelectorAll('.efeito-interno-aura').forEach(el => el.style.visibility = 'hidden');
-                        quebrarImagem(img, overlay);
-                    }
-                }, 11000); 
-                
-                timerOpacidade = setTimeout(() => {
-                    if(document.getElementById('traum-easter-egg')) {
-                        overlay.style.opacity = '0';
-                        timerRemocao = setTimeout(() => {
-                            if (overlay.parentNode) {
-                                overlay.parentNode.removeChild(overlay);
-                            }
-                        }, 500);
-                    }
-                }, 11600);
-            }
-            
-            function iniciarEfeitosInternos(container) {
-                if(window.intervaloEfeitosInternos) clearInterval(window.intervaloEfeitosInternos);
-                window.intervaloEfeitosInternos = setInterval(() => {
-                    if (container.querySelectorAll('.efeito-interno-aura').length >= 3) return; 
-                    const aura = document.createElement('div');
-                    aura.className = 'efeito-interno-aura';
-                    aura.textContent = 'W Traum';
-                    aura.style.left = (Math.random() * 70) + '%'; 
-                    const duracao = 2 + Math.random(); 
-                    aura.style.animationDuration = duracao + 's, 1.5s'; 
-                    container.appendChild(aura);
-                    setTimeout(() => { 
-                        if(aura.parentNode) aura.remove(); 
-                    }, duracao * 1000);
-                }, 400); 
-            }
-            
-            function quebrarImagem(img, wrapperOverlay) {
-                const rect = img.getBoundingClientRect();
-                img.style.visibility = 'hidden'; 
-                const cols = 6;
-                const rows = 6;
-                const pieceWidth = rect.width / cols;
-                const pieceHeight = rect.height / rows;
-                for (let i = 0; i < cols; i++) {
-                    for (let j = 0; j < rows; j++) {
-                        const piece = document.createElement('div');
-                        piece.style.position = 'absolute';
-                        piece.style.width = pieceWidth + 'px';
-                        piece.style.height = pieceHeight + 'px';
-                        piece.style.left = (rect.left + (i * pieceWidth)) + 'px'; 
-                        piece.style.top = (rect.top + (j * pieceHeight)) + 'px';
-                        piece.style.backgroundImage = `url(${img.src})`;
-                        piece.style.backgroundSize = `${rect.width}px ${rect.height}px`;
-                        piece.style.backgroundPosition = `-${i * pieceWidth}px -${j * pieceHeight}px`;
-                        piece.style.transition = 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)'; 
-                        wrapperOverlay.appendChild(piece);
-                        const centroX = cols / 2;
-                        const dirX = (i - centroX) / centroX; 
-                        const randomX = dirX * (Math.random() * 200 + 50); 
-                        const randomY = Math.random() * 200 + 100; 
-                        const randomRot = (Math.random() - 0.5) * 500; 
-                        requestAnimationFrame(() => {
-                            requestAnimationFrame(() => {
-                                piece.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRot}deg) scale(0)`;
-                                piece.style.opacity = '0';
-                            });
-                        });
-                    }
-                }
-            }
-        });
-    </script>
-    <script>
-        function changeLanguage(lang) {
-            localStorage.setItem("siteLang", lang);
-            const elements = document.querySelectorAll("[data-i18n]");
-            elements.forEach(el => {
-                const key = el.getAttribute("data-i18n");
-                if (typeof translations !== "undefined" && translations[lang] && translations[lang][key]) {
-                    if (el.hasAttribute("placeholder")) {
-                        el.placeholder = translations[lang][key];
-                        el.setAttribute("title", translations[lang][key]);
-                    } else {
-                        el.textContent = translations[lang][key];
-                    }
-                }
-            });
-            if (typeof translations !== "undefined" && translations[lang] && translations[lang]["pageTitle"]) {
-                document.title = translations[lang]["pageTitle"];
-            }
-        }
-        
-        document.addEventListener("DOMContentLoaded", () => {
-            let savedLang = localStorage.getItem("siteLang");
-            if (!savedLang) {
-                const browserLang = navigator.language || navigator.userLanguage;
-                savedLang = (typeof translations !== "undefined" && translations[browserLang]) ? browserLang : "pt-BR";
-                localStorage.setItem("siteLang", savedLang);
-            }
-            const selectEl = document.querySelector("#idiomaSelect");
-            if (selectEl) selectEl.value = savedLang;
-            changeLanguage(savedLang);
-        });
-    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let sequenciaEfeitos = '';
@@ -817,13 +520,22 @@
             });
         });
     </script>
+    
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.body.style.overflowX = 'hidden';
-            document.documentElement.style.overflowX = 'hidden';
-            document.addEventListener('touchmove', function(e) {
-            }, { passive: true });
-        });
+      document.addEventListener("DOMContentLoaded", function () {
+        const userAgent = navigator.userAgent.toLowerCase();
+        if (userAgent.includes("firefox") && !userAgent.includes("librewolf")) {
+          document.body.style.zoom = "85%";
+        }
+      });
+    </script>
+    <script>
+      function isMobileDevice() {
+        return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      }
+      if (isMobileDevice()) {
+        document.body.classList.add('allow-scroll');
+      }
     </script>
 </body>
 </html>
