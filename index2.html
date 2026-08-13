@@ -5,10 +5,10 @@
 <meta http-equiv="Content-Security-Policy" 
 content="
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  img-src 'self' data: blob: https://minecraftinicio.vercel.app https://minotar.net;
-  connect-src 'self' https://corsjangapi.b-cdn.net https://corsproxy.io;
+  img-src 'self' data: blob: https://minecraftinicio.vercel.app https://minotar.net https://textures.minecraft.net;
+  connect-src 'self' https://corsjangapi.b-cdn.net https://corsproxy.io https://api.gapple.pw https://sessionserver.mojang.com https://api.mojang.com;
   font-src 'self' https://fonts.gstatic.com;
 ">
 <meta content="website" property="og:type"/>
@@ -323,6 +323,7 @@ content="
 <script src="js2/dompurify.min.js"></script>
 <script src="js2/security.js"></script>
 <script src="idioma/translationsindex2.js"></script>
+<script src="https://unpkg.com/skinview3d@3.0.0-alpha.1/bundles/skinview3d.bundle.js"></script>
 <script>
     const themeSwitcher = document.getElementById('theme_switcher');
     function applyTheme(theme) {
@@ -435,20 +436,78 @@ content="
     imgMini.src = novaUrlMini;
     console.log("--- Função Recarregar Avatar concluída ---");
 	}
-	function exibirNickOcupado(player) {
+function exibirNickOcupado(player) {
 		const lang = localStorage.getItem("siteLang") || "pt-BR";
 		const nomeJogador = player.name;
 		const uuid = player.uuid;
 		const crafatarHeadUrl = `https://minotar.net/helm/${uuid}/256.png`;
-		const starlightBodyUrl = `https://minecraftinicio.vercel.app/render.html?uuid=${uuid}`;
-
 		const ocupadoMsg = (translations[lang]["jsNickOcupado"] || "❌ O Nick <strong>{{nick}}</strong> Está <strong>OCUPADO!</strong>")
 							.replace("{{nick}}", nomeJogador);
-
-		const altTitleCabeca = (translations[lang]["altTitleCabeca"] || "Cabeça: {{nick}}")
-		                        .replace("{{nick}}", nomeJogador);
-		const altTitleBebe = (translations[lang]["altTitleBebe"] || "Bebê: {{nick}}")
-		                      .replace("{{nick}}", nomeJogador);
+		const altTitleCabeca = (translations[lang]["altTitleCabeca"] || "Cabeça: {{nick}}").replace("{{nick}}", nomeJogador);
+		const altTitleBebe = (translations[lang]["altTitleBebe"] || "Bebê: {{nick}}").replace("{{nick}}", nomeJogador);
+		const viewerId = `baby-viewer-${uuid}`;
+		requestAnimationFrame(async () => {
+			try {
+				const container = document.getElementById(viewerId);
+				if (!container) return;
+				const canvas = document.createElement('canvas');
+				canvas.width = 40;
+				canvas.height = 40;
+				canvas.style.cssText = "width: 40px; height: 40px; display: block; vertical-align: middle; cursor: grab;";
+				container.innerHTML = "";
+				container.appendChild(canvas);
+				const skinViewer = new skinview3d.SkinViewer({
+					canvas: canvas,
+					width: 40,
+					height: 40,
+					skin: `https://minotar.net/skin/${uuid}`,
+					alpha: true
+				});
+				fetch(`https://api.gapple.pw/cors/sessionserver/${uuid}`)
+					.then(res => res.json())
+					.then(async profileData => {
+						const texturesProperty = profileData.properties?.find(p => p.name === 'textures');
+						if (texturesProperty) {
+							const decoded = JSON.parse(atob(texturesProperty.value));
+							const skinUrl = decoded.textures?.SKIN?.url?.replace("http://", "https://");
+							const capeUrl = decoded.textures?.CAPE?.url?.replace("http://", "https://");
+							if (skinUrl) await skinViewer.loadSkin(skinUrl);
+							if (capeUrl) await skinViewer.loadCape(capeUrl);
+						}
+					}).catch(() => {});
+				skinViewer.zoom = 0.96;
+				const modelPlayer = skinViewer.playerObject;
+				modelPlayer.scale.set(0.9, 0.65, 0.9);
+				modelPlayer.skin.head.scale.set(1.83, 2.54, 1.83);
+				modelPlayer.skin.rightLeg.rotation.x = -0.15;
+				modelPlayer.skin.leftLeg.rotation.x = 0.15;
+				modelPlayer.skin.rightArm.rotation.x = 0.15;
+				modelPlayer.skin.leftArm.rotation.x = -0.15;
+				modelPlayer.position.y = -6.0; 
+				modelPlayer.rotation.y = Math.PI / 8;
+				skinViewer.animation = null;
+				skinViewer.controls.enableRotate = true;
+				skinViewer.controls.enableZoom = true;
+				skinViewer.render();
+				function abrirAbaUnica(e) {
+					e.preventDefault();
+					e.stopPropagation();
+					setTimeout(() => {
+						const renderPerfeitoBase64 = canvas.toDataURL("image/png");
+						const novaAba = window.open();
+						if (novaAba) {
+							novaAba.document.write(`<!DOCTYPE html><html><head><title>${nomeJogador}.png</title></head><body style="margin:0;height:100vh;display:flex;justify-content:center;align-items:center;background:#121212;"><img src="${renderPerfeitoBase64}" style="image-rendering: pixelated; width: 300px; height: 300px;"/></body></html>`);
+							novaAba.document.close();
+						} else {
+							alert("O navegador bloqueou a nova aba. Por favor, permita pop-ups.");
+						}
+					}, 50);
+				}
+				container.oncontextmenu = abrirAbaUnica;
+			} catch (err) {
+				console.error("Erro ao renderizar bebê 3D:", err);
+			}
+		});
 		const altNameMC = translations[lang]["altPerfilNameMC"] || "Perfil NameMC";
 		const titleNameMC = translations[lang]["titlePerfilNameMC"] || "Perfil NameMC";
 		const altCapesME = translations[lang]["altPerfilCapesME"] || "Perfil CapesME";
@@ -479,18 +538,19 @@ content="
 		const titleBadLion = translations[lang]["titlePerfilBadLion"] || "Perfil BadLion";
 		const altLabyMod = translations[lang]["altPerfilLabyMod"] || "Perfil LabyMod";
 		const titleLabyMod = translations[lang]["titlePerfilLabyMod"] || "Perfil LabyMod";
-		const titleRecarregar = translations[lang]["titleRecarregar"] || "Recarregar Cabeça / Bebê";
-
-
+		const titleRecarregar = translations[lang]["titleRecarregar"] || "Recarregar Cabeça";
 		return `
-			<div class="nick-item">
+			<div class="nick-item" style="display: flex; align-items: center; gap: 5px;">
 				<a href="#" onclick="event.preventDefault(); recarregarAvatar('${uuid}')" class="reload-button" title="${titleRecarregar}">🔄️</a>
-				<a href="${crafatarHeadUrl}" target="_blank">
-					<img id="head-${uuid}" src="${crafatarHeadUrl}" class="img-fluid" alt="${altTitleCabeca}" title="${altTitleCabeca}">
+				<a href="${crafatarHeadUrl}" target="_blank" style="display: inline-flex; align-items: center;">
+					<img id="head-${uuid}" src="${crafatarHeadUrl}" class="img-fluid" style="width: 40px; height: 40px; vertical-align: middle;" alt="${altTitleCabeca}" title="${altTitleCabeca}">
 				</a>
-				<a href="${starlightBodyUrl}" target="_blank">
-					<img id="mini-${uuid}" src="${starlightBodyUrl}" class="img-fluid" alt="${altTitleBebe}" title="${altTitleBebe}">
-				</a>
+				
+				<!-- Container ajustado para 40px, alinhado perfeitamente lado a lado -->
+				<span id="${viewerId}" title="${altTitleBebe}" style="display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; vertical-align: middle; overflow: hidden; margin: 0 2px;">
+					<img src="./icons/steve.png" class="img-fluid" style="width: 40px; height: 40px; display: block;" alt="${altTitleBebe}">
+				</span>
+
 				${ocupadoMsg}
 
 				<a href="https://namemc.com/${nomeJogador}" target="_blank"><img src="./icons/favicon-30.png" alt="${altNameMC}" title="${titleNameMC}"></a>
@@ -510,7 +570,6 @@ content="
 				<a href="https://laby.net/@${nomeJogador}" target="_blank"><img src="./icons/labymod.png" alt="${altLabyMod}" title="${titleLabyMod}"></a>
 			</div>`;
 	}
-
 	function exibirNickDisponivel(nomeJogador) {
 		const lang = localStorage.getItem("siteLang") || "pt-BR";
 
