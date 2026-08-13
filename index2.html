@@ -401,40 +401,77 @@ content="
 			return null;
 		}
 	}
-	function recarregarAvatar(uuid) {
-    console.log("--- Função recarregarAvatar iniciada ---");
-    console.log("UUID recebido pela função:", uuid);
-    const idCabeca = 'head-' + uuid;
-    const idMini = 'mini-' + uuid;
-    console.log("Procurando pelo ID da cabeça:", idCabeca);
-    console.log("Procurando pelo ID do mini:", idMini);
-    const imgCabeca = document.getElementById(idCabeca);
-    const imgMini = document.getElementById(idMini);
-    console.log("Elemento <img> da cabeça encontrado:", imgCabeca);
-    console.log("Elemento <img> do mini encontrado:", imgMini);
-    if (!imgCabeca || !imgMini) {
-        console.error("ERRO CRÍTICO: Não foi possível encontrar um ou ambos os elementos <img>.");
-        return; 
-    }
-    console.log("URL atual da cabeça (antes da mudança):", imgCabeca.src);
-    console.log("URL atual do mini (antes da mudança):", imgMini.src);
-    console.log("--- Iniciando construção da nova URL ---");
-    const urlLimpaCabeca = imgCabeca.src.replace(/&?t=\d+/, '');
-    const urlLimpaMini = imgMini.src.replace(/&?t=\d+/, '');
-    console.log("URL da cabeça após limpar timestamp antigo:", urlLimpaCabeca);
-    const timestamp = Date.now();
-    const novaUrlCabeca = urlLimpaCabeca.includes('?') 
-        ? `${urlLimpaCabeca}&t=${timestamp}` 
-        : `${urlLimpaCabeca}?t=${timestamp}`;
-    const novaUrlMini = urlLimpaMini.includes('?')
-        ? `${urlLimpaMini}&t=${timestamp}`
-        : `${urlLimpaMini}?t=${timestamp}`;
-    console.log("URL NOVA para a cabeça (com overlay preservado):", novaUrlCabeca);
-    console.log("URL NOVA para o mini:", novaUrlMini);
-    console.log("...Atualizando 'src' das imagens agora...");
-    imgCabeca.src = novaUrlCabeca;
-    imgMini.src = novaUrlMini;
-    console.log("--- Função Recarregar Avatar concluída ---");
+function recarregarAvatar(uuid) {
+		console.log("--- Função recarregarAvatar iniciada ---");
+		console.log("UUID recebido pela função:", uuid);
+		const timestamp = Date.now();
+		const idCabeca = 'head-' + uuid;
+		const imgCabeca = document.getElementById(idCabeca);
+		console.log("Procurando pelo ID da cabeça:", idCabeca);
+		if (imgCabeca) {
+			console.log("URL atual da cabeça (antes da mudança):", imgCabeca.src);
+			const urlLimpaCabeca = imgCabeca.src.replace(/&?t=\d+/, '');
+			const novaUrlCabeca = urlLimpaCabeca.includes('?') 
+				? `${urlLimpaCabeca}&t=${timestamp}` 
+				: `${urlLimpaCabeca}?t=${timestamp}`;
+			console.log("URL NOVA para a cabeça:", novaUrlCabeca);
+			imgCabeca.src = novaUrlCabeca;
+		} else {
+			console.error("Não foi possível encontrar o elemento <img> da cabeça.");
+		}
+		const viewerId = `baby-viewer-${uuid}`;
+		console.log("Procurando pelo ID do container do bebê 3D:", viewerId);
+		const container = document.getElementById(viewerId);
+		if (container) {
+			console.log("Container do bebê encontrado. Recriando canvas...");
+			container.innerHTML = "";
+			const canvas = document.createElement('canvas');
+			canvas.width = 40;
+			canvas.height = 40;
+			canvas.style.cssText = "width: 40px; height: 40px; display: block; vertical-align: middle; cursor: grab;";
+			container.appendChild(canvas);
+			const skinViewer = new skinview3d.SkinViewer({
+				canvas: canvas,
+				width: 40,
+				height: 40,
+				skin: `https://minotar.net/skin/${uuid}?t=${timestamp}`,
+				alpha: true
+			});
+			skinViewer.zoom = 1.12;
+			const modelPlayer = skinViewer.playerObject;
+			modelPlayer.scale.set(0.9, 0.65, 0.9);
+			modelPlayer.skin.head.scale.set(1.83, 2.54, 1.83);
+			modelPlayer.skin.rightLeg.rotation.x = -0.15;
+			modelPlayer.skin.leftLeg.rotation.x = 0.15;
+			modelPlayer.skin.rightArm.rotation.x = 0.15;
+			modelPlayer.skin.leftArm.rotation.x = -0.15;
+			modelPlayer.position.y = -6.0; 
+			modelPlayer.rotation.y = Math.PI / 8;
+			skinViewer.animation = null;
+			skinViewer.controls.enableRotate = true;
+			skinViewer.controls.enableZoom = true;
+			skinViewer.controls.enablePan = false;
+			fetch(`https://api.gapple.pw/cors/sessionserver/${uuid}?t=${timestamp}`)
+				.then(res => res.json())
+				.then(async profileData => {
+					const texturesProperty = profileData.properties?.find(p => p.name === 'textures');
+					if (texturesProperty) {
+						const decoded = JSON.parse(atob(texturesProperty.value));
+						const skinUrl = decoded.textures?.SKIN?.url?.replace("http://", "https://");
+						const capeUrl = decoded.textures?.CAPE?.url?.replace("http://", "https://");
+						if (skinUrl) await skinViewer.loadSkin(skinUrl);
+						if (capeUrl) await skinViewer.loadCape(capeUrl);
+					}
+				}).catch(() => {});
+			skinViewer.render();
+			canvas.addEventListener("contextmenu", function(e) {
+				e.stopPropagation();
+			}, true);
+			console.log("Bebê 3D recriado com sucesso com a nova URL.");
+		} else {
+			console.error("ERRO CRÍTICO: Não foi possível encontrar o container do bebê 3D.");
+		}
+		console.log("--- Função Recarregar Avatar concluída ---");
 	}
 function exibirNickOcupado(player) {
 		const lang = localStorage.getItem("siteLang") || "pt-BR";
@@ -475,7 +512,7 @@ function exibirNickOcupado(player) {
 							if (capeUrl) await skinViewer.loadCape(capeUrl);
 						}
 					}).catch(() => {});
-				skinViewer.zoom = 0.96;
+				skinViewer.zoom = 1.12;
 				const modelPlayer = skinViewer.playerObject;
 				modelPlayer.scale.set(0.9, 0.65, 0.9);
 				modelPlayer.skin.head.scale.set(1.83, 2.54, 1.83);
@@ -488,22 +525,11 @@ function exibirNickOcupado(player) {
 				skinViewer.animation = null;
 				skinViewer.controls.enableRotate = true;
 				skinViewer.controls.enableZoom = true;
+				skinViewer.controls.enablePan = false;
 				skinViewer.render();
-				function abrirAbaUnica(e) {
-					e.preventDefault();
+				canvas.addEventListener("contextmenu", function(e) {
 					e.stopPropagation();
-					setTimeout(() => {
-						const renderPerfeitoBase64 = canvas.toDataURL("image/png");
-						const novaAba = window.open();
-						if (novaAba) {
-							novaAba.document.write(`<!DOCTYPE html><html><head><title>${nomeJogador}.png</title></head><body style="margin:0;height:100vh;display:flex;justify-content:center;align-items:center;background:#121212;"><img src="${renderPerfeitoBase64}" style="image-rendering: pixelated; width: 300px; height: 300px;"/></body></html>`);
-							novaAba.document.close();
-						} else {
-							alert("O navegador bloqueou a nova aba. Por favor, permita pop-ups.");
-						}
-					}, 50);
-				}
-				container.oncontextmenu = abrirAbaUnica;
+				}, true);
 			} catch (err) {
 				console.error("Erro ao renderizar bebê 3D:", err);
 			}
@@ -614,7 +640,7 @@ function exibirNickOcupado(player) {
 		return `
 			<div class="nick-item">
 				<a href="https://minotar.net/helm/${nomeJogador}/600.png" target="_blank"><img src="./icons/cabeca.png" class="img-fluid" alt="${altTitleCabeca}" title="${altTitleCabeca}"></a>
-				<a href="https://starlightskins.lunareclipse.studio/render/mojavatar/steve/full" target="_blank"><img src="./icons/steve.png" class="img-fluid" alt="${altTitleBebe}" title="${altTitleBebe}"></a>
+				<a href="https://minecraftinicio.vercel.app/icons/steve.png" target="_blank"><img src="./icons/steve.png" class="img-fluid" alt="${altTitleBebe}" title="${altTitleBebe}"></a>
 
 				${disponivelMsg}
 
