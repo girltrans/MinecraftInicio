@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link href="images/favicon.png" rel="icon" type="image/x-icon"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Início</title>
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      img-src 'self' data: blob: https://minecraftinicio.vercel.app https://minotar.net https://textures.minecraft.net;
+      connect-src 'self' https://corsjangapi.b-cdn.net https://corsproxy.io https://api.gapple.pw https://sessionserver.mojang.com https://api.mojang.com;
+      font-src 'self' https://fonts.gstatic.com;
+    ">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet"/>
+    <script src="https://unpkg.com/skinview3d@3.0.0-alpha.1/bundles/skinview3d.bundle.js"></script>
+    <link href="css/style.css" rel="stylesheet"/>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Righteous', cursive !important;
+        }
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            overscroll-behavior-x: contain;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/background.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #e8b901;
+            min-height: 100vh;
+        }
+        body.theme-light-bg {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('images/background2.png');
+        }
+        body.theme-light-bg .github img {
+            filter: invert(0);
+            opacity: 0.6;
+        }
+        @keyframes rainbow-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        body.theme-rainbow-bg {
+            background-image: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #FF0000, #FFA500, #FFFF00, #00FF00, #0000FF, #4B0082, #EE82EE, #23d5ab), url('images/background3.png');
+            background-size: 400% 400%, cover;
+            animation: rainbow-animation 15s ease infinite;
+        }
+        
+        .content { max-width: 1200px; margin: 0 auto; padding-top: 2rem; }
+        .github { position: absolute; right: 20px; top: 80px; }
+        * { scrollbar-color: #8B1616 #121212; scrollbar-width: thin; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #121212; }
+        ::-webkit-scrollbar-thumb { background-color: #8B1616; border-radius: 6px; border: 2px solid #121212; }
+        ::-webkit-scrollbar-thumb:hover { background-color: #e8b901; }
+        .studio-container {
+            background: rgba(18, 18, 18, 0.9);
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 2px 18px #8b1616;
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            margin: 2rem auto; /* Centraliza no container principal */
+        }
+        .studio-container h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            color: #e8b901;
+        }
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+        .search-box input[type="text"] {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #8B1616;
+            font-size: 1rem;
+            background: #121212;
+            color: #e8b901;
+            outline: none;
+            box-shadow: 0 2px 10px rgba(139, 22, 22, 0.5);
+        }
+        .search-box input[type="text"]::placeholder {
+            color: #e8b901;
+            opacity: 0.7;
+        }
+        .studio-container button {
+            background: #121212;
+            color: #E8B901;
+            border: 1px solid #8B1616;
+            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 18px #8b1616;
+        }
+        .studio-container button:hover {
+            background-color: #E8B901;
+            color: #121212;
+            transform: scale(1.05);
+        }
+        #ign_status {
+            font-size: 0.98rem;
+            color: #ffd700;
+            height: 1.8em;
+            margin-bottom: 10px;
+            text-shadow: 0 1px 4px #0005;
+        }
+        .render-viewer {
+            background: #121212;
+            border-radius: 18px;
+            box-shadow: 0 2px 18px #8b1616;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #8B1616;
+            position: relative;
+            overflow: hidden;
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+        canvas {
+            display: block;
+            outline: none;
+            cursor: grab;
+        }
+        canvas:active {
+            cursor: grabbing;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            width: 100%;
+        }
+        .button-group button {
+            flex: 1;
+            width: auto;
+            margin-top: 0 !important;
+            font-size: 0.9rem !important;
+            padding: 0.6rem 0.5rem !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="theme-selector">
+            <select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;" title="Mudar Tema Do Site">
+                <option value="dark" data-i18n="tituloEscuro">🌙 Escuro</option>
+                <option value="light" data-i18n="tituloClaro">☀️ Claro</option>
+                <option value="rainbow" data-i18n="tituloArcoIris">🌈 Arco-Íris</option>
+            </select>
+        </div>
+        <a href="http://areaprotegida.vercel.app" style="display: flex; align-items: center; text-decoration: none; padding: 0.2rem; border-radius: 10px; transition: background 0.18s;">
+            <img alt="Favicon Logo" src="images/favicon.png" style="width: 3.2rem;height: 3.2rem;border-radius: 8px;"/>
+            <span data-i18n="tituloInicio" style="font-family: 'Righteous', cursive; font-weight: 700; font-size: 1.9rem; color: #e8b901; margin-left: 0.6rem; user-select: none;">Início</span>
+        </a>
+        <a href="./index2.html" data-i18n="tituloMinecraftVerificarNicks" style="color: #8B1616;font-family: 'Righteous', cursive;font-size: 1.2rem;font-weight: 600;padding: 0.5rem 1.5rem;border-radius: 12px;text-decoration: none;transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Minecraft Verificar Nicks</a>
+        <b>
+            <a href="./index.html" data-i18n="tituloTestarSkin" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Testar Skin e Capa</a>
+            <a href="./index3.html" data-i18n="tituloEditarSkin" style="color: #8B1616; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Editar Skin</a>
+            <a href="./index4.html" data-i18n="tituloSkinBebe" style="color: #e8b901; font-family: 'Righteous', cursive; font-size: 1.2rem; font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 12px; text-decoration: none; transition: background 0.2s, color 0.2s, box-shadow 0.2s;">Skin Bebê</a>
+        </b>
+    </nav>
+    <div class="content-wrapper">
+        <div class="content">
+            <a class="github" href="https://github.com/girltrans" rel="nofollow" target="_blank" title="GitHub Repositório">
+                <img alt="GitHub Icon" src="./icons/github.png" title="GitHub" style="width: 32px; height: 32px;"/>
+            </a>
+            <div class="studio-container">
+                <h1 data-i18n="tituloGerarBebe">Gerar Bebê Com Capa</h1>
+                <form class="search-box" id="render-form">
+                    <input autocomplete="off" id="ign" maxlength="16" placeholder="Nick do jogador" type="text" data-i18n="placeholderNickBase" />
+                    <button type="submit" id="gerarBtn" data-i18n="botaoGerar">Gerar</button>
+                </form>
+                <div id="ign_status"></div>
+                <div class="render-viewer" id="canvas-container"></div>
+                
+                <div class="button-group" id="actionButtons" style="display: none;">
+                    <button id="openTabBtn" data-i18n="btnVerBebe">🔍 Ver Bebê</button>
+                    <button id="downloadBtn" data-i18n="btnBaixarBebe">💾 Baixar Bebê</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="idioma/translationsindex.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeSwitcher = document.getElementById('theme_switcher');
+            function applyTheme(theme) {
+                document.body.classList.remove('theme-light-bg', 'theme-rainbow-bg');
+                if (theme === 'light') {
+                    document.body.classList.add('theme-light-bg');
+                } else if (theme === 'rainbow') {
+                    document.body.classList.add('theme-rainbow-bg');
+                }
+                localStorage.setItem('site_theme', theme);
+            }
+            themeSwitcher.addEventListener('change', function() {
+                applyTheme(this.value);
+            });
+            const savedTheme = localStorage.getItem('site_theme') || 'dark';
+            themeSwitcher.value = savedTheme;
+            applyTheme(savedTheme);
+        });
+        document.addEventListener("DOMContentLoaded", () => {
+            const langSelector = `
+                <select id="idiomaSelect" onchange="onLanguageChange(this.value)"
+                style="padding:5px;border-radius:5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right: 20px;position:relative;top:8px;background:#121212;color:#e8b901;border:1px solid #8B1616;box-shadow: 0 2px 18px #8b1616;cursor:pointer;">
+                    <option value="pt-BR">Português 🇧🇷</option>
+                    <option value="pt-PT">Português 🇵🇹</option>
+                    <option value="es">Español 🇪🇸</option>
+                    <option value="us">English 🇺🇸</option>
+                    <option value="fr">Français 🇫🇷</option>
+                    <option value="jp">日本語 🇯🇵</option>
+                    <option value="kr">한국어 🇰🇷</option>
+                    <option value="zh-CN">中文-简体 🇨🇳</option>
+                    <option value="zh-TW">中文-繁體 🇨🇳</option>
+                    <option value="ru">Русский 🇷🇺</option>
+                    <option value="de">Deutsch 🇩🇪</option>
+                </select>
+            `;
+            const themeElement = document.querySelector("#theme_switcher"); 
+            if (themeElement) {
+                themeElement.insertAdjacentHTML("beforebegin", langSelector);
+            }
+            
+            const savedLang = localStorage.getItem("siteLang") || "pt-BR";
+            const selectEl = document.getElementById("idiomaSelect");
+            if(selectEl) selectEl.value = savedLang;
+        });
+
+        function onLanguageChange(lang) {
+            localStorage.setItem("siteLang", lang);
+        }
+    </script>
+    <script>
+        let skinViewer;
+        async function getPlayerTextures(playerName) {
+            const uuidResponse = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`, { cache: 'reload' });
+            if (!uuidResponse.ok) throw new Error('Jogador não encontrado!');
+            const playerData = await uuidResponse.json();
+            const uuid = playerData.id;
+            const profileResponse = await fetch(`https://api.gapple.pw/cors/sessionserver/${uuid}`, { cache: 'reload' });
+            if (!profileResponse.ok) throw new Error('Não foi possível obter o perfil');
+            const profileData = await profileResponse.json();
+            const texturesProperty = profileData.properties.find(prop => prop.name === 'textures');
+            if (!texturesProperty) throw new Error('Propriedades de textura não encontradas');
+            const decodedValue = atob(texturesProperty.value);
+            const textureData = JSON.parse(decodedValue);
+            let skinUrl = textureData.textures?.SKIN?.url;
+            if (!skinUrl) throw new Error('URL da skin não encontrada');
+            skinUrl = skinUrl.replace("http://", "https://");
+            let capeUrl = null;
+            if (textureData.textures?.CAPE?.url) {
+                capeUrl = textureData.textures.CAPE.url.replace("http://", "https://");
+            }
+            return { skinUrl, capeUrl };
+        }
+        async function renderBabySkin(textures) {
+            const container = document.getElementById("canvas-container");
+            container.innerHTML = ""; 
+            const canvasElement = document.createElement("canvas");
+            canvasElement.style.opacity = "0"; 
+            canvasElement.style.transition = "opacity 0.3s ease-in-out"; 
+            skinViewer = new skinview3d.SkinViewer({
+                canvas: canvasElement,
+                width: 300,
+                height: 300,
+                alpha: true 
+            });
+            container.appendChild(skinViewer.canvas);
+            const promessasCarregamento = [];
+            if (textures.skinUrl) promessasCarregamento.push(skinViewer.loadSkin(textures.skinUrl));
+            if (textures.capeUrl) promessasCarregamento.push(skinViewer.loadCape(textures.capeUrl));
+            await Promise.all(promessasCarregamento);
+            skinViewer.zoom = 0.96;
+            const player = skinViewer.playerObject;
+            player.scale.set(0.9, 0.65, 0.9);
+            player.skin.head.scale.set(1.83, 2.54, 1.83);
+            player.skin.rightLeg.rotation.x = -0.15;
+            player.skin.leftLeg.rotation.x = 0.15;
+            player.skin.rightArm.rotation.x = 0.15;
+            player.skin.leftArm.rotation.x = -0.15;
+            player.position.y = -6.0; 
+            player.rotation.y = Math.PI / 8;
+            skinViewer.animation = null;
+            skinViewer.render();
+            requestAnimationFrame(() => {
+                canvasElement.style.opacity = "1";
+            });
+            const renderPerfeitoBase64 = skinViewer.canvas.toDataURL("image/png");
+            skinViewer.controls.enableRotate = true;
+            skinViewer.controls.enableZoom = true;
+            skinViewer.controls.enablePan = true;
+            document.getElementById("actionButtons").style.display = 'flex';
+            function abrirEmNovaGuia() {
+                const nick = document.getElementById('ign').value || 'Bebê';
+                const novaAba = window.open();
+                if (novaAba) {
+                    novaAba.document.write(`
+                        <!DOCTYPE html>
+                        <html lang="pt-BR">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, minimum-scale=0.1">
+                            <title>${nick}.png</title>
+                        </head>
+                        <body style="margin: 0px; height: 100vh; display: flex; justify-content: center; align-items: center; background-color: transparent;">
+                            <img style="display: block; margin: auto;" src="${renderPerfeitoBase64}" alt="Avatar PNG">
+                        </body>
+                        </html>
+                    `);
+                    novaAba.document.close();
+                } else {
+                    alert("O navegador bloqueou a nova aba. Por favor, permita pop-ups.");
+                }
+            }
+            document.getElementById('openTabBtn').onclick = abrirEmNovaGuia;
+            skinViewer.canvas.oncontextmenu = function(e) {
+                e.preventDefault(); 
+                abrirEmNovaGuia();
+            };
+            document.getElementById('downloadBtn').onclick = () => {
+                const link = document.createElement('a');
+                link.href = renderPerfeitoBase64;
+                link.download = `${document.getElementById('ign').value || 'avatar'}-avatar.png`;
+                link.click();
+            };
+        }
+        document.getElementById('render-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const ign = document.getElementById('ign').value.trim();
+            const statusDiv = document.getElementById('ign_status');
+            const btn = document.getElementById('gerarBtn');
+            if (!ign) return;
+            btn.disabled = true;
+            btn.textContent = "Buscando...";
+            statusDiv.textContent = "Buscando Skin e Capa...";
+            document.getElementById("actionButtons").style.display = 'none';
+            try {
+                const textures = await getPlayerTextures(ign);
+                statusDiv.textContent = "Renderizando Bebê Com Capa...";
+                await renderBabySkin(textures);
+                statusDiv.textContent = "Bebê Gerado Com Sucesso!";
+                setTimeout(() => statusDiv.textContent = "", 4000);
+            } catch (error) {
+                statusDiv.textContent = error.message;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "Gerar";
+            }
+        });
+        document.getElementById('ign').addEventListener('input', function() {
+            this.value = this.value.replace(/[^a-zA-Z0-9_]/g, '');
+        });
+        window.addEventListener('DOMContentLoaded', async () => {
+            const statusDiv = document.getElementById('ign_status');
+            try {
+                const texturasPadrao = {
+                    skinUrl: "https://minotar.net/skin/ata",
+                    capeUrl: null
+                };
+                await renderBabySkin(texturasPadrao);
+                document.getElementById("actionButtons").style.display = 'none';
+                statusDiv.textContent = "Coloque Seu Nick...";
+            } catch (error) {
+                console.error("Erro ao carregar pré-renderização:", error);
+            }
+        });
+    </script>
+</body>
+</html>
