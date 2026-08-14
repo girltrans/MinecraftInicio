@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html class="" lang="pt-BR"><head>
-<link rel="manifest" href="./manifest.json">
 <link href="images/favicon.png" rel="icon" type="image/x-icon"/>
-<link rel="apple-touch-icon" href="./images/favicon.png?v=2">
 <meta content="website" property="og:type"/>
 <meta content="Minecraft Início" property="og:site_name"/>
 <meta content="Minecraft Início" property="og:title"/>
-<meta content="Minecraft Testar Skin e Capa, Verificar Nicks e Criar as suas Próprias Skins de Minecraft, A Partir do zero. ou Editar Skins existentes no seu Navegador." property="og:description"/>
+<meta content="Minecraft Testar Skin e Capa, Verificar Nicks, Gerar Skin Bebê e Criar as suas Próprias Skins de Minecraft, A Partir do zero. ou Editar Skins existentes no seu Navegador." name="twitter:description" property="og:description"/>
 <meta content="http://areaprotegida.vercel.app" property="og:url"/>
 <meta content="https://minecraftinicio.vercel.app/images/minecraftinicio.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="" name="twitter:site"/>
-<meta content="egirltrans" name="twitter:title"/>
-<meta content="Minecraft Início" name="twitter:description"/>
+<meta content="Minecraft Início" name="twitter:title"/>
+<meta content="Minecraft Testar Skin e Capa, Verificar Nicks, Gerar Skin Bebê e Criar as suas Próprias Skins de Minecraft, A Partir do zero. ou Editar Skins existentes no seu Navegador." name="twitter:description"/>
 <meta content="https://minecraftinicio.vercel.app/images/minecraftinicio.png" name="twitter:image"/>
 <link href="css/style.css" rel="stylesheet"/>
 <meta charset="UTF-8"/>
@@ -436,7 +434,7 @@ content="
 <body>
 <nav class="navbar">
 <div class="theme-selector">
-<select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;border: 2px solid #8B1616;" title="Mudar Tema Do Site">
+<select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;" title="Mudar Tema Do Site">
 <option value="dark" data-i18n="tituloEscuro">🌙 Escuro</option>
 <option value="light" data-i18n="tituloClaro" >☀️ Claro</option>
 <option value="rainbow" data-i18n="tituloArcoIris">🌈 Arco-Íris</option>
@@ -514,10 +512,9 @@ content="
 <option value="https://textures.minecraft.net/texture/56c35628fe1c4d59dd52561a3d03bfa4e1a76d397c8b9c476c2f77cb6aebb1df">🎁 MCC 15th Year</option>
 <option value="https://textures.minecraft.net/texture/99aba02ef05ec6aa4d42db8ee43796d6cd50e4b2954ab29f0caeb85f96bf52a1">🎁 Founder's</option>
 <option value="https://textures.minecraft.net/texture/a3f6e4f14801f3ea55e3d95b9b4ef3b5e8802d947f669de93d6ec4b9354a436b">🎁 Zombie Horse</option>
-<option value="./images/craftercape1upsidedown.png">🎁 Builder</option>
+<option value="./images/craftercape1.png">🎁 Crafter Cape 1</option>
+<option value="./images/craftercape1upsidedown.png">🎁 Crafter Cape 2</option>
 <option value="https://textures.minecraft.net/texture/7658c5025c77cfac7574aab3af94a46a8886e3b7722a895255fbf22ab8652434">💸 Experience</option>
-<option value="./images/moonlighttrailcape.png">💸 MoonLight Trail</option>
-<option value="./images/craftercape1.png">💎 Crafter</option>
 <option value="https://textures.minecraft.net/texture/e7dfea16dc83c97df01a12fabbd1216359c0cd0ea42f9999b6e97c584963e980">💎 Minecon 2016</option>
 <option value="https://textures.minecraft.net/texture/b0cc08840700447322d953a02b965f1d65a13a603bf64b17c803c21446fe1635">💎 Minecon 2015</option>
 <option value="https://textures.minecraft.net/texture/153b1a0dfcbae953cdeb6f2c2bf6bf79943239b1372780da44bcbb29273131da">💎 Minecon 2013</option>
@@ -921,7 +918,7 @@ function setAnimation(animName) {
     }
 }
 async function getOfficialSkinUrl(playerName) {
-  const uuidResponse = await fetch(`https://api.gapple.pw/cors/username/${playerName}`, { cache: 'reload' });
+  const uuidResponse = await fetch(`https://corsjangapi.b-cdn.net/users/profiles/minecraft/${playerName}`, { cache: 'reload' });
   if (!uuidResponse.ok) {
     throw new Error('Tente Novamente, Atualizando Skin!');
   }
@@ -1253,7 +1250,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener("DOMContentLoaded", () => {
   const langSelector = `
     <select id="idiomaSelect" onchange="onLanguageChange(this.value)"
-      style="padding:5px;border-radius:5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right: 20px;position:relative;top:8px;background:#121212;cursor:pointer;border: 2px solid #8B1616;">
+      style="padding:5px;border-radius:5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right: 20px;position:relative;top:8px;background:#121212;cursor:pointer;">
       <option value="pt-BR">Português 🇧🇷</option>
 	  <option value="pt-PT">Português 🇵🇹</option>
       <option value="es">Español 🇪🇸</option>
@@ -1838,42 +1835,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-</script>
-<style>
-  body, html {
-    margin-top: 0 !important;
-  }
-  body > br:nth-of-type(-n+15) {
-    display: none !important;
-  }
-  nav.navbar {
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      gap: 7.5px !important;
-      flex-wrap: wrap !important;
-  }
-  nav.navbar a, 
-  nav.navbar strong,
-  nav.navbar b {
-      margin: 0 !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      text-decoration: none !important;
-  }
-  nav.navbar a img {
-      margin-right: 6px !important;
-      vertical-align: middle !important;
-  }
-</style>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').then(() => {
-        console.log('Service Worker Registrado com sucesso.');
-      });
-    });
-  }
 </script>
 </body>
 </html>
