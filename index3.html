@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class=""><head>
 <meta charset="UTF-8">
-<link rel="manifest" href="./manifest.json">
-<link rel="apple-touch-icon" href="./images/favicon.png?v=2">
 <meta http-equiv="Content-Security-Policy" 
 content="
   default-src 'self';
@@ -14,7 +12,8 @@ content="
 ">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<meta name="description" content="Criar as suas Próprias Skins de Minecraft, A Partir do zero. ou Editar Skins existentes no seu Navegador.">
+<meta content="Minecraft Início" property="og:title"/>
+<meta content="Minecraft Criar as suas Proprias Skins de Minecraft A Partir do zero, ou Editar Skins existentes no seu Navegador. Verificar Nicks, Testar Skin e Capa e Gerar Skin Bebê." name="twitter:description" property="og:description"/>
 <meta name="keywords" content="">
 <meta name="author" content="">
 <meta name="format-detection" content="telephone=no">
@@ -22,6 +21,8 @@ content="
 <meta content="http://areaprotegida.vercel.app" property="og:url"/>
 <meta content="https://minecraftinicio.vercel.app/images3/minecraftinicio.png" property="og:image"/>
 <meta content="https://minecraftinicio.vercel.app/images3/minecraftinicio.png" name="twitter:image"/>
+<meta content="Minecraft Início" name="twitter:title"/>
+<meta content="Minecraft Criar as suas Proprias Skins de Minecraft A Partir do zero, ou Editar Skins existentes no seu Navegador. Verificar Nicks, Testar Skin e Capa e Gerar Skin Bebê." name="twitter:description"/>
 <title>Minecraft Início</title>
 <script>
 (function() {
@@ -215,7 +216,7 @@ else if (tema === 'rainbow') document.documentElement.className = 'theme-rainbow
 <body>
 <nav class="navbar">
 <div class="theme-selector">
-<select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;box-shadow: 0 2px 18px #8b1616;font-size: 1.1rem;min-width:44px;min-height:44px;box-sizing:border-box;margin-bottom:14px; margin-right: -55px; border: 2px solid #8B1616;" title="Mudar Tema Do Site">
+<select id="theme_switcher" style="background: #121212;color: #e8b901;border-radius: 8px;padding: 0.4rem;border: 1px solid #8B1616;font-weight: bold;cursor:pointer;position: relative;top: 8px;box-shadow: 0 2px 18px #8b1616;font-size: 1.1rem;min-width:44px;min-height:44px;box-sizing:border-box;margin-bottom:14px;" title="Mudar Tema Do Site">
 <option value="dark">🌙 Escuro</option>
 <option value="light">☀️ Claro</option>
 <option value="rainbow">🌈 Arco-Íris</option>
@@ -1020,7 +1021,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener("DOMContentLoaded", () => {
   const langSelector = `
       <select id="idiomaSelect" onchange="changeLanguage(this.value)" 
-      style="padding:5px;border-radius:5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-left: -200px;position:relative;top:8.3px;background:#121212;color:#e8b901;left:-20px;border: 1px solid #8B1616;box-shadow: 0 2px 18px #8b1616;font-size:1.1rem;min-width: 44px;min-height: 44px;box-sizing: border-box;cursor:pointer;border: 2px solid #8B1616;">
+      style="padding:5px;border-radius:5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-left: -200px;position:relative;top:8.3px;background:#121212;color:#e8b901;left:-20px;border: 1px solid #8B1616;box-shadow: 0 2px 18px #8b1616;font-size:1.1rem;min-width: 44px;min-height: 44px;box-sizing: border-box;cursor:pointer;">
       <option value="pt-BR">Português 🇧🇷</option>
 	  <option value="pt-PT">Português 🇵🇹</option>
       <option value="es">Español 🇪🇸</option>
@@ -1436,42 +1437,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-</script>
-<style>
-  body, html {
-    margin-top: 0 !important;
-  }
-  body > br:nth-of-type(-n+15) {
-    display: none !important;
-  }
-  nav.navbar {
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      gap: 7.5px !important;
-      flex-wrap: wrap !important;
-  }
-  nav.navbar a, 
-  nav.navbar strong,
-  nav.navbar b {
-      margin: 0 !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      text-decoration: none !important;
-  }
-  nav.navbar a img {
-      margin-right: 6px !important;
-      vertical-align: middle !important;
-  }
-</style>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').then(() => {
-        console.log('Service Worker Registrado com sucesso.');
-      });
-    });
-  }
 </script>
 </body>
 </html>
